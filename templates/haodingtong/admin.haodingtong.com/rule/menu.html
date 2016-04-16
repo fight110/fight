@@ -1,0 +1,18 @@
+<ul>
+<li><a href="/rule/?t=series" id="km_series">{%$keyword.series_id%}指引</a></li>
+<li><a href="/rule/?t=wave" id="km_wave">{%$keyword.wave_id%}指引</a></li>
+<li><a href="/rule/?t=category" id="km_category">{%$keyword.category_id%}指引</a></li>
+<li><a href="/rule/?t=color" id="km_color">单色指引</a></li>
+<!-- <li><a href="/rule/?t=color_group" id="km_color_group">色系指引</a></li> -->
+<!-- <li><a href="/rule/?t=size" id="km_size">尺码指引</a></li> -->
+<li><a href="/rule/?t=price_band" id="km_price_band">{%$keyword.price_band_id%}指引</a></li>
+<li><a href="/rule/budget" id="km_budget">预算初始化</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

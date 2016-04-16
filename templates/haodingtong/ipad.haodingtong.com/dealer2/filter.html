@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+        <div>
+<form id="HDT-filter-form" action="/orderlist/order_filter" target="MyIframe">
+<ul>
+<li>属性:<input type="checkbox" name="status[]" value="1">正品 <input type="checkbox" name="status[]" value="2">促销品</li>
+<li>区域:{%section name=i loop=$show.area1_list%}<input type="checkbox" name="area1[]" value="{%$show.area1_list[i].id%}">{%$show.area1_list[i].name%}{%/section%}</li>
+<li>AD:{%section name=i loop=$show.ad_list%}<input type="checkbox" name="ad[]" value="{%$show.ad_list[i].ad%}">{%$show.ad_list[i].ad%}{%/section%}</li>
+<li>{%$keyword.brand_id%}:{%$show.brand_id|hdt_attrlist:"brand":"所有{%$keyword.brand_id%}":"checkbox"%}</li>
+<li>{%$keyword.season_id%}:{%$show.season_id|hdt_attrlist:"season":"所有{%$keyword.season_id%}":"checkbox"%}</li>
+<li>{%$keyword.wave_id%}:{%$show.wave_id|hdt_attrlist:"wave":"所有{%$keyword.wave_id%}":"checkbox"%}</li>
+<li>{%$keyword.category_id%}:{%$show.category_id|hdt_attrlist:"category":"所有{%$keyword.category_id%}":"checkbox"%}</li>
+<li>分类:{%$show.classes_id|hdt_attrlist:"classes":"所有分类":"checkbox"%}</li>
+<li>{%$keyword.series_id%}:{%$show.series_id|hdt_attrlist:"series":"所有{%$keyword.series_id%}":"checkbox"%}</li>
+<li>格式:<select name="key"><!-- <option value="">默认</option> --><option value="kuanhao">款号</option><option value="category">{%$keyword.category_id%}</option><option value="wave">{%$keyword.wave_id%}</option><option value="season">{%$keyword.season_id%}</option><option value="brand">{%$keyword.brand_id%}</option></select></li>
+<li>排序:<select name="orderby"><option value="pc.skc_id">圆牌号</option><option value="p.kuanhao">款号</option><option value="num">订数</option><option value="price">金额</option></select>
+  <select name="asc"><option value="asc">小到大</option><option value="desc">大到小</option></select>
+</li>
+<li>编号:<input type="input" name="bianhao" value="" placeholder="请输入检索编号"></li>
+<li>帐号:<input type="input" name="username" value="" placeholder="请输入检索帐号"></li>
+<!-- <li>下载:<input type="checkbox" name="download" value=1></li> -->
+</ul>
+<input type="submit" class="HDT-submit" value="提交">
+</form>
+<iframe name="MyIframe" width="100%" id="iFrame1"></iframe>
+</div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript" src="/js/sea.js"></script>
+<script>
+seajs.use("lj/dealer2/filter");
+</script>
+</body>
+</html>

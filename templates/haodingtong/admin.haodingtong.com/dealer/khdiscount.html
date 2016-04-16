@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%$show.u.username%} {%$show.u.name%}
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3></h3>
+            <ul>
+            <li><a href="/dealer/discount/{%$show.id%}" id="kh_category">{%$keyword.category_id%}折扣</a></li>
+            <li><a href="/dealer/khdiscount/{%$show.id%}" id="kh_kuanhao">款号折扣</a></li>
+            </ul>
+            </div>
+<script>
+(function(){
+  var menuid = "kh_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>
+          <div class="cons_main">
+            <div class="cons_tabl" id="HDT-main" data-user-id="{%$show.id%}" data-field="{%$show.t%}">
+              <table  border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  
+                  <th colspan="2">{%if $message%}<font color="red">{%$message%}</font>{%/if%}</th>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <form method="POST" action="/dealer/khdiscountadd">
+                      <input type="hidden" name="t" value="{%$show.t%}" id="FactoryTable">
+                      <input type="hidden" name="user_id" value="{%$show.id%}">
+                      款号：<input type="text" name="kuanhao" >
+                      折扣：<input type="text" name="discount" >
+                      <input type="submit" value="增加">
+                    </form>
+                  </td>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td>{%$show.list[i].kuanhao%}</td>
+                  <td>
+                    {%$show.list[i].kuanhao_discount%}
+                    <a href="/dealer/khdiscountdel/{%$show.list[i].id%}?t={%$show.t%}"><font color="red">删除</font></a>
+                      <a href="#" class="HDT-edit" data-id="{%$show.list[i].id%}" data-name="{%$show.list[i].kuanhao%}" data-discount="{%$show.list[i].kuanhao_discount%}">修改</a>
+                  </td>
+                </tr>
+                {%/section%}
+              </table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-edit">
+<form method="POST" action="/dealer/khdiscountedit">
+<input type="hidden" name="id">
+<p>款号:<input type="text" name="kuanhao" readonly>不可修改</p>
+<p>折扣:<input type="text" name="discount"></p>
+<p><input type="submit" value="修改"></p>
+</form>
+</script>
+<script>
+seajs.use('lj/admin/dealer/khdiscount');
+</script>
+</body>
+</html>

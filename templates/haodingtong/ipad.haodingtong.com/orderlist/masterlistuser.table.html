@@ -1,0 +1,33 @@
+<div>
+{%if $show.unorderulist%}
+<table cellspacing="0" cellpadding="0" border="0" id="HDT_UNORDER_TABLE">
+        <tr><th colspan=4>总共<em>{%$show.unorderulist|count%}</em>家未订店仓</th></tr>
+        <tr class="HDT_HIDE">
+          {%section name=i loop=$show.unorderulist%}
+          {%if $smarty.section.i.index && $smarty.section.i.index%4 == 0%}</tr><tr class="HDT_HIDE">{%/if%}
+          <td>{%$show.unorderulist[i].name%}</td>
+          {%/section%}
+        </tr>
+</table>
+{%/if%}
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+      	<th>店仓</th>
+      	<th>颜色/尺码</th>
+      	{%section name=i loop=$show.size_list%}
+      	<th>{%$show.size_list[i].name%}</th>
+      	{%/section%}
+      	<th>小计</th>
+    </tr>
+    {%section name=i loop=$show.list%}
+    <tr>
+    	<th>{%$show.list[i].name%}</th>
+      	<td>{%$show.list[i].color.name%}</td>
+      	{%section name=j loop=$show.list[i].td%}
+      	<td>{%$show.list[i].td[j].num%}</td>
+      	{%/section%}
+      	<td class="colblue">{%$show.list[i].count%}</td>
+    </tr>
+    {%/section%}
+</table>
+</div>

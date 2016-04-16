@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+<style type="text/css">
+#HDT-main a {font-size: 15px;}
+</style>
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.analysis_exp.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="box_title">
+          <form action="/ad/exp1">
+            <a href="/ad/exp1?isZongdai=1">看一级指标</a> |
+          <a href="/ad/exp">看店仓指标</a> 
+        <input type="text" name="uname" placeholder="输入帐号或者名称查找">
+        </form>
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0" class="table01" id="HDT-main"></table>
+      </div>
+      <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+{%if !$show.byArea && !$show.byZongdai%}
+<script>
+seajs.use('lj/a/exp');
+</script>
+{%/if%}
+</body>
+</html>

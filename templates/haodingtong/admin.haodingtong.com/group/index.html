@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.product.html"%}
+
+  <div class="mainbox">
+    <div class="main_con">
+    <div style="margin:10px 20px -20px 20px;overflow:hidden;"><a href="/product" class="buttonLink">货品管理</a>&nbsp;&nbsp;<a href="/group" class="buttonLink currentSelect">搭配管理</a>&nbsp;&nbsp;<a href="/display" class="buttonLink">陈列管理</a><!-- <a href="/group/check" class="buttonLink marginLeft50">搭配核查</a> -->
+    	<a href="/group/add" class="buttonLink" style="float:right;">添加搭配</a>
+    </div>
+    <div class="box">
+    <table class="table01 lh20 adplist" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th width="50">图片</th>
+          <th>编号</th>
+          <th>搭配名</th>
+          <th>成员</th>
+          <th>操作</th>
+        </tr>
+        {%section name=i loop=$show.list%}
+        <tr>
+          <td><img src="/thumb/50/{%$show.list[i].defaultimage%}"></td>
+          <td>{%$show.list[i].dp_num%}</td>
+          <td>{%$show.list[i].name%}</td>
+          <td>
+          	{%section name=j loop=$show.list[i].member%}
+          	{%$show.list[i].member[j].product.bianhao%}
+          	{%/section%}</td>
+          <td>
+          	<a href="/group/add/{%$show.list[i].id%}">编辑</a>
+          	<a href="/group/delete/{%$show.list[i].id%}" class="HDT-delete">删除</a>
+          </td>
+        </tr>
+        {%/section%}
+      </table>
+    {%$show.pagelist%}
+    </div>
+    <div class="clear"></div>
+    <!--foot-->
+     {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+   {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/group/index');
+</script>
+</body>
+</html>

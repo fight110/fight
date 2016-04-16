@@ -1,0 +1,17 @@
+{%include file="top.1.html"%}
+
+  <div class="tit_bar">
+    <ul class="select_menu" id="HDT-select-menu">
+    <li>
+        <select name="fliter_uid">
+            <option value="">所有下线</option>
+            {%section name=i loop=$show.slave_list%}
+            <option value="{%$show.slave_list[i].id%}" {%if $show.slave_id==$show.slave_list[i].id%}selected="selected"{%/if%}>{%$show.slave_list[i].name%}</option>
+            {%/section%}
+        </select>
+    </li>
+   </ul>
+    {%include file="top.search.html"%}
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

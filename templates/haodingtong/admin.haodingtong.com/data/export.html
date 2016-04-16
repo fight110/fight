@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link href="/style/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/sea.js"></script>
+</head>
+
+<body>
+    <div class="hero-unit">
+    	<form method="post">
+            <h1>导出接口</h1>
+            <p><select id="select">
+            	<option value=""></option>
+            	<option value="product_detail">商品基础资料</option>
+            	<option value="user_order">用户订单数据</option>
+            </select>
+        	</p>
+        	<p>
+            <input type="text" name="name" placeholder="导出的文件名">
+        	</p>
+            <p>
+            	<textarea name="sql" style="width:80%;height:250px;"></textarea>
+            </p>
+            <p>
+            	<input type="submit" value="导出" class="btn">
+            </p>
+        </form>
+    </div>
+    <div class="hero-unit" id="console"></div>
+<script>
+seajs.use('lj/admin/data/export');
+</script>
+</body>
+</html>

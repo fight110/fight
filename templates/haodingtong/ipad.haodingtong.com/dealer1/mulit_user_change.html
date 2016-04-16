@@ -1,0 +1,8 @@
+<div class="mulit_user_change_list">
+<div class="mulit_title">用户切换到</div>
+<ul>
+{%section name=i loop=$show.list%}
+<li {%if $show.list[i].id==$show.user.id%}class="on"{%/if%}><a href="/dealer1/mulit_user_set/{%$show.list[i].id%}">{%$show.list[i].name%}</a></li>
+{%/section%}
+</ul>
+</div>

@@ -1,0 +1,59 @@
+{%if $show.t == "color" || $show.t == "size" || $show.t == "price_band" || $show.t=="user"%}
+{%if $show.start == 0%}
+<tr>
+  <th>名称</th>{%if $show.total_product_all_num%}<th style="width:60px;">开发款量</th>{%/if%}
+  <th>已订款量</th>
+  <th>已订数量</th><th>订量占比</th>
+  <th>款色</th>
+  <th>金额</th>
+  <th>金额占比</th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>{%if $show.total_product_all_num%}<th>{%$show.total_product_all_num%}</th>{%/if%}
+  <th>{%$show.pnum%}</th>
+  <th>{%$show.num%}</th>
+  <th>100%</th>
+  <th>{%$show.skc%}</th>
+  <th>{%$show.price|price_cn%}</th>
+  <th>100%</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-u="{%$show.list[i].num%}" data-r="{%$show.list[i].percent_rule%}" data-name="{%$show.list[i].name%}" data-exp="{%$currentUser.exp_num%}" data-budget="{%$show.budget%}" data-b="{%$show.list[i].data_b%}">
+  <td class="hbg">{%$show.list[i].name%}</td>{%if $show.total_product_all_num%}<td class="hbg">{%$show.list[i].product_all_num%}</td>{%/if%}
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].num%}</td><td>{%$show.list[i].percent_num%}</td>
+  <td>{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}{%else%}
+{%if $show.start == 0%}
+<tr>
+  <th>名称</th>{%if $show.total_product_all_num%}<th style="width:60px;">开发款量</th>{%/if%}
+  <th>已订款量</th>
+  <th>已订数量</th><th>订量占比</th>
+  <th>款色</th>
+  <th>金额</th>
+  <th>金额占比</th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>{%if $show.total_product_all_num%}<th>{%$show.total_product_all_num%}</th>{%/if%}
+  <th>{%$show.pnum%}</th>
+  <th>{%$show.num%}</th>
+  <th>100%</th>
+  <th>{%$show.skc%}</th>
+  <th>{%$show.price|price_cn%}</th>
+  <th>100%</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-u="{%$show.list[i].num%}" data-r="{%$show.list[i].percent_rule%}" data-name="{%$show.list[i].name%}" data-exp="{%$currentUser.exp_num%}" data-budget="{%$show.budget%}" data-b="{%$show.list[i].data_b%}">
+  <td class="hbg"><a href="/{%if $currentUser.type==1%}dealer1{%elseif $currentUser.type==2%}dealer2{%elseif $currentUser.type==3%}ad{%/if%}?{%$show.t%}_id={%$show.list[i].keyword_id%}&ordered=on">{%$show.list[i].name%}</a></td>{%if $show.total_product_all_num%}<td class="hbg">{%$show.list[i].product_all_num%}</td>{%/if%}
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].num%}</td><td>{%$show.list[i].percent_num%}</td>
+  <td>{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}{%/if%}

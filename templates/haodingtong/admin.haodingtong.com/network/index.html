@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link href="/style/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/sea.js"></script>
+</head>
+
+<body>
+    <div class="hero-unit">
+        <h1>授权管理</h1>
+        <form class="navbar-form navbar-left" role="search">
+            <input type="text" name="q" class="form-control" placeholder="输入账号或用户名" value="{%$show.q%}">
+            <button type="submit" class="btn btn-default">搜索</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="number" name="timeout" value="{%$show.timeout%}" style="width:50px;"> 分钟内活动人数: <b style="color:red">{%$show.deviceNum%}</b>
+            <a href="/network/auth_logout" onclick="return confirm('确认全部客户退出？');" style="float:right">点击全部强制退出</a>
+        </form>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>登入帐号</th>
+                <th>客户名称</th>
+                <th>登陆时间</th>
+                <th>更新时间</th>
+                <th>登入次数</th>
+                <!-- <th>授权状态</th> -->
+                <th>操作</th>
+            </tr>
+            {%section name=i loop=$show.list%}
+            <tr>
+                <td>{%$show.list[i].id%}</td>
+                <td>{%$show.list[i].username%}</td>
+                <td>{%$show.list[i].name%}</td>
+                <td>{%$show.list[i].login_time%}</td>
+                <td>{%$show.list[i].update_time%}</td>
+                <td>{%$show.list[i].login_num%}</td>
+                <!-- <td>
+                    {%if $show.list[i].auth%}<span class="label label-success">已授权</span>{%else%}<span class="label label-warning">未授权</span>{%/if%}
+                    <a href="/network/index/{%$show.list[i].id%}?status={%if $show.list[i].auth%}0{%else%}1{%/if%}">修改</a>
+                </td> -->
+                <td>{%if $show.list[i].user_id%}<a href="/network/logout/{%$show.list[i].session_id%}">[强制退出]</a>{%/if%}</td>
+            </tr>
+            {%/section%}
+        </table>
+
+        <p>{%$show.pagelist%}</p>
+
+
+    </div>
+<script>
+</script>
+</body>
+</html>

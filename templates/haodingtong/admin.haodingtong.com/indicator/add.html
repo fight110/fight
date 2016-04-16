@@ -1,0 +1,30 @@
+
+<form>
+<table cellpadding=0 cellspacing=0 border=0 width="100%" class="indicatorAdd">
+<tr>
+<th></th>
+<th>指标款量</th>
+<th>指标款色</th>
+<th>指标订量</th>
+<th>指标金额</th>
+</tr>
+{%foreach from=$show.attr_list item=attr%}
+<tr data-keyword-id="{%$attr.keyword_id%}">
+  <td>{%$attr.keyword_id|hdt_keyword%}</td>
+  <td><input type="text" name="exp_pnum" value="{%$attr.indicator.exp_pnum%}"></td>
+  <td><input type="text" name="exp_skc" value="{%$attr.indicator.exp_skc%}"></td>
+  <td><input type="text" name="exp_num" value="{%$attr.indicator.exp_num%}"></td>
+  <td><input type="text" name="exp_amount" value="{%$attr.indicator.exp_amount%}"></td>
+</tr>
+{%foreachelse%}
+<tr data-keyword-id="0">
+  <td>总指标</td>
+  <td><input type="text" name="exp_pnum" value="{%$show.indicator.exp_pnum%}"></td>
+  <td><input type="text" name="exp_skc" value="{%$show.indicator.exp_skc%}"></td>
+  <td><input type="text" name="exp_num" value="{%$show.indicator.exp_num%}"></td>
+  <td><input type="text" name="exp_amount" value="{%$show.indicator.exp_amount%}"></td>
+</tr>
+{%/foreach%}
+</table>
+<input type="submit" value="保存">
+</form>

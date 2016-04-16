@@ -1,0 +1,97 @@
+[
+    {
+        "filename"  : "0.gif",
+        "width"     : 200,
+        "height"    : 200,
+        "x"         : 15,
+        "y"         : 25,
+        "color"     : [[255,255,255],[100,0,0]],
+        "viewwidth"       : 220,
+        "logo"      : {
+            "x"         : 50,
+            "y"         : 50,
+            "width"     : 35,
+            "height"    : 35 
+        }
+    },
+    {
+        "filename"  : "1-a.gif",
+        "width"     : 300,
+        "height"    : 300,
+        "x"         : 45,
+        "y"         : 40,
+        "color"     : [[255,255,255],[0,0,0]],
+        "viewwidth"       : 220,
+        "logo"      : {
+            "x"         : 150,
+            "y"         : 150,
+            "width"     : 35,
+            "height"    : 35,
+            "center"    : true
+        }
+    },
+    {
+        "filename"  : "2-a.gif",
+        "width"     : 300,
+        "height"    : 300,
+        "x"         : 30,
+        "y"         : 30,
+        "color"     : [[255,255,255],[0,0,0]],
+        "viewwidth"       : 240,
+        "logo"      : {
+            "x"         : 150,
+            "y"         : 150,
+            "width"     : 35,
+            "height"    : 35,
+            "center"    : true
+        }
+    },
+    {
+        "filename"  : "3-a.gif",
+        "width"     : 300,
+        "height"    : 300,
+        "x"         : 45,
+        "y"         : 45,
+        "color"     : [[255,255,255],[0,0,0]],
+        "viewwidth"       : 210,
+        "logo"      : {
+            "x"         : 150,
+            "y"         : 150,
+            "width"     : 35,
+            "height"    : 35,
+            "center"    : true
+        }
+    },
+    {
+        "filename"  : "4-a.gif",
+        "width"     : 300,
+        "height"    : 300,
+        "x"         : 80,
+        "y"         : 80,
+        "color"     : [[255,255,255],[0,0,0]],
+        "viewwidth"       : 140,
+        "logo"      : {
+            "x"         : 150,
+            "y"         : 150,
+            "width"     : 35,
+            "height"    : 35,
+            "center"    : true
+        }
+    },
+    {
+        "filename"  : "5-a.gif",
+        "width"     : 300,
+        "height"    : 300,
+        "x"         : 75,
+        "y"         : 75,
+        "color"     : [[255,255,255],[0,0,0]],
+        "viewwidth"       : 150,
+        "logo"      : {
+            "x"         : 150,
+            "y"         : 150,
+            "width"     : 35,
+            "height"    : 35,
+            "center"    : true
+        }
+    }
+]

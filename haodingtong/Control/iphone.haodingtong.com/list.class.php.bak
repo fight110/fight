@@ -1,0 +1,181 @@
+<?php
+
+class Control_list {
+    public static function Action_index($r){
+        Flight::validateUserHasLogin();
+
+        $OrderList  = new OrderList;
+
+        $condition  = array();
+        $options    = array();
+        $options['page']    = 1;
+        $options['limit']   = 3;
+        $list_price = $OrderList->getOrderUserList($condition, $options); 
+        $result['list_price']   = $list_price;
+
+        $options['order']   = "num desc";
+        $list_num   = $OrderList->getOrderUserList($condition, $options);
+        $result['list_num']     = $list_num;
+
+        $options['order']   = "pnum desc";
+        $list_pnum  = $OrderList->getOrderUserList($condition, $options);
+        $result['list_pnum']    = $list_pnum;
+        
+        Flight::display('list/index.html', $result);
+    }
+
+    public static function Action_list($r){
+        Flight::validateUserHasLogin();
+
+        $result['t']    = $r->query->t;
+
+        Flight::display("list/list.html", $result);
+    }
+
+    public static function Action_product($r){
+        Flight::validateUserHasLogin();
+
+        $data       = $r->query;
+        $p          = $data->p      ? $data->p      : 1;
+        $limit      = $data->limit  ? $data->limit  : 10;
+        $User       = new User;
+        $OrderList  = new OrderList;
+        $condition  = array();
+        $options    = array();
+        $options['order']   = "num desc";
+        $options['page']        = $p;
+        $options['limit']       = $limit;
+
+        $list       = $OrderList->getOrderProductList($condition, $options);
+
+        $start      = ($p - 1) * $limit;
+        foreach($list as &$row){
+            $row['topthree']    = SESSION::cache("ProductTopUserThree-{$row['id']}", function() use($OrderList, $row){
+                return $OrderList->getOrderProductUserTopList($row['id'], 3);
+            });
+        }
+
+        $result['list']     = $list;
+        $result['start']    = $start;
+
+
+        Flight::display("list/list.product.html", $result);
+    }
+
+    public static function Action_num($r){
+        Flight::validateUserHasLogin();
+
+        $data       = $r->query;
+        $p          = $data->p      ? $data->p      : 1;
+        $limit      = $data->limit  ? $data->limit  : 10;
+        $order      = $data->order  ? $data->order  : 'num';
+        $condition  = array();
+        $options    = array();
+        $options['order']   = "num desc";
+        $options['page']        = $p;
+        $options['limit']       = $limit;
+        $OrderList  = new OrderList;
+        $list       = $OrderList->getOrderUserList($condition, $options); 
+        $start      = ($p - 1) * $limit;
+
+        $result['list']     = $list;
+        $result['start']    = $start;
+
+        Flight::display("list/list.num.html", $result);
+    }
+
+    public static function Action_price($r){
+        Flight::validateUserHasLogin();
+
+        $data       = $r->query;
+        $p          = $data->p      ? $data->p      : 1;
+        $limit      = $data->limit  ? $data->limit  : 10;
+        $order      = $data->order  ? $data->order  : 'price';
+        $condition  = array();
+        $options    = array();
+        $options['page']        = $p;
+        $options['limit']       = $limit;
+        $OrderList  = new OrderList;
+        $list       = $OrderList->getOrderUserList($condition, $options); 
+        $start      = ($p - 1) * $limit;
+
+        $result['list']     = $list;
+        $result['start']    = $start;
+
+        Flight::display("list/list.price.html", $result);
+    }
+
+    public static function Action_series($r){
+        Flight::validateUserHasLogin();
+
+        $OrderList      = new OrderList;
+        $Keywords       = new Keywords;
+        $data           = $r->query;
+        $p              = $data->p      ? $data->p      : 1;
+        $limit          = $data->limit  ? $data->limit  : 5;
+        $condition      = array();
+        $options        = array();
+        $options['group']   = "p.series_id";
+        $options['fields_more'] = "p.series_id as keyword_id";
+        $options['order']   = "num desc";
+        $options['page']    = $p;
+        $options['limit']   = $limit;
+
+        $list           = $OrderList->getOrderAnalysisList($condition, $options);
+        $start      = ($p - 1) * $limit;
+        foreach($list as &$row){
+            $row['name']    = $Keywords->getName_File($row['keyword_id']);
+            $row['topthree'] = SESSION::cache("TOP-SERIES-USER-{$row['keyword_id']}", function() use($OrderList, $row){
+                $condition  = array();
+                $options    = array();
+                $condition['series_id'] = $row['keyword_id'];
+                $options['page']    = 1;
+                $options['limit']   = 3;
+                return $OrderList->getOrderUserList($condition, $options);
+            });
+        }
+
+        $result['list']     = $list;
+        $result['start']    = $start;
+
+        Flight::display("list/list.series.html", $result);
+    }
+
+    public static function Action_category($r){
+        Flight::validateUserHasLogin();
+
+        $OrderList      = new OrderList;
+        $Keywords       = new Keywords;
+        $data           = $r->query;
+        $p              = $data->p      ? $data->p      : 1;
+        $limit          = $data->limit  ? $data->limit  : 10;
+        $condition      = array();
+        $options        = array();
+        $options['group']   = "p.category_id";
+        $options['fields_more'] = "p.category_id as keyword_id";
+        $options['order']   = "num desc";
+        $options['page']    = $p;
+        $options['limit']   = $limit;
+
+        $list           = $OrderList->getOrderAnalysisList($condition, $options);
+        $start      = ($p - 1) * $limit;
+        foreach($list as &$row){
+            $row['name']    = $Keywords->getName_File($row['keyword_id']);
+            $row['topthree'] = SESSION::cache("TOP-CATEGORY-USER-{$row['keyword_id']}", function() use($OrderList, $row){
+                $condition  = array();
+                $options    = array();
+                $condition['category_id'] = $row['keyword_id'];
+                $options['page']    = 1;
+                $options['limit']   = 3;
+                return $OrderList->getOrderUserList($condition, $options);
+            });
+        }
+
+        $result['list']     = $list;
+        $result['start']    = $start;
+
+        Flight::display("list/list.category.html", $result);
+    }
+
+
+}

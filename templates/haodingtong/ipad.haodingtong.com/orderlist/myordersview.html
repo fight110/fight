@@ -1,0 +1,130 @@
+<style type="text/css">
+#orderDetailView,#orderDetailView td,#orderDetailView th {
+  font-family: "微软雅黑";
+  font-size: 11px;
+}
+#orderDetailView .tiny td {font-size: 11px;padding: 0 1px;}
+.bborder{border-bottom:1px solid #333;}
+.hei{color:#000000;}
+.cui{font-weight:800;}
+.backhui{background-color:#F2F2F2;}
+#orderDetailView .f18{font-size:18px; line-height:38px;}
+#orderDetailView .f14{font-size:14px; line-height:28px;}
+#orderDetailView .f16{font-size:16px; line-height:28px;}
+#orderDetailView .tc{text-align:center;}
+.mtop8{margin-top:8px;}
+.mtop16{margin-top:16px;}
+.mbg{background-color:#999999;}
+#orderDetailView td{background-color:#FFF;}
+.tcolor1{border-bottom:1px solid #999999;}
+#orderDetailView table{border-collapse:collapse; border:none;width: 100%;}
+#orderDetailView td{border:1px solid #333; padding: 0 4px;text-align: left;}
+#orderDetailView td span {font-size: 14px;}
+#orderDetailView p {margin: 0px;padding:0px;line-height: 18px;}
+#orderDetailView td a{text-decoration:underline;}
+.touch_image img{width:20px;}
+</style>
+<div data-wrong-order="{%$show.company.wrong_order%}" id="orderDetailView">
+{%$colspannum = 5%}
+{%if $show.company.touch_image  neq 1%}
+  {%$colspannum = $colspannum + 1%}
+{%/if%}
+{%if $show.company.user_guide && $currentUser.type eq 1%}
+  {%$colspannum = $colspannum + 1%}
+{%/if%}
+{%section name=i loop=$show.list%}
+<table border="0" align="center" cellpadding="1" cellspacing="1" class="mtop8 mbg">
+  <tr>
+    <td colspan="{%if $show.company.touch_image neq 1%}{%$show.list[i].size_length + 9%}{%else%}{%$show.list[i].size_length + 8%}{%/if%}" class="f18 hei backhui cui">{%$show.list[i].category_id|hdt_keyword%} <span>款数:{%$show.list[i].pnum%} 款色:{%$show.list[i].SKC%}</span></td>
+  </tr>
+  <tr class="tiny">
+    <td>圆牌</td>
+    <td>类别</td>
+    {%if $show.company.touch_image  neq 1%}
+    <td>图片</td>
+    {%/if%}
+    <td>货号</td>
+    <td>颜色</td>
+    <td>单价</td>
+    {%if $show.company.order_proportion_status%}
+    <td>箱数</td>
+    {%/if%}
+    {%if $show.company.user_guide && $currentUser.type eq 1%}
+    <td>指导量</td>
+    {%/if%}
+    <td>件数</td>
+    <td>金额</td>
+    {%foreach from=$show.list[i].size_list key=size_group_id item=size_list%}
+    <td>{%foreach from=$size_list item=size%}<p>{%$size.name|default:"&nbsp;"%}</p>{%/foreach%}</td>
+    {%/foreach%}
+    {%if $show.company.moq_status%}
+    <td>投产状态</td>
+    {%/if%}
+  </tr>
+  {%section name=j loop=$show.list[i].listing%}
+  <tr>
+    <td>{%$show.list[i].listing[j].skc_id%}</td>
+    <td>{%$show.list[i].listing[j].category_id|hdt_keyword%}</td>
+    {%if $show.company.touch_image  neq 1%}
+    <td class="touch_image" style="text-align: center;"><img src="/thumb/75/{%$show.list[i].listing[j].defaultimage|hdt_pcimage:$show.list[i].listing[j].product_id:$show.list[i].listing[j].product_color_id%}"></td>
+    {%/if%}
+    <td {%if $currentUser.type eq 1%} class="fancyboxBook" data-slide-navi='1' data-product-id="{%$show.list[i].listing[j].product_id%}" {%/if%}>{%if $currentUser.type eq 1%}<a href="javascript:void(0);">  {%$show.list[i].listing[j].kuanhao%}</a>
+      {%else%}
+      {%$show.list[i].listing[j].kuanhao%}
+      {%/if%}</td>
+    <td>{%$show.list[i].listing[j].product_color_id|hdt_keyword%}</td>
+    <td>{%$show.list[i].listing[j].p_price%}</td>
+    {%if $show.company.order_proportion_status%}
+    <td>{%$show.list[i].listing[j].xnum%}</td>
+    {%/if%}
+    {%if $show.company.user_guide && $currentUser.type eq 1%}
+    <td>{%$show.list[i].listing[i].user_guide%}</td>
+    {%/if%}
+    <td class="HDT-order-num" data-product-id="{%$show.list[i].listing[j].product_id%}" data-moq="{%$show.list[i].listing[j].mininum%}">{%$show.list[i].listing[j].num%}</td>
+    <td>{%$show.list[i].listing[j].price%}</td>
+    {%section loop=$show.list[i].listing[j].size_list name=z%}
+    <td  {%if $currentUser.type eq 1%} class="fancyboxBook HDT-order-detail" data-slide-navi='1' data-product-id="{%$show.list[i].listing[j].product_id%}" {%else%} class="HDT-order-detail" {%/if%}>{%$show.list[i].listing[j].size_list[z]%}</td>
+    {%/section%}
+    {%section loop=$show.list[i].size_length start=$show.list[i].listing[j].size_list|count name=z%}
+    <td class="HDT-order-detail"></td>
+    {%/section%}
+    {%if $show.company.moq_status%}
+    <td>{%$show.list[i].listing[j].skc_id|hdt_moq_status:$show.list[i].listing[j].product_id:$show.list[i].listing[j].product_color_id%}</td>
+	{%/if%}
+  </tr>
+  {%/section%}
+  <tr>
+    <td class="cui" colspan="{%$colspannum%}">{%$show.list[i].wave_name%}合计：</td>
+    {%if $show.company.order_proportion_status%}
+    <td>{%$show.list[i].xnum%}</td>
+    {%/if%}
+    <td class="cui">{%$show.list[i].num%}</td>
+    <td class="cui">{%$show.list[i].price%}</td>
+    {%foreach from=$show.list[i].sizeinfo item=ival key=ikey%}
+    <td>{%$ival%}</td>
+    {%/foreach%}
+    {%section loop=$show.list[i].size_length start=$show.list[i].sizeinfo|count name=z%}
+    <td></td>
+    {%/section%}
+    {%if $show.company.moq_status%}
+    <td></td>
+    {%/if%}
+  </tr>
+</table>
+{%/section%}
+
+<table border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#999999" class="mtop16">
+  <tr> 
+    <td width="496" rowspan="{%if $show.company.display_discount|default:1%}3{%else%}2{%/if%}" class="">&nbsp;</td>
+    <td class="cui f16">总订量：{%$show.all_num%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">总金额：{%$show.all_price|price_cn%}</td>
+  </tr>
+  {%if $show.company.display_discount|default:1%}
+  <tr>
+    <td width="198" class="cui f16">折后金额：{%$show.discount_price|price_cn%}</td>
+  </tr>
+  {%/if%}
+</table>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%include file="import/menu.html"%}
+
+        <div>{%if $message%}<font color="red">{%$message%}</font>{%/if%}</div>
+        <hr>
+        <h2>系统初始化</h2>
+        <form action="/import/clear" method="POST" onSubmit="return confirm('确认操作？')">
+          <input type="radio" name="k" value="2"> 全部数据初始化
+          <input type="radio" name="k" value="1"> 订单数据初始化
+          <input type="radio" name="k" value="3"> 商品资料初始化
+          <input type="radio" name="k" value="4"> 用户资料初始化
+          <input type="radio" name="k" value="5"> 清除全部缓存
+          <input type="submit" value="立即初始化">
+        </form>
+        <hr>
+        
+
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/import/index');
+</script>
+</body>
+</html>

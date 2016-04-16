@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01" style="table-layout:auto;">
+          <tbody>
+          <form method="GET">
+          <tr class="hbg">
+            <th width="100">日期过滤:</th>
+            <th colspan="5">
+              <input type="text" name="date_start" onclick="WdatePicker()" value="{%$show.date_start%}"> 至
+              <input type="text" name="date_end" onclick="WdatePicker()" value="{%$show.date_end%}">
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th width="100">客户过滤:</th>
+            <th colspan="5" class="Selects" data-default="{%if $show.area2%}{%$show.area2%}{%else%}{%$show.area1%}{%/if%}"><select name="area1"></select><select name="area2"></select></th>
+          </tr>
+          <tr class="hbg">
+            <th width="100">货品过滤:</th>
+            <th colspan="5">
+                    款别:<select name="style_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.style_list%}
+                    <option value="{%$show.style_list[i].keyword_id%}" {%if $show.style_list[i].keyword_id == $show.style_id%}selected="selected"{%/if%}>{%$show.style_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.wave_id%}:<select name="wave_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.wave_list%}
+                    <option value="{%$show.wave_list[i].keyword_id%}" {%if $show.wave_list[i].keyword_id == $show.wave_id%}selected="selected"{%/if%}>{%$show.wave_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.category_id%}:<select name="category_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.category_list%}
+                    <option value="{%$show.category_list[i].keyword_id%}" {%if $show.category_list[i].keyword_id == $show.category_id%}selected="selected"{%/if%}>{%$show.category_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.series_id%}:<select name="series_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.series_list%}
+                    <option value="{%$show.series_list[i].keyword_id%}" {%if $show.series_list[i].keyword_id == $show.series_id%}selected="selected"{%/if%}>{%$show.series_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th width="100">选择显示数据:</th>
+            <th colspan="5"><input type="checkbox" name="status" {%if $show.status%}checked="checked"{%/if%}>删除款</th>
+          </tr>
+          <tr class="hbg">
+            <th colspan="6">
+              <input type="checkbox" name="k_name" {%if $show.k_name%}checked="checked"{%/if%}>客户名 
+              <input type="checkbox" name="k_location" {%if $show.k_location%}checked="checked"{%/if%}>区域 
+              <input type="checkbox" name="k_rownum" {%if $show.k_rownum%}checked="checked"{%/if%}>序号 
+              <input type="checkbox" name="k_username" {%if $show.k_username%}checked="checked"{%/if%}>帐号 
+              <input type="checkbox" name="k_huohao" {%if $show.k_huohao%}checked="checked"{%/if%}>货号
+              <input type="checkbox" name="k_series" {%if $show.k_series%}checked="checked"{%/if%}>{%$keyword.series_id%} 
+              <input type="checkbox" name="k_wave" {%if $show.k_wave%}checked="checked"{%/if%}>{%$keyword.wave_id%} 
+              <input type="checkbox" name="k_category" {%if $show.k_category%}checked="checked"{%/if%}>{%$keyword.category_id%}
+              <input type="checkbox" name="k_pname" {%if $show.k_pname%}checked="checked"{%/if%}>款名
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th colspan="6">
+              <input type="checkbox" name="k_designer" {%if $show.k_designer%}checked="checked"{%/if%}>设计师 
+              <input type="checkbox" name="k_price" {%if $show.k_price%}checked="checked"{%/if%}>价格 
+              <input type="checkbox" name="k_style" {%if $show.k_style%}checked="checked"{%/if%}>{%$keyword.style_id%}
+              <!-- <input type="checkbox" name="k_size" {%if $show.k_size%}checked="checked"{%/if%}>尺码 -->
+              <input type="checkbox" name="k_price_purchase" {%if $show.k_price_purchase%}checked="checked"{%/if%}>进货价
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th colspan="6">
+              <input type="submit" value="确定查询">
+              <input type="submit" value="导出数据" name="submit">
+            </th>
+          </tr>
+          </form>
+          </tbody></table>
+          <div style="overflow-x:scroll;"><div style="width:{%$show.width%}px;">
+          <table cellspacing="0" cellpadding="0" border="0" class="table01"  style="table-layout:auto;">
+          <tr class="hbg">
+            {%if $show.k_rownum%}<th>序号</th>{%/if%}
+
+            {%if $show.k_username%}<th>帐号</th>{%/if%}
+            {%if $show.k_name%}<th>客户名</th>{%/if%}
+            {%if $show.k_location%}<th>区域</th>{%/if%}
+
+            {%if $show.k_series%}<th>{%$keyword.series_id%}</th>{%/if%}
+            {%if $show.k_wave%}<th>{%$keyword.wave_id%}</th>{%/if%}
+            {%if $show.k_category%}<th>{%$keyword.category_id%}</th>{%/if%}
+            {%if $show.k_style%}<th>{%$keyword.style_id%}</th>{%/if%}
+            {%if $show.k_pname%}<th>款名</th>{%/if%}
+            <th>款号</th>
+            <th>颜色</th>
+            {%if $show.k_huohao%}<th>货号</th>{%/if%}
+            
+            {%if $show.k_designer%}<th>设计师</th>{%/if%}
+            {%if $show.k_price%}<th>价格</th>{%/if%}
+            
+            <!-- {%if $show.k_price_purchase%}<th>进货价</th>{%/if%} -->
+            {%section name=j loop=$show.size_list%}
+            <th>{%$show.size_list[j].keywords.name%}</td>
+            {%/section%}
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            {%if $show.k_rownum%}<td>{%$smarty.section.i.rownum%}</td>{%/if%}
+
+            {%if $show.k_username%}<td>{%$show.list[i].username%}</td>{%/if%}
+            {%if $show.k_name%}<td>{%$show.list[i].name%}</td>{%/if%}
+            {%if $show.k_location%}<td>{%$show.list[i].location.name%}</td>{%/if%}
+
+            {%if $show.k_series%}<td>{%$show.list[i].series.name%}</td>{%/if%}
+            {%if $show.k_wave%}<td>{%$show.list[i].wave.name%}</td>{%/if%}
+            {%if $show.k_category%}<td>{%$show.list[i].category.name%}</td>{%/if%}
+            {%if $show.k_style%}<td>{%$show.list[i].style.name%}</td>{%/if%}
+            {%if $show.k_pname%}<td>{%$show.list[i].pname%}</td>{%/if%}
+            <td>{%$show.list[i].kuanhao%}</td>
+            <td>{%$show.list[i].color.name%}</td>
+            {%if $show.k_huohao%}<td>{%$show.list[i].huohao%}</td>{%/if%}
+            
+            {%if $show.k_designer%}<td>{%$show.list[i].designer%}</td>{%/if%}
+            {%if $show.k_price%}<td>{%$show.list[i].pprice%}</td>{%/if%}
+            <!-- {%if $show.k_price_purchase%}<td>{%$show.list[i].price_purchase%}</td>{%/if%} -->
+            {%section name=j loop=$show.list[i].size_list%}
+            <td>{%$show.list[i].size_list[j].num%}</td>
+            {%/section%}
+          </tr>
+          {%/section%}
+        </tbody></table>
+        </div></div>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/report/index');
+</script>
+</body>
+</html>

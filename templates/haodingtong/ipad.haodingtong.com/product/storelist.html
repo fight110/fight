@@ -1,0 +1,14 @@
+{%section name=i loop=$show.list%}
+<li class="li2 fancyboxBook" data-product-id="{%$show.list[i].id%}">
+    <div class="descri" style="height:26px;">
+        <div class="price">
+            <span class="amount">
+                <div class="rateit rateit_new" id="rateit1" data-rateit-step="1" data-rateit-value="{%$show.list[i].rateval%}" data-rateit-readonly="true"></div>
+                <a data-product-id={%$show.list[i].id|default:0%} class="HDT-order-store">移除</a>
+            </span>
+            <strong>¥<b>{%$show.list[i].price%}</b></strong>
+        </div>
+    </div>
+    <div class="imgbox"><a href="javascript:void(0);"><img src="/thumb/210/{%$show.list[i].defaultimage|default:"tmpl/default.jpg"%}"></a></div>
+</li>
+{%/section%}

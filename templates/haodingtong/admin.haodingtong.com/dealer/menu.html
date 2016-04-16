@@ -1,0 +1,18 @@
+<ul>
+<li><a href="/dealer/exp/{%$show.id%}?t=category" id="km_category">{%$keyword.category_id%}指标</a></li>
+<li><a href="/dealer/exp/{%$show.id%}?t=classes" id="km_classes">{%$keyword.classes_id%}指标</a></li>
+<li><a href="/dealer/exp/{%$show.id%}?t=series" id="km_series">{%$keyword.series_id%}指标</a></li>
+<li><a href="/dealer/exp/{%$show.id%}?t=wave" id="km_wave">{%$keyword.wave_id%}指标</a></li>
+<li><a href="/dealer/exp/{%$show.id%}?t=color" id="km_color">单色指标</a></li>
+<!-- <li><a href="/dealer/exp/{%$show.id%}?t=color_group" id="km_color_group">色系指标</a></li> -->
+<!-- <li><a href="/dealer/exp/{%$show.id%}?t=size" id="km_size">尺码指标</a></li> -->
+<li><a href="/dealer/exp/{%$show.id%}?t=price_band" id="km_price_band">{%$keyword.price_band_id%}指标</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

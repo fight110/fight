@@ -1,0 +1,26 @@
+<div class="custom_filter">
+	<form action="#" id="custom_filter-form">
+		<fieldset>
+			<legend>筛选字段</legend>
+			<div class="display-key-selection">
+				<span>可用字段</span>
+				<ul class="display-key available ui-widget-content">
+					{%foreach $show.all_filter_key_names as $key=>$val%}
+					{%* 改为了使用javascript处理 *%}
+					{%*if $val@index < $val@total-3*%}
+					<li data-keyword-id="{%$key%}">{%$val%}</li>
+					{%*/if*%}
+					{%/foreach%}
+				</ul>
+			</div>
+			<div class="display-key-selection">
+				<span>已用字段(最多九个)</span>
+				<ul class="display-key displayed ui-widget-content">
+				</ul>
+			</div>
+		</fieldset>
+
+		<button type="submit">保存</button>
+	</form>
+
+</div>

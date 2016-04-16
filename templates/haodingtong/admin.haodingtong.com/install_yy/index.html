@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link href="/style/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/sea.js"></script>
+</head>
+
+<body>
+    <div class="hero-unit">
+        <h1>初始化</h1>
+        {%foreach from=$show.files item=entry key=file%}
+        <p>
+            {%if $entry.status%}
+            <span class="label label-info">存在</span>
+            {%else%}
+            <span class="label label-warning">缺失</span>
+            {%/if%}
+            {%$file%}
+        </p>
+        {%/foreach%}
+        <p><a class="btn btn-primary btn-large" id="HDT-button-install">开始初始化</a></p>
+        
+    </div>
+<script>
+seajs.use('lj/admin/install_yy/index');
+</script>
+</body>
+</html>

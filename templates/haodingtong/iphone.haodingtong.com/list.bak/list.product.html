@@ -1,0 +1,22 @@
+{%if $show.start == 0 %}
+<tr>
+    <th class="pmw">排名</th>
+    <th class="thleft">款名</th>
+    <th>编号</th>                
+    <th class="amountth">订量</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr class="libg">
+    <td class="tdcenter"><span class="num{%if $smarty.section.i.rownum < 4%}{%$smarty.section.i.rownum%}{%else%}4{%/if%}">{%$smarty.section.i.rownum + $show.start%}</span></td>
+    <td><a href="/index/detail/{%$show.list[i].id%}">{%$show.list[i].name%}</a></td>
+    <td class="amounttd">{%$show.list[i].bianhao%}</td>
+    <td class="amounttd">{%$show.list[i].num%}</td>
+</tr>
+{%section name=j loop=$show.list[i].topthree%}
+<tr>
+    <td class="tdcenter">&nbsp;</td>
+    <td colspan="3"><span class="num_a">{%$smarty.section.j.rownum%}</span>{%$show.list[i].topthree[j].name%}</td>
+</tr>
+{%/section%}
+{%/section%}

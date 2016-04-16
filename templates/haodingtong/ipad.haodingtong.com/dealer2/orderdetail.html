@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{%$show.company.fairname%} {%$show.name%} 订单</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.bborder{border-bottom:1px solid #333;}
+.hei{color:#000000;}
+.cui{font-weight:800;}
+.backhui{background-color:#F2F2F2;}
+.f18{font-size:18px; line-height:38px;}
+.f14{font-size:14px; line-height:28px;}
+.f16{font-size:16px; line-height:28px;}
+.tc{text-align:center;}
+.mtop8{margin-top:8px;}
+.mtop16{margin-top:16px;}
+.mbg{background-color:#999999;}
+td{background-color:#FFF;}
+.tcolor1{border-bottom:1px solid #999999;}
+p {margin: 0px;}
+</style>
+</head>
+
+<body data-wrong-order="{%$show.company.wrong_order%}">
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="2" bgcolor="#999999">
+  <tr>
+    <td colspan="2" class="f18 tc">
+    {%if $show.company.logo%}<img src="/thumb/75/{%$show.company.logo%}" style="float: left; height: 38px;">{%/if%}
+    {%$show.company.fairname%} {%$show.name%}订货单
+      <font color="red">{%if $show.slave_lock_status%}已审{%else%}未审{%/if%}</font>
+    <form method='get' action='/dealer2/orderdetail' style='display:inline;float: right;font-size: 14px;'>
+          按
+    <select name="key" onchange="this.form.submit();">
+   	{%foreach from=$show.category_array key=cakey item=caval%}
+   	<option value="{%$cakey%}" {%if $cakey eq $show.key%}selected="selected"{%/if%} >{%$caval%}</option>
+   	{%/foreach%}
+    </select>
+	查看
+    </form>
+    </td>
+  </tr>
+</table>
+
+{%section name=i loop=$show.list%}
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="1" class="mtop8 mbg">
+  <tr>
+    <td colspan="{%$show.size_num + 7%}" class="tcolor1 f18 hei backhui cui">{%$show.list[i].category_id|hdt_keyword%} 款数:{%$show.list[i].pnum%} SKU:{%$show.list[i].SKC%}</td>
+  </tr>
+  <tr>
+    <td class="tcolor1">圆牌号</td>
+    <td class="tcolor1">款号</td>
+    <td class="tcolor1">款名</td>
+    <td class="tcolor1">颜色</td>
+    {%section name=z loop=$show.newSizeList%}
+    <td class="tcolor1">
+      {%foreach from=$show.newSizeList[z] item=size_id%}<p>{%$size_id|hdt_keyword|default:"&nbsp;"%}</p>{%/foreach%}
+    </td>
+    {%/section%}
+    <td class="tcolor1">订数</td>
+    <td class="tcolor1">单价</td>
+    <td class="tcolor1">金额</td>
+  </tr>
+  {%section name=j loop=$show.list[i].listing%}
+  <tr>
+    <td>{%$show.list[i].listing[j].skc_id%}</td>
+    <td><a href="/index/detail/{%$show.list[i].listing[j].product_id%}" target="_parent">{%$show.list[i].listing[j].kuanhao%}</a></td>
+    <td>{%$show.list[i].listing[j].name%}</td>
+    <td>{%$show.list[i].listing[j].product_color_id|hdt_keyword%}</td>
+    {%foreach from=$show.list[i].listing[j].size_list item=num%}
+    <td class="HDT-order-detail">{%$num%}</td>
+    {%/foreach%}
+    <td>{%$show.list[i].listing[j].num%}</td>
+    <td>{%$show.list[i].listing[j].p_price%}</td>
+    <td>{%$show.list[i].listing[j].price%}</td>
+  </tr>
+  {%/section%}
+  <tr>
+    <td class="cui">{%$show.list[i].wave_name%}合计：</td>
+        <td colspan="3">&nbsp;</td>
+    {%foreach from=$show.newSizeList item=ival key=ikey%}
+    <td>{%$show.list[i].sizeinfo.$ikey%}</td>
+    {%/foreach%}
+    <td class="cui">{%$show.list[i].num%}</td>
+    <td>&nbsp;</td>
+    <td class="cui">{%$show.list[i].price%}</td>
+  </tr>
+</table>
+{%/section%}
+
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#999999" class="mtop16">
+  <tr>
+    <td width="496" rowspan="3" class="">&nbsp;</td>
+    <td class="cui f16">总订量：{%$show.all_num%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">总金额：{%$show.all_price%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">折后金额：{%$show.discount_price%}</td>
+  </tr>
+</table>
+
+{%if $show.slave_id%}
+<form action="/user/lock_order/{%$show.slave_id%}">
+  {%if $show.slave_lock_status%}
+  <input type="hidden" name="lock" value=0>
+  <input type="submit" name="submit" value="订单已审核，点击取消审核" style="width:100%;height:40px;font-size:20px;" onclick="return confirm('确认取消审核?[{%$show.name%}]');">
+  {%else%}
+  {%if $show.hasCancelLog eq 1 && $show.reviewLog.num > $show.all_num%}
+<input type="submit" name="submit" value="明细已检查确认，点此提交订单，提交后订单将锁定，无法修改订单！" style="width:100%;height:40px;font-size:20px;" onclick="return confirm('友情提醒：此订单较反审核前减少了{%$show.reviewLog.num - $show.all_num%}件；继续审核请点击确认!');">
+  {%else%}
+<input type="submit" name="submit" value="明细已检查确认，点此提交订单，提交后订单将锁定，无法修改订单！" style="width:100%;height:40px;font-size:20px;" onclick="return confirm('提交后订单将锁定，无法修改订单，确认提交?[{%$show.name%}]');">
+{%/if%}
+{%/if%}
+</form>
+{%/if%}
+
+
+{%if $show.is_slave%}
+<script type="text/javascript" src="/js/sea.js"></script>
+<script>
+seajs.use("lj/dealer1/orderdetail");
+</script>
+{%/if%}
+<br><br><br><br>
+</body>
+</html>

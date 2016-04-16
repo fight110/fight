@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+        <div class="top">
+            <h1><strong>{%$keyword.style_id%}热订榜</strong></h1>
+            <a href="/list" class="lbtn"><span>榜单</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+
+        <div>
+            <input type="hidden" name="t" value="{%$show.t%}">
+            <table border="0" cellpadding="0" cellspacing="0" class="table_list" id="HDT-main"></table>
+            <div class="loading"></div>
+        </div>
+    </div>
+</div>
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/list/list');
+</script>
+</body>
+</html>

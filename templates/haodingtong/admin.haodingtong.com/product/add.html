@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <!--tit_bar end-->
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+      
+      <form method="POST" action="/product/adding" id="form-main">
+        <input type="hidden" name="id" value="{%$show.product.id%}">
+        <input type="hidden" name="defaultimage" value="{%$show.product.defaultimage%}" id="defaultimage">
+    <div class="probox">
+    <dl class="this_txt clearfix">
+    <dt>当前{%$keyword.style_id%}</li>
+    <dd>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>编号:<input type="text" name="bianhao" style="width:120px;"></td>
+        <td>款号:<input type="text" name="kuanhao" style="width:120px;"></td>
+        <td>单价:<span class="jiage">¥ <input type="text" name="price" style="width:120px;"></span> </td>
+      </tr>
+      <tr>
+        <td colspan="3">款名:<input type="text" name="name" style="width:471px;"></td>
+      </tr>
+    </table>
+    </dd>
+    </dl>
+    {%if $show.product.id%}
+    <div class="uploadview" style="width:100px;">
+      <span class="fa fa-upload">{%$keyword.style_id%}图片上传</span>
+      <input class="fileupload" type="file" name="files[]" multiple data-url="/img/index.php" data-form-data='{}' data-product-id="{%$show.product.id%}">
+    </div>
+    {%/if%}
+    <div class="ui four cards" id="imagelist">
+      {%foreach from=$show.imagelist item=img%}
+      <a class="{%if $img.image==$show.product.defaultimage%}defaultimage{%/if%} card">
+        <div class="image"><img src="/thumb/210/{%$img.image%}"></div>
+        <div class="extra content">
+          <div class="meta">
+            {%$img.color_id|hdt_keyword%}
+            <div class="right floated delete" data-id="{%$img.id%}">删除</div>
+            <div class="right floated set_default" data-url="{%$img.image%}">设为默认</div>
+          </div>
+        </div>
+      </a>
+      {%/foreach%}
+    </div>
+    
+
+    <div class="pro_tabl pro_tabl_auto">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="leftd">颜色</td>
+            <td>
+                <table>
+                    {%if $show.product.id%}
+                    <tr><td colspan=5><a href="/product/set_skc_id/{%$show.product.id%}">添加/编辑颜色</a></td></tr>
+                    {%/if%}
+                    <tr>
+                      <td>颜色</td>
+                      <td>色号</td>
+                      <td>圆牌号</td>
+                      <td>状态</td>
+                      <td>上传</td>
+                    </tr>
+                    {%section name=i loop=$show.productcolor%}
+                    <tr>
+                        <td>{%$show.productcolor[i].color_id|hdt_keyword%}</td>
+                        <td>{%$show.productcolor[i].color_code%}</td>
+                        <td>{%$show.productcolor[i].skc_id%}</td>
+                        <td>
+                          {%if $show.productcolor[i].status%}
+                          <a href="/product/set_product_color_status/{%$show.productcolor[i].product_id%}?color_id={%$show.productcolor[i].color_id%}&status=0"><font color="green">激活</font></a>
+                          {%else%}
+                          <a href="/product/set_product_color_status/{%$show.productcolor[i].product_id%}?color_id={%$show.productcolor[i].color_id%}&status=1"><font color="red">失效</font></a>
+                          {%/if%}
+                        </td>
+                        <td class="uploadview">
+                          <span class="fa fa-upload"></span>
+                          <input class="fileupload" type="file" name="files[]" data-url="/img/index.php" data-form-data='{}' data-product-id="{%$show.product.id%}" data-color-id="{%$show.productcolor[i].color_id%}" data-color="{%$show.productcolor[i].color_id|hdt_keyword%}"></td>
+                    </tr>
+                    {%/section%}
+                </table>
+            </td>
+        </tr>
+        <tr>
+          <td class="leftd">尺码组</td>
+          <td>
+            {%if !$show.product.size_group_id%}
+            <select name="size_group_id">
+              {%section loop=$show.size_group_list name=i%}
+              <option value="{%$show.size_group_list[i].keyword_id%}">{%$show.size_group_list[i].keyword_id|hdt_keyword%}</option>
+              {%/section%}
+            </select>
+            {%else%}
+            {%$show.product.size_group_id|hdt_keyword%}
+            <input type="hidden" name="size_group_id" value="{%$show.product.size_group_id%}">
+            {%/if%}
+          </td>
+        </tr>
+        <tr>
+          <td class="leftd">尺码</td>
+          <td id="td-size">
+            <ul>
+              {%section name=i loop=$show.size_list%}
+              <li style="display:inline;"><input type="checkbox" name="size[]" value="{%$show.size_list[i].keyword_id%}">{%$show.size_list[i].keywords.name%}</li>
+              {%/section%}
+            </ul>
+          </td>
+        </tr>
+        <!-- <tr>
+          <td class="leftd">颜色</td>
+          <td id="td-color">
+            <table>
+                <tr>
+                {%section name=i loop=$show.color_list%}
+                {%if $smarty.section.i.index && $smarty.section.i.index % 5 == 0%}</tr><tr>{%/if%}
+                <td><input type="checkbox" name="color[]" value="{%$show.color_list[i].keyword_id%}">{%$show.color_list[i].keywords.name%}</td>
+                {%/section%}
+                </tr>
+            </table>
+          </td>
+        </tr> -->
+        
+      </table>
+    </div>
+    <div class="clear"></div>
+    </div>
+    <div class="d_intro">
+      <h3>描述属性<i class="fa fa-chevron-down" data-target="#desc1"></i></h3>
+      <div id="desc1">
+      <ul class="peditattr">
+        <li>货号:<input type="text" name="huohao"></li>
+        <li>{%$keyword.brand_id%}:<select name="brand_id">{%$show.product.brand_id|hdt_attrlist:"brand":""%}</select></li>
+        <li>{%$keyword.series_id%}:<select name="series_id">{%$show.product.series_id|hdt_attrlist:"series":""%}</select></li>
+        <li>{%$keyword.wave_id%}:<select name="wave_id">{%$show.product.wave_id|hdt_attrlist:"wave":""%}</select></li>
+        <li>{%$keyword.category_id%}:<select name="category_id">{%$show.product.category_id|hdt_attrlist:"category":""%}</select></li>
+        <li>{%$keyword.medium_id%}:<select name="medium_id">{%$show.product.medium_id|hdt_attrlist:"medium":""%}</select></li>
+        <li>{%$keyword.classes_id%}:<select name="classes_id">{%$show.product.classes_id|hdt_attrlist:"classes":""%}</select></li>
+        <li>{%$keyword.season_id%}:<select name="season_id">{%$show.product.season_id|hdt_attrlist:"season":""%}</select></li>
+        <li>{%$keyword.theme_id%}:<select name="theme_id">{%$show.product.theme_id|hdt_attrlist:"theme":""%}</select></li>
+        <li>{%$keyword.nannvzhuan_id%}:<select name="nannvzhuan_id">{%$show.product.nannvzhuan_id|hdt_attrlist:"nannvzhuan":""%}</select></li>
+        <li>款别:<select name="style_id">{%$show.product.style_id|hdt_attrlist:"style":""%}</select></li>
+        <li>面料:<select name="fabric_id">{%$show.product.fabric_id|hdt_attrlist:"fabric":""%}</select></li>
+        <li>{%$keyword.sxz_id%}:<select name="sxz_id">{%$show.product.sxz_id|hdt_attrlist:"sxz":""%}</select></li>
+        <li>长短款:<select name="changduankuan_id">{%$show.product.changduankuan_id|hdt_attrlist:"changduankuan":""%}</select></li>
+        <li>内外搭:<select name="neiwaida_id">{%$show.product.neiwaida_id|hdt_attrlist:"neiwaida":""%}</select></li>
+        <li>{%$keyword.price_band_id%}:<select name="price_band_id">{%$show.product.price_band_id|hdt_attrlist:"price_band":""%}</select></li>
+        <li>自定义1:<select name="df1_id">{%$show.product.df1_id|hdt_attrlist:"df1":""%}</select></li>
+        <li>自定义2:<select name="df2_id">{%$show.product.df2_id|hdt_attrlist:"df2":""%}</select></li>
+        <li>自定义3:<select name="df3_id">{%$show.product.df3_id|hdt_attrlist:"df3":""%}</select></li>
+        <!-- <li>设计师:<input type="text" name="designer"></li> -->
+        <li>{%$keyword.designer_id%}:<select name="designer_id">{%$show.product.designer_id|hdt_attrlist:"designer":""%}</select></li>
+        <li>上市日期:<input type="text" name="date_market"></li>
+        <li>价格1:<input type="text" name="price_1"></li>
+        <li>价格2:<input type="text" name="price_2"></li>
+        <li>版型:<select name="edition_id">{%$show.product.edition_id|hdt_attrlist:"edition":""%}</select></li>
+        <li>轮廓:<select name="contour_id">{%$show.product.contour_id|hdt_attrlist:"contour":""%}</select></li>
+      </ul>
+      卖点：<br/>
+      <textarea cols="55"  name="content" placeholder="可以填写一些本款衣服相关的介绍，客户订货时就可以看到"></textarea><br/>
+      </div> 
+    </div>
+    <div class="d_intro">
+      <h3>功能属性<i class="fa fa-chevron-down" data-target="#desc2"></i></h3>
+      <div id="desc2">
+      <ul class="peditattr">
+        <li>期/现货:<select name="isspot"><option value="1">期货</option><option value="2">现货</option></select></li>
+        <!-- <li>必订款:<select name="is_need"><option value="0">否</option><option value="1">是</option></select></li> -->
+        <li>买断价:<span class="jiage">¥ <input type="text" name="price_purchase"></span></li>
+        <li>按箱订货:<input type="text" name="basenum" placeholder="整数起订"></li>
+        <li>连码起订:<input type="text" name="order_start_num" placeholder="连码数"></li>
+        <!-- <li>面料长度:<input name="fabric_unit"></li> -->
+        <!-- <li>爆款:<input type="checkbox" name="hot" value="1"></li> -->
+      </ul>
+      <ul>
+      <li>
+      固定配比:<select name="is_proportion"><option value="0">否</option><option value="1">是</option></select>
+      <input name="proportion_list" placeholder="配比格式:1:1:2:1,多个配比以英文分号分隔" style="width:365px;">
+      </li>
+      <!-- <li>最小起订量:<input type="text" name="mininum"></li> -->
+      </ul>
+      修改意见:(会在最终订单上显示) <br>
+      <textarea cols="55" name="message"></textarea><br>
+      </div>
+    </div>
+    <p style="text-align: center;"><input type="submit" value="保存" style="width:20%;height:30px;"></p>
+    </form> 
+    </div>
+    <!--foot-->
+     {%include file="footer.html"%} 
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+  {%include file="right.html"%} 
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/product/add');
+{%if $show.product_json%}
+seajs.use(['jquery', 'app/form'], function(u, form){
+  form.formfill($('#form-main'), {%$show.product_json%});
+  var $size = $('#td-size input'), $color = $('#td-color input');
+  {%section name=i loop=$show.productsize%}
+  $size.filter('[value={%$show.productsize[i].size_id%}]').attr('checked', true).attr('data-id', {%$show.productsize[i].id%}).click(function(e){
+    // this.checked = ! this.checked;
+  });
+  {%/section%}
+});
+{%/if%}
+</script>
+</body>
+</html>

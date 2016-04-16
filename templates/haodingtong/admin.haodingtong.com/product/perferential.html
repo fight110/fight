@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <a href="#" class="HDT-add-user buttonLink">增加</a>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th>款号</th>
+            <th>促销起始订量</th>
+            <th>促销价格</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].kuanhao%}{%if $show.list[i].product_id==0%}[<font color="red">无效款号</font>]{%/if%}</td>
+            <td>{%$show.list[i].start_num%}</td>
+            <td>{%$show.list[i].price%}</td>
+            <td>
+              {%if $show.list[i].status%}
+              <a href="/product/perferential_status/{%$show.list[i].id%}?status=0"><font color="green">激活</font></a>
+              {%else%}
+              <a href="/product/perferential_status/{%$show.list[i].id%}?status=1"><font color="red">失效</font></a>
+              {%/if%}
+            </td>
+            <td>
+              <a href="#" class="HDT-edit" data-id="{%$show.list[i].id%}">编辑</a>
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-user-add">
+<form method="POST" action="/product/perferential_add">
+<input type="hidden" name="id">
+<input type="hidden" name="product_id">
+<table cellpadding=0 cellspacing=0 border=0 width="100%" class="userEditTb">
+<tr><td width="65">款号:</td><td><input type="text" name="kuanhao"></td><td width="65"></td><td></td></tr>
+<tr><td width="65">起始订量:</td><td><input type="text" name="start_num"></td><td width="65">促销价格:</td><td><input type="text" name="price"></td></tr>
+<tr><td colspan=4><input type="submit" value="保存"></td></tr>
+</table>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/product/perferential');
+</script>
+</body>
+</html>

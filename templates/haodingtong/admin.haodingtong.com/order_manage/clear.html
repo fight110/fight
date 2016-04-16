@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>订单管理</h3>
+            {%include file="order_manage/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <form id="HDT-search-form" method="GET">
+                <tr>
+                  <th colspan="10">
+                  	<input type="text" name="search_user" value="{%$show.search_user%}" placeholder="输入名字/帐号">
+                    {%if $show.agent_list%}
+                	<select name="agent_id">
+                  	<option value="">所属总代</option>
+                  	{%section name=i loop=$show.agent_list%}
+                  	<option value="{%$show.agent_list[i].id%}" {%if $show.agent_id==$show.agent_list[i].id%}selected="selected"{%/if%}>{%$show.agent_list[i].name%}</option>
+                  	{%/section%}
+                	</select>
+                	{%/if%}                	
+                    <span class="Selects" data-default="{%if $show.area2%}{%$show.area2%}{%else%}{%$show.area1%}{%/if%}"><select name="area1"></select><select name="area2"></select></span>
+                    <input type="submit" value="搜索">
+                  </th>
+                </tr>
+                </form>
+                  {%if $message%}
+                  <tr><th colspan="10"><font color="red">{%$message%}</font></th></tr>
+                  {%/if%}
+                <tr>
+                  <th>客户账号</th>
+                  <th>客户名称</th>
+                  <th>所属总代</th>
+                  <th>销售大区</th>
+                  <th>二级区域</th>
+                  <th>锁定</th>
+                  <th>款数</th>
+                  <th>订数</th>
+                  <th>金额</th>
+                  <th>操作</th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td>{%$show.list[i].username%}</td>
+                  <td>{%$show.list[i].name%}</td>
+                  <td>{%$show.list[i].agentname%}</td>
+                  <td>{%$show.list[i].area1.name%}</td>
+                  <td>{%$show.list[i].area2.name%}</td>
+                  <td>{%if $show.list[i].is_lock%}<font color="red">已锁定</font>{%else%}<font color="green">未锁定</font>{%/if%}</td>
+                  <td>{%$show.list[i].pnum%}</td>
+                  <td>{%$show.list[i].num%}</td>
+                  <td>{%$show.list[i].price%}</td>
+                  <td>
+                  <form action="/order_manage/clear_order" method="POST" onsubmit="return confirm('确认清空账号{%$show.list[i].name%}[{%$show.list[i].username%}]的全部订单?')">
+                  	<input type="hidden" name="username" value="{%$show.list[i].username%}">
+                    <input type="submit" value="清空">
+                  </form>
+                  </td>
+                </tr>{%/section%}
+                
+              </table>
+            </div>
+            {%$show.pagelist%}
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/order_manage/clear');
+</script>
+</body>
+</html>

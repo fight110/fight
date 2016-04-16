@@ -1,0 +1,58 @@
+{%if $show.type eq 'color'%}
+<tr>
+<th>波段/色组</th>
+{%foreach from=$show.wave_hash key=k item=val%}
+<th class="th2">{%$val%}</th>
+{%/foreach%}
+</tr>
+{%foreach from=$show.group_list key=kg item=kgval%}
+<tr>
+	<td>{%$kgval|hdt_keyword%}</td>
+	{%foreach from=$show.wave_hash key=kw item=kwval%}
+	<td  {%if $show.list[$kg][$kw].info.rgb%}style="background-color:#{%$show.list[$kg][$kw].info.rgb%};border:1px solid #666"{%/if%}>&nbsp;</td>
+	{%/foreach%}
+</tr>
+{%/foreach%}
+{%else if $show.type eq 'pnum'%}
+<tr>
+<th rowspan=2>波段/色组</th>
+{%foreach from=$show.wave_hash key=k item=val%}
+<th class="th2" colspan=2>{%$val%}</th>
+{%/foreach%}
+</tr><tr>
+{%foreach from=$show.wave_hash key=k item=val%}
+<th class="th2">SKU</th>
+<th class="th2">占比</th>
+{%/foreach%}
+</tr>
+{%foreach from=$show.group_list key=kg item=kgval%}
+<tr>
+	<td>{%$kgval|hdt_keyword%}</td>
+	{%foreach from=$show.wave_hash key=kw item=kwval%}
+	<td>{%$show.list[$kg][$kw].info.sku_num|default:0%}</td>
+	<td>{%$show.list[$kg][$kw].info.sku_share|default:0%}%</td>
+	{%/foreach%}
+</tr>
+{%/foreach%}
+{%else%}
+<tr>
+<th rowspan=2>波段/色组</th>
+{%foreach from=$show.wave_hash key=k item=val%}
+<th class="th2" colspan=2>{%$val%}</th>
+{%/foreach%}
+</tr><tr>
+{%foreach from=$show.wave_hash key=k item=val%}
+<th class="th2">数量</th>
+<th class="th2">占比</th>
+{%/foreach%}
+</tr>
+{%foreach from=$show.group_list key=kg item=kgval%}
+<tr>
+	<td>{%$kgval|hdt_keyword%}</td>
+	{%foreach from=$show.wave_hash key=kw item=kwval%}
+	<td>{%$show.list[$kg][$kw].info.num|default:0%}</td>
+	<td>{%$show.list[$kg][$kw].info.num_share|default:0%}%</td>
+	{%/foreach%}
+</tr>
+{%/foreach%}
+{%/if%}

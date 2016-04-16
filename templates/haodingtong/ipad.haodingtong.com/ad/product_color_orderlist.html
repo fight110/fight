@@ -1,0 +1,54 @@
+<div class="rankingbox">
+	<table cellspacing="0" cellpadding="0" border="0" id="HDT-summary" class="rank_table">
+		<tr>
+			<td class="namelabel"></td>
+			<td>款色数</td>
+			<td>订量</td>
+			<td>金额</td>
+		</tr>
+		<tr>
+		    <td class="namelabel">正常款色</td>
+		    <td><em>{%$show.info.status.1|default:0%}</em></td>
+		    <td><em>{%$show.info.num.1|default:0%}</em></td>
+		    <td><em>{%$show.info.price.1|default:0|number_format%}</em></td>
+		</tr>
+		<tr>
+		    <td class="namelabel">删除款色</td>
+		    <td><em>{%$show.info.status.0|default:0%}</em></td>
+		    <td><em>{%$show.info.num.0|default:0%}</em></td>
+		    <td><em>{%$show.info.price.0|default:0|number_format%}</em></td>
+		</tr>
+	</table>
+	<div class="HDT_pager_div"></div>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" class="table01" style="background-color: #f6f6f6;">
+<tr>
+<th class="th2">序号</th>
+<th class="th2">圆牌号</th>
+<th class="th2">款号</th>
+<th class="th2">颜色</th>
+<th class="th2">{%$keyword.wave_id%}</th>
+<th class="th2">{%$keyword.category_id%}</th>
+<th class="th2">单价</th>
+<th class="th2">订数</th>
+<th class="th2">金额</th>
+<th class="th2">状态</th>
+<th class="th2"><input type="checkbox" id="checkall"></th>
+</tr>
+{%section name=i loop=$show.list%}
+<tr data-skc-id="{%$show.list[i].skc_id%}" data-kuanhao="{%$show.list[i].kuanhao%}">
+<td>{%$smarty.section.i.rownum%}</td>
+<td><strong>{%$show.list[i].skc_id%}</strong></td>
+<td><a href="/ad/detail/{%$show.list[i].id%}">{%$show.list[i].kuanhao%}</a></td>
+<td>{%$show.list[i].color_id|hdt_keyword%}</td>
+<td>{%$show.list[i].wave_id|hdt_keyword%}</td>
+<td>{%$show.list[i].category_id|hdt_keyword%}</td>
+<td>{%$show.list[i].price%}</td>
+<td>{%$show.list[i].num%}</td>
+<td>{%$show.list[i].count_price|price_cn%}</td>
+<td class="status">{%if $show.list[i].pc_status%}<font color="green">正常款</font>{%else%}<font color="red">删除款</font>{%/if%}</td>
+<td><input type="checkbox" data-product-id="{%$show.list[i].product_id%}" data-product-color-id="{%$show.list[i].color_id%}"></td>
+</tr>
+{%/section%}
+</table>

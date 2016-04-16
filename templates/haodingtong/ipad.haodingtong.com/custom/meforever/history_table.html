@@ -1,0 +1,148 @@
+<div>动销存</div>
+<table border="0" cellpadding="0" cellspacing="0" class="table01">
+<tr>
+<th rowspan=2>类别</th>
+<th colspan=3>15夏总况</th>
+<th colspan=2>库存</th>
+<th colspan=2>库存率</th>
+</tr>
+<tr>
+<th>数量</th>
+<th>吊牌额</th>
+<th>款色数</th>
+<th>数量</th>
+<th>吊牌额</th>
+<th>数量</th>
+<th>吊牌额</th>
+</tr>
+<tr>
+<td>订单</td>
+<td>{%$show.list.order.num%}</td>
+<td>{%$show.list.order.price%}</td>
+<td>{%$show.list.order.skc%}</td>
+<td rowspan="3">{%$show.list.stock.num%}</td>
+<td rowspan="3">{%$show.list.stock.price%}</td>
+<td rowspan="3">{%$show.list.stock_num_perent%}</td>
+<td rowspan="3">{%$show.list.stock_price_perent%}</td>
+</tr>
+<tr>
+<td>发货</td>
+<td>{%$show.list.ship.num%}</td>
+<td>{%$show.list.ship.price%}</td>
+<td>{%$show.list.ship.skc%}</td>
+</tr>
+<tr>
+<td>销售</td>
+<td>{%$show.list.sales.num%}</td>
+<td>{%$show.list.sales.price%}</td>
+<td>{%$show.list.sales.skc%}</td>
+</tr>
+<tr>
+<td>动销率</td>
+<td>{%$show.list.num_perent%}</td>
+<td>{%$show.list.price_perent%}</td>
+<td>{%$show.list.skc_perent%}</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<br>
+{%$keyword.wave_id%}占比
+<table border="0" cellpadding="0" cellspacing="0" class="table01" style="table-layout:auto;">
+<tr>
+<th>{%$keyword.wave_id%}</th>
+<th>发货量</th>
+<th>销售量</th>
+<!-- <th>发货款色数</th> -->
+<!-- <th>销售款色数</th> -->
+<th>发货占比</th>
+<th>销售占比</th>
+<!-- <th>售罄率</th> -->
+<th>款色动销率</th>
+<!-- <th>贡献率</th> -->
+</tr>
+{%foreach from=$show.wave_list key=wkey item=wval%}
+<tr>
+<td>{%$wval.wave_id|hdt_keyword%}</td>
+<td>{%$wval.ship_num%}</td>
+<td>{%$wval.sales_num%}</td>
+<!-- <td>{%$wval.ship_skc%}</td> -->
+<!-- <td>{%$wval.sales_skc%}</td> -->
+<td>{%$wval.ship_perent%}</td>
+<td>{%$wval.sales_perent%}</td>
+<td>{%$wval.num_perent%}</td>
+<!-- <td>{%$wval.skc_perent%}</td> -->
+<!-- <td>{%$wval.contribute%}</td> -->
+</tr>
+{%/foreach%}
+<tr>
+	<td>总计</td>
+	<td>{%$show.list.ship.num%}</td>
+	<td>{%$show.list.sales.num%}</td>
+	<td>100%</td>
+	<td>100%</td>
+	<td>{%$show.list.num_perent%}</td>
+</tr>
+</table>
+<br>
+{%$keyword.category_id%}占比
+<table border="0" cellpadding="0" cellspacing="0" class="table01" style="table-layout:auto;">
+<tr>
+<th>{%$keyword.category_id%}</th>
+<th>发货量</th>
+<th>销售量</th>
+<th>发货款色数</th>
+<th>销售款色数</th>
+<th>发货占比</th>
+<th>销售占比</th>
+<th>售罄率</th>
+<th>款色动销率</th>
+<th>贡献率</th>
+</tr>
+{%foreach from=$show.category_list key=ckey item=cval%}
+<tr>
+<td>{%$cval.category_id|hdt_keyword%}</td>
+<td>{%$cval.ship_num%}</td>
+<td>{%$cval.sales_num%}</td>
+<td>{%$cval.ship_skc%}</td>
+<td>{%$cval.sales_skc%}</td>
+<td>{%$cval.ship_perent%}</td>
+<td>{%$cval.sales_perent%}</td>
+<td>{%$cval.num_perent%}</td>
+<td>{%$cval.skc_perent%}</td>
+<td>{%$cval.contribute%}</td>
+</tr>
+{%/foreach%}
+</table>
+<br>
+{%$keyword.medium_id%}占比
+<table border="0" cellpadding="0" cellspacing="0" class="table01" style="table-layout:auto;">
+<tr>
+<th>{%$keyword.medium_id%}</th>
+<th>发货量</th>
+<th>销售量</th>
+<th>发货款色数</th>
+<th>销售款色数</th>
+<th>发货占比</th>
+<th>销售占比</th>
+<th>售罄率</th>
+<th>款色动销率</th>
+<th>贡献率</th>
+</tr>
+{%foreach from=$show.medium_list key=mkey item=mval%}
+<tr>
+<td>{%$mval.medium_id|hdt_keyword%}</td>
+<td>{%$mval.ship_num%}</td>
+<td>{%$mval.sales_num%}</td>
+<td>{%$mval.ship_skc%}</td>
+<td>{%$mval.sales_skc%}</td>
+<td>{%$mval.ship_perent%}</td>
+<td>{%$mval.sales_perent%}</td>
+<td>{%$mval.num_perent%}</td>
+<td>{%$mval.skc_perent%}</td>
+<td>{%$mval.contribute%}</td>
+</tr>
+{%/foreach%}
+</table>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<script type="text/javascript" src="/js/sea.js"></script>
+<link rel="stylesheet" href="style/css.css">
+</head>
+
+<body>
+<div class="login_er">
+  <div class="login_er_top"><img src="/images/logo.png" width="169" height="42" style="padding-top: 47px;" /></div>
+  <div class="login_er_middle">
+    <div class="login_er_middlel"><img src="images/2_02.png" width="510" height="407" /></div>
+    <div class="login_er_middler">
+      <form method="POST" action="/register/message" id="myform">
+      <div class="neikuang">
+        <div class="dh">请填写注册信息<a href="/login" style="float:right">返回登陆</a></div>
+        <div class="text"><i class="num1"><img src="images/1.png" width="26" height="30" /></i>
+        <input name="name" type="text" placeholder="请输入姓名"></div>
+        <div class="text"><i class="num2"><img src="images/2.png" width="26" height="30" /></i>
+        <input name="phone" type="text" placeholder="请输入手机号"></div>
+        <div class="text2" id="register-submit">立即注册</div>
+      </div>
+      </form>
+    </div>
+  </div>
+  <div class="login_er_footer">
+    <p>Copyright © 好订通1.6.1 版权所有</p>
+    <p>好订通 科学订货 热线:0571-81110400 </p>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/register/index');
+</script>
+</body>
+</html>

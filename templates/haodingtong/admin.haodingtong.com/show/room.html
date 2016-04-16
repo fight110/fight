@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg" data-room-id="{%$show.room_id%}">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01" id="HDT-main-table">
+          <tbody>
+          <tr class="hbg">
+            <tH>{%$show.room.name%}</th>
+            <th colspan=3> <a href="#" class="HDT-add-user" style="color:blue;">+ 新增秀款</a>{%if $message%} <font color="red">{%$message%}</font>{%/if%}</th>
+          </tr>
+          <tr class="hbg">
+            <th>搭配编号</th>
+            <th>商品编号</th>
+            <th>操作</th>
+            <th width="100">选择</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].dp_num%}</td>
+            <td>{%$show.list[i].bianhaos%}</td>
+            <td>
+              <a href="#" class="HDT-edit" data-dpnum="{%$show.list[i].dp_num%}" data-bianhaos="{%$show.list[i].bianhaos%}" data-id="{%$show.list[i].id%}">编辑</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="/show/delete/{%$show.list[i].id%}">删除</a>
+            </td>
+            <td rowspan=2 class="HDT-label"><input type="radio" name="status_id" value="{%$show.list[i].id%}" {%if $show.show_id==$show.list[i].id%}checked="checked"{%/if%}></td>
+          </tr>
+          <tr>
+            <td colspan=3>
+              {%foreach from=$show.list[i].plist item=product%}
+              <img src="/thumb/75/{%$product.defaultimage%}">
+              {%/foreach%}
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-user-add">
+<form method="POST" action="/show/add">
+<input type="hidden" name="id">
+<input type="hidden" name="room_id" value="{%$show.room_id%}">
+
+<p>商品编号:<input type="number" class="HDT-bianhao" name="bianhaos[]"></p>
+<p>商品编号:<input type="number" class="HDT-bianhao" name="bianhaos[]"></p>
+<p>商品编号:<input type="number" class="HDT-bianhao" name="bianhaos[]"></p>
+<p>商品编号:<input type="number" class="HDT-bianhao" name="bianhaos[]"></p>
+<p>商品编号:<input type="number" class="HDT-bianhao" name="bianhaos[]"></p>
+<hr>
+<p>搭配编号:<input type="number" name="dp_num"></p>
+<p><input type="submit" value="保存"></p>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/show/room');
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<tr class="hasbotwhite">
+<th>子项目</th><th colspan='4'>款数</th><th colspan='5'>款色数</th><th colspan='{%if $show.company.user_guide%}4{%else%}2{%/if%}'>订货量</th><th colspan='2'>订货金额</th>
+</tr>
+<tr class="hasbotwhite">
+<th rowspan='2'>汇总</th>
+<th>开发</th><th>已订</th><th>差异</th><th>占比</th>
+<th>开发</th><th>已订</th><th>选中率</th><th>深度</th><th>占比</th>
+<th>件数</th>{%if $show.company.user_guide%}<th>指导量</th><th>差异</th>{%/if%}<th>占比</th>
+<th>金额</th><th>占比</th>
+</tr>
+<tr class="col_blue">
+<th>{%$show.productcount.pnum%}</th><th>{%$show.ordercount.pnum%}</th><th>{%$show.difference_num%}</th>
+<!-- <th>{%$show.percent_pnum%}</th> -->
+<th>100%</th>
+<th>{%$show.productcount.skc%}</th><th>{%$show.ordercount.skc%}</th><th>{%$show.skc_width%}</th><th>{%$show.skc_depth%}</th><th>100%</th>
+<th>{%$show.ordercount.num%}</th>{%if $show.company.user_guide%}<th>{%$show.ordercount.user_guide%}</th><th>{%$show.difference_user_guide%}</th>{%/if%}<th>100%</th>
+<th>{%$show.ordercount.price|price_cn%}</th><th>100%</th>
+</tr>
+{%section name=i loop=$show.list%}
+<tr {%if $show.list[i].order.num%} data-name="{%$show.list[i].tid|hdt_keyword%}" data-u="{%$show.list[i].order.num%}" data-p="{%$show.list[i].order.price%}" {%/if%}>
+  <td class="tdtwo">{%if $currentUser.type eq 1 && $show.t neq 'size' && $show.t neq 'color'%}<a href="/dealer1/?{%$show.t%}_id={%$show.list[i].tid%}" style="color:blue;">{%$show.list[i].tid|hdt_keyword%}</a>{%else%}
+    {%$show.list[i].tid|hdt_keyword%}
+  {%/if%}</td>
+  <!-- 款量 -->
+  <td class="tdone">{%$show.list[i].pnum%}</td>
+  <td class="tdone">{%$show.list[i].order.pnum%}</td>
+  <td class="tdone">{%$show.list[i].difference_num%}</td>
+  <td class="tdone">{%$show.list[i].percent_pnum%}</td>
+  <!-- 款色量 -->
+  <td class="tdtwo">{%$show.list[i].skc%}</td>
+  <td class="tdtwo">{%$show.list[i].order.skc%}</td>
+  <td class="tdtwo">{%$show.list[i].skc_width%}</td>
+  <td class="tdtwo">{%$show.list[i].skc_depth%}</td>
+  <td class="tdtwo">{%$show.list[i].percent_skc%}</td>
+  <!-- 订货量 -->
+  <td class="tdone">{%$show.list[i].order.num%}</td>
+  {%if $show.company.user_guide%}
+  <td class="tdone">{%$show.list[i].user_guide%}</td>
+  <td class="tdone">{%$show.list[i].difference_user_guide%}</td>
+  {%/if%}
+  <td class="tdone">{%$show.list[i].percent_num%}</td>
+  <!-- 订货金额 -->
+  <td class="tdtwo">{%$show.list[i].order.price|price_cn%}</td>
+  <td class="tdtwo">{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}

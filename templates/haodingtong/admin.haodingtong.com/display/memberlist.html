@@ -1,0 +1,22 @@
+<table class="table01" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <th>款号</th>
+    <th>款名</th>
+    <th>颜色</th>
+    <th>圆牌号</th>
+    <th>操作</th>
+    <th>上传</th>
+  </tr>
+  {%section name=i loop=$show.displaymember%}
+  <tr>
+    <td>{%$show.displaymember[i].product.kuanhao%}</td>
+    <td>{%$show.displaymember[i].product.name%}</td>
+    <td>{%$show.displaymember[i].keyword_id|hdt_keyword%}</td>
+    <td>{%$show.displaymember[i].skc_string%}</td>
+    <td><a href="javascript:void(0);" class="remove" data-id="{%$show.displaymember[i].id%}">移除</a></td>
+    <td class="uploadview">
+      <span class="fa fa-upload"></span>
+      <input class="fileupload" type="file" name="files[]" data-url="/img/index.php" data-form-data='{}' data-id="{%$show.displaymember[i].id%}" data-product-id="{%$show.displaymember[i].product.id%}" data-product-kuanhao="{%$show.displaymember[i].product.kuanhao%}" data-color-id="{%$show.displaymember[i].keyword_id%}" data-color="{%$show.displaymember[i].keyword_id|hdt_keyword%}"></td>
+  </tr>
+  {%/section%}
+</table>

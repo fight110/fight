@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01" id="HDT-main-table">
+          <tbody>
+          <tr class="hbg">
+            <th width="100">评论管理</th>
+            <th colspan="2">
+              <form>
+                <input type="text" name="search" value="{%$show.search%}" placeholder="内容搜索">
+                <input type="submit" value="搜索">
+              </form>
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th >用户名称</th>
+            <th>内容</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].user.name%}</td>
+            <td>{%$show.list[i].content%}</td>
+            <td>
+              状态:{%if $show.list[i].status%}<font color="green">激活</font> <a href="/comment/delete/{%$show.list[i].id%}">点击删除</a>
+              {%else%}<font color="red">删除</font> <a href="/comment/restore/{%$show.list[i].id%}">点击恢复</a>
+              {%/if%}
+              
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

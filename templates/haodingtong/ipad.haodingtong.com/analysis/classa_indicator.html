@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    	<div class="box">
+    	{%if $show.user.type neq 1%}
+    	<div  class="LabelText">
+    		<a class="on">一级指标</a>
+    		{%if $show.user.username eq '0'%}
+    		<a href="/analysis/indicator_analysis?type=3">区域经理指标</a>
+    		{%/if%}
+    		{%if $show.user.type neq 2%}
+    		<a href="/analysis/indicator_analysis?type=2">总代指标</a>
+    		{%/if%}
+    		<a href="/analysis/indicator_analysis?type=1">单店指标</a>
+	        {%*if $show.user.username eq '0'%}
+	        <a href="/analysis/indicator_analysis?type=5">区域指标</a>
+	        <a  href="/analysis/indicator_analysis?type=6">客户类型指标</a>
+	        {%/if*%}
+	        <span style="float:right" ><input type="checkbox" id="show_all" {%if $show.show_all%}checked="checked"{%/if%}/>款色款量</span>
+    	</div>
+    	{%/if%}
+			<div>
+				<table cellspacing="0" cellpadding="0" border="0" class="table01" style="margin-bottom: 20px;">
+					<tr class="hbg">
+						<th rowspan="2">序号</th>
+						<th rowspan="2">客户名称</th>
+						<th colspan="4">订量</th>
+						<th colspan="4">金额</th>
+						{%if $show.show_all%}
+						<th colspan="4">款量</th>
+						<th colspan="4">款色</th>
+						{%/if%}
+					</tr>
+					<tr class="hbg">
+						<th>已订</th>
+						<th>指标</th>
+						<th>差异</th>
+						<th>完成率</th>
+						<th>已订</th>
+						<th>指标</th>
+						<th>差异</th>
+						<th>完成率</th>
+						{%if $show.show_all%}
+						<th>已订</th>
+						<th>指标</th>
+						<th>差异</th>
+						<th>完成率</th>
+						<th>已订</th>
+						<th>指标</th>
+						<th>差异</th>
+						<th>完成率</th>
+						{%/if%}
+					</tr>
+					<tr>
+						<td colspan="2">总计</td>
+						<td>{%$show.total.ord_num%}</td>
+						<td>{%$show.total.exp_num%}</td>
+						<td>{%$show.total.diff_num%}</td>
+						<td {%if $show.total.percent_num_status%}style="color:red"{%/if%}>{%$show.total.percent_num%}</td>
+
+						<td>{%$show.total.ord_discount_amount|price_cn%}</td>
+						<td>{%$show.total.exp_amount|price_cn%}</td>
+						<td>{%$show.total.diff_amount|price_cn%}</td>
+						<td {%if $show.total.percent_amount_status%}style="color:red"{%/if%}>{%$show.total.percent_amount%}</td>
+
+						{%if $show.show_all%}
+						<td>{%$show.total.ord_pnum%}</td>
+						<td>{%$show.total.exp_pnum%}</td>
+						<td>{%$show.total.diff_pnum%}</td>
+						<td {%if $show.total.percent_pnum_status%}style="color:red"{%/if%}>{%$show.total.percent_pnum%}</td>
+
+						<td>{%$show.total.ord_skc%}</td>	
+						<td>{%$show.total.exp_skc%}</td>
+						<td>{%$show.total.diff_skc%}</td>
+						<td {%if $show.total.percent_skc_status%}style="color:red"{%/if%}>{%$show.total.percent_skc%}</td>
+						{%/if%}
+					</tr>
+					{%foreach from=$show.zongdai_list key=k item=val name=foo%}
+						<tr>
+							{%$start = $smarty.foreach.foo.index+1 %}
+							<td>{%$smarty.foreach.foo.index+1%}</td>
+							<td><a>{%$val.name%}</a></td>
+							<td>{%$val.ord_num%}</td>
+							<td>{%$val.exp_num%}</td>
+							<td>{%$val.diff_num%}</td>
+							<td {%if $val.percent_num_status%}style="color:red"{%/if%}>{%$val.percent_num%}</td>
+
+							<td>{%$val.ord_discount_amount|price_cn%}</td>
+							<td>{%$val.exp_amount|price_cn%}</td>
+							<td>{%$val.diff_amount|price_cn%}</td>
+							<td {%if $val.percent_amount_status%}style="color:red"{%/if%}>{%$val.percent_amount%}</td>
+
+							{%if $show.show_all%}
+							<td>{%$val.ord_pnum%}</td>
+							<td>{%$val.exp_pnum%}</td>
+							<td>{%$val.diff_pnum%}</td>
+							<td {%if $val.percent_pnum_status%}style="color:red"{%/if%}>{%$val.percent_pnum%}</td>
+
+							<td>{%$val.ord_skc%}</td>	
+							<td>{%$val.exp_skc%}</td>
+							<td>{%$val.diff_skc%}</td>
+							<td {%if $val.percent_skc_status%}style="color:red"{%/if%}>{%$val.percent_skc%}</td>
+							{%/if%}
+						</tr>
+					{%/foreach%}
+
+					{%foreach from=$show.dealer_list key=k item=dval name=foo%}
+						<tr>
+							<td>{%$smarty.foreach.foo.index+$start+1%}</td>
+							<td>{%$dval.name%}</td>
+							<td>{%$dval.ord_num%}</td>
+							<td>{%$dval.exp_num%}</td>
+							<td>{%$dval.diff_num%}</td>
+							<td {%if $dval.percent_num_status%}style="color:red"{%/if%}>{%$dval.percent_num%}</td>
+
+							<td>{%$dval.ord_discount_amount|price_cn%}</td>
+							<td>{%$dval.exp_amount|price_cn%}</td>
+							<td>{%$dval.diff_amount|price_cn%}</td>
+							<td {%if $dval.percent_amount_status%}style="color:red"{%/if%}>{%$dval.percent_amount%}</td>
+
+							{%if $show.show_all%}
+							<td>{%$dval.ord_pnum%}</td>
+							<td>{%$dval.exp_pnum%}</td>
+							<td>{%$dval.diff_pnum%}</td>
+							<td {%if $dval.percent_pnum_status%}style="color:red"{%/if%}>{%$dval.percent_pnum%}</td>
+
+							<td>{%$dval.ord_skc%}</td>	
+							<td>{%$dval.exp_skc%}</td>
+							<td>{%$dval.diff_skc%}</td>
+							<td {%if $dval.percent_skc_status%}style="color:red"{%/if%}>{%$dval.percent_skc%}</td>
+							{%/if%}
+						</tr>
+					{%/foreach%}
+
+				</table>
+			</div>
+		</div>
+      
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/a/indicator");
+</script>
+</body>
+</html>

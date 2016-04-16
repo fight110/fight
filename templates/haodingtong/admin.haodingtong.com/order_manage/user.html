@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>订单管理</h3>
+            {%include file="order_manage/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <form id="HDT-search-form" method="GET">
+                <tr>
+                  <th colspan="7">
+                    <span class="Selects" data-default="{%if $show.area2%}{%$show.area2%}{%else%}{%$show.area1%}{%/if%}">区域:<select name="area1"></select><select name="area2"></select></span>
+                    <input type="text" name="search_user" value="{%$show.search_user%}" placeholder="输入名字/帐号">
+                    <input type="submit" value="搜索">
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="7">
+                    款别:<select name="style_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.style_list%}
+                    <option value="{%$show.style_list[i].keyword_id%}" {%if $show.style_list[i].keyword_id == $show.style_id%}selected="selected"{%/if%}>{%$show.style_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.wave_id%}:<select name="wave_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.wave_list%}
+                    <option value="{%$show.wave_list[i].keyword_id%}" {%if $show.wave_list[i].keyword_id == $show.wave_id%}selected="selected"{%/if%}>{%$show.wave_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.category_id%}:<select name="category_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.category_list%}
+                    <option value="{%$show.category_list[i].keyword_id%}" {%if $show.category_list[i].keyword_id == $show.category_id%}selected="selected"{%/if%}>{%$show.category_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.series_id%}:<select name="series_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.series_list%}
+                    <option value="{%$show.series_list[i].keyword_id%}" {%if $show.series_list[i].keyword_id == $show.series_id%}selected="selected"{%/if%}>{%$show.series_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                  </th>
+                </tr>
+                </form>
+                <tr>
+                  <th colspan="2">经销商名称</th>
+                  <th>区域</th>
+                  <th>款数</th>
+                  <th>订数</th>
+                  <th>金额</th>
+                  <th>操作</th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td colspan="2">{%$show.list[i].name%}</td>
+                  <td>{%$show.list[i].location.name%}</td>
+                  <td>{%$show.list[i].pnum%}</td>
+                  <td>{%$show.list[i].num%}</td>
+                  <td>{%$show.list[i].price%}</td>
+                  <td>
+                    <a href="/order_manage/user_style/{%$show.list[i].id%}">查看</a> | 
+                    <a href="/order_manage/setcopy/from?username={%$show.list[i].username%}&returl=/order_manage/copy">复制</a>
+                  </td>
+                </tr>{%/section%}
+                
+              </table>
+              {%$show.pagelist%}
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/order_manage/user');
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<select class="select" name="dp_type2">
+  <option value="">分组</option>
+  {%foreach from=$show.list key=key item=val%}
+  <option value="{%$val.dp_type2%}">{%$val.dp_type2|hdt_keyword%}</option>
+  {%/foreach%}
+</select>

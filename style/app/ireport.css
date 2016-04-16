@@ -1,0 +1,71 @@
+.ireport {
+	margin-bottom: 10px;
+}
+
+.ireport fieldset {
+	border: 1px dashed;
+	padding: 5px 10px;
+}
+
+/* 查询条件 */
+.ireport ul.tab li {
+	float: left;
+	padding: 0 5px;
+	margin-right: -1px;
+	border: solid 1px;
+}
+
+.ireport ul.tab li.active {
+	border-bottom: 1px;
+}
+
+.ireport .tab-content {
+	clear: left;
+}
+
+.ireport .tab-content span {
+	display: none;
+}
+
+.ireport .tab-content span.active {
+	display: block;
+}
+
+/* 纬度选择 */
+.ireport .display-key-selection {
+	width: 100%;
+	padding: 5px;
+	display: flex;
+}
+.ireport .display-key-selection span{
+	flex: 0 0 60px;
+	padding: 5px 0;
+	height: 1.5em;
+}
+.ireport ul.display-key {
+	flex: 1 auto;
+	padding: 5px;
+	border: solid 1px;
+}
+.ireport ul.display-key li {	width: 60px;
+	float: left;
+	border: 1px dashed;
+	text-align: center;
+	margin: 5px;
+}
+
+
+#ireport-search {
+	margin: 10px 0;
+}
+
+/* 隐藏那些不需要打印出来的内容 */
+@media print {
+	.top_grey, .header_new, .nav, .rightbar, .righttool, .foot {
+		display: none;
+	}
+
+	.ireport fieldset, #ireport-search {
+		display: none;
+	}
+}

@@ -1,0 +1,307 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+body{
+	background:#e6e6e6;
+	}
+#login{
+	width:1024px;
+	height:768px;
+	margin:0 auto;
+	background:#fff;
+	}
+#top{
+	width:1024px;
+	height:135px;
+	margin:0 auto;
+	border-bottom:1px solid #eeeeee;
+	}
+.logo{
+	width:900px;
+	position:relative;
+	top:33px;
+	left:50px;
+	}
+#middle{
+	width:1024px;
+	height:487px;
+	margin:0 auto;
+	background:#effbff;
+	}
+.middle_left{
+	width:630px;
+	height:487px;
+	float:left;
+	}
+.img{
+	width:534px;
+	height:300px;
+	margin-left:94px;
+	margin-top:108px;
+	}
+.middle_right{
+	width:390px;
+	height:487px;
+	float:right;
+	}
+.login{
+	width:306px;
+	height:364px;
+	background:#fff;
+	border:1px solid #f0f0f0;
+	float:right;
+	margin-right:44px;
+	margin-top:54px;
+	}
+#bottom{
+	width:1024px;
+	margisn:0 auto;
+	font-size:15px;
+	font-family:"微软雅黑";
+	color:#4a4a4a;
+	text-align:center;
+	padding-top:30px;
+	line-height:2.5em;
+	}
+.title{
+	font-size:17px;
+	color:#666666;
+	font-family:"微软雅黑";
+	margin-left:18px;
+	margin-top:20px;
+	}
+.form{
+	width:275px;
+	height:35px;
+	margin:0 auto;
+	margin-top:26px;
+	}
+.form1{
+	width:275px;
+	height:35px;
+	margin:0 auto;
+	margin-top:20px;
+	}
+.form1 input{
+	width:227px;
+	height:35px;
+	border:1px solid #f0f0f0;
+	color:#b4b4b4;
+	padding-left:46px;
+	font-size:12px;
+	border-radius:0px;
+	}
+.person{
+	background:url(/images/3_031.png) no-repeat;
+	}
+.person2{
+	background:url(/images/3_061.png) no-repeat;
+	}
+.submit{
+	width:275px;
+	height:40px;
+	background:#ff9c00;
+	border-radius:3px;
+	margin:0 auto;
+	margin-top:26px;
+	}
+.button{
+	width:275px;
+	height:40px;
+	color:#fff;
+	border:0px;
+	font-size:16px;
+	font-family:"微软雅黑";
+	letter-spacing:10px;
+	background:url(/images/button_img.png) no-repeat;
+	}
+table {
+	margin-left:14px;
+	margin-top:25px;
+}
+/* select-main */
+div.select-main {
+	background-color:#FFFFFF;
+	border:1px solid #f0f0f0;
+	font-size:13px;
+	height:35px;
+	position:relative;
+	width:273px;
+	-webkit-user-select:none; /* webkit (safari, chrome) browsers */
+    -moz-user-select:none; /* mozilla browsers */
+    -khtml-user-select:none; /* webkit (konqueror) browsers */
+    -ms-user-select:none; /* IE10+ */
+}
+
+div.select-main.z-index {
+	z-index:10;
+}
+div.select-set {
+	background-color:#FFFFFF;
+	color:#b4b4b4;
+	cursor:pointer;
+	height:35px;
+	line-height:35px;
+	overflow:hidden;
+	position:relative;
+	padding:0 35px 0 7px;
+	width:150px;
+	z-index:5;
+}
+
+div.select-arrow {
+	border-top:7px solid #f0f0f0;
+	border-left:7px solid transparent;
+	border-right:7px solid transparent;
+	cursor:pointer;
+	height:0px;
+	position:absolute;
+	top:18px;
+	right:10px;
+	width:0px;
+	z-index:7;
+}
+
+div.select-arrow.reverse {
+	border-top:7px solid transparent;
+	border-bottom:7px solid #5ac6ea;
+	top:10px;
+}
+
+div.select-block {
+	background-color:#FFFFFF;
+    border-left:1px solid #f0f0f0;
+    border-right:1px solid #f0f0f0;
+    border-bottom:1px solid #f0f0f0;
+    left:-1px;
+    line-height:20px;
+    position:absolute;
+    top:32px;
+    width:273px;
+}
+
+ul.select-list {
+	cursor:pointer;
+	margin:15px 0 7px;
+}
+
+/* Scroll view */
+
+ul.select-list::-webkit-scrollbar {
+    width:12px;
+}
+
+ul.select-list::-webkit-scrollbar-thumb {
+    -webkit-box-shadow:inset 0 0 1px rgba(0,0,0,0.5);
+}
+
+ul.select-list {
+	scrollbar-face-color:#AEB1B1;
+    scrollbar-shadow-color:#C7CACA;
+    scrollbar-highlight-color:#CED1D1;
+    scrollbar-3dlight-color:#CED1D1;
+    scrollbar-darkshadow-color:#C7CACA;
+    scrollbar-track-color:#CED1D1;
+    scrollbar-arrow-color:#333;
+}
+
+/* End scroll view */
+
+li.select-items {
+	color:#b4b4b4;
+	padding:7px 7px;
+}
+
+li.select-items:hover,
+li.select-items.active {
+	background-color:#5ac6ea;
+	color:#FFFFFF;
+} 
+.checkboxFive {
+	width: 15px;
+	position: relative;
+	margin-top:20px;
+	margin-left:20px;
+}
+.checkboxFive span{
+	width:50px;
+	font-size:12px;
+	float:left;
+	margin-left:23px;
+	color:#b4b4b4;
+	position:relative;
+	top:-14px;
+	z-index:2;
+	}
+.checkboxFive label {
+	cursor: pointer;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 0;
+  	left: 0;
+	background: #eee;
+	border:1px solid #ddd;
+}
+.checkboxFive label:after {
+	opacity: 0.2;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 2px;
+	left: 2px;
+	border: 3px solid #ff9c00;
+	border-top: none;
+	border-right: none;
+ 
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.checkboxFive label:hover::after {
+	opacity: 0.2;
+}
+.checkboxFive input[type=checkbox]:checked + label:after {
+	opacity: 0.8;
+}
+.form2 {
+position: relative;
+display: inline-block;
+width: 275px;
+height: 37px;
+background-color: #FFF;
+font-size: 13px;
+color: #b4b4b4;
+margin-left:16px;
+margin-top:20px;
+border-radius:0px;
+overflow:hidden;
+}
+.form2 select {
+position: absolute;
+top: 0;
+left: 0;
+width: 295px;
+height: 37px;
+font: 14px/20px "Microsoft YaHei";
+color: #b4b4b4;
+background:url(/images/select.png) no-repeat;
+border:0px;
+border-radius:0px;
+padding-left:10px;
+}
+.form2 select option {
+text-indent: 10px;
+}
+.form2 select option:hover {
+background-color: #f80;
+color: #fff;
+} 

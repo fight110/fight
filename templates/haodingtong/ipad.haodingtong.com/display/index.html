@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+<style>
+.formdiv{
+margin:10px 0px;
+}
+</style>
+<body class="bodybg">
+<div class="contain">
+<form  action="/display" method='post' >
+	<div class='formdiv'>
+		输入陈列编号: <input type="text" name="display_bianhao" />
+	</div>
+	<div class='formdiv'>
+		输入搭配编号: <input type="text" name="group_bianhao" />
+	</div>
+	<div class='formdiv'>
+		输入产品圆牌号: <input type="text" name="skc_id" />
+	</div>
+	<input  type="hidden" value="1" name="update" />
+	<div class='formdiv'>
+		 <input type="submit"  value="更新" onclick="return confirm('确认更新吗?')" />
+	</div>
+</form>
+</div>
+</body>
+</html>

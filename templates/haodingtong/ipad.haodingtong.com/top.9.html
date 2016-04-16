@@ -1,0 +1,43 @@
+{%include file="top.1.html"%}
+  <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+    {%if $currentUser.type neq 1%}
+    <ul>
+      {%if $currentUser.type == 3%}
+    	{%if $show.user.username eq '0'%}
+        <li class="Selects">
+            <select name="area1"></select>
+            <select name="area2"></select>
+        </li>
+        <li>
+          <select name="fliter_uid"></select>
+        </li>
+        {%else%}
+        <li>
+          <select name="fliter_uid">
+          <option value="">选择店仓</option>
+          {%foreach key=ukey from=$show.userlist item=uval%}
+          <option value="{%$uval.id%}">{%$uval.name%}</option>
+          {%/foreach%}
+          </select>
+        </li>
+        {%/if%}
+        {%elseif $currentUser.type == 2%}
+        <li>
+          <select name="fliter_uid">
+          <option value="">所有下线</option>
+          {%section name=i loop=$show.slave_list%}
+          <option value="{%$show.slave_list[i].id%}" {%if $show.slave_id==$show.slave_list[i].id%}selected="selected"{%/if%}>{%$show.slave_list[i].name%}</option>
+          {%/section%}
+          </select>
+        </li>
+        {%/if%}
+      </ul>
+    {%/if%}
+    </div>
+      <div class="nright">
+      {%include file="top.search.html"%}
+      </div>
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

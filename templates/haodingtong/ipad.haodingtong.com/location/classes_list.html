@@ -1,0 +1,6 @@
+<select name="classes_id">
+  <option value="">{%$keyword.classes_id%}</option>
+  {%section name=i loop=$show.list%}
+  <option value="{%$show.list[i].classes_id%}">{%$show.list[i].classes_id|hdt_keyword%}</option>
+  {%/section%}
+</select>

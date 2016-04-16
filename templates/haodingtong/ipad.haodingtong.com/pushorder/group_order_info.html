@@ -1,0 +1,55 @@
+{%if $show.group_info%}
+<div class="title">
+    <span class="left-span">搭配号：{%$show.group_info.dp_num%} &nbsp;&nbsp;&nbsp;&nbsp;搭配名： {%$show.group_info.name%}</span>
+    {%if $show.display_id%}<a href="/pushorder/display_order_info/{%$show.display_id%}">店铺预演</a>{%/if%}
+    <span class="right-span">本搭配已订：{%$show.total.num|default:0%}件 {%$show.total.amount|default:0|price_cn%}元  搭配比：{%$show.string_num%}</span>
+</div>
+<div class="left-div">
+    <div class="contrast"><img src="/thumb/210/{%$show.group_info.contrast_image%}" alt=""></div>
+    <div class="user-order">
+        {%if $show.notorder%}
+            <img src="/thumb/210/{%$show.group_info.background_image%}">
+            {%foreach from=$show.list key=k item=val%}
+                {%if $val.num%}
+                    <img src="/thumb/210/{%$val.image%}" />
+                {%/if%}
+            {%/foreach%}
+        {%else%}
+            <img src="/thumb/210/{%$show.group_info.contrast_image%}">
+        {%/if%}
+    </div>
+</div>
+<div class="right-div">
+    <ul>
+    {%section name=i loop=$show.list%}
+        <li class="product fancyboxBook" data-product-id="{%$show.list[i].product_id%}" data-color-id="{%$show.list[i].color_id%}" data-price="{%$show.list[i].product.price%}" data-search-color-id="{%$show.list[i].color_id%}">
+            <div class="left-img"><img src="/thumb/125/{%$show.list[i].product.defaultimage|hdt_pcimage:$show.list[i].product_id:$show.list[i].color_id%}" alt=""></div>
+            <div class="right-table">
+                <p>款号:{%$show.list[i].product.kuanhao%} 款名：{%$show.list[i].product.name%}  单价：￥{%$show.list[i].product.price%}</p>
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td>圆牌号</td>
+                        <td>颜色</td>
+                        {%if $show.company.user_guide%}
+                        <td>指导数</td>
+                        {%/if%}
+                        <td>已订量</td>
+                    </tr>
+                    {%foreach from=$show.list[i].color_list item=color%}
+                    <tr class="{%if $show.list[i].color_id==$color.color_id%}on{%/if%}" data-color-id="{%$color.color_id%}">
+                        <td>{%$color.skc_id%}</td>
+                        <td>{%$color.color_id|hdt_keyword%}</td>
+                        {%if $show.company.user_guide%}
+                        <td>{%$color.user_guide%}</td>
+                        {%/if%}
+                        <td>{%$color.num%}</td>
+                    </tr>
+                    {%/foreach%}
+                </table>
+            </div>
+            <div class="clear"></div>
+        </li>
+    {%/section%}
+    </ul>
+</div>
+{%/if%}

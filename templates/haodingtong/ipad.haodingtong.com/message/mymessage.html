@@ -1,0 +1,18 @@
+{%if $show.start==0%}
+<tr>
+<th class="th2">消息标题</th>
+<th class="th2">发件人</th>
+<th class="th2">发送时间</th>
+<th class="th2">操作</th>
+</tr>
+{%/if%}{%section name=i loop=$show.list%}
+<tr>
+<td><a href="/message/view/{%$show.list[i].sid%}">{%if $show.list[i].status%}{%$show.list[i].title%}{%else%}<strong>{%$show.list[i].title%}</strong>{%/if%}</a></td>
+<td>{%$show.list[i].author%}</td>
+<td>{%$show.list[i].post_time%}</td>
+<td>
+	<a href="/message/view/{%$show.list[i].sid%}">查看</a>
+	<a href="/message/delete/{%$show.list[i].sid%}">删除</a>
+</td>
+</tr>
+{%/section%}

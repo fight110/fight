@@ -1,0 +1,97 @@
+{%if $show.page eq 1%}
+<tr class="hbg">
+	<th rowspan="2">序号</th>
+	<th rowspan="2">{%if $show.type eq 5%}客户区域{%elseif $show.type eq 6%}客户类型{%else%}客户名称{%/if%}</th>
+	{%if $show.field%}
+	<th rowspan="2">属性1</th>
+	<th rowspan="2">属性2</th>
+	{%/if%}
+	<th colspan="4">订量</th>
+	<th colspan="4">金额</th>
+	{%if $show.show_all%}
+	<th colspan="4">款量</th>
+	<th colspan="4">款色</th>
+	{%/if%}
+</tr>
+<tr class="hbg">
+	<th>已订</th>
+	<th>指标</th>
+	<th>差异</th>
+	<th>完成率</th>
+	<th>已订</th>
+	<th>指标</th>
+	<th>差异</th>
+	<th>完成率</th>
+	{%if $show.show_all%}
+	<th>已订</th>
+	<th>指标</th>
+	<th>差异</th>
+	<th>完成率</th>
+	<th>已订</th>
+	<th>指标</th>
+	<th>差异</th>
+	<th>完成率</th>
+	{%/if%}
+</tr>
+{%/if%}
+{%if $show.info%}
+<tr>
+	<td></td>
+	<td {%if $show.field%} colspan=3 {%/if%}>汇总</td>
+	<td>{%$show.info.ord_num%}</td>
+	<td>{%$show.info.exp_num%}</td>
+	<td>{%$show.info.diff_num%}</td>
+	<td>{%$show.info.percent_num%}</td>
+	<td>{%$show.info.ord_discount_amount|price_cn%}</td>
+	<td>{%$show.info.exp_amount|price_cn%}</td>
+	<td>{%$show.info.diff_amount|price_cn%}</td>
+	<td>{%$show.info.percent_amount%}</td>
+	{%if $show.show_all%}
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	{%/if%}
+</tr>
+{%/if%}
+{%if $show.list%}
+{%foreach from=$show.list key=k item=val name=foo%}
+{%foreach from=$val.listing key lk item=lval%}
+<tr>
+	<td>{%$smarty.foreach.foo.index+$show.start%}</td>
+	{%if $lval.rowspan%}
+	<td rowspan={%$lval.rowspan%}> {%if $show.type eq 2%}<a class="select_master" href="javascript:void(0)" data-master-id="{%$lval.user_id%}">{%/if%}{%$lval.name%}{%if $show.type eq 2%}</a>{%/if%}</td>
+	{%/if%}
+	{%if $lval.keyword_id%}
+	<td>{%$lval.keyword_id|hdt_keyword%}</td>
+	<td>{%$lval.keyword_id2|hdt_keyword%}</td>
+	{%/if%}
+	<td>{%$lval.ord_num%}</td>
+	<td>{%$lval.exp_num%}</td>
+	<td>{%$lval.diff_num%}</td>
+	<td {%if $lval.percent_num_status%}style="color:red"{%/if%}>{%$lval.percent_num%}</td>
+
+	<td>{%$lval.ord_discount_amount|price_cn%}</td>
+	<td>{%$lval.exp_amount|price_cn%}</td>
+	<td>{%$lval.diff_amount|price_cn%}</td>
+	<td {%if $lval.percent_amount_status%}style="color:red"{%/if%}>{%$lval.percent_amount%}</td>
+
+	{%if $show.show_all%}
+	<td>{%$lval.ord_pnum%}</td>
+	<td>{%$lval.exp_pnum%}</td>
+	<td>{%$lval.diff_pnum%}</td>
+	<td {%if $lval.percent_pnum_status%}style="color:red"{%/if%}>{%$lval.percent_pnum%}</td>
+
+	<td>{%$lval.ord_skc%}</td>	
+	<td>{%$lval.exp_skc%}</td>
+	<td>{%$lval.diff_skc%}</td>
+	<td {%if $lval.percent_skc_status%}style="color:red"{%/if%}>{%$lval.percent_skc%}</td>
+	{%/if%}
+</tr>
+{%/foreach%}
+{%/foreach%}
+{%/if%}

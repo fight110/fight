@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+<div class="mainbox">
+    <div class="main_con">
+        <div class="detail_box">
+            {%section name=i loop=$show.list%}
+            <div class="probox HDT-list">
+                <dl class="this_txt clearfix">
+                    <dt>编号:{%$show.list[i].bianhao%}<a name="p{%$show.list[i].bianhao%}" style="position:relative; top:-147px;">&nbsp;</a></dt>
+                    <dd>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>款号:{%$show.list[i].kuanhao%}</td>
+                                <td>款名:{%$show.list[i].name%}</td>
+                                <td><span class="jiage">¥ <strong>{%$show.list[i].price%}</strong></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan=3>
+                                    收藏：
+                                    <div class="rateit bigstars" {%if $show.list[i].store_rateval%}data-rateit-value="{%$show.list[i].store_rateval%}"{%/if%} data-rateit-starwidth="32" data-rateit-starheight="32" data-rateit-step="1" data-rateit-resetable="false" data-product-id="{%$show.list[i].id%}" data-show-num="{%$smarty.section.i.index%}"></div>
+                                    &nbsp;<a class="HDT_reset_store" data-product-id="{%$show.list[i].id%}">[取消收藏]</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </dd>
+                </dl>
+
+                <div>
+
+
+                    <div class="pro_tabl pro_tabl_auto">
+                        <div style="float:left;">
+                            <a><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a>
+                        </div>
+                        <div style="float:left;width:68%;">
+                            <table border="0" cellspacing="0" cellpadding="0" class="HDT-order-table" data-product-id="{%$show.list[i].id%}">
+                                <tr>
+                                    <th class="leftd">颜色\尺码</th>
+                                    {%section name=j loop=$show.list[i].size_list%}
+                                    <th>{%$show.list[i].size_list[j].size_id|hdt_keyword%}</th>
+                                    {%/section%}
+                                    <th>小计</th>
+                                </tr>
+                                {%section name=j loop=$show.list[i].color_list%}
+                                <tr data-color-id="{%$show.list[i].color_list[j].color_id%}">
+                                    <td class="leftd">{%$show.list[i].color_list[j].color_id|hdt_keyword%}</td>
+                                    {%section name=z loop=$show.list[i].size_list%}
+                                    <td><input type="number" style="width:90%;" readonly="readonly" data-product-id="{%$show.list[i].id%}" data-color-id="{%$show.list[i].color_list[j].color_id%}" data-size-id="{%$show.list[i].size_list[z].size_id%}" data-max="{%$show.company.data_max%}"></td>
+                                    {%/section%}
+                                    <td class="HDT-order-count">&nbsp;</td>
+                                </tr>
+                                {%/section%}
+                                <tr>
+                                    <td colspan={%1 + $show.list[i].size_count%}>{%if $show.moq.minimum%}最小起订量:<em class="HDT-minimum">{%$show.moq.minimum%}</em>{%/if%}</td>
+                                    <td>总计:<em class="HDT-count-all"></em></td>
+                                </tr>
+                            </table>
+                            <div class="d_pro_button">
+                                <span class="sbtn">
+                                    <input name="button1"  type="button" class="btn_gree HDT-order-save" value="保存订单"/>
+                                    <input name="button2"  type="button" class="btn_gray2 HDT-order-cancel" data-product-id="{%$show.list[i].id%}" value="取消订单"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="de_subtitle">搭配效果</h3>
+                    <ul class="prolist detail_dplist clearfix">
+                        {%section name=j loop=$show.list[i].grouplist%}
+                        <li style="height: 225px;">
+                            <h4 class="clearfix">
+                                <span class="nid">编号:{%$show.list[i].grouplist[j].dp_num%}</span>
+                                <span class="stylenum">名称：{%$show.list[i].grouplist[j].name%}</span>
+                            </h4>
+                            <div class="imgbox">
+                                <img src="/thumb/210/{%$show.list[i].grouplist[j].defaultimage%}">
+                            </div>
+                        </li>
+                        {%/section%}
+                    </ul>
+
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            {%/section%}
+        </div>
+    <!--foot-->
+        {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+    <br><br><br><br><br><br><br>
+</div>
+
+{%if $show.show_id%}
+<!--滚动图片开始-->
+<div class="scroll-picbox-bg"></div>
+<div class="scroll-picbox">
+    <ul id="HDT-show-ul">
+        {%section name=i loop=$show.show_list%}
+        <li data-id="{%$show.show_list[i].id%}" {%if $show.show_id == $show.show_list[i].id%}class="on"{%elseif $show.show_list[i].id == $show.current_show_id%}class="cur"{%/if%}>
+            {%section name=j loop=$show.show_list[i].plist%}
+            <a href="/dealer1/show/{%$show.show_list[i].id%}#p{%$show.show_list[i].plist[j].bianhao%}">
+                <div class="rela">
+                    <img src="/thumb/75/{%$show.show_list[i].plist[j].defaultimage%}"/>
+                    <div class="rela-bg">编号:<b>{%$show.show_list[i].plist[j].bianhao%}</b></div>
+                </div>
+            </a>
+            {%/section%}
+        </li>
+        {%/section%}
+        <li style="position:absolute;right:0;height:80px;width:80px;background-image:url(/images/refresh_1.png);" id="refresh_button" data-show-interval="{%$show.company.show_interval%}">
+            <a href="/dealer1/show_room/{%$show.room_id%}"><div style="width:100%;height:100%;"></div></a>
+        </li>
+    </ul>
+</div>
+{%/if%}
+
+<input type="hidden" name="show_id" id="HDT-show-id" value="{%$show.show_id%}" data-room-id="{%$show.room_id%}">
+<script>
+seajs.use('lj/dealer1/show');
+</script>
+</body>
+</html>

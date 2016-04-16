@@ -1,0 +1,46 @@
+<ul>
+ 	{%foreach from=$show.list key=k item=val name=foo%}
+	<li>
+		<div class="left-div"><img src="/thumb/210/{%$val.defaultimage|hdt_pcimage:$val.product_id:$val.color_id%}" alt=""></div>
+		<div class="right-div">
+			<div class="title">
+				<span class="left-span">排名:{%$smarty.foreach.foo.index+1%}</span>
+				<span class="right-span">颜色:{%$val.color_id|hdt_keyword%}</span>
+				<span class="right-span">圆牌号:{%$val.skc_id%}</span>
+				<span class="right-span">价格:{%$val.price%}</span>
+				<span class="right-span">款号:{%$val.kuanhao%}</span>
+			</div>
+			<br>
+			<div class="title">
+				<span class="left-span">款色所在杆:{%$val.pdbianhao%}</span>
+			</div>
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<td>区域</td>
+					<td>订量</td>
+					<td>已订人数</td>
+					<td>总人数</td>
+					<td>被订率</td>
+				</tr>
+				<tr>
+					<td>合计</td>
+					<td>{%$val.total.num|default:0%}</td>
+					<td>{%$val.total.usernum|default:0%}</td>
+					<td>{%$val.total.areausernum|default:0%}</td>
+					<td>{%$val.total.user_percent%}</td>
+				</tr>
+				{%foreach from=$val.arealist key=k2 item=val2%}
+				<tr>
+					<td>{%$val2.area1.name%}</td>
+					<td>{%$val2.order.num|default:0%}</td>
+					<td>{%$val2.order.usernum|default:0%}</td>
+					<td>{%$val2.area1.areausernum|default:0%}</td>
+					<td>{%$val2.user_percent%}</td>
+				</tr>
+				{%/foreach%}
+			</table>
+		</div>
+		<div class="clear"></div>
+	</li>
+	{%/foreach%}
+</ul>

@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+    <div class="probox">
+    <dl class="this_txt clearfix">
+    <dt>圆牌号:{%$show.color_list.0.skc_id%}</dt>
+    <dd>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>编号:{%$show.productdetail.bianhao%}</td>
+        <td>款号:{%$show.productdetail.kuanhao%}</td>
+        <td>款名:{%$show.productdetail.name%}<!--<span class="model">{%$show.productdetail.style%}</span>--></td>
+        <td><span class="jiage">¥ <strong>{%$show.productdetail.price%}</strong></span> {%if $show.productdetail.hot%}<img src="/style/images/bao.gif" width="15" height="15"  style="vertical-align:middle"/>{%/if%}</td>
+      </tr>
+      <tr>      
+        <td>订量：<em>{%$show.order_user.num|default:"--"%}</em>
+          {%if $show.rank%}<span class="ra">第<strong>{%$show.rank%}</strong>位</span>{%/if%}        
+        </td>
+        <td>
+                   订货人数 ：{%$show.hadBuy|default:0%}
+        </td>
+        <td>
+                        平均订量：{%$show.hadBuyavg|default:0%}
+        </td>
+        <td>
+   
+        </td>
+      </tr>
+    </table>
+    </dd>
+    </dl>
+
+    <div id="HDT-photos">
+    <div class="pro_photo">
+        <div class="relat" id="HDT-photos-big" style="width:458px;height:458px;margin:0 auto;overflow:hidden;">
+            <ul style="width:10000px;">
+            {%section name=i loop=$show.imagelist%}
+            <li style="float:left;"><img src="/thumb/458/{%$show.imagelist[i].image%}"></li>
+            {%/section%}
+            </ul>
+          {%if $show.unorder%}<div class="unorder1"></div>{%/if%}</div>
+      </div>
+      <div class="smallpic clearfix">
+      <ul id="indicator">
+        {%section name=i loop=$show.imagelist%}
+        <li>
+            <img src="/thumb/210/{%$show.imagelist[i].image%}">
+        </li>
+        {%/section%}
+      </ul>
+      </div>
+    </div>
+
+    <div class="pro_tabl pro_tabl_auto">
+      {%$show.ordertableall%}
+      {%if $show.unorderulist%}
+      <table cellspacing="0" cellpadding="0" border="0" id="HDT_UNORDER_TABLE">
+        <tr><th colspan=4>点击查看{%$show.unorderulist|count%}家未订店仓</th></tr>
+        <tr style="display:none;" class="HDT_HIDE">
+          {%section name=i loop=$show.unorderulist%}
+          {%if $smarty.section.i.index && $smarty.section.i.index%4 == 0%}</tr><tr style="display:none;" class="HDT_HIDE">{%/if%}
+          <td>{%$show.unorderulist[i].name%}</td>
+          {%/section%}
+        </tr>
+      </table>
+      {%/if%}
+      {%$show.ordertable%}
+    </div>
+
+    <div class="clear"></div>
+    </div>
+    <div class="d_intro">
+      <h3>{%$show.productdetail.name%}详情</h3>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbl">
+        <tr>
+          <td>编号：{%$show.productdetail.bianhao%}</td>
+          <td>款号：{%$show.productdetail.kuanhao%}</td>
+          <td>货号：{%$show.productdetail.huohao%}</td>
+          <td>{%$keyword.wave_id%}：{%$show.productdetail.wave%}</td>
+        </tr>
+        <tr>
+          <td>价格：{%$show.productdetail.price%}</td>
+          <td>{%$keyword.price_band_id%}：{%$show.productdetail.price_band%}</td>
+          <td>{%$keyword.season_id%}：{%$show.productdetail.season_id|hdt_keyword%}</td>
+          <td>{%$keyword.series_id%}：{%$show.productdetail.series%}</td>
+        </tr>
+        <tr>
+          <td>{%$keyword.category_id%}：{%$show.productdetail.category%}</td>
+          <td>{%$keyword.medium_id%}：{%$show.productdetail.medium%}</td>
+          <td>{%$keyword.classes_id%}：{%$show.productdetail.classes%}</td>
+          <td>款别：{%$show.productdetail.style%}</td>
+        </tr>
+        <tr>
+          <td>设计师：{%$show.productdetail.designer%}</td>
+          <td>{%$keyword.edition_id%}：{%$show.productdetail.edition_id|hdt_keyword%}</td>
+          <td>{%$keyword.contour_id%}：{%$show.productdetail.contour_id|hdt_keyword%}</td>
+          <td></td>
+        </tr>
+      </table>
+      {%if $show.productdetail.content%}
+      卖点：{%$show.productdetail.content%}
+      {%/if%}
+    </div>
+    <h3 class="de_subtitle">{%$show.productdetail.name%}推荐搭配款</h3>
+      <ul class="prolist detail_dplist clearfix" id="HDT-group-list"></ul>
+    </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+<input type="hidden" name="product_id" value="{%$show.productdetail.id%}">
+</div>
+<script>
+seajs.use('lj/a/detail');
+setTimeout(function(){
+	var $t = $('#HDT_UNORDER_TABLE'), $h = $t.find('.HDT_HIDE'), $m = $t.find('tr:first');
+	$m.on('click', function(){
+		$h.toggle();
+	});
+}, 1000);
+</script>
+</body>
+</html>

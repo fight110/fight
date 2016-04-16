@@ -1,0 +1,52 @@
+﻿
+
+
+#HDT-keyborad {
+    width:100%;
+    background: -webkit-linear-gradient(top, #9c9ba6, #57575f);
+    margin: 0px auto;
+    padding-top: 10px;
+    box-shadow: inset 0 1px 0 #bfbfbf;
+    border-top: 1px solid #303236;
+    border-radius: 0 0 5px 5px;
+    position: fixed;
+    left : 0;
+    bottom: 0;
+    z-index:10000;
+}
+@media only screen and (max-device-width: 1024px) and (orientation:portrait) {
+    #HDT-keyborad li {
+        width: 57px!important;
+    }
+}
+
+
+
+#HDT-keyborad li {
+    background: -webkit-linear-gradient(top, #eeeef0, #d3d3d9);
+    margin: 0 5px 10px 0;
+    height: 74px;
+    width: 78px;
+    text-align: center;
+    font: 20px sans-serif;
+    text-shadow: 0 1px 0 #fff;
+    line-height: 74px;
+    display: inline-block;
+    border: 1px solid #58575e;
+    box-shadow:       0  2px 2px rgba(0,0,0,0.25),
+                inset 0 -2px 0   rgba(0,0,0,0.25),
+                inset 0  1px 0   #fff;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    position: relative;
+}
+#HDT-keyborad .pressed { 
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.3), transparent) !important;
+}
+#HDT-keyborad .handon { color:#1418D9; font-weight: bold; }
+#HDT-keyborad .row li:last-of-type { margin-right: 0 !important; }
+#HDT-keyborad .fr { float: right; }
+#HDT-keyborad .keylonger { width: 121px !important; }
+#HDT-keyborad .shortcut {overflow: hidden;height: 86px;}
+#HDT-keyborad .shortcut li { min-width: 158px !important; width: auto;}
+#HDT-keyborad .curpro { color:#1418D9; font-weight: bold; }

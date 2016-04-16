@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+        <div class="top">
+            <h1><strong>{%$show.tname%}分析</strong></h1>
+            <a href="/list" class="lbtn"><span>分析</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table01">
+                {%if $show.t == "product"%}
+                <tr>
+                    <th width="36%" class="flbox">{%$show.tname%}名称<em>款号</em></th>
+                    <th>编号<em>金额排名</em></th>
+                    <th>订数量<em>订数比</em></th>
+                    <th>金额<em>金额比</em></th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                    <td class="flbox">
+                        <a href="/index/detail/{%$show.list[i].id%}">{%$show.list[i].name%}</a>
+                        <div class="smallf"><em>{%$show.list[i].kuanhao%}</em></div>
+                    </td>
+                    <td>
+                        {%$show.list[i].bianhao%}
+                        <div class="smallf">第<em>{%$show.list[i].rank%}</em>名</div>
+                    </td>
+                    <td>
+                        {%$show.list[i].num%}
+                        <div class="smallf">{%$show.list[i].percent_num%}</div>
+                    </td>
+                    <td>
+                        {%$show.list[i].price%}
+                        <div class="smallf">{%$show.list[i].percent_price%}</div>
+                    </td>
+                </tr>
+                {%/section%}
+                {%else%}
+                <tr>
+                    <th width="36%" class="flbox">{%$show.tname%}名称<em>{%$show.tname%}总款量</em></th>
+                    <th>订款量<em>款量比</em></th>
+                    <th>订数量<em>订数比</em></th>
+                    <th>金额<em>金额比</em></th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                    <td class="flbox">
+                        {%if $show.t == "wave" || $show.t == "category" || $show.t == "series" || $show.t == "style"%}
+                        <a href="/index/product?{%$show.t%}_id={%$show.list[i].keyword_id%}">{%$show.list[i].name%}</a>
+                        {%else%}
+                        {%$show.list[i].name%}
+                        {%/if%}
+                        <div class="smallf"><em>{%$show.list[i].product_all_num%}</em></div>
+                    </td>
+                    <td> 
+                        {%$show.list[i].pnum%}
+                        <div class="smallf">{%$show.list[i].percent_pnum%}</div>
+                    </td>
+                    <td>
+                        {%$show.list[i].num%} 
+                        <div class="smallf">{%$show.list[i].percent_num%}</div>
+                    </td>
+                    <td>
+                        {%$show.list[i].price%}
+                        <div class="smallf">{%$show.list[i].percent_price%}</div>
+                    </td>
+                </tr>
+                {%/section%}
+                {%/if%}
+            </table>
+        </div>
+    </div>
+</div>
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/order/analysis_order');
+</script>
+</body>
+</html>

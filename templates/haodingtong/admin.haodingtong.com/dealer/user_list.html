@@ -1,0 +1,7 @@
+{%section name=i loop=$show.list%}
+<ul class="user_page">
+	{%section name=j loop=$show.list[i]%}
+	<li><input type="checkbox" value="{%$show.list[i][j].username%}">{%$show.list[i][j].name%}</input></li>
+	{%/section%}
+</ul>
+{%/section%}

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+<div class="contain">
+    <div class="top">
+        <h1><strong>{%$show.user.name%}</strong>({%$show.orderinfo.num%})</h1>
+        <a href="/" class="lbtn"><span>好订通</span></a>
+        <!-- <a href="/logout" class="rbtn"><span>注销</span></a> -->
+    </div>
+
+    <div>
+  <div class="searchbar">
+    <div class="searchfrom">
+      <div class="subright">
+        <div class="searchcon">
+            <form method="get" action="/index/product" id="HDT-search-form">
+                <input name="q" type="number" class="searchinput"  placeholder="编号搜索">
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <ul class="statuslist">
+        <li>
+            <a href="/index/product?ordered=on"><img class="thumb" src="/images/status_ico_a.png" width="30px">已订款<em>({%$show.orderinfo.pnum|default:0%}{%if $show.orderinfo.order_delete_num%}+<font color="red">{%$show.orderinfo.order_delete_num%}</font>{%/if%}/{%$show.ProductInfo.total%})</em></a>
+        </li>
+        <li>
+            <a href="/index/product?ordered=off"><img class="thumb" src="/images/status_ico_b.png" width="30px">未订款<em>({%$show.ProductInfo.unorder_num%}/{%$show.ProductInfo.total%})</em></a>
+        </li>
+        <li>
+            <a href="/index/product?ordered=unactive"><img class="thumb" src="/images/status_ico_c.png" width="30px">删除款<em>({%$show.orderinfo.order_delete_num%}/{%$show.ProductInfo.delete_num%})</em></a>
+        </li>
+        <li>
+            <a href="/index/show"><img class="thumb" src="/images/show.png" width="30px">现场show款</a>
+        </li>
+    </ul>
+    <div class="tit_order clearfix">
+        <span></span>
+        <h2>全部{%$keyword.style_id%}</h2>
+        <a href="/index/product" class="ashow_order"><b>点此展开订货</b></a>
+    </div>
+  <ul class="styleslist" id="HDT-select-list">
+    <li><a href="#" class="HDT-list-t"><span></span>款别选择</a>
+    <ul style="display:none;">
+        {%section name=i loop=$show.style_list%}
+        <li><a href="/index/product?style_id={%$show.style_list[i].keyword_id%}"><span></span>{%$show.style_list[i].keywords.name%}</a></li>
+        {%/section%}
+    </ul>
+    </li>
+    <li><a href="#" class="HDT-list-t"><span></span>{%$keyword.wave_id%}选择</a>
+    <ul style="display:none;">
+        {%section name=i loop=$show.wave_list%}
+        <li><a href="/index/product?wave_id={%$show.wave_list[i].keyword_id%}"><span></span>{%$show.wave_list[i].keywords.name%}</a></li>
+        {%/section%}
+    </ul>
+    </li>
+    <li><a href="#" class="HDT-list-t"><span></span>{%$keyword.category_id%}选择</a>
+    <ul style="display:none;">
+        {%section name=i loop=$show.category_list%}
+        <li><a href="/index/product?category_id={%$show.category_list[i].keyword_id%}"><span></span>{%$show.category_list[i].keywords.name%}</a></li>
+        {%/section%}
+    </ul>
+    </li>
+    <li><a href="#" class="HDT-list-t"><span></span>{%$keyword.series_id%}选择</a>
+    <ul style="display:none;">
+        {%section name=i loop=$show.series_list%}
+        <li><a href="/index/product?series_id={%$show.series_list[i].keyword_id%}"><span></span>{%$show.series_list[i].keywords.name%}</a></li>
+        {%/section%}
+    </ul>
+    </li>
+    <li><a href="/index/group"><span></span>搭配选择</a></li>
+  </ul>
+  </div>
+</div></div>
+
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/index');
+</script>
+</body>
+</html>

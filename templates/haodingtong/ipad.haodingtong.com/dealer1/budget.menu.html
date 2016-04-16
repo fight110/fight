@@ -1,0 +1,18 @@
+<ul>
+<li><a href="/dealer1/budget/?t=series" id="km_series">{%$keyword.series_id%}预算</a></li>
+<li><a href="/dealer1/budget/?t=wave" id="km_wave">{%$keyword.wave_id%}预算</a></li>
+<li><a href="/dealer1/budget/?t=category" id="km_category">{%$keyword.category_id%}预算</a></li>
+<li><a href="/dealer1/budget/?t=classes" id="km_classes">{%$keyword.classes_id%}预算</a></li>
+<!-- <li><a href="/dealer1/budget/?t=color_group" id="km_color_group">色系预算</a></li> -->
+<li><a href="/dealer1/budget/?t=color" id="km_color">单色预算</a></li>
+<!-- <li><a href="/dealer1/budget/?t=size" id="km_size">尺码预算</a></li> -->
+<li><a href="/dealer1/budget/?t=price_band" id="km_price_band">{%$keyword.price_band_id%}预算</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

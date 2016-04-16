@@ -1,0 +1,18 @@
+<ul>
+<li><a href="/order_manage/copy" id="km_copy">订单复制</a></li>
+<!-- <li><a href="/order_manage/print" id="km_print">订单打印</a></li>
+<li><a href="#" id="km_edit">订单编辑</a></li>
+<li><a href="/order_manage/user" id="km_user">按经销商列表</a></li>
+<li><a href="/order_manage/style" id="km_style">按{%$keyword.style_id%}列表</a></li> -->
+<!--<li><a href="/order_manage/deleted" id="km_deleted">删除款设定</a></li>  -->
+<!-- <li><a href="/order_manage/print2" id="km_print2">总代订单</a></li> -->
+<li><a href="/order_manage/clear" id="km_clear">订单清空</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

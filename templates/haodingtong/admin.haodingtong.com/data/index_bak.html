@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link rel="stylesheet" type="text/css" href="/style/css/fancybox/jquery.fancybox.css" media="screen" /> 
+{%include file="header.html"%}
+</head>
+<style>
+.Bar {
+    border: 1px solid #b1d632;
+    display: none;
+    width : 608px;
+    height: 20px;
+}
+.Bar div {
+    background: none repeat scroll 0 0 #090;
+    height: 20px;
+    width: 0;
+}
+.Bar div span {
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+}
+</style>
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+
+        <!-- <a href="/manage" target="_blank">管理接口</a> -->
+        <a href="/data/export" target="_blank">导出接口</a>
+        <hr>
+        
+      <form method="POST" action="/data/category">
+        <input type="submit" name="category_id" value="导出{%$keyword.category_id%}排名数据">
+        <input type="submit" name="classes_id" value="导出{%$keyword.classes_id%}排名数据">
+        <input type="submit" name="series_id" value="导出{%$keyword.series_id%}排名数据">
+       </form>
+        <hr>
+       <form method="POST" action="/data/company">
+        <input type="submit" name="submit" value="导出公司订单数据-款色明细表">
+       </form>
+       <br>
+       <form method="POST" action="/data/company_group">
+        <input type="submit" name="submit" value="导出公司汇总数据-单款明细表">
+       </form>
+       <br>
+       <!-- <form method="POST" action="/data/detail">
+        <input type="submit" name="submit" value="导出客户订单数据">  -->
+        <a href="/data/index_detail" target="_blank">导出客户订单横向表数据</a>
+       <!-- </form>
+       <form method="POST" action="/data/detail_zongdai">
+        <input type="submit" name="submit" value="导出总代订单数据">
+       </form> -->
+       <br>
+       <form method="POST" action="/data/orderlist_proportion">
+        <input type="submit" name="submit" value="导出配比箱数订单">
+       </form>
+       <br>
+       <!-- <form method="POST" action="/data/detail_yiyou">
+        <input type="submit" name="submit" value="导出客户订单数据 - 依友">
+       </form>
+       <form method="POST" action="/data/detail_yiyou_zongdai">
+        <input type="submit" name="submit" value="导出总代订单数据 - 依友">
+       </form> -->
+       <br>
+       <form method="POST" action="/data/store">
+        <input type="submit" name="submit" value="导出收藏品款数据">
+       </form>
+       <br>
+       <form method="POST" action="/data/order_book_1">
+        <input type="submit" name="submit" value="导出订货本1">
+       </form>
+       <form method="POST" action="/data/order_book_2">
+        <input type="submit" name="submit" value="导出订单汇总单">
+       </form>
+	   <br>
+	   <form method="POST" action="/data/product_info">
+        <input type="submit" name="submit" value="导出产品资料表">
+       </form>
+       <form method="POST" action="/data/order_info_2">
+        <input type="submit" name="submit" value="导出订单明细表">
+       </form>
+       <form method="POST" action="/data/customer_info">
+        <input type="submit" name="submit" value="导出客户资料表">
+       </form>  
+       <form method="POST" action="/data/comment_info">
+        <input type="submit" name="submit" value="导出产品评论表">
+       </form> 
+        <!-- <form method="POST" action="/data/product_order">
+        <input type="submit" name="submit" value="导出产品订量表">订单按照客户横向显示的 
+       </form> -->
+       <br> 
+       <!-- <form method="POST" action="/data/analysis_info">
+        <input type="submit" name="submit" value="导出订单分析数据">
+       </form> -->
+       <input type="button" id="analysis_output" value="导出订单分析数据"></input>
+       <!-- <input type="button" id="user_select" value="选择用户"></input> -->
+       <input type="hidden" id="username"></input> 
+       <div class="download"></div>
+       <div class="Bar">
+       <div id="jindu">
+           <span id="num"></span>
+       </div>
+       </div>
+        <br> 
+       <form method="POST" action="/data/order_info_yy">
+        <input type="submit" name="submit" value="导出依友订单明细表">
+       </form>    
+       <br> 
+       <form method="POST" action="/data/product_master_order">
+        <input type="submit" name="submit" value="导出全国渠道订单汇总表">
+       </form> 
+       <form method="POST" action="/data/product_dealer_order">
+        <input type="submit" name="submit" value="导出门店单款分配表">
+       </form>      
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+//seajs.use('lj/common');
+seajs.use('lj/admin/data/index');
+</script>
+</body>
+</html>

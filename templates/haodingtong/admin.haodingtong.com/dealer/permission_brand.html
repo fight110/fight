@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%$show.user.username%}
+        {%$show.user.name%}
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th>{%$keyword.brand_id%}</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].keyword_id|hdt_keyword%}</td>
+            <td>
+              {%if $show.list[i].has_permission_brand%}<a href="/dealer/permission_brand_status/{%$show.user.id%}?brand_id={%$show.list[i].keyword_id%}" style="color:green;">已授权</a>
+              {%else%}<a href="/dealer/permission_brand_status/{%$show.user.id%}?brand_id={%$show.list[i].keyword_id%}" style="color:red;">未授权{%/if%}
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/dealer/permission.index');
+</script>
+</body>
+</html>

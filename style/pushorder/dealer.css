@@ -1,0 +1,115 @@
+@charset "utf-8";
+/** {
+	padding: 0;
+	margin: 0;
+}
+body { width: 700px;margin: 0 auto;}
+a:link, a:visited, a:hover, a:active {
+    outline: medium none;
+    text-decoration: none;
+}
+a { color: #666;}
+.clear {
+	clear: both;
+}*/
+
+ul,li {
+	text-decoration: none;
+	list-style: outside none none;
+}
+
+.dealer-order div .title {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin: 10px 0 10px 0;
+}
+
+.dealer-order div .title .left-btn {
+	float: left;
+}
+
+.dealer-order div .title .right-btn {
+	float: right;
+}
+
+.dealer-order div .title button {
+	background-image: linear-gradient(to bottom, #fff, #ddd);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 26px;
+    min-width: 70px;
+    margin-left: 5px;
+}
+
+.dealer-order .user-display .user-img {
+	position: relative;
+	/*height: 500px;需js修改高度*/
+}
+
+.dealer-order .user-display .user-img img{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+.dealer-order .std-display .std-img img {
+	width: 100%;
+}
+
+.dealer-order .user-group .user-img {
+	height: auto;
+	text-align: center;
+}
+
+.dealer-order .user-group .user-img {
+	height: auto;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.dealer-order .user-group .user-img li {
+	text-align: center;
+	float: left;
+	height: 190px;
+	/*width: 113px;需js修改宽度*/
+}
+
+.dealer-order .user-group .user-img li div {
+	height: 170px;
+	width: 100%;
+	float: left;
+	position: relative;
+}
+
+.dealer-order .user-group .user-img li div i {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.dealer-order .user-group .user-img li div img {
+	width: 100%;
+	height: 170px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.dealer-order .std-group .std-img li {
+	height: 170;
+	float: left;
+	position: relative;
+}
+
+.dealer-order .std-group .std-img li img {
+	width: 100%;
+}
+
+.dealer-order .std-group .std-img li span {
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}

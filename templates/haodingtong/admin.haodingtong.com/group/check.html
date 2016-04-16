@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+
+  <div class="mainbox">
+    <div class="main_con">
+    <div style="margin:10px 20px 0px 20px;overflow:hidden;"><a href="/product" class="buttonLink">货品管理</a>&nbsp;&nbsp;<a href="/group" class="buttonLink">搭配管理</a>&nbsp;&nbsp;<a href="/display" class="buttonLink">陈列管理</a><a href="/group/check" class="buttonLink marginLeft50 currentSelect">搭配核查</a> 
+    </div>
+    <ul class="resultInfo">
+    {%if $show.error|sizeof%}
+    {%foreach from=$show.error key=sek item=sev%}
+    <li class="res_error">{%$sev%}</li>
+    {%/foreach%} 
+    {%else%}
+    <li class="allright">所有搭配信息正确!</li>
+    {%/if%}
+    </ul>
+    <div class="clear"></div>
+    <!--foot-->
+     {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+   {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/group/index');
+</script>
+</body>
+</html>

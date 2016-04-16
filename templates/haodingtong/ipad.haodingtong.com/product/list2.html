@@ -1,0 +1,29 @@
+{%section name=i loop=$show.list%}
+<li class='fancyboxBook' data-product-id="{%$show.list[i].id%}" data-price="{%$show.list[i].price%}">
+    <a name="p{%$show.list[i].id%}"></a>
+  <h4 class="clearfix">
+    <span class="nid">编号:{%$show.list[i].bianhao%} {%$show.list[i].name%}</span>
+    <span class="stylenum">{%if $show.list[i].hot%}<img class="icoimg" src="/style/images/bao.gif">{%/if%}</span>
+  </h4>
+  <div class="imgbox">{%if $show.list[i].is_need==1 && $show.list[i].order_user.num < 1%}<div class="unorder"></div>{%/if%}<a href="javascript:void(0)"><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a></div>
+  <div class="descri">
+    <div class="price">
+      <span class="amount">
+        订数:<em>{%$show.list[i].order_user.num|default:0%}</em><!-- /{%$show.list[i].order_all.num|default:0%} -->
+      </span>
+      <strong>¥<b>{%$show.list[i].price%}</b></strong>
+    </div>
+    <div class="mode">
+      {%if $show.list[i].status==0%}
+      <div class="delstyle">删除款</div>
+      {%else%}
+      <!-- <div class="star_rank"><b style="width:{%$show.list[i].scoreinfo.width%}px"></b></div> -->
+      <span style="float:right;">
+        金额:<em>{%$show.list[i].order_user.price|default:0|price_cn%}</em>
+      </span>
+      {%$show.list[i].style_id|hdt_keyword%}
+      {%/if%}
+    </div>
+  </div>
+</li>
+{%/section%}

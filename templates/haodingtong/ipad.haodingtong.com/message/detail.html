@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+
+	<h3 class="de_subtitle">短消息</h3>
+	<div class="d_intro">
+      <h3></h3>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbl">
+        <tr>
+         	<td><b>标题</b>：{%$show.messagedetail.title%}</td>
+        </tr>
+        <tr>
+        	<td><b>时间</b>:{%$show.messagedetail.post_time%}</td>
+        </tr>
+      </table>
+      <b>内容</b>：{%$show.messagedetail.message%}
+    </div>
+
+    </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

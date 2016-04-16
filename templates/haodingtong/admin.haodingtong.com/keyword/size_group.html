@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>项目\内容</h3>
+            {%include file="keyword/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <tr>
+                  <th class="thitem"></th>
+                  <th colspan="3">{%if $message%}<font color="red">{%$message%}</font>{%/if%}</th>
+                </tr>
+                <form method="POST" action="/keyword/add">
+                <tr>
+                  <td colspan="4">
+                      <input type="hidden" name="t" value="{%$show.t%}" id="FactoryTable">
+                      <input type="text" name="name" >
+                      <input type="submit" value="增加">
+                      <input type="button" value="保存顺序" id="SAVELIST">
+                  </td>
+                </tr>
+                <tr>
+                      <td colspan="4">
+                          
+                      </td>
+                </tr>
+                </form>
+                <tr>
+                  <td colspan="4">
+                          <ul id="sortable">
+                          {%section name=i loop=$show.list%}
+                          <li data-id="{%$show.list[i].id%}" data-rank="{%$show.list[i].rank%}" class="size_group_units">
+                            <div>
+                            <strong>{%$show.list[i].keywords.name%}</strong>
+                            <!-- <a href="/keyword/delete/{%$show.list[i].id%}?t={%$show.t%}"><font color="red">删</font></a> -->
+                            <a class="edit" href="#">编辑</a>
+                            <a href="/keyword/size_group_options/{%$show.list[i].keyword_id%}" style="float: right;">配置</a>
+                            </div>
+                            <div>
+                              <ul>
+                              {%section name=j loop=$show.list[i].size_list%}
+                              <li {%if $show.list[i].size_list[j].status==0%}style="display:none;"{%/if%}>
+                                <input data-size-group-id="{%$show.list[i].keyword_id%}" data-size-id="{%$show.list[i].size_list[j].keyword_id%}" type="checkbox" {%if $show.list[i].size_list[j].status==1%}checked="checked"{%/if%}>{%$show.list[i].size_list[j].keyword_id|hdt_keyword%}
+                              </li>
+                              {%/section%}
+                              </ul>
+                            </div>
+                            <div class="clear"></div>
+                          </li>
+                          {%/section%}
+                          </ul>
+                  </td>
+                </tr>
+                
+              </table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/keyword/size_group');
+</script>
+</body>
+</html>

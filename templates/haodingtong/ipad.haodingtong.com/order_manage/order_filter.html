@@ -1,0 +1,7 @@
+{%if $show.key == "kuanhao"%}
+{%include file="../../admin.haodingtong.com/order_manage/order_filter.kuanhao.html"%}
+{%elseif $show.key == "defsummary"%}
+{%include file="../../admin.haodingtong.com/order_manage/order_filter.defsummary.html"%}
+{%else%}
+{%include file="../../admin.haodingtong.com/order_manage/order_filter.category.html"%}
+{%/if%}

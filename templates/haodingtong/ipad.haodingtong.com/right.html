@@ -1,0 +1,77 @@
+<!--rightbar-->
+    
+<div class="rightbar">
+    <div class="rightbarmini" id="mini_menu">隐藏菜单</div>
+    <div class="rightbarcontent">
+	{%if $show.user.type==1 && $show.company.show_start%}
+		<h3><a href="#">现场秀</a></h3>
+        <ul class="rsubmenu" id="HDT-menu-right-top" data-title1="轻松订货">
+        	{%section name=i loop=$show.company.room_list%}
+            	<a href="/dealer1/show_room/{%$show.company.room_list[i].id%}"><li id="menu_show_{%$show.company.room_list[i].id%}">{%$show.company.room_list[i].name%}</li></a>
+        	{%/section%}
+        </ul>
+	{%else%}
+	
+	{%*foreach from=$show.userMenu key=suk item=suv%}
+	<h3><a href="{%if $suv.0.clink%}{%$suv.0.clink%}{%else%}javascript:void(0){%/if%}">{%$suv.0.cname%}</a></h3>
+	<ul class="rsubmenu" data-title1="{%$suv.0.cname%}">
+	{%foreach from=$suv key=suvk item=suvv%}
+		{%if $suvv.mname eq '专题'%}
+			{%if $show.company.zt_name%}
+			<a href="{%$suvv.mlink%}" {%if $suvv.open_new%}target="_blank"{%/if%}><li {%if $suvv.id_name%}id="menu_{%$suvv.id_name%}"{%/if%} >{%$suvv.mname%}</li></a>
+			{%/if%}
+		{%else%}
+		<a href="{%$suvv.mlink%}" {%if $suvv.open_new%}target="_blank"{%/if%}><li {%if $suvv.id_name%}id="menu_{%$suvv.id_name%}"{%/if%} >{%$suvv.mname%}</li></a>
+		{%/if%}	
+	{%/foreach%}
+	</ul>
+	{%/foreach*%}
+
+    {%foreach from=$show.menulist name=i item=menu%}
+    {%if $menu.status%}
+        {%if $menu.pid%}
+        <a href="{%$menu.link%}"><li {%if $menu.tagname%}id="menu_{%$menu.tagname%}"{%/if%}>{%$menu.name%}</li></a>
+        {%else%}
+        {%if $smarty.foreach.i.index%}</ul>{%/if%}
+        <h3><a href="{%if $menu.link%}{%$menu.link%}{%else%}javascript:void(0);{%/if%}">{%$menu.name%}</a></h3>
+        <ul class="rsubmenu" data-title1="{%$menu.name%}">
+        {%/if%}
+    {%/if%}
+    {%/foreach%}
+    </ul>
+
+    {%if $show.user.type==1 && $show.user.mid%}
+    <h3><a href="/index/gotod2">总代审单</a></h3>
+    {%/if%}
+
+	{%/if%}
+    </div>
+</div>
+    
+
+    <ul class="righttool">
+        <li><a href="javascript:void(0);"><div class="HDT_gotop"></div></a></li>
+        {%if $show.user.type==1&&$show.company.new_display neq '1'%}<li id="HDT_STORE_ICON"><a href="/dealer1/store"><div class="store"></div></a></li>{%/if%}
+    </ul>
+
+<script type="text/javascript">
+(function(){
+    var menuid = "menu_{%if $show.control%}{%$show.control%}{%else%}{%$control%}{%/if%}", m = null;
+    if(m = document.getElementById(menuid)){
+        m.className= "on";
+        var title1 = document.getElementById('HDT-title-1'),
+            title2 = document.getElementById('HDT-title-2'),
+            parent = m.parentNode;
+        if(title1 && parent){
+            title1.innerHTML = parent.getAttribute('data-title1');
+            var text = m.firstChild.childNodes[0].data;
+            if(title2){
+            	title2.innerHTML = text;
+            }  
+        }
+    }
+})();
+</script>
+    <!--rightbar end-->
+
+

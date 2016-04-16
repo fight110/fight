@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+    <div style="font-size:16px;"><b>陈列号:{%$show.currentDisplay.bianhao%}</b></div>
+     <div class="d_pro_button"><span class="sbtn">
+      <input name="button5"  type="button" class="btn_orangle" value="上一套" style="float:left;" id="HDT-last" data-gid="{%$show.group.id%}" data-did="{%$show.currentDisplay.id%}" data-f="up"/>
+      <input name="button4"  type="button" class="btn_orangle" value="下一套" style="float:right;" id="HDT-next" data-gid="{%$show.group.id%}" data-did="{%$show.currentDisplay.id%}" data-f="down"/>
+    </span></div>
+    <div class="probox">
+    <dl class="this_txt clearfix">
+    <dt>搭配号:{%$show.group.dp_num%}</dt>
+    <dd class="general">
+        {%section name=i loop=$show.plist%}
+          <div id="general{%$show.plist[i].product_id%}">
+            <a href="#p{%$show.plist[i].product_id%}"><img src="/thumb/75/{%$show.plist[i].product.defaultimage%}"></a>
+            <b>&nbsp;√</b>
+            <em></em>
+          </div>
+        {%/section%}
+    </dd>
+    </dl>
+
+    <div id="HDT-photos">
+    <div class="pro_photo">
+      <div class="relat" id="HDT-photos-big" style="width:458px;height:458px;margin:0 auto;overflow:hidden;">
+            <ul style="width:10000px;">
+            {%section name=i loop=$show.imagelist%}
+            <li style="float:left;"><img src="/thumb/458/{%$show.imagelist[i].image%}"></li>
+            {%/section%}
+            </ul>
+      </div>
+    </div>
+    </div>
+
+    <div class="clear"></div>
+    </div>
+
+    <h3 class="de_subtitle">{%$show.group.name%} 推荐搭配款</h3>
+    <ul class="prolistx detail_dplist clearfix" id="HDT-group-list" data-group-id="{%$show.group.id%}" data-display-id="{%$show.currentDisplay.id%}"></ul>
+  <br/>
+  <br/>
+  <br/>
+    </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<script>
+seajs.use('lj/dealer1/groupdetailnew');
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>合同管理</title>
+</head>
+<style>
+	body 		{width: 800px; margin: 0 auto;line-height: 2em;}
+	.title 		{font-size: 22px;font-weight: bold;text-align: center;margin-top: 50px;}
+	.content 	{font-size:14px;}
+	.footer		{font-weight: bold;margin-top: 20px;}
+	.content section {text-indent: 2em;}
+	.content section p {padding-left: 4em;}
+	table {width: 100%;}
+	.underline 	{padding-left: 1em;padding-right: 1em;}
+
+</style>
+<body>
+	<div class="title">
+		{%$show.fairname%}合同
+	</div>
+	<div class="content">
+		<table>
+			<tr>
+				<td>甲方：国人服饰股份有限公司</td>
+				<td>签订地点：国人西服创业园</td>
+			</tr>
+			<tr>
+				<td>乙方：<u class="underline">{%$show.name%}</u>专卖店</td>
+				<td>签订时间：{%$smarty.now|date_format:"%Y年%m月%d日"%}</td>
+			</tr>
+		</table>
+		<section>第一条：货品名称，数量，价格，款项（见附件订货单）；</section>
+		<section>第二条：相关事项，见订货会政策，订货须知；</section>
+		<section>第三条：供货方式，甲方发货到乙方；</section>
+		<section>第四条：付款方式：现金支付；</section>
+		<section>第五条：付款额度与时间：
+			<p>1.订货总额<u class="underline">{%$show.total_price|price_cn%}</u>元（
+			{%foreach from=$show.list key=k item=val%}
+				{%$val.keyword_id|hdt_keyword%}<u class="underline">{%$val.price|price_cn%}</u>元，
+			{%/foreach%}
+			），
+			{%if $show.total_price gt 150000%}
+				首期付款 60% <u class="underline">{%$price=$show.total_price * 0.6%}{%$price|price_cn%}</u>元,剩余40%可使用账户余额。
+			{%elseif $show.total_price gt 100000%}
+				{%$show.list[0].keyword_id|hdt_keyword%}60%现金<u class="underline">{%$price=$show.list[0].price * 0.6%}{%$price|price_cn%}</u>元;剩余40%账户余额，其他一次性现金付款<u class="underline">{%$other_price=$show.total_price - $show.list[0].price%}{%$other_price|price_cn%}</u>,合计首期款应汇<u class="underline">{%$end_price=$price+$other_price%}{%$end_price|price_cn%}</u>元。
+			{%else%}
+				全额现金付款：合计应汇<u class="underline">{%$show.total_price|price_cn%}</u>元。
+			{%/if%}
+			</p>
+			<p>2.截止汇款时间2015年11月25日（16:00点前）；</p>
+		</section>
+		<section>第六条：依据甲方校正并确定的订货单供货，并保证按约定时间供货，若未按校正后订货单供应甲方需承担未上货品额度的10%作为违约金；如乙方未按约定时间付款，则甲方将扣除乙方相应比例的定金作为违约金；</section>
+		<table>
+			<tr>
+				<td colspan="3">甲方指定账户：</td>
+			</tr>
+			<tr>
+				<td style="padding-left:2em">账户名：张洪生</td>
+				<td>户行：中行银行经济开发区支行</td>
+				<td>账号：6217  8560  0004  5337  309</td>
+			</tr>
+		</table>
+	</div>
+	<div class="footer">
+		<table>
+			<tr>
+				<td>甲方代表签字（签章）：</td>
+				<td>乙方代表签字（签章）：</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

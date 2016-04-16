@@ -1,0 +1,18 @@
+{%if $show.list|sizeof > 0%}
+<ul class="searchResUl">
+{%section name=i loop=$show.list%}
+<li>
+<div class="searchImg">
+<a href="{%$show.list[i].link%}"><img src="/thumb/200/{%$show.list[i].defaultimage%}"></a>
+</div>
+<div class="searchDesc">
+<div class="firstLine"><span class="floatLeft">编号:{%$show.list[i].bianhao%}</span><span class="floatRight">圆牌号:{%$show.list[i].skc_id%}</span></div>
+<div class="secondLine"><span>款号:{%$show.list[i].kuanhao%}</span></div>
+</div>
+</li>
+{%/section%}
+</ul>
+<div class="searchPage">{%$show.pagelist%}</div>
+{%else%}
+<div class="noResult">没有找到结果!</div>
+{%/if%}

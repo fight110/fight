@@ -1,0 +1,189 @@
+{%if $show.view=="T" || $show.view=="ST"%}
+{%section name=i loop=$show.list%}
+<li class="viewT {%if $show.list[i].order_user.num && $currentUser.type neq 9%}on{%/if%} {%if $show.view eq 'ST'%}stview{%/if%} {%if $currentUser.type neq 9%}fancyboxBook{%/if%} {%if $show.list[i].is_designer%}desi{%/if%}" data-product-id="{%$show.list[i].id%}">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="25" style="font-size: 20px;font-family: Microsoft YaHei;">{%$smarty.section.i.rownum + $show.start%}</td>
+    <td width="75"><div class="imgbox1">
+        <a href="javascript:void(0);"><img src="/thumb/75/{%$show.list[i].defaultimage|hdt_pcimage:$show.list[i].id:$show.list[i].color_id%}"></a>
+        {%if $currentUser.type neq 9%}<b>&nbsp;{%if $show.list[i].order_user.num%}√{%else%}x{%/if%}&nbsp;</b>{%/if%}
+    </div></td>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" align="right">
+  <tr>
+    <td class="xinlist"> 款号:{%$show.list[i].kuanhao%} {%$show.list[i].name%}
+            {%if $show.list[i].color_list%}圆牌号:
+            {%$show.list[i].skc_string%}
+            {%/if%}
+            {%if $show.list[i].skc_id%}
+            圆牌号:{%$show.list[i].skc_id%}
+            {%/if%}
+    </td>
+  </tr>
+  <tr>
+    	{%if $show.view eq 'ST'%}
+    	<td class="xinlist">
+    	{%if $show.list[i].color_id%}
+            	颜色:{%$show.list[i].color_id|hdt_keyword%}
+        {%/if%}
+        {%if $show.list[i].area_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].area_rank%}大区排名:第{%$show.list[i].area_rank|default:0%}{%/if%}
+            {%if $show.list[i].master_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].master_rank%}省代排名:第{%$show.list[i].master_rank|default:0%}{%/if%}
+            {%if $show.list[i].order_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].order_rank%}公司排名:第{%$show.list[i].order_rank|default:0%}{%/if%}
+        {%if $currentUser.type neq 9%}我的订量:{%$show.list[i].order_user.num|default:0%}{%/if%}
+        {%if $show.list[i].order_num&&$show.list[i].is_designer%}总订量:{%$show.list[i].order_num.num|default:0%}{%/if%}
+		<div class="xinlist floatRight">
+        {%if $show.list[i].status==0%}
+        删除款
+        {%else%}
+        单价:{%$show.list[i].price%}
+        {%if $currentUser.type neq 9%}金额:{%$show.list[i].order_user.price|default:0|price_cn%}{%/if%}
+        {%/if%}
+        </div>
+        </td>
+    	{%else%}
+    	<td>
+    	<span class="xinlistred">
+            {%if $show.list[i].area_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].area_rank%}大区排名:第{%$show.list[i].area_rank|default:0%}{%/if%}
+            {%if $show.list[i].order_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].order_rank%}公司排名:第{%$show.list[i].order_rank|default:0%}{%/if%}
+            {%if $show.list[i].agent_rank && $show.num_order_show && $show.num_order_show >= $show.list[i].agent_rank%}
+            {%if $show.list[i].agent_num%}
+            	全省订量:{%$show.list[i].agent_num%}
+           	{%else%}
+            	省代排名:第{%$show.list[i].agent_rank|default:0%}
+            {%/if%}
+           	
+           	{%/if%}
+        </span>
+        {%if $currentUser.type neq 9%}<span class="xinlistblue">我的订量:{%$show.list[i].order_user.num|default:0%}</span>{%/if%}
+        {%if $show.list[i].order_num&&$show.list[i].is_designer%}<span class="xinlistblue">总订量:{%$show.list[i].order_num.num|default:0%}</span>{%/if%}
+        <span class="xinlist floatRight">
+        {%if $show.list[i].status==0%}
+        删除款
+        {%else%}
+        单价:{%$show.list[i].price%}
+        {%if $currentUser.type neq 9%}金额:{%$show.list[i].order_user.price|default:0|price_cn%}{%/if%}
+        {%/if%}
+        </span>
+        </td>
+    	{%/if%}
+  </tr>
+  <tr>
+    <td align="right" class="xinlist">
+    	{%if $show.view eq 'ST'%}
+        {%if $currentUser.type neq 9%}
+    	<span class='other_color'>
+            {%if $show.list[i].other_color%}
+            {%section name=j loop=$show.list[i].other_color%}
+            <i>
+                            颜色:{%$show.list[i].other_color[j].color_id|hdt_keyword%}
+            {%if $show.list[i].other_color[j].order_rank%}公司排名:第{%$show.list[i].other_color[j].order_rank|default:0%}{%/if%}
+            我的订量:{%$show.list[i].other_color[j].order_user.num|default:0%}
+            </i>
+            {%/section%}
+            {%/if%}
+        </span>
+        {%/if%}
+    	{%else%}
+    	<span>
+            {%if $show.list[i].color_list%}颜色:
+            {%section name=j loop=$show.list[i].color_list%}
+            {%$show.list[i].color_list[j].color_id|hdt_keyword%}
+            {%/section%}
+            {%/if%}
+
+        </span>
+    	{%/if%}
+    </td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</li>
+{%/section%}
+{%elseif $show.view=="S"%}
+{%section name=i loop=$show.list%}
+<li class="viewS {%if $show.list[i].order_user.num%}on{%/if%}">
+    <div class="imgbox1">
+        <a href="/dealer1/detail/{%$show.list[i].id%}"><img src="/thumb/75/{%$show.list[i].defaultimage%}"></a>
+        <b>&nbsp;{%if $show.list[i].order_user.num%}√{%else%}x{%/if%}&nbsp;</b>
+    </div>
+    <div class="st">{%if $show.list[i].order_user.num%}订数:{%$show.list[i].order_user.num%}{%/if%}</div>
+</li>
+{%/section%}
+{%elseif $show.view=="O"%}
+{%section name=i loop=$show.list%}
+<li class="li2">
+    <div class="descri" style="height:26px;">
+        <div class="price">
+            <span class="amount">
+                <div class="rateit rateit_new" id="rateit1" data-rateit-step="1" data-rateit-value="{%$show.list[i].rateval%}" data-rateit-readonly="true"></div>
+                <a data-product-id={%$show.list[i].id|default:0%} class="HDT-order-store">移除</a>
+            </span>
+            <strong>¥<b>{%$show.list[i].price%}</b></strong>
+        </div>
+    </div>
+    <div class="imgbox"><a href="/dealer1/detail/{%$show.list[i].id%}"><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a></div>
+</li>
+<li class="li3">
+    <h4 class="clearfix">
+        <span class="nid">编号:{%$show.list[i].bianhao%}（{%$show.list[i].name%}）{%if $show.list[i].status==0%}<font color="red">删除款</font>{%/if%}</span>
+        <span class="stylenum">
+            <input type="button" value="保存订单" class="btn_gree HDT-order-save" data-product-id="{%$show.list[i].id%}">
+            <input type="button" value="取消订单" class="btn_gray2 HDT-order-cancel" data-product-id="{%$show.list[i].id%}">
+        </span>
+    </h4>
+    <div class="pro_tabl pro_tabl_over">
+        <table cellspacing="0" cellpadding="0" border="0" class="HDT-keyborad" id="HDT-ot{%$show.list[i].id%}" data-product-id="{%$show.list[i].id%}" style="table-layout:auto;">
+            <tbody><tr>
+                <th style="width:60px;"></th>
+                {%section name=z loop=$show.list[i].size_list%}
+                <th>{%$show.list[i].size_list[z].name%}</th>
+                {%/section%}
+                <th>总:<em class="HDT-count-all"></em></th>
+                </tr>
+                {%section name=j loop=$show.list[i].color_list%}
+                <tr data-color-id="{%$show.list[i].color_list[j].color_id%}">
+                  <td>{%$show.list[i].color_list[j].name%}</td>
+                {%section name=z loop=$show.list[i].size_list%}
+                <td><input style="width:80%" type="text" readonly="readonly" data-product-id="{%$show.list[i].id%}" data-color-id="{%$show.list[i].color_list[j].color_id%}" data-size-id="{%$show.list[i].size_list[z].size_id%}"></td>
+                {%/section%}
+                  <td class="HDT-order-count"></td>
+                </tr>
+                {%/section%}
+            </tbody>
+        </table>
+    </div>
+</li>
+{%/section%}
+{%else%}
+{%section name=i loop=$show.list%}
+<li class='fancyboxBook' data-product-id="{%$show.list[i].id%}" data-price="{%$show.list[i].price%}">
+    <a name="p{%$show.list[i].id%}"></a>
+<h4 class="clearfix">
+        <!-- <span class="nid">圆牌:{%$show.list[i].skc_string%}</span> -->
+        <span class="nid">编号:{%$show.list[i].bianhao%}</span>
+        <span class="stylenum">{%$show.list[i].kuanhao%}</span>
+    </h4>
+    <div class="imgbox">
+        <!-- {%if $show.company.is_need_text && $show.list[i].skc_is_need==1%}<div class="pneed">{%$show.company.is_need_text%}</div>{%/if%} -->
+        {%if $show.company.subscript%}<div class="pneed">{%$show.list[i].style_id|hdt_keyword%}</div>{%/if%}
+        <a href="javascript:void(0)"><img src="/thumb/210/{%$show.list[i].defaultimage|default:"tmpl/default.jpg"%}"></a>
+    </div>
+    <div class="descri">
+        <div class="price">
+            <span class="amount">
+                订数:<em>{%$show.list[i].order_user.num|default:0%}</em>
+            </span>
+            <strong>¥<b>{%$show.list[i].price%}</b></strong>
+        </div>
+        <div class="mode">
+            {%if $show.list[i].status==0%}
+            <div class="delstyle">删除款</div>
+            {%else%}
+            <span style="float:right;">金额:<em>{%$show.list[i].order_user.price|default:0|price_cn%}</em></span>{%$show.list[i].name%}
+            {%/if%}
+        </div>
+    </div>
+</li>
+{%/section%}
+{%/if%}

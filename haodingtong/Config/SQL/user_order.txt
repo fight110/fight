@@ -1,0 +1,29 @@
+SELECT p.kuanhao as '款号',c.name as '颜色',s.name as '尺码',
+sx.name as '性别',
+(select o.num from orderlist as o left join user as u1 on o.user_id=u1.id where 
+u1.username='120'
+and o.product_id=p.id and o.product_color_id=pc.color_id and o.product_size_id=ps.size_id) as '下单数量',
+p.price as '零售价',
+p.name as '款名',
+season.name as '季节',
+style.name as '系列',
+category.name as '大类',
+jq.name as '波段',
+sxz.name as '上下装',
+p.date_market as '上市时间'
+FROM 
+product as p 
+left join product_color as pc on p.id=pc.product_id
+left join product_size as ps on p.id=ps.product_id
+left join products_attr as pa on ps.size_id=pa.keyword_id
+left join keywords as c on pc.color_id=c.id
+left join keywords as s on ps.size_id=s.id
+left join keywords as sx on p.nannvzhuan_id=sx.id
+left join keywords as jq on p.wave_id=jq.id
+left join keywords as season on p.season_id=season.id
+left join keywords as style on p.style_id=style.id
+left join keywords as category on p.category_id=category.id
+left join keywords as sxz on p.sxz_id=sxz.id
+WHERE p.status=1 
+group by pc.product_id,pc.color_id,ps.size_id
+order by pc.product_id,pc.color_id,pa.rank

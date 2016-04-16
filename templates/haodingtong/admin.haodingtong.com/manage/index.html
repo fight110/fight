@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link href="/style/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/sea.js"></script>
+</head>
+
+<body>
+    <div class="hero-unit">
+        <form method="POST" action="/manage/modify">
+            <h1>管理接口{%if $message%}<span class="label label-warning">{%$message%}</span>{%/if%}</h1>
+            {%*<p>清空帐号订单 : <input type="text" name="uname" placeholder="输入帐号"></p>*%}
+            <p>删除商品属性 : <input type="text" name="bianhao" placeholder="输入商品编号"> <input type="text" name="color" placeholder="颜色"> <input type="text" name="new_color" placeholder="替换的颜色">
+            <input type="text" name="size" placeholder="尺码">
+        	</p>
+            <p><button type="submit" class="btn">提交</button></p>
+        </form>
+    </div>
+<script>
+// seajs.use('lj/admin/manage/index');
+</script>
+</body>
+</html>

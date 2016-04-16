@@ -1,0 +1,28 @@
+{%section name=i loop=$show.list%}
+<li class="viewT1 fancyboxBook" data-product-id="{%$show.list[i].product_id%}" data-color-id="{%$show.list[i].color_id%}" data-price="{%$show.list[i].product.price%}">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="125">
+				<div class="imgbox1"><a href="javascript:void(0);"><img src="/thumb/125/{%$show.list[i].product.defaultimage|hdt_pcimage:$show.list[i].product_id:$show.list[i].color_id%}"></a></div>
+			</td>
+			<td valign="top">
+				<h2 style="line-height:30px;">款号:{%$show.list[i].product.kuanhao%} 款名{%$show.list[i].product.name%} 单价：¥{%$show.list[i].product.price%}</h2>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="right" class="table01">
+					<tr>
+						<th>圆牌</th>
+						<th>颜色</th>
+						<th>订量</th>
+					</tr>
+					{%foreach from=$show.list[i].color_list item=color%}
+					<tr class="xinlist1 {%if $show.list[i].color_id==$color.color_id%}on{%/if%}" data-color-id="{%$color.color_id%}">
+						<td>{%$color.skc_id%}</td>
+						<td>{%$color.color_id|hdt_keyword%}</td>
+						<td class="num">{%$color.num%}</td>
+					</tr>
+					{%/foreach%}
+				</table>
+			</td>
+		</tr>
+	</table>
+</li>
+{%/section%}

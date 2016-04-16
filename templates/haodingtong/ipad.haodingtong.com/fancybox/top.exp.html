@@ -1,0 +1,64 @@
+{%if $currentUser.type == 3%}
+<ul class="select_menu" id="HDT-select-menu" style="margin-right:10px;">
+{%if $show.user.username eq '0'%}
+<li class="Selects">
+    <select name="area1"></select>
+    <select name="area2"></select>
+</li>
+<li>
+	<select name="fliter_uid"></select>
+</li>
+{%else%}
+<li class="Selects" {%if $show.user.area2%}data-default="{%$show.user.area2%}"{%elseif $show.user.area1%}data-default="{%$show.user.area1%}"{%/if%}">
+    <select name="area1" {%if $show.user.area1 neq 0%}disabled="disabled"{%/if%}></select>
+    <select name="area2" {%if $show.user.area2 neq 0%}disabled="disabled"{%/if%}></select>
+</li>
+<li>
+	<select name="fliter_uid"></select>
+</li>
+{%/if%}
+</ul>
+{%/if%}
+<div class="advanceSearch">高级筛选</div>
+<div id="advanceSearchMain" style="display:none;width:950px;">
+  		<ul id="selectList"></ul>
+  		<div id="selectArea">
+{%if $currentUser.type == 2%}
+{%include file="fancybox/top.set.html"%}
+{%/if%}
+{%$show.brand_id|hdt_attrlist:"brand":"{%$keyword.brand_id%}":"fancybox"%}
+{%$show.season_id|hdt_attrlist:"season":"{%$keyword.season_id%}":"fancybox"%}
+<div class="selectItem">
+  				<div class="selectKey">完成率:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="is_finished">
+  						<li data-value="1">已完成</li>
+  						<li data-value="2">未完成</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>
+<div class="selectItem">
+  				<div class="selectKey">审单状态:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="is_lock">
+  						<li data-value="1">已审</li>
+  						<li data-value="0">未审</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>
+<div class="selectItem">
+  				<div class="selectKey">排序:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="order" data-select="{%$show.order%}">
+  						<li data-value="num">订量</li>
+  						<li data-value="exp_num_percent">订量完成率</li>
+  						<li data-value="price">金额</li>
+  						<li data-value="exp_price_percent">金额完成率</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>
+</div>
+</div>

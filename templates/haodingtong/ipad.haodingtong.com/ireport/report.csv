@@ -1,0 +1,8 @@
+{%foreach $show.keyword_ids as $val%}{%$show.dimension_keyword_ids[$val]%},{%/foreach%}{%foreach $show.size_names as $names%}{%$names[0]%},{%/foreach%}订数,{%if $show.size_names%}单价,{%/if%}金额
+{%if $show.total_size_groups>1%}
+{%for $seq=1 to $show.total_size_groups-1%}
+{%foreach $show.keyword_ids as $val%},{%/foreach%}{%foreach $show.size_names as $names%}{%$names[$seq]%},{%/foreach%},,
+{%/for%}
+{%/if%}
+{%foreach $show.data_list as $the%}{%foreach $show.keyword_ids as $val%}{%if !($the.is_group && $val@index) && $val|in_array:$show.keyword_keys%}{%$the[$val]|hdt_keyword%}{%else%}{%$the[$val]%}{%/if%},{%/foreach%}{%foreach  $show.size_names as $key=>$name%}{%$the.size_list[$key]%},{%/foreach%}{%$the['num']%},{%if $show.size_names%}{%$the['p_price']%},{%/if%}{%$the['price']%}
+{%/foreach%}

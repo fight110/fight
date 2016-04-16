@@ -1,0 +1,23 @@
+{%if $show.type_id eq 3 %}
+{%section name=i loop=$show.list%}
+{%if $show.list[i].defaultimage neq ''%}
+<li style="height:235px;">
+	  <h4 class="clearfix">
+	    <span class="nid">搭配号:{%$show.list[i].dp_num%}</span>
+	    <span class="stylenum">名称：{%$show.list[i].name%}</span>
+	  </h4>
+	  <div class="imgbox"><a href="/dealer1/groupdetail/{%$show.list[i].id%}"><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a></div>
+	</li>
+{%/if%}
+{%/section%}
+{%else%}
+{%section name=i loop=$show.list%}
+<li style="height:235px;">
+	  <h4 class="clearfix">
+	    <span class="nid">搭配号:{%$show.list[i].dp_num%}</span>
+	    <span class="stylenum">名称：{%$show.list[i].name%}</span>
+	  </h4>
+	  <div class="imgbox"><a href="/dealer1/groupdetail/{%$show.list[i].id%}"><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a></div>
+	</li>
+{%/section%}
+{%/if%}

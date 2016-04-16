@@ -1,0 +1,9 @@
+<li>
+  <select name="ordered">
+    <option value="">已订</option>
+    <option value="on" {%if $show.ordered=="on"%}selected="selected"{%/if%}>已订款</option>
+    <option value="off" {%if $show.ordered=="off"%}selected="selected"{%/if%}>未订款</option>
+    <!-- <option value="unactive" {%if $show.ordered=="unactive"%}selected="selected"{%/if%}>全部删除款</option>
+  	<option value="onunactive" {%if $show.ordered=="onunactive"%}selected="selected"{%/if%}>已订删除款</option> -->
+  </select>
+</li>

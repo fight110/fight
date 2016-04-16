@@ -1,0 +1,22 @@
+{%section name=i loop=$show.list%}
+{%if $show.start == 0 && $smarty.section.i.index == 0%}
+<tr>
+  <th class="numid">排名</th>
+  <th>经销商</th>
+  <th>订量</th>
+  <th>金额</th>
+  <th>款量</th>
+  <th>量完成率</th>
+  <th>额完成率</th>
+</tr>
+{%/if%}
+<tr>
+  <td>{%$smarty.section.i.rownum + $show.start%}</td>
+  <td class="name">{%$show.list[i].name%}</td>
+  <td>{%$show.list[i].num%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].percent_exp_num%}</td>
+  <td>{%$show.list[i].percent_exp_price%}</td>
+</tr>
+{%/section%}

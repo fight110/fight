@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>好订通</title>
+        {%include file="header.html"%}
+        <link rel="stylesheet" type="text/css" href="/js/jquery/jqplot/jquery.jqplot.min.css" />
+    </head>
+    <style>
+        ul,li {
+            list-style: none;
+        }
+        .main_con li {
+            float: left;
+            width: 75px;
+        }
+    </style>
+    <body class="bodybg">
+        <div class="contain">
+            {%include file="top.html"%}
+            <div class="mainbox">
+                <div class="main_con">
+                    <div class="user-plot">
+                        <span style="float:left;width:150px;font-size:16px;">客户订量趋势</span>                        
+                        <ul class="Selects" style="float:left">
+                            <li>
+                                <select name="area1"></select>
+                            </li><li>
+                                <select name="area2"></select>
+                            </li>
+                        </ul>
+                        <div class="search-user" style="float:right">
+                            <input type="text" name="search_user" id="search-user" placeholder="请输入客户账号或名称" size="10"/>
+                            <input type="button" id="display-user" value="查询" />
+                        </div>
+                        <div class="clear"></div>
+                        <ul id="user-plot-view" style="width:700px;height:400px;margin:0 auto 20px;"></ul>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="product-plot">
+                        <span style="float:left;width:150px;font-size:16px;">款式订量趋势</span>
+                        <ul style="float:left">                                            
+                            <!-- <li><select name="series_id" style="width:100%">{%$show.series_id|hdt_attrlist:"series":"{%$keyword.series_id%}"%}</select></li> -->
+                            <!-- <li><select name="season_id" style="width:100%">{%$show.season_id|hdt_attrlist:"season":"{%$keyword.season_id%}"%}</select></li> -->
+                            <li><select name="wave_id" style="width:100%">{%$show.wave_id|hdt_attrlist:"wave":"{%$keyword.wave_id%}"%}</select></li>
+                            <!-- <li><select name="sxz_id" style="width:100%">{%$show.sxz_id|hdt_attrlist:"sxz":"{%$keyword.sxz_id%}"%}</select></li> -->
+                            <li><select name="category_id" style="width:100%">{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}"%}</select></li>
+                            <!-- <li><select name="medium_id" style="width:100%">{%$show.medium_id|hdt_attrlist:"medium":"{%$keyword.medium_id%}"%}</select></li> -->
+                            <li><select name="classes_id" style="width:100%">{%$show.classes_id|hdt_attrlist:"classes":"{%$keyword.classes_id%}"%}</select></li>
+                            <!-- <li><select name="nannvzhuan_id" style="width:100%">{%$show.nannvzhuan_id|hdt_attrlist:"nannvzhuan":"{%$keyword.nannvzhuan_id%}"%}</select></li> -->
+                            <!-- <li><select name="style_id" style="width:100%">{%$show.style_id|hdt_attrlist:"style":"{%$keyword.style_id%}"%}</select></li> -->
+                            <!-- <li><select name="price_band_id" style="width:100%">{%$show.price_band_id|hdt_attrlist:"price_band":"{%$keyword.price_band_id%}"%}</select></li> -->
+                            <li><select name="theme_id" style="width:100%">{%$show.theme_id|hdt_attrlist:"theme":"{%$keyword.theme_id%}"%}</select></li>
+                        </ul>
+
+                        <div class="search-product" style="float:right">
+                            <input type="text" name="search_product" id="search-product" placeholder="输入款号或圆牌号搜索" size="10"/>
+                            <input type="button" id="display-product" value="查询" />
+                        </div>
+                        <div class="clear"></div>
+                        <ul id="product-plot-view" style="width:700px;height:400px;margin:0 auto 20px;"></ul>
+                    </div>
+                    <div class="clear"></div>
+                    <!--foot-->
+                    {%include file="footer.html"%}
+                    <!--foot end-->
+                </div>
+                {%include file="right.html"%}
+                <div class="clear"></div>
+            </div>
+        </div>
+        <!--
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/jquery.jqplot.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/plugins/jqplot.highlighter.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/plugins/jqplot.cursor.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/plugins/jqplot.pointLabels.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js"></script>
+        <script type="text/javascript" src="/js/jquery/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+        -->
+        <script>
+        seajs.use("lj/plot/plot");
+        </script>
+    </body>
+</html>

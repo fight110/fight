@@ -1,0 +1,25 @@
+{%include file="top.1.html"%}
+
+  <div class="tit_bar">
+    <ul class="select_menu" id="HDT-select-menu">
+    {%if $show.user.type == 3 && $show.user.username neq 0%}
+    <li class="Selects" style="display:none;">
+    <select name="area1"><option value="{%$show.user.area1%}">{%$show.user.area1%}</option></select>
+    <select name="area2"><option value="{%$show.user.area2%}">{%$show.user.area2%}</option></select>
+</li>
+<li>
+	<select name="fliter_uid">
+	<option value="">选择店仓</option>
+	{%foreach key=ukey from=$show.userlist item=uval%}
+	<option value="{%$uval.id%}">{%$uval.name%}</option>
+	{%/foreach%}
+	</select>
+</li>
+    {%/if%}
+    {%include file="top.2.html"%}
+    {%include file="top.3.html"%}
+   </ul>
+    {%include file="top.search.html"%}
+  </div>
+  <!--tit_bar end-->
+    {%include file="top.script.html"%}

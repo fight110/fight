@@ -1,0 +1,50 @@
+{%if $show.start==0%}
+<tr>
+<th class="th2" colspan=2>汇总</th>
+<th class="th2 col_blue" colspan=7>
+<strong>
+已订款量：{%$show.pnum%} |
+订数：{%$show.num%} |
+总价：{%$show.price|price_cn%}元 折后：{%$show.discount_price|price_cn%}元 |
+SKU：{%$show.skc%}
+</strong>
+</th>
+</tr>
+<tr>
+<th class="th2" style="width:50px;">序号</th>
+<th class="th2" style="width:50px;">编号</th>
+<th class="th2">款名</th>
+<th class="th2">{%$keyword.wave_id%}</th>
+<th class="th2">{%$keyword.series_id%}</th>
+<th class="th2">订数</th>
+<th class="th2">单价</th>
+<th class="th2">金额</th>
+<th class="th2" style="width:50px;">SKU</th>
+</tr>
+{%/if%}{%section name=i loop=$show.list%}
+{%if $show.list[i].num%}
+<tr {%if $smarty.section.i.index is odd%}class="hbg"{%/if%}>
+<td>{%$smarty.section.i.rownum + $show.start%}</td>
+<td>{%$show.list[i].bianhao%}</td>
+<td>{%$show.list[i].name%}{%if $show.list[i].status==2%}<em>(不计指标)</em>{%/if%}</td>
+<td>{%$show.list[i].wave%}</td>
+<td>{%$show.list[i].series%}</td>
+<td>{%$show.list[i].num%}</td>
+<td>{%$show.list[i].p_price%}</td>
+<td>{%$show.list[i].price|price_cn%}</td>
+<td>{%$show.list[i].skc%}</td>
+</tr>
+{%else%}
+<tr {%if $smarty.section.i.index is odd%}class="hbg"{%/if%}>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+{%/if%}
+{%/section%}

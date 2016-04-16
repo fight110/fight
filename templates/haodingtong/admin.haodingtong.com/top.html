@@ -1,0 +1,22 @@
+
+  <div class="quicknav">
+  <div class="r_status">
+    <p>&nbsp;</p>
+    好订通-订货好轻松！ <a href="/logout">[注销]</a>
+  </div>欢迎您，{%$currentUser.name%}！ </div>
+
+    <div class="header">
+    <h1 ><a href="/" class="logo"></a></h1>
+<p class="t_news"></p>
+<div class="oprationDiv"><a class="backIcon" href="javascript:history.go(-1);">后退</a><a class="refreshIcon" href="javascript:location.reload(true);">刷新</a></div>
+  </div>
+
+  <div class="tit_bar">
+    <div class="tit t2" id="HDT-title-1"></div>
+    <h2 class="titlecol"><strong id="HDT-title-2"></strong></h2>
+    <div class="search">
+      <form method="GET" action="/product" id="HDT-FORM">
+      <input name="q" type="text" class="textfield" value="{%$show.q%}" placeholder="输入编号/款号搜索" onchange="if(this.value)document.getElementById('HDT-FORM').submit();" />
+      </form>
+    </div>
+  </div>

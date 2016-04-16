@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<link rel="stylesheet" type="text/css" href="/style/css/fancybox/jquery.fancybox.css" media="screen" /> 
+<link href="/style/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/style/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/sea.js"></script>
+</head>
+
+<body>
+    <div class="hero-unit">
+            <h1>导出接口</h1>
+            <p>
+            	<input type="text" name="username" placeholder="客户帐号" id="username">
+            	<button type="button" id="user_select">选择用户</button>
+            	<select name="select_type" id="select_type" style="width:100px;">
+            		<option value=1 selected="selected">横向表</option>
+            		<option value=2>竖向表</option>
+            	</select>
+            	<input type="checkbox" name="all_product" value="1" id="all_product"> 包含未订款
+            </p>
+            <p>
+            	<button type="button" data-type="0" class="output">生成客户订单数据</button>
+            	<button type="button" data-type="1" class="output">生成汇总订单数据</button>
+            </p>
+    </div>
+    <div class="download"></div>
+    <div class="hero-unit" id="console"></div>
+<script>
+//seajs.use('lj/common');
+seajs.use('lj/admin/data/index_detail');
+</script>
+</body>
+</html>

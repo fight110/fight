@@ -1,0 +1,18 @@
+<tr>
+    <td class="namelabel">数量统计</td>
+    <td>订量:<em>{%$show.orderinfo.num|default:0%}</em></td>
+    <td>款数:<em>{%$show.orderinfo.pnum|default:0%}</em></td>
+    <td></td>
+</tr>
+<tr>
+    <td class="namelabel">金额统计</td>
+    <td>金额:<em>{%$show.orderinfo.price|price_cn|default:0%}</em></td>
+    <td>折后:<em>{%$show.orderinfo.discount_price|price_cn%}</em></td>
+    <td></td>
+</tr>
+<tr>
+    <td class="namelabel">款色分析</td>
+    <td>已订款色:<em>{%$show.orderinfo.skc%}</em> | 开发款色:<em>{%$show.SKC_ALL%}</em></td>
+    <td>款色宽度:<em>{%$show.orderinfo.skc%}/{%$show.SKC_ALL%}={%$show.width%}</em></td>
+    <td>款色深度:<em>{%$show.orderinfo.num%}/{%$show.orderinfo.skc%}={%$show.depth%}</em></td>
+</tr>

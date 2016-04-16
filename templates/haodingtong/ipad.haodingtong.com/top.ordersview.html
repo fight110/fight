@@ -1,0 +1,40 @@
+<ul>
+<!-- </ul>
+<ul> -->
+	{%if $show.user.type == 3 %}
+    {%if $show.user.username eq '0'%}
+        <li class="Selects">
+            <select name="area1"></select>
+            <select name="area2"></select>
+        </li>
+        <li>
+          <select name="fliter_uid"></select>
+        </li>
+    {%else%}
+    <li>
+      <select name="fliter_uid">
+      <option value="">选择店仓</option>
+      {%foreach key=ukey from=$show.userlist item=uval%}
+      <option value="{%$uval.id%}">{%$uval.name%}</option>
+      {%/foreach%}
+      </select>
+    </li>
+    {%/if%}
+    {%/if%}
+  {%include file="top.2.html"%}
+	<li>
+	<select name="color_status">
+	<option value="1">正常款</option>
+	<option value="0">删除款</option>
+	</select>
+	</li>
+	<li>
+	  <select name="order">
+	    <option value="">排行榜</option>
+	    <option value="skc asc" {%if $show.order=="skc asc"%}selected="selected"{%/if%}>圆牌号小→大</option>
+	    <option value="skc desc" {%if $show.order=="skc desc"%}selected="selected"{%/if%}>圆牌号大→小</option>
+	    <option value="num asc" {%if $show.order=="num asc"%}selected="selected"{%/if%}>订量小→大</option>
+	    <option value="num desc" {%if $show.order=="num desc"%}selected="selected"{%/if%}>订量大→小</option>
+	  </select>
+	</li>
+  </ul>

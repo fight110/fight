@@ -1,0 +1,59 @@
+<!--quicknav-->
+  <div class="quicknav">
+  <div class="r_status">
+    <p>&nbsp;</p>
+    好订通-订货好轻松！ <a href="/logout">[注销]</a>
+  </div>欢迎您，{%$currentUser.name%}！ </div>
+  <!--quicknav end-->
+  <!--header-->
+    <div class="header">
+    <h1><a href="/" class="logo"></a><div class="slogo"></div></h1>
+<p class="t_news"></p>
+<div class="oprationDiv"><a class="backIcon" href="javascript:history.go(-1);">后退</a><a class="refreshIcon" href="javascript:location.reload(true);">刷新</a></div>
+  </div>
+  <!--header end--> 
+  <!--tit_bar-->
+  <div class="tit_bar">
+    <ul class="select_menu">
+    <li><p><a href="#">{%if $show.style%}{%$show.style%}{%else%}全部款别{%/if%}</a></p>
+      <ul>
+        {%if $show.style_id%}<li><a href="/product/index/0-{%$show.wave_id%}-{%$show.category_id%}-{%$show.series_id%}">全部款别</a></li>{%/if%}
+        {%section name=i loop=$show.style_list%}
+        <li><a href="/product/index/{%$show.style_list[i].keyword_id%}-{%$show.wave_id%}-{%$show.category_id%}-{%$show.series_id%}">{%$show.style_list[i].keywords.name%}</a></li>
+        {%/section%}
+      </ul>
+    </li>
+    <li><p><a href="#">{%if $show.wave%}{%$show.wave%}{%else%}所有{%$keyword.wave_id%}{%/if%}</a></p>
+      <ul>
+        {%if $show.wave_id%}<li><a href="/product/index/{%$show.style_id%}-0-{%$show.category_id%}-{%$show.series_id%}">所有{%$keyword.wave_id%}</a></li>{%/if%}
+        {%section name=i loop=$show.wave_list%}
+        <li><a href="/product/index/{%$show.style_id%}-{%$show.wave_list[i].keyword_id%}-{%$show.category_id%}-{%$show.series_id%}">{%$show.wave_list[i].keywords.name%}</a></li>
+        {%/section%}
+      </ul>
+    </li>
+    <li><p><a href="#">{%if $show.category%}{%$show.category%}{%else%}所有{%$keyword.category_id%}{%/if%}</a></p>
+       <ul>
+        {%if $show.category_id%}<li><a href="/product/index/{%$show.style_id%}-{%$show.wave_id%}-0-{%$show.series_id%}">所有{%$keyword.category_id%}</a></li>{%/if%}
+        {%section name=i loop=$show.category_list%}
+        <li><a href="/product/index/{%$show.style_id%}-{%$show.wave_id%}-{%$show.category_list[i].keyword_id%}-{%$show.series_id%}">{%$show.category_list[i].keywords.name%}</a></li>
+        {%/section%}
+      </ul>
+    </li>
+     <li><p><a href="#">{%if $show.series%}{%$show.series%}{%else%}所有{%$keyword.series_id%}{%/if%}</a></p>
+      <ul>
+        {%if $show.series_id%}<li><a href="/product/index/{%$show.style_id%}-{%$show.wave_id%}-{%$show.category_id%}-0">所有{%$keyword.series_id%}</a></li>{%/if%}
+        {%section name=i loop=$show.series_list%}
+        <li><a href="/product/index/{%$show.style_id%}-{%$show.wave_id%}-{%$show.category_id%}-{%$show.series_list[i].keyword_id%}">{%$show.series_list[i].keywords.name%}</a></li>
+        {%/section%}
+      </ul>
+    </li>
+    <!--  <li><p><a href="/group">所有搭配</a></p>
+    </li>-->
+   </ul>
+    <div class="search">
+      <form method="GET" action="/product" id="HDT-FORM">
+      <input name="q" type="text" class="textfield" value="{%$show.q%}" placeholder="输入编号/款号搜索" onchange="if(this.value)document.getElementById('HDT-FORM').submit();" />
+      </form>
+    </div>
+  </div>
+  <!--tit_bar end-->

@@ -1,0 +1,24 @@
+{%if $show.list%}
+<table cellspacing="0" cellpadding="0" border="0" class="table01">
+<tr>
+	<th></th>
+	<th>订货数量</th>
+	<th>数量占比</th>
+	<th>订货金额</th>
+	<th>金额占比</th>
+	<th>折后金额</th>
+	<th>折后占比</th>
+</tr>
+{%foreach from=$show.list key=k item=val%}
+<tr>
+	<td>排名前{%$k%}%的{%if $show.view eq 'T'%}款{%else%}款色{%/if%}</td>
+	<td>{%$val.num%}</td>
+	<td>{%$val.num_percent%}</td>
+	<td>{%$val.price%}</td>
+	<td>{%$val.price_percent%}</td>
+	<td>{%$val.discount_price%}</td>
+	<td>{%$val.discount_price_percent%}</td>
+</tr>
+{%/foreach%}
+</table>
+{%/if%}

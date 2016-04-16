@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>面料</h3>
+            {%include file="fabric_moq/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl" id="HDT-main">
+              <table  border="0" cellpadding="0" cellspacing="0" id="HDT-moq-list" >
+                <tr>
+                  <th colspan=2>{%if $message%}<font color="red">{%$message%}</font>{%/if%}</th>
+                </tr>
+                {%section name=i loop=$show.moqlist%}
+                <tr>
+                  <td>{%$show.moqlist[i].color_id|hdt_keyword%}</td>
+                  <td>起订量:<input type="text" value="{%$show.moqlist[i].minimum%}" class="HDT-moq" data-color-id="{%$show.moqlist[i].color_id%}" data-fabric-id="{%$show.id%}"></td>
+                </tr>
+                {%/section%}
+              </table>
+              <div id="HDT-search-list"></div>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/fabric_moq/index');
+</script>
+</body>
+</html>

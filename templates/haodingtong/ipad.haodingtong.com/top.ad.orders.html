@@ -1,0 +1,34 @@
+{%include file="top.1.html"%}
+<div class="nav"><!--grey start-->
+  <div class="nleft" id="HDT-select-menu">
+    <ul>
+    {%include file="top.2.html"%}
+    <!-- </ul>
+    <ul> -->
+    <li>
+    	<select name="status">
+    		<option value="">全部</option>
+    		<option value="1">正常款</option>
+    		<option value="0">删除款</option>
+    	</select>
+    </li>
+    <li>
+    	<select name="order_key">
+    		<option value="skc_id">圆牌号</option>
+    		<option value="num">订量</option>
+    	</select>
+    </li>
+    <li>
+    	<select name="order_ud">
+    		<option value="0">升序</option>
+    		<option value="1">降序</option>
+    	</select>
+    </li>
+   </ul>
+   </div>
+    <div class="nright">
+    {%include file="top.search.html"%}
+    </div>
+</div>
+<!--tit_bar end-->
+{%include file="top.script.html"%}

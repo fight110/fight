@@ -1,0 +1,52 @@
+<ul>
+<li><select name="category_id">{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}"%}</select></li>
+<li><select name="brand_id">{%$show.brand_id|hdt_attrlist:"brand":"{%$keyword.brand_id%}"%}</select></li>
+<li><select name="season_id">{%$show.season_id|hdt_attrlist:"season":"{%$keyword.season_id%}"%}</select></li>
+<li><select name="nannvzhuan_id">{%$show.nannvzhuan_id|hdt_attrlist:"nannvzhuan":"{%$keyword.nannvzhuan_id%}"%}</select></li>
+<!-- </ul>
+<ul> -->
+{%if $currentUser.type == 3%}
+{%if $show.user.username eq '0'%}
+<li class="Selects">
+    <select name="area1"></select>
+    <select name="area2"></select>
+</li>
+<li>
+	<select name="fliter_uid"></select>
+</li>
+{%else%}
+<li>
+	<select name="fliter_uid">
+	<option value="">选择店仓</option>
+	{%foreach key=ukey from=$show.userlist item=uval%}
+	<option value="{%$uval.id%}">{%$uval.name%}</option>
+	{%/foreach%}
+	</select>
+</li>
+{%/if%}
+{%elseif $currentUser.type == 2%}
+<li>
+	<select name="fliter_uid">
+	<option value="">所有下线</option>
+	{%section name=i loop=$show.slave_list%}
+	<option value="{%$show.slave_list[i].id%}" {%if $show.slave_id==$show.slave_list[i].id%}selected="selected"{%/if%}>{%$show.slave_list[i].name%}</option>
+	{%/section%}
+	</select>
+</li>
+{%/if%}
+<!-- <li><select name="is_finished">
+		<option value="">完成率</option>
+		<option value="1">已完成</option>
+		<option value="2">未完成</option>
+	</select>
+</li> -->
+<!-- <li><select name="order">
+	<option value="">排序</option>
+  	<option value="num" {%if $show.order=="num"%}selected="selected"{%/if%}>订量</option>
+  	<option value="exp_num_percent" {%if $show.order=="exp_num_percent"%}selected="selected"{%/if%}>订量完成率</option>
+  	<option value="price" {%if $show.order=="price"%}selected="selected"{%/if%}>金额</option>
+  	<option value="exp_price_percent" {%if $show.order=="exp_price_percent"%}selected="selected"{%/if%}>金额完成率</option>
+  	</select>
+</li> -->
+<!-- <li><select name="category_id">{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}"%}</select></li> -->
+</ul>

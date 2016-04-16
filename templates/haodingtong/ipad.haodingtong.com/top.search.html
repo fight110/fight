@@ -1,0 +1,13 @@
+<div class="search">
+	<form method="GET" action="/index/search" id="HDT-FORM">
+		{%if ($show.company.new_display neq 1) || (($show.company.new_display eq 1)&&(($show.user.type neq 1)||$show.showSearchInput))%}
+		<input name="q" type="{%$show.company.keyboard|default:'number'%}" id="search_key" class="floatRight" value="{%$show.q%}" placeholder="输入{%if ($show.company.search_f|default:0 eq 1 && ($show.search_f=="display"||$show.search_f=="display_ad")) || $show.search_f=="ad_display_monitor"%}陈列号{%elseif $show.company.search_f|default:0 eq 1 && ($show.search_f=="group"||$show.search_f=="group_ad")%}搭配号{%else%}圆牌号、款号{%/if%}搜索" />
+		<input type="hidden" name="search_f" value="{%$show.search_f%}">
+		
+		{%else%}
+		
+		<input type="hidden">
+		
+		{%/if%}
+	</form>
+</div>

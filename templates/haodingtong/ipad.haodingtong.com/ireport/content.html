@@ -1,0 +1,67 @@
+<div class="ireport">
+	<form action="#" id="ireport-form">
+		<fieldset>
+			<legend>选择查询条件</legend>
+			<ul class="tab">
+				{%foreach $show.keyword_groups as $key=>$val%}
+					<li data-group="{%$key%}{%if $val@index==0%}" class="active{%/if%}">{%$val%}</li>
+				{%/foreach%}
+			</ul>
+			<div class="tab-content">
+				{%foreach $show.keyword_groups as $key=>$val%}
+				<span class="group-{%$key%}{%if $val@index==0%} active{%/if%}">
+					{%foreach $show.group_keywords[$key] as $k=>$v%}
+						<label><input type="checkbox" name="search[{%$key%}][]" value="{%$k%}">{%$v%}</label>
+					{%/foreach%}
+				</span>
+				{%/foreach%}
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>选择维度</legend>
+			<div class="display-key-selection">
+				<span>可用字段</span>
+				<ul class="display-key available ui-widget-content">
+					{%foreach $show.dimension_keyword_ids as $key=>$val%}
+						{%* 改为了使用javascript处理 *%}
+						{%*if $val@index < $val@total-3*%}
+							<li data-keyword-id="{%$key%}">{%$val%}</li>
+						{%*/if*%}
+					{%/foreach%}
+				</ul>
+			</div>
+			<div class="display-key-selection">
+				<span>显示字段</span>
+				<ul class="display-key displayed ui-widget-content">
+					{%* 改为了使用javascript处理
+					{%foreach $show.dimension_keyword_ids as $key=>$val%}
+						{%if $val@index >= $val@total-3%}
+							<li data-keyword-id="{%$key%}">{%$val%}</li>
+						{%/if%}
+					{%/foreach%}
+					*%}
+				</ul>
+			</div>
+		</fieldset>
+
+		<div id="ireport-search">
+			<input name="search[key]" type="text" placeholder="输入圆编号、款号、用户名称搜索" style="width: 200px"/>
+			<button type="submit">查询</button>
+			<select name="order">
+				<option value="">智能排序</option>
+				<option value="num">定数优先</option>
+				<option value="price">金额优先</option>
+			</select>
+			<label><input type="checkbox" name="is_group_query" value="1">分组统计</label>
+			<input type="hidden" name="page" value="1">
+			<button type="button" class="print" style="float: right; margin-left: 10px;">打印</button>
+			<button type="button" class="export" style="float: right; margin-left: 10px;">导出</button>
+			<a id="report-download" href="" style="float: right; margin-left: 10px; display: none;" download="报表.csv">报表导出</a>
+		</div>
+	</form>
+
+	<div id="report-table">
+		<table class="table01">
+		</table>
+	</div>
+</div>

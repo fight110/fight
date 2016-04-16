@@ -1,0 +1,3 @@
+{%foreach from=$show.list key=gmkey item=gmval%}
+<a href="/thumb/458/{%$gmval.image%}" data-lightbox="display_{%$gmval.display_id%}" class="displayNone displayImg">{%$gmval.display_id%}</a>
+{%/foreach%}

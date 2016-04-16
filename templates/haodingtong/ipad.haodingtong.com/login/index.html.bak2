@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<script type="text/javascript" src="/js/sea.js"></script>
+<link rel="stylesheet" href="style/login.css">
+</head>
+
+<body class="bodybg">
+<div id="login">
+  <div id="top">
+    <div class="logo"><img src="images/logo_03.png" width="222" height="74" /></div>
+  </div>
+  <div id="middle">
+    <div class="middle_left">
+      <div class="img"><img src="images/2_03.png" width="536" height="290" /></div>
+    </div>
+    <div class="middle_right">
+      <div class="login">
+        <p class="title">账户登录
+          </p>
+        {%if $show.domain_list%}
+        <form class="form2" action="" method="get">
+          <select name="domain" id="domain" class="ui-select">
+                {%foreach from=$show.domain_list key=k item=val%}
+                  <option value="http://{%$val.domain%}/">{%$val.name%}</option>
+                {%/foreach%}
+          </select>
+        </form>
+        {%/if%}
+        <form>
+        <li class="form1">
+          <input id="uname" type="{%$company.keyboard|default:'number'%}" placeholder="请填写账户名" class="person">
+        </li>
+        <li class="form1">
+          <input id="pword" type="password" placeholder="请输入密码" class="person2">
+        </li>
+        <div class="checkboxFive">
+          <input type="checkbox" value="1" id="checkboxFiveInput" name="" />
+          <label for="checkboxFiveInput"></label>
+        <span>记住账号</span> </div>
+        <li class="submit">
+          <input type="submit"  id="login-submit-1" value="登录" class="button">
+        </li>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="bottom">
+    <p>Copyright © 好订通 版权所有</p>
+    <p>version 1.0.2 build 272 好订通 <em>科学订货</em> 热线:0571-81110400 </p>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/login');
+</script>
+<input type="hidden" id="returl" value="{%$show.returl%}">
+</body>
+</html>

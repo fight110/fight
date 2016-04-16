@@ -1,0 +1,11 @@
+<li>
+  <select name="order">
+    <option value="">排行榜</option>
+    <option value="bianhao asc" {%if $show.order=="bianhao asc"%}selected="selected"{%/if%}>编号小→大</option>
+    <option value="bianhao desc" {%if $show.order=="bianhao desc"%}selected="selected"{%/if%}>编号大→小</option>
+    <option value="all num asc" {%if $show.order=="all num asc"%}selected="selected"{%/if%}>订量小→大</option>
+    <option value="all num desc" {%if $show.order=="all num desc"%}selected="selected"{%/if%}>订量大→小</option>
+    <option value="all price asc" {%if $show.order=="all price asc"%}selected="selected"{%/if%}>金额小→大</option>
+    <option value="all price desc" {%if $show.order=="all price desc"%}selected="selected"{%/if%}>金额大→小</option>
+  </select>
+</li>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="login_contain">
+<!--quicknav-->
+  <div class="quicknav">
+  <div class="r_status">
+    <span class="r_ser">丰度旗下{%$keyword.brand_id%}服务</span>
+  </div>好订通-省时省力省钱省心，订货真轻松！</div>
+  <!--quicknav end-->
+  <!--header-->
+  <div class="header logi">
+    <h1><a href="login.html" class="logo"></a><div class="slogo"><a href="#"></a><a href="#" class="s2"></a></div></h1>
+  </div>
+  <!--header end--> 
+  <div class="login_notice">
+    <div class="notice">{%$show.company.congrats%}</div>
+  </div>
+  <div class="loginbox">
+    <div class="leftpic"><img src="/style/images/login_leftpic.jpg" width="570" height="305" /></div>
+    <div class="loginform">
+      <form >
+      <div class="formbox">
+      <ul class="formul">
+      <li class="clearfix">
+        <input name="uname" type="number" class="textbox" placeholder="请填写帐号"/>
+      </li>
+      <li class="clearfix">
+        <input name="pword" type="password" class="textbox" placeholder="请输入密码"/></li>
+      </ul>
+        <div class="loginbtn">
+        <button type="submit" class="btn_login" id="login-submit-1" onclick="return false;"></button>
+        &nbsp;&nbsp;<a href="#">忘记密码?</a>
+        </div>
+        <div class="button_2wm"><a href="#" class="btn2wm"></a></div>
+      </form> 
+      </div>
+    </div>
+<div class="clear"></div>
+  </div>
+<!--foot-->
+{%include file="footer.html"%}
+<!--foot end-->
+</div>
+<script>
+// seajs.use('lj/admin/login');
+</script>
+<input type="hidden" id="returl" value="{%$show.returl%}">
+</body>
+</html>

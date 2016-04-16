@@ -1,0 +1,38 @@
+<tr>
+  <th>子项目</th>
+  <th>开发款量</th>
+  <th>已订款量</th>
+  <th>已订占比</th>
+  <th>开发SKC</th>
+  <th>已订SKC</th>
+  <th>SKC宽度</th>
+  <th>SKC深度</th>
+  <th>已订数量</th>
+  <th>订数占比</th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>
+  <th>{%$show.productcount.pnum%}</th>
+  <th>{%$show.ordercount.pnum%}</th>
+  <th>{%$show.percent_pnum%}</th>
+  <th>{%$show.productcount.skc%}</th>
+  <th>{%$show.ordercount.skc%}</th>
+  <th>{%$show.skc_width%}</th>
+  <th>{%$show.skc_depth%}</th>
+  <th>{%$show.ordercount.num%}</th>
+  <th>100%</th>
+</tr>
+{%section name=i loop=$show.list%}
+<tr>
+  <td>{%$show.list[i].tid|hdt_keyword%}</td>
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].order.pnum%}</td>
+  <td>{%$show.list[i].percent_pnum%}</td>
+  <td>{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].order.skc%}</td>
+  <td>{%$show.list[i].skc_width%}</td>
+  <td>{%$show.list[i].skc_depth%}</td>
+  <td>{%$show.list[i].order.num%}</td>
+  <td>{%$show.list[i].percent_num%}</td>
+</tr>
+{%/section%}

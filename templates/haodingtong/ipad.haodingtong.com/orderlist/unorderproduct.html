@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>[{%$show.u.username%}]{%$show.u.name%} {%$show.company.fairname%} 未订订单</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.bborder{border-bottom:1px solid #333;}
+.hei{color:#000000;}
+.cui{font-weight:800;}
+.backhui{background-color:#F2F2F2;}
+.f18{font-size:18px; line-height:38px;}
+.f14{font-size:14px; line-height:28px;}
+.f16{font-size:16px; line-height:28px;}
+.tc{text-align:center;}
+.mtop8{margin-top:8px;}
+.mtop16{margin-top:16px;}
+.mbg{background-color:#999999;}
+td{background-color:#FFF;}
+.tcolor1{border-bottom:1px solid #999999;}
+table{border-collapse:collapse; border:none;}
+td{border:1px solid #333;}
+td span {font-size: 14px;}
+</style>
+</head>
+
+<body>
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#999999">
+  <tr>
+    <td colspan="2" class="f18 tc">{%$show.company.fairname%} 未订订货单</td>
+  </tr>
+  <tr>
+    <td width="388" class="f14">客户：{%$show.u.name%}</td>
+    <td width="271">打印时间：{%$smarty.now|date_format:"%Y-%m-%d %H:%M:%S"%}</td>
+  </tr>
+</table>
+
+<table width="710" border="0" align="center" cellpadding="0" cellspacing="0" class="mtop8 mbg">
+<tr>
+    <td>排名</td>
+    <td>款号</td>
+    <td>款名</td>
+    <td>单价</td>
+    <td>{%$keyword.wave_id%}</td>
+</tr>
+{%section name=i loop=$show.list%}
+<tr>
+    <td>{%$show.list[i].rank%}</td>
+    <td>{%$show.list[i].kuanhao%}</td>
+    <td>{%$show.list[i].name%}</td>
+    <td>{%$show.list[i].price%}</td>
+    <td>{%$show.list[i].wave_id|hdt_keyword%}</td>
+</tr>
+{%/section%}
+</table>
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>

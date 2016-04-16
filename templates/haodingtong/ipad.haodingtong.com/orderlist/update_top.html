@@ -1,0 +1,13 @@
+已订<strong>{%$show.orderinfo.num|default:0%}</strong>件,<strong>{%$show.orderinfo.price|default:0|price_cn%}</strong>元
+{%if $show.user.discount != 1%}
+    {%if $show.company.display_discount|default:1%}
+    ,折后<strong>{%$show.orderinfo.discount_price|price_cn%}</strong>元
+    {%/if%}
+{%/if%}
+{%if $show.user.exp_num%} 
+    | 指标<strong>{%$show.user.exp_num%}</strong>件,
+    完成率<strong>{%$show.orderinfo.percent_exp_num%}</strong>
+{%elseif $show.user.exp_price%} 
+    | 指标<strong>{%$show.user.exp_price|price_cn%}</strong>元,
+    完成率<strong>{%$show.orderinfo.percent_exp_price%}</strong>
+{%/if%}

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订货排名</title>
+{%include file="header.html"%}
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin: 0px auto;
+}
+.main_box {margin-bottom: 100px;}
+.f22{font-size:22px; font-weight:bold; line-height:48px;}
+.f18{font-size:18px; font-weight:bold; line-height:38px;}
+.tc{text-align:center;}
+table{margin:0 auto;border-collapse:collapse; border:none;margin-bottom: 20px;}
+th{background: none repeat scroll 0 0 #e9e9e9; border: 1px solid #c9c9c9; color: #666666;}
+td{background-color:#FFF;border:1px solid #e9e9e9;text-align: center;}
+td span {font-size: 14px;}
+p {margin: 0px;}
+.tit {text-align: center;}
+.hidden {display: none;}
+</style>
+</head>
+
+<body>
+  <div class="f22 tc">订货排行</div>
+  <div class="main_box">
+    <table width="90%" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center" id="HDT-main">
+    </table>
+  </div>
+   <div class="hide">
+     <input type="hidden" id="scrollTime" value="{%$show.company.scrollTime%}" />
+     <input type="hidden" id="reloadTime" value="{%$show.company.reloadTime%}" />
+     <input type="hidden" id="moveY" value="{%$show.company.moveY%}" />
+     <input type="hidden" id="isScroll" value="{%$show.company.isScroll%}" />
+   </div>
+   <div class="foot">
+   </div>
+<script type="text/javascript">
+  seajs.use("lj/a/dynamic_ranking")
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+[
+    {
+        "name"          : "bianhao","method"        : {}
+    },
+    {
+        "name"          : "kuanhao","method"        : {}
+    },
+    {
+        "name"          : "huohao","method"        : {}
+    },
+    {
+        "name"          : "name","method"        : {}
+    },
+    {
+        "name"          : "price","method"        : {}
+    },
+    {
+        "name"          : "isspot","method"        : {}
+    },
+    {
+        "name"          : "price_band_id","method"        : {}
+    },
+    {
+        "name"          : "content","method"        : {}
+    },
+    {
+        "name"          : "series_id","method"        : {}
+    },
+    {
+        "name"          : "wave_id","method"        : {}
+    },
+    {
+        "name"          : "category_id","method"        : {}
+    },
+    {
+        "name"          : "classes_id","method"        : {}
+    },
+    {
+        "name"          : "style_id","method"        : {}
+    },
+    {
+        "name"          : "designer","method"        : {}
+    },
+    {
+        "name"          : "designer_id","method"        : {}
+    },
+    {
+        "name"          : "price_purchase","method"        : {}
+    },
+    {
+        "name"          : "minimum","method"        : {}
+    },
+    {
+        "name"          : "defaultimage","method"        : {}
+    },
+    {
+        "name"          : "hot","method"        : {}
+    },
+    {
+        "name"          : "season_id","method"        : {}
+    },
+    {
+        "name"          : "theme_id","method"        : {}
+    },
+    {
+        "name"          : "sxz_id","method"        : {}
+    },
+    {
+        "name"          : "nannvzhuan_id","method"        : {}
+    },
+    {
+        "name"          : "neiwaida_id","method"        : {}
+    },
+    {
+        "name"          : "brand_id","method"        : {}
+    },
+    {
+        "name"          : "fabric_id","method"        : {}
+    },
+    {
+        "name"          : "fabric_unit","method"        : {}
+    },
+    {
+        "name"          : "changduankuan_id","method"        : {}
+    },
+    {
+        "name"          : "date_market", "method"   : {}
+    },
+    {
+        "name"          : "message", "method"       : {}
+    },
+    {
+        "name"          : "is_proportion", "method"       : {}
+    },
+    {
+        "name"          : "proportion_list", "method"       : {}
+    },
+    {
+        "name"          : "is_need", "method"       : {}
+    },
+    {
+        "name"          : "basenum", "method"       : {}
+    },
+    {
+        "name"          : "size_group_id", "method"       : {}
+    },
+    {
+        "name"          : "price_1", "method"       : {}
+    },
+    {
+        "name"          : "price_2", "method"       : {}
+    },
+    {
+        "name"          : "df1_id", "method"       : {}
+    },
+    {
+        "name"          : "df2_id", "method"       : {}
+    },
+    {
+        "name"          : "df3_id", "method"       : {}
+    },
+    {
+        "name"          : "mininum", "method"       : {}
+    },
+    {
+        "name"          : "edition_id", "method"       : {}
+    },
+    {
+        "name"          : "contour_id", "method"       : {}
+    },
+    {
+        "name"          : "medium_id", "method"       : {}
+    },
+    {
+        "name"          : "order_start_num", "method"       : {}
+    }
+]

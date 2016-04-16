@@ -1,0 +1,58 @@
+<link href="/style/css.css?{%$show.company.timestamp%}" rel="stylesheet" type="text/css" />
+<link href="/style/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/style/css/fancybox/jquery.fancybox.css" media="screen" />
+<script type="text/javascript" src="/js/sea.js"></script>
+<script type="text/javascript">
+seajs.config({
+    base: '/js',
+    map: [
+    	[ /^(.*\.(?:css|js))(.*)$/i, '$1?{%$show.company.timestamp%}' ]
+  	]
+});
+setTimeout(function(){
+	window.open('','_self','');
+	window.close();
+}, 1000 * 3600);
+</script>
+<style>
+img {-webkit-touch-callout:none;}
+</style>
+{%if $show.company.notice && $currentUser.type==1 && $currentUser.is_read != 1%}
+<script>
+seajs.use("lj/dealer1/notice");
+</script>
+<script type="text/jquery-tmpl" id="HDT-company-notice" title="订货政策">{%$show.company.notice%}</script>
+{%/if%}
+{%if $show.company.is_scalable%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes"/>
+{%else%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+{%/if%}
+<script>
+seajs.use("lj/common");
+</script>
+<script type="text/javascript" charset="utf-8">
+// Mobile Safari in standalone mode
+if(("standalone" in window.navigator) && window.navigator.standalone){
+
+    // If you want to prevent remote links in standalone web apps opening Mobile Safari, change 'remotes' to true
+    var noddy, remotes = true;
+
+    document.addEventListener('click', function(event) {
+
+        noddy = event.target;
+
+        // Bubble up until we hit link or top HTML element. Warning: BODY element is not compulsory so better to stop on HTML
+        while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+            noddy = noddy.parentNode;
+        }
+
+        if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+        {
+            event.preventDefault();
+            document.location.href = noddy.href;
+        }
+
+    },false);
+}
+</script>

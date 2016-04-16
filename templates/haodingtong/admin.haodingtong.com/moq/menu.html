@@ -1,0 +1,13 @@
+<ul>
+{%section name=i loop=$show.list%}
+<li><a href="/moq/?id={%$show.list[i].keyword_id%}" id="km_{%$show.list[i].keyword_id%}">{%$show.list[i].keywords.name%}</a></li>
+{%/section%}
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.id%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

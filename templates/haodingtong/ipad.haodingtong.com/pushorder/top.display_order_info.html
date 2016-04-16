@@ -1,0 +1,42 @@
+{%include file="top.1.html"%}
+<div class="pinned">
+<div class="nav">
+    <div class="nleft"  id="HDT-select-menu">
+        <ul>
+        {%if $currentUser.type eq 3%}
+            {%if $currentUser.username eq '0'%}
+                <li class="Selects">
+                    <select name="area1"></select>
+                    <select name="area2"></select>
+                </li>
+                <li>
+                  <select name="fliter_uid"></select>
+                </li>
+            {%else%}
+                <li>
+                    <select name="fliter_uid">
+                        <option value="">选择店仓</option>
+                        {%foreach key=ukey from=$show.userlist item=uval%}
+                        <option value="{%$uval.id%}">{%$uval.name%}</option>
+                        {%/foreach%}
+                    </select>
+                </li>
+            {%/if%}
+        {%elseif $currentUser.type eq 2%}
+                <li>
+                    <select name="fliter_uid">
+                        <option value="">选择店仓</option>
+                        {%foreach key=ukey from=$show.userlist item=uval%}
+                        <option value="{%$uval.id%}">{%$uval.name%}</option>
+                        {%/foreach%}
+                    </select>
+                </li>
+        {%/if%}
+        </ul>
+    </div>
+    <div class="nright">
+	   {%include file="top.search.html"%}
+    </div>
+</div>
+</div>
+{%include file="top.script.html"%}

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.analysis.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="HDT_charts_bars"></div>
+        <div class="HDT_charts_pies"></div>
+        <div id="container"></div>
+        <div class="selectArea">
+        <div class="select_div">
+            <select name="show_group" id="HDT-show-all">
+              	<option value="none" selected="selected">选择分类</option>
+            	<option value="0">{%$keyword.series_id%}</option>
+            	<option value="1">{%$keyword.wave_id%}</option>
+            	<option value="2">{%$keyword.category_id%}</option>
+              <option value="13">{%$keyword.medium_id%}</option>
+            	<option value="3">{%$keyword.classes_id%}</option>
+            	<option value="4">尺码</option>
+            	<option value="5">{%$keyword.price_band_id%}</option>
+            	<option value="6">{%$keyword.theme_id%}</option>
+            	<option value="7">{%$keyword.brand_id%}</option>
+            	<option value="8">{%$keyword.nannvzhuan_id%}</option>
+            	<option value="9">{%$keyword.sxz_id%}</option>
+            </select>
+            </div>
+            </div>
+        <div class="construebox" id="analysisContent">
+          <div class="cleftmenu">
+            <h3>项目/内容</h3>
+            <ul id="HDT-menu-analysis">
+            <li><a href="/dealer1/analysis#category" data-t="category" data-group="2">{%$keyword.category_id%}</a></li>
+            <li><a href="/dealer1/analysis#medium" data-t="medium" data-group="13">{%$keyword.medium_id%}</a></li>
+            <li><a href="/dealer1/analysis#classes" data-t="classes" data-group="3">{%$keyword.classes_id%}</a></li>
+            <li><a href="/dealer1/analysis#wave" data-t="wave" data-group="1">{%$keyword.wave_id%}</a></li>
+            <li><a href="/dealer1/analysis#style" data-t="style" data-group="10">{%$keyword.style_id%}</a></li>
+            <!-- <li><a href="/dealer1/analysis#product" data-t="product">{%$keyword.style_id%}分析</a></li> -->
+            <!-- <li><a href="/dealer1/analysis#color_group" data-t="color_group">色系分析</a></li> -->
+            <li><a href="/dealer1/analysis#color" data-t="color" data-group="12">单色</a></li>
+            <!-- <li><a href="/dealer1/analysis#size" data-t="size">尺码分析</a></li> -->
+            <li><a href="/dealer1/analysis#price_band" data-t="price_band" data-group="5">{%$keyword.price_band_id%}</a></li>
+            <li><a href="/dealer1/analysis#series" data-t="series" data-group="0">{%$keyword.series_id%}</a></li>
+            <li><a href="/dealer1/analysis#nannvzhuan" data-t="nannvzhuan" data-group="8">{%$keyword.nannvzhuan_id%}</a></li>
+            <li><a href="/dealer1/analysis#sxz" data-t="sxz" data-group="9">{%$keyword.sxz_id%}</a></li>
+            <li><a href="/dealer1/analysis#brand" data-t="brand" data-group="7">{%$keyword.brand_id%}</a></li>
+            <li><a href="/dealer1/analysis#season" data-t="season" data-group="11">{%$keyword.season_id%}</a></li>
+            <!-- <li><a href="/dealer1/analysis#fabric" data-t="fabric">面料分析</a></li> -->
+            </ul>
+			    </div>
+
+          <div class="cons_main">
+
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" id="HDT-main"></table>
+            </div>
+            <div class="cons_tabl" style="border: 1px solid red;">
+              备注:不计指标
+              <table  border="0" cellpadding="0" cellspacing="0" id="HDT-main1"></table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+
+
+      </div>
+       <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/dealer1/analysis");
+</script>
+</body>
+</html>

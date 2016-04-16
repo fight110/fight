@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <a href="/dealer" class="buttonLink">经销商管理</a>
+        <a href="/dealer/general_agents" class="buttonLink">总代管理</a>
+      <a href="/ad" class="buttonLink">AD管理</a>
+        <a href="javascript:" class="buttonLink  currentSelect" style="font-weight: bold;">设计师管理</a>
+      <a href="#" class="HDT-add-user buttonLink" style="float:right;">新增账号</a>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th width="100">{%$keyword.designer_id%}管理</th>
+            <th colspan=3><form><input type="text" name="q" value="{%$show.q%}" style="width:150px;" placeholder="输入名称/帐号搜索"> <input type="submit" value="搜索"></form> </th>
+          </tr>
+          <tr class="hbg">
+            <th width="200">{%$keyword.designer_id%}名称</th>
+            <th>帐号</th>
+            <th>密码</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].name%}</td>
+            <td>{%$show.list[i].username%}</td>
+            <td>{%$show.list[i].password%}</td>
+            <td class="option">
+              <a href="#" class="HDT-edit" data-id="{%$show.list[i].id%}">编辑</a>
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-user-add">
+<form method="POST" action="/designer/designer_add">
+<input type="hidden" name="id">
+<input type="hidden" name="type" value="9">
+<p>名称:<input type="text" name="name"></p>
+<p>帐号:<input type="text" name="username"></p>
+<p>密码:<input type="text" name="password"></p>
+<p>排行榜权限:<label><input type="radio" value="1" name="is_lock">自己</label>
+<label><input type="radio" value="0" name="is_lock">全部</label></p>
+<p><input type="submit" value="保存" onClick="return confirm('确定保存？')"></p>
+<div class="chooseUser"></div>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/designer/index');
+</script>
+</body>
+</html>

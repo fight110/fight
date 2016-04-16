@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>项目\内容</h3>
+            <ul id="HDT-menu-analysis">
+            <li><a href="/dealer2/analysis#series" data-t="series">{%$keyword.series_id%}分析</a></li>
+            <li><a href="/dealer2/analysis#wave" data-t="wave">{%$keyword.wave_id%}分析</a></li>
+            <li><a href="/dealer2/analysis#category" data-t="category">{%$keyword.category_id%}分析</a></li>
+            <li><a href="/dealer2/analysis_product" class="on">{%$keyword.style_id%}分析</a></li>
+            <li><a href="/dealer2/analysis#color" data-t="color">色系分析</a></li>
+            <li><a href="/dealer2/analysis#size" data-t="size">尺码分析</a></li>
+            <li><a href="/dealer2/analysis#price_band" data-t="price_band">{%$keyword.price_band_id%}分析</a></li>
+            <li><a href="/dealer2/analysis_user">经销商</a></li>
+            </ul>
+			</div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <tr>
+                  <th class="thitem">名称</th>
+                  <th>编号</th>
+                  <th>款号</th>
+                  <th>订量</th>
+                  <th>订量比</th>
+                  <th>金额</th>
+                  <th>金额比</th>
+                </tr>
+              </table>
+              <table  border="0" cellpadding="0" cellspacing="0" id="HDT-main"></table>
+
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/dealer2/analysis_product");
+</script>
+</body>
+</html>

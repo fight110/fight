@@ -1,0 +1,14 @@
+{%if $show.start == 0 %}
+<tr>
+    <th class="pmw">排名</th>
+    <th>经销商</th>
+    <th class="amountth">金额</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr>
+    <td class="tdcenter"><span class="num_a">{%$smarty.section.i.rownum + $show.start%}</span></td>
+    <td>{%$show.list[i].name%}</td>
+    <td class="amounttd">{%$show.list[i].price|price_cn%}</td>
+</tr>
+{%/section%}

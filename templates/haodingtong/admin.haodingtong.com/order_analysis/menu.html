@@ -1,0 +1,17 @@
+<ul id="HDT-analysis-menu">
+<li><a href="/order_analysis/?t=series" id="km_series">{%$keyword.series_id%}分析</a></li>
+<li><a href="/order_analysis/?t=wave" id="km_wave">{%$keyword.wave_id%}分析</a></li>
+<li><a href="/order_analysis/?t=category" id="km_category">{%$keyword.category_id%}分析</a></li>
+<li><a href="/order_analysis/?t=color_group" id="km_color_group">色系分析</a></li>
+<li><a href="/order_analysis/?t=size" id="km_size">尺码分析</a></li>
+<li><a href="/order_analysis/?t=price_band" id="km_price_band">{%$keyword.price_band_id%}分析</a></li>
+<li><a href="/order_analysis/?t=product" id="km_product">{%$keyword.style_id%}分析</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

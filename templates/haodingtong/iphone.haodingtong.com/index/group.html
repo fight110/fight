@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+<div class="contain">
+    <div class="top">
+        <h1><strong>{%$show.user.name%}</strong>({%$show.orderinfo.num%})</h1>
+        <a href="/" class="lbtn"><span>好订通</span></a>
+        <!-- <a href="/logout" class="rbtn"><span>注销</span></a> -->
+    </div>
+
+    <div class="tit_order clearfix">
+        <span>{%$show.orderinfo.num|default:0%}/{%$show.orderinfo.price|price_cn|default:0%}</span>
+        <h2>全部搭配</h2>
+        <a href="/" class="aclose_order"><b>点此收起订货</b></a>
+    </div>
+
+    <ul class="styleslist2" id="HDT-main"></ul>
+
+    <div class="loading"></div>
+
+</div>
+</div>
+{%include file="footer.menu.html"%}
+
+<script>
+seajs.use('lj/iphone/index/group');
+</script>
+</body>
+</html>

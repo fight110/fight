@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th width="100">大区经理</th>
+            <th colspan =2 >{%$show.user.name%}</th>
+          </tr>
+          <tr>
+            <td>下线</td>
+            <td  colspan =2 id="HDT-slave-list" style="color:blue;">
+              {%section name=i loop=$show.list%}
+              <span><input type="checkbox" checked="checked" value="{%$show.list[i].id%}"> {%$show.list[i].name%}</span>
+              {%/section%}
+            </td>
+          </tr>
+          <tr>
+            <td>搜索</td>
+            <td id="HDT-search-slave" class="Selects" data-user-id="{%$show.user.id%}">
+              <input type="text" name="q"> 
+              <select name="area1"></select> 
+              <select name="area2"></select>
+              <select name="zongdai_id">
+              		<option value="">所属总代</option>
+                  	{%section name=i loop=$show.zongdai_list%}
+                  	<option value="{%$show.zongdai_list[i].id%}">{%$show.zongdai_list[i].name%}</option>
+              	  	{%/section%}
+              </select>
+            </td>
+            <td>
+              <input class="selectall" type="checkbox">全选/反选</input>
+              <input id="HDT-sub-btn" type="submit" value="保存"></input>
+            </td>
+          </tr>
+          <tr>
+            <td id="HDT-search-list" colspan=3>
+            </td>
+          </tr>
+          
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+seajs.use('lj/admin/a/slave');
+</script>
+</body>
+</html>

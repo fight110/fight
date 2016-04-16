@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+        <div class="top">
+            <h1><strong>榜单</strong></h1>
+            <a href="/" class="lbtn"><span>好订通</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+
+        <div class="tit_order clearfix">
+            <h2 class="bfont">总金额前三排行榜</h2>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table_list">
+                {%section name=i loop=$show.list_price%}
+                <tr>
+                    <td class="td1"><span class="num{%if $smarty.section.i.index==0%}1{%else%}0{%/if%}">{%$smarty.section.i.rownum%}</span></td>
+                    <td>{%$show.list_price[i].name%}</td>
+                    <td class="td3">{%$show.list_price[i].price|price_cn%}</td>
+                </tr>
+                {%/section%}
+            </table>
+        </div>
+        <div class="tit_order clearfix">
+            <h2 class="bfont">总订数前三排行榜</h2>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table_list">
+                {%section name=i loop=$show.list_num%}
+                <tr>
+                    <td class="td1"><span class="num{%if $smarty.section.i.index==0%}1{%else%}0{%/if%}">{%$smarty.section.i.rownum%}</span></td>
+                    <td>{%$show.list_num[i].name%}</td>
+                    <td class="td3">{%$show.list_num[i].num%}</td>
+                </tr>
+                {%/section%}
+            </table>
+        </div>
+        <div class="tit_order clearfix">
+            <h2 class="bfont">总订款前三排行榜</h2>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table_list">
+                {%section name=i loop=$show.list_pnum%}
+                <tr>
+                    <td class="td1"><span class="num{%if $smarty.section.i.index==0%}1{%else%}0{%/if%}">{%$smarty.section.i.rownum%}</span></td>
+                    <td>{%$show.list_pnum[i].name%}</td>
+                    <td class="td3">{%$show.list_pnum[i].pnum%}</td>
+                </tr>
+                {%/section%}
+            </table>
+        </div>
+
+        <ul class="cons_list">
+            <li><a href="/list/list?t=product"><h3>{%$keyword.style_id%}热订榜</h3></a></li>
+            <li><a href="/list/list?t=num"><h3>订量排行榜</h3></a></li>
+            <li><a href="/list/list?t=price"><h3>金额排行榜</h3></a></li>
+            <li><a href="/list/list?t=series"><h3>{%$keyword.series_id%}排行榜</h3></a></li>
+            <li><a href="/list/list?t=category"><h3>{%$keyword.category_id%}排行榜</h3></a></li>
+        </ul>
+    </div>
+</div>
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/list/index');
+</script>
+</body>
+</html>

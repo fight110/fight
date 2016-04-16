@@ -1,0 +1,7 @@
+RewriteEngine On
+<FilesMatch ".(ico|jpg|jpeg|png|gif|css)$">
+#Header set Expires "Tue, 16 Jun 2020 20:00:00 GMT"
+</FilesMatch>
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

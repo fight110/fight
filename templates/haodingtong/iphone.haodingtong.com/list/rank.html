@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+
+        <div class="top">
+            <h1><strong>订单排名</strong>(第{%$show.rank%})</h1>
+            <a href="/order" class="lbtn"><span>订单</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table02">
+                <tr>
+                    <td class="td1">
+                        款量
+                        <div class="smallf">第<em>{%$show.rank_pnum%}</em></div>
+                    </td>
+                    <td class="td2">
+                        我的量
+                        <div class="smallf">{%$show.orderinfo.pnum%}款</div>
+                    </td>
+                    <td>
+                        最高
+                        <div class="smallf">{%$show.orderinfo_pnum_first.pnum%}</div>
+                    </td>
+                    <td class="td4">
+                        距上一名
+                        <div class="smallf">差{%if $show.orderinfo_pnum_last.pnum%}{%$show.orderinfo_pnum_last.pnum - $show.orderinfo.pnum%}{%else%}0{%/if%}款</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        订量
+                        <div class="smallf">第<em>{%$show.rank_num%}</em></div>
+                    </td>
+                    <td class="td2">
+                        我的量
+                        <div class="smallf">{%$show.orderinfo.num%}件</div>
+                    </td>
+                    <td>
+                        最高
+                        <div class="smallf">{%$show.orderinfo_num_first.num%}</div>
+                    </td>
+                    <td class="td4">
+                        距上一名
+                        <div class="smallf">差{%if $show.orderinfo_num_last.num%}{%$show.orderinfo_num_last.num - $show.orderinfo.num%}{%else%}0{%/if%}件</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        金额
+                        <div class="smallf">第<em>{%$show.rank_price%}</em></div>
+                    </td>
+                    <td class="td2">
+                        我的量
+                        <div class="smallf">¥{%$show.orderinfo.price|price_cn%}</div>
+                    </td>
+                    <td>
+                        最高
+                        <div class="smallf">¥{%$show.orderinfo_price_first.price|price_cn%}</div>
+                    </td>
+                    <td class="td4">
+                        距上一名
+                        <div class="smallf">差¥{%if $show.orderinfo_price_last.price%}{%$show.orderinfo_price_last.price - $show.orderinfo.price%}{%else%}0{%/if%}</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="tit_order clearfix">
+            <h2 class="bfont">按订量前三单款排名</h2>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table02">
+                <tr>
+                    <th class="td1 tdcenter">排名<em>订数</em></th>
+                    <th>款号<em>款名</em></th>
+                    <th width="32%">订数占比<em>总订占比|排名</em></th>
+                    <th width="26%">金额<em>单价</em></th>
+                </tr>
+                {%section name=i loop=$show.product_list1%}
+                <tr>
+                    <td class="tdcenter">
+                        <span class="num_a">{%$smarty.section.i.rownum%}</span>
+                        <div class="smallf">{%$show.product_list1[i].num%}</div>
+                    </td>
+                    <td class="flbox2">
+                        {%$show.product_list1[i].kuanhao%} 
+                        <div class="smallf"><a href="/index/detail/{%$show.product_list1[i].id%}">{%$show.product_list1[i].name%}</a></div>
+                    </td>
+                    <td>
+                        {%$show.product_list1[i].percent_num%}
+                        <div class="smallf"><em>{%$show.product_list1[i].percent_all_num%}</em>|<span class="pm">第{%$show.product_list1[i].all_num_rank%}</span></div>
+                    </td>
+                    <td>
+                        {%$show.product_list1[i].price|price_cn%}
+                        <div class="smallf">¥{%$show.product_list1[i].p_price%}</div>
+                    </td>
+                </tr>
+                {%/section%}
+            </table>
+        </div>
+
+        <div class="tit_order clearfix">
+            <h2 class="bfont">按金额前三单款排名</h2>
+        </div>
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table02">
+                <tr>
+                    <th class="td1 tdcenter">排名<em>金额</em></th>
+                    <th>款号<em>款名</em></th>
+                    <th width="32%">金额占比<em>总金占比|排名</em></th>
+                    <th width="26%">订数<em>单价</em></th>
+                </tr>
+                {%section name=i loop=$show.product_list2%}
+                <tr>
+                    <td class="tdcenter">
+                        <span class="num_a">{%$smarty.section.i.rownum%}</span>
+                        <div class="smallf">{%$show.product_list2[i].price|price_cn%}</div>
+                    </td>
+                    <td class="flbox2">
+                        {%$show.product_list2[i].kuanhao%} 
+                        <div class="smallf"><a href="/index/detail/{%$show.product_list2[i].id%}">{%$show.product_list2[i].name%}</a></div>
+                    </td>
+                    <td>
+                        {%$show.product_list2[i].percent_price%}
+                        <div class="smallf"><em>{%$show.product_list2[i].percent_all_price%}</em>|<span class="pm">第{%$show.product_list2[i].all_price_rank%}</span></div>
+                    </td>
+                    <td>
+                        {%$show.product_list2[i].num%}
+                        <div class="smallf">¥{%$show.product_list2[i].p_price%}</div>
+                    </td>
+                </tr>
+                {%/section%}
+            </table>
+        </div>
+    </div>
+</div>
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/order/rank');
+</script>
+</body>
+</html>

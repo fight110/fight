@@ -1,0 +1,3 @@
+{%section name=i loop=$show.list%}
+<li><span class="rate">打了<em>{%$show.list[i].score%}分</em></span><span class="say"><em>说</em>{%$show.list[i].content%}</span>{%if $show.list[i].location.name%}来自{%$show.list[i].location.name%}的{%/if%}<span class="user">{%$show.list[i].user.name%}</span></li>
+{%/section%}

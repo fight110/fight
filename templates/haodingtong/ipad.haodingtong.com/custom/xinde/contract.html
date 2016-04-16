@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>合同管理</title>
+</head>
+<style>
+	body 		{width: 800px; margin: 0 auto;line-height: 2em;}
+	.title 		{font-size: 22px;font-weight: bold;text-align: center;margin-top: 50px;}
+	.content 	{font-size:14px;}
+	.footer		{font-weight: bold;margin-top: 20px;}
+	.content section {text-indent: 2em;}
+	.content section p {padding-left: 4em;}
+	table {width: 100%;}
+	.underline 	{padding-left: 1em;padding-right: 1em;}
+	
+	.table {color: #333333; line-height: 30px; table-layout: auto; width: 100%;border-collapse: collapse; border-spacing: 0;}
+	.table tr td {border: 1px solid #e9e9e9; text-align: center;}
+
+	.red 	{color:red;}
+	.bold 	{font-weight:bold;}
+</style>
+<body>
+	<div class="title">
+		{%$show.fairname%}合同
+	</div>
+	<div class="content">
+		<table>
+			<tr>
+				<td>甲方：国人服饰股份有限公司</td>
+			</tr>
+			<tr>
+				<td>乙方：{%$show.name%}</td>
+			</tr>
+		</table>
+		<br>
+		<section>乙方在2015年11月25日--11月27日期间参加了甲方举办的SG16夏装新品订货会，为保证双方互惠互利、诚信合作，经双方协商特签定以下合同内容：</section>
+		<section>1、 乙方共计：订货<u class="underline">{%$show.fushi.num|default:0%}</u>件，订货金额（供货价）约<u class="underline">{%$show.fushi.price|price_cn%}</u>元</section>
+		<section>2、       饰品订货<u class="underline">{%$show.shipin.num|default:0%}</u>件 ，金额（买断价）约<u class="underline">{%$show.shipin.price|price_cn%}</u>元 </section>
+		<section>总计：订货<u class="underline">{%$show.total.num%}</u>件，订货金额（供货价）约<u class="underline">{%$show.total.price|price_cn%}</u>元，30%定金约<u class="underline">{%$dingjin = $show.total.price*0.3%}{%$dingjin|price_cn%}</u>元</section>
+		<section>系夏季三个波段上货时间为：
+			<table class="table">
+				<tr>
+					<td>波段</td>
+					<td>数量</td>
+					<td>金额</td>
+					<td>上货日期</td>
+				</tr>
+				{%foreach from=$show.list key=k item=val%}
+				<tr>
+					<td>{%$val.keyword_id|hdt_keyword%}</td>
+					<td>{%$val.num%}</td>
+					<td>{%$val.price|price_cn%}</td>
+					<td>{%$val.date_market%}</td>
+				</tr>
+				{%/foreach%}
+				<tr>
+					<td>合计</td>
+					<td>{%$show.total.num%}</td>
+					<td>{%$show.total.price|price_cn%}</td>
+					<td></td>
+				</tr>
+			</table>			
+		</section>
+		<section>2、乙方须向甲方支付相当于订货总金额的30%作为订货定金。
+			<p class="red bold">1)、订货指标内定单10%定金于2015年12月2日前缴纳，超过此规定时间供货折扣上浮0.1折</p>
+			<p class="red bold">订货指标内定单20%定金于2015年12月12日前缴纳，超过此规定时间甲方将取消本次订货会定单合同</p>
+			<p class="red">2)、定金解冻时间方式：</p>
+			<p class="red">1、全额汇入公司帐户的客户，按每次发当季所订货品金额的30%解冻。</p>
+			<p class="red">2、如客户用退货或帐上余额来抵充订单定金，公司将在定金使用权限按当季货品最后一波配发进行全额解冻。</p>
+		</section>
+		<section class="red bold">3、公司2016年夏装供货时间超出原定供货时间10天后的商品给予客户100%代销。</section>
+		<section>4、乙方在订货会期间所定全部或部份货品，经甲方确认后，即成为乙方的定单，若乙方取消该定单（非产品质量问题），所付之订货定金，甲方将不予退回直接转为货款。产品质量问题由甲方品控部鉴定，书面确定。</section>
+		<section>5、如乙方在明确提货日期提出延迟或因货款未到位，之后所出现的不够货量配发之责任，由乙方自行承担。</section>
+		<section class="red bold">6、2016年夏季正常退货时间：①淮河以南2016年8月31日，淮河以北2016年9月30日；②凡乙方在订货会上所订货品，出现的质量问题，最长不得超过自公司伯俊软件发货之日起45天,超出时间的甲方不再办理，计入正常退货率；③甲方在收到次品后15天内负责更换同款同色同码或同等价值货品或退货。</section>
+		<section>7、参照国家质量监督检验的标准，乙方须接受面料色度差在±10%的合理范围内的差异。</section>
+		<section>8、由于产品的原材料在采购或生产中存在一些非甲方可控因素，乙方须接受其所下定单的款式与实际交货数量有可能出现±10%的合理范围内的差异和约定交货期±10天的变动范围。</section>
+		<section>9、甲方将会对共同看好的产品进行生产，由于某些订货会中不被看好，未能达到甲方规定之最低生产量，甲方将不予生产，并以文字形式通知乙方。</section>
+		<section>10、由于生产和面料可能引起的种种原因，甲方对乙方的定单保留最后裁减的权利，裁减通知将会以文字形式通知乙方。</section>
+		<section>11、附表《2016年夏装订货明细表》为本协议附件，与本协议共同生效。</section>
+		<section>12、本合同一式两份，经双方签字后生效，有效期至2016年夏装定单执行完毕。</section>
+		<section class="bold">合同履行过程中，如双方发生争议，可友好协商解决，协商不成，按此合同约定内容应向甲方所在地人民法院提起起诉。</section>
+		<section>
+			<table class="bold">
+				<tr>
+					<td width="50%">甲方： 杭州辛德时装有限公司</td>
+					<td>乙方：</td>
+				</tr>
+				<tr>
+					<td>签约人：</td>
+					<td>签约人：</td>
+				</tr>
+				<tr>
+					<td>电话：</td>
+					<td>电话：</td>
+				</tr>
+				<tr>
+					<td>传真：</td>
+					<td>传真：</td>
+				</tr>
+				<tr>
+					<td>地址：杭州市新文路33号3号楼1-2楼</td>
+					<td>地址：</td>
+				</tr>
+				<tr>
+					<td>日期：</td>
+					<td>日期：</td>
+				</tr>
+			</table>
+		</section>
+	</div>
+	<div class="footer">
+		<table>
+			<tr>
+				<td>甲方代表签字（签章）：</td>
+				<td>乙方代表签字（签章）：</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{%section name=i loop=$show.list%}
+<li style="height: 225px;">
+  <h4 class="clearfix">
+    <span class="nid">搭配号:{%$show.list[i].dp_num%}</span>
+    <span class="stylenum">名称：{%$show.list[i].name%}</span>
+  </h4>
+  <div class="imgbox"><a href="/ad/groupdetail/{%$show.list[i].id%}"><img src="/thumb/210/{%$show.list[i].defaultimage%}"></a></div>
+</li>
+{%/section%}

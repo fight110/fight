@@ -1,0 +1,28 @@
+{%if $show.start == 0%}
+<tr>
+    <th class="nid">序号<em>编号</em></th>
+    <th class="name_td" style="width:40%;">款名<em>SKC</em></th>
+    <th width="21%">订数<em>单价</em></th>
+    <th>金额<em>排名</em></th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr>
+    <td>
+        <span class="num_a">{%$show.start + $smarty.section.i.rownum%}</span>
+        <div class="smallf">{%$show.list[i].bianhao%}</div>
+    </td>
+    <td class="flbox2">
+        <a href="/index/detail/{%$show.list[i].id%}">{%$show.list[i].name%}</a>
+        <div class="smallf" style="text-align:center;">{%$show.list[i].sku%}</div>
+    </td>
+    <td>
+        {%$show.list[i].num%}
+        <div class="smallf"><em>¥{%$show.list[i].p_price%}</em></div>
+    </td>
+    <td>
+        {%$show.list[i].price|price_cn%}
+        <div class="smallf">第{%$show.list[i].rank|default:0%}</div>
+    </td>
+</tr>
+{%/section%}

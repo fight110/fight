@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>好订通</title>
+    {%include file="header.html"%}
+    <link rel="stylesheet" href="/style/pushorder/grouporder.css">
+</head>
+
+<body class="bodybg">
+<div class="contain">
+    {%include file="pushorder/top.group_order.html"%}
+    <div class="mainbox">
+        <div class="main_con group-order">
+            <div class="group-nav">        
+                <div class="pre"></div>
+                <div class="next"></div>
+                <div class="image-list"  id="group-list" data-group-id="{%$show.group_info.id%}"></div>
+            </div>
+            <div class="group-info"></div>
+            <!--foot-->
+            {%include file="footer.html"%}
+            <!--foot end-->
+        </div>
+        <div id="push-show-num" data-num="{%$show.company.pushshownum%}"></div>
+        {%include file="right.html"%}
+    </div>
+</div>
+<script>
+seajs.use("lj/pushorder/ad_group_order");
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>[{%$show.u.username%}]{%$show.u.name%} {%$show.company.fairname%} 订单审核</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.main_box {margin-bottom: 100px;}
+.f22{font-size:22px; font-weight:bold; line-height:48px;}
+.f18{font-size:18px; font-weight:bold; line-height:38px;}
+.tc{text-align:center;}
+table{border-collapse:collapse; border:none;margin-bottom: 20px;}
+.table1 th{background: none repeat scroll 0 0 #e9e9e9; border: 1px solid #c9c9c9; color: #666666;}
+.table1 td{background-color:#FFF;border:1px solid #e9e9e9;text-align: center;}
+.table2 td{background-color:#FFF;border:0px;text-align: center;}
+.tit {text-align: center;}
+.hidden {display: none;}
+a {text-decoration:none;}
+</style>
+</head>
+
+<body>
+  <div class="f22 tc">订单审核</div>
+  <div class="main_box">
+  <div class="tit f18">渠道信息</div>
+  <table width="400" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center" class="table1">
+    <tr>
+      <th>销售大区</th>
+      <td>{%$show.area1.name%}</td>
+    </tr>
+    <tr>
+      <th>渠道名称</th>
+      <td>{%$show.u.name%}</td>
+    </tr>
+    <tr>
+      <th>二级区域</th>
+      <td>{%$show.area2.name%}</td>
+    </tr>
+  </table>
+  <div class="tit f18">指标达成</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center" class="table1">
+    <tr>
+      <th>渠道名称</th>
+      <th>OTB</th>
+      <th>实际订单额</th>
+      <th>金额完成率</th>
+    </tr>
+    <tr>
+      <td>{%$show.u.name%}</td>
+      <td>{%$show.u.indicator.exp_amount|default:0|price_cn%}</td>
+      <td>{%$show.u.indicator.ord_amount|default:0|price_cn%}</td>
+      <td style="background-color:{%if $show.u.indicator.price_percent gte 100 %}green{%else%}red
+                {%/if%}">{%$show.u.indicator.price_percent%}%</td>
+    </tr>
+  </table>
+
+  <div class="tit f18">主推款</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center" class="table1">
+    <tr>
+      <th>序号</th>
+      <th>渠道店铺名称</th>
+      <th>已订总金额</th>
+      <th>主推订单额</th>
+      <th>占比</th>
+    </tr>
+    {%foreach from=$show.user_slave_list key=k item=val name=foo%}
+    <tr>
+      <td>{%$smarty.foreach.foo.index + 1%}</td>
+      <td><a href="/orderlist/print_now/{%$val.username%}?key={%$show.company.print_type%}" target="_blank">{%$val.name%}</a></td>
+      <td>{%$val.price|default:0|price_cn%}</td>
+      <td>{%$val.style.price|default:0|price_cn%}</td>
+      <td style="background-color:{%if $val.style.price_percent gte 50 %}green{%else%}red
+                {%/if%}">{%$val.style.price_percent%}%</td>
+    </tr>
+    {%/foreach%}
+    <tr>
+      <td colspan="2">合计</td>
+      <td>{%$show.style_total.price_total|price_cn%}</td>
+      <td>{%$show.style_total.price|price_cn%}</td>
+      <td>{%$show.style_total.price_percent%}%</td>
+    </tr>
+  </table>
+
+  <div class="tit f18">必定款</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center" class="table1"> 
+    <tr>
+      <th>序号</th>
+      <th>渠道店铺名称</th>
+      <th>必定款下单SKU数</th>
+      <th>必定款订量</th>
+      <th>必定款金额</th>
+    </tr>
+    {%foreach from=$show.user_slave_list key=k item=val name=foo%}
+    <tr>
+      <td>{%$smarty.foreach.foo.index + 1%}</td>
+      <td>{%$val.name%}</td>
+      <td>{%$val.need.skc|default:0%}</td>
+      <td>{%$val.need.num|default:0%}</td>
+      <td>{%$val.need.price|default:0|price_cn%}</td>
+    </tr>
+    {%/foreach%}
+  </table>
+
+  <div class="tit f18">手机壳</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center" class="table1">
+    <tr>
+      <th>序号</th>
+      <th>渠道店铺名称</th>
+      <th>已订SKU数</th>
+      <th>订量</th>
+      <th>订货金额</th>
+    </tr>
+    {%foreach from=$show.user_slave_list key=k item=val name=foo%}
+    <tr>
+      <td>{%$smarty.foreach.foo.index + 1%}</td>
+      <td>{%$val.name%}</td>
+      <td>{%$val.shoujike.skc|default:0%}</td>
+      <td>{%$val.shoujike.num|default:0%}</td>
+      <td>{%$val.shoujike.price|default:0|price_cn%}</td>
+    </tr>
+    {%/foreach%}
+  </table>
+
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center" class="table2">
+       <td width="300"></td>
+       <td><form action="/user/lock_order/{%$show.u.id%}">
+        {%if $show.u.is_lock%}
+        <input type="hidden" name="lock" value=0>
+        <input type="submit" value="订单已审核" onclick="return confirm('确认取消审单?');"></input>
+        {%else%}
+        <input type="hidden" name="lock" value=1>
+        <input type="submit" value="订单审核" onclick="return confirm('确认提交审单?');"></input>
+        {%/if%}
+       </form></td>
+       <td width="300">客户签字：</td>
+  <table>
+</div>
+</body>
+</html>

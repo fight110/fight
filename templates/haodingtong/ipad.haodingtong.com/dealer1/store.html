@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.store.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="selectFrontList" style="padding-bottom:10px;"></div>
+        <table border="0" cellpadding="0" cellspacing="0" class="rank_table" id="HDT_rateval_table">
+            <tr>
+                <td data-rateval=0 class="colblue">所有收藏：{%$show.totalnum|default:0%}款</td>
+                <td data-rateval=5>五星：{%$show.star5|default:0%}款</td>
+                <td data-rateval=4>四星：{%$show.star4|default:0%}款</td>
+                <td data-rateval=3>三星：{%$show.star3|default:0%}款</td>
+                <td data-rateval=2>二星：{%$show.star2|default:0%}款</td>
+                <td data-rateval=1>一星：{%$show.star1|default:0%}款</td>
+            </tr>
+        </table>
+      <ul class="prolistx detail_dplist clearfix" id="HDT-main"></ul>
+       <!--foot-->
+       <br/><br/><br/><br/>
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/dealer1/store");
+</script>
+</body>
+</html>

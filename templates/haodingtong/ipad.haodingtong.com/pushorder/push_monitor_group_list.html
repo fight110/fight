@@ -1,0 +1,13 @@
+<ul>
+    {%foreach from=$show.list key=k item=val name=foo%}
+    <li>
+		<span class="left-span"><em>{%$smarty.foreach.foo.index+1%}</em></span>
+		<span class="right-span">{%$val.num|default:0%}件</span>
+		<img src="/thumb/125/{%$val.contrast_image%}" alt="">
+		<span class="left-span">{%$val.dp_num%}</span>
+		<span class="right-span">人数:{%if $val.user_id%}{%$val.usernum%}{%else%}0{%/if%}</span>
+		<span></span>
+	</li>
+    {%/foreach%}
+    <div class="clear"></div>
+</ul>

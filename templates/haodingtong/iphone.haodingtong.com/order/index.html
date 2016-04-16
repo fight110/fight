@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+        <div class="top">
+            <h1><strong>订单</strong>({%$show.orderinfo.price_cn%})</h1>
+            <a href="/" class="lbtn"><span>好订通</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+
+        <!-- <ul class="statuslist">
+            <li><a href="/order/rank"><img class="thumb" src="/images/orders_status_ico.png" width="30px">订单排名<em>(排名第{%$show.rank%})</em></a></li>
+            <li><a href="/order/analysis"><img class="thumb" src="/images/orders_status_ico2.png" width="30px">订单分析<em>(完成率{%$show.orderinfo.percent_exp_price%})</em></a></li>
+        </ul> -->
+        <div class="tit_order clearfix"><span>{%$show.orderinfo.num%}/{%$show.orderinfo.price%}</span><h2 class="bfont">我的订单</h2></div>
+        <div class="select_menu">
+            <ul>
+                <li>
+                    <p>
+                        <select name="style_id">
+                            <option value="">全部{%$keyword.style_id%}</option>
+                            {%section name=i loop=$show.style_list%}
+                            <option value="{%$show.style_list[i].keyword_id%}">{%$show.style_list[i].keywords.name%}</option>
+                            {%/section%}
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <select name="wave_id">
+                            <option value="">所有{%$keyword.wave_id%}</option>
+                            {%section name=i loop=$show.wave_list%}
+                            <option value="{%$show.wave_list[i].keyword_id%}">{%$show.wave_list[i].keywords.name%}</option>
+                            {%/section%}
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <select name="category_id">
+                            <option value="">所有{%$keyword.category_id%}</option>
+                            {%section name=i loop=$show.category_list%}
+                            <option value="{%$show.category_list[i].keyword_id%}">{%$show.category_list[i].keywords.name%}</option>
+                            {%/section%}
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <select name="series_id">
+                            <option value="">所有{%$keyword.series_id%}</option>
+                            {%section name=i loop=$show.series_list%}
+                            <option value="{%$show.series_list[i].keyword_id%}">{%$show.series_list[i].keywords.name%}</option>
+                            {%/section%}
+                        </select>
+                    </p>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+      
+        <div>
+            <table border="0" cellpadding="0" cellspacing="0" class="table01" id="HDT-main">  
+            </table>
+            <div class="loading"></div>
+        </div>
+    </div>
+</div>
+
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/order/index');
+</script>
+</body>
+</html>

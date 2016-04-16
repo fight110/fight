@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>{%$show.company.name%}{%$show.company.fairname%}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family:'微软雅黑';
+}
+span.defv {text-decoration:underline; color:#C30;}
+</style>
+<script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+<body bgcolor="#FFFFFF">
+<!-- ImageReady Slices (ad.psd) -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="middle" style="background:url(/images/ad_01.jpg) no-repeat center; height:100px;"><table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="80" style="text-align:center;"><marquee id="affiche" align="center" behavior="scroll" direction="up" height="80" width="600" hspace="150" vspace="20" loop="-1" scrollamount="10" scrolldelay="400" onMouseOut="this.start()" onMouseOver="this.stop()"><span style="font-size:18px; color:yellow;" id="Marquee"></span>
+</marquee></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top" style="background:url(/images/ad_02.jpg) center no-repeat; height:520px;"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center; ">
+      <tr>
+        <td id="ViewUser" height="100px;" valign="middle" style="font-size:38px; color:#600; font-weight:bold; line-height:100px;"></td>
+      </tr>
+      <tr>
+        <td height="100px;" valign="middle" style="font-size:58px; color:#600; font-weight:bold;line-height:100px;">欢迎您参加<span class="defv">{%$show.company.name%}</span></td>
+      </tr>
+      <tr>
+        <td height="165px;" valign="middle" style="font-size:68px; color:#600; font-weight:bold;line-height:165px;">{%$show.company.fairname%}</td>
+      </tr>
+      <tr>
+        <td height="100px;" valign="middle" style="font-size:38px; color:#600; font-weight:bold;">
+          {%$show.company.congrats%}
+          <!-- 您的座位号：<span style="text-decoration:underline; color:#C30">220号</span> -->
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td style="background:url(/images/ad_03.jpg) center no-repeat; height:120px;">&nbsp;</td>
+  </tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+$(function(){
+    var t1 = 2500, t2 = 8000, uid = 0, ViewUser = $('#ViewUser'), clear = 0, Marquee = function(){
+        this.target = $('#Marquee');
+        this.list   = [];
+    };
+    Marquee.prototype.add = function(name){
+        this.list.push(name);
+        this.show();
+    };
+    Marquee.prototype.show = function(){
+        if(this.list.length > 25){
+            this.list = this.list.slice(1);
+        }
+        var html = "";
+        for(var i = 0, len = this.list.length; i < len; i++) {
+            html += this.list[i] + "贵宾已入场&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            if(i % 2){
+                html += "<br>";
+            }
+        }
+        this.target.html(html);
+    };
+    var m = new Marquee;
+    setTimeout(function(){
+        var callback = arguments.callee;
+        $.get("/welcome/latest", {}, function(json){
+            if(uid != json.user_id){
+                clearTimeout(clear);
+                ViewUser.html("尊敬的贵宾：<span class='defv'>"+json.name+" </span>您好");
+                m.add(json.name);
+                uid = json.user_id;
+                clear = setTimeout(function(){
+                    ViewUser.html("");
+                }, t2);
+            }
+            setTimeout(callback, t1);
+        }, 'json');
+    }, t1);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="box_title">
+        <a href="/ad/fabric">全部</a> | 
+        <a href="/ad/fabric?complete=1">已达起订量</a> |
+        <a href="/ad/fabric?complete=0">未达起订量</a>
+        </div>
+        <table border="0" cellpadding="0" cellspacing="0" class="table01" id="HDT-main">
+          <tr>
+            <th>面料</th>
+            <th>颜色</th>
+            <th>款数</th>
+            <th>订量</th>
+            <th>已订长度</th>
+            <th>起订长度</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].fabric_id|hdt_keyword%}</td>
+            <td>{%$show.list[i].color_id|hdt_keyword%}</td>
+            <td>{%$show.list[i].pnum%}</td>
+            <td>{%$show.list[i].num%}</td>
+            <td {%if $show.list[i].minimum > $show.list[i].fabric_total%}class="redborder"{%/if%}>{%$show.list[i].fabric_total%}</td>
+            <td>{%$show.list[i].minimum%}</td>
+          </tr>
+          {%/section%}
+        </table>
+      </div>
+      <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+// seajs.use('lj/a/store');
+</script>
+</body>
+</html>

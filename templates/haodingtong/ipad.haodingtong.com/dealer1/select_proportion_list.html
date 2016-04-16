@@ -1,0 +1,24 @@
+{%if $show.num%}<div>配比总数为{%$show.num%}</div>{%/if%}
+<div class="cons_tabl">
+<table  border="0" cellpadding="0" cellspacing="0" data-num="{%$show.num%}" data-size-group-id="{%$show.size_group_id%}"><tr>
+	<th>配比类型</th>
+{%foreach from=$show.size_list item=size%}<th>{%$size.name%}</th>{%/foreach%}
+</tr>
+{%if $show.limit > $show.proportion_list|count%}
+<tr>
+	<td></td>
+{%foreach from=$show.size_list item=name%}<td><input type="number" value="" style="max-width:50px;"></td>{%/foreach%}
+</tr>
+{%/if%}
+{%section name=i loop=$show.proportion_list%}
+<tr>
+	<td>{%if $show.proportion_list[i].user_id==0%}公司配比{%else%}我的配比{%/if%}</td>
+  {%foreach from=$show.proportion_list[i].proportion_list item=num%}
+  <td>{%$num%}</td>
+  {%/foreach%}
+</tr>
+{%/section%}
+</table></div>
+{%if $show.limit > $show.proportion_list|count%}
+<input type="submit" value="保存配码">
+{%/if%}

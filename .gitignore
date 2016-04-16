@@ -1,0 +1,11 @@
+/cache
+/thumb
+/config
+/tmpl/images
+/haodingtong/Config/Data/Keywords
+/tmpl/output
+/img/files
+.tags
+.tags_sorted_by_file
+/.idea
+/tmpl/sql

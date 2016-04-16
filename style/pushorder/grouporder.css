@@ -1,0 +1,164 @@
+@charset "utf-8";
+/** {
+	padding: 0;
+	margin: 0;
+}
+body { width: 700px;margin: 0 auto;}
+ul,li {
+	text-decoration: none;
+	list-style: outside none none;
+}
+a:link, a:visited, a:hover, a:active {
+    outline: medium none;
+    text-decoration: none;
+}
+a { color: #666;}
+.clear {
+	clear: both;
+}*/
+.group-order .group-nav .pre,.next {
+	width: 30px;
+	height: 200px;
+}
+
+.group-order .group-nav .pre{
+	float: left;
+	background-image: url("images/pre.png");
+}
+
+.group-order .group-nav .next{
+	float: right;
+	background-image: url("images/next.png");
+}
+.group-order .group-nav .image-list {
+	height: 200px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+.group-order .group-nav .image-list ul {
+	height: 200px;
+	position: absolute;
+	/*width: 10000px;需js修改宽度*/
+}
+
+.group-order .group-nav .image-list ul li {
+	float: left;
+	height: 100%;
+	text-align: center;
+}
+
+.group-order .group-nav .image-list ul li.live {
+	 border: 2px solid red;
+}
+
+.group-order .group-nav .image-list ul li img{
+	height: 170px;
+}
+
+.group-order .group-info {
+	margin-top: 10px;
+}
+
+.group-order .group-info .title{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: none repeat scroll 0 0 #eee;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+	border-radius: 5px;
+}
+
+.group-order .group-info .title .left-span{
+	float: left;
+}
+
+.group-order .group-info .title .right-span{
+	float: right;
+}
+
+.group-order .group-info .title a{ 
+	background: none repeat scroll 0 0 #fff;
+	border: 1px solid #e6e6e6;
+	border-radius: 3px;
+	padding:2px 5px 2px 5px;
+}
+
+.group-order .group-info .left-div {
+	float: left;
+	width: 39%;
+	border: 1px solid #eee;
+}
+
+.group-order .group-info .right-div {
+	float: right;
+	width: 59%;
+	border: 1px solid #eee;
+}
+
+.group-order .group-info .left-div div{
+	width: 50%;
+	float: left;
+}
+
+.group-order .group-info .left-div .ad-div{
+	width: 50%;
+	margin: 0 auto;
+	float: none;
+}
+
+.group-order .group-info .left-div .user-order{
+	position: relative;
+}
+
+.group-order .group-info .left-div div img{
+	width: 100%;
+}
+
+.group-order .group-info .left-div .user-order img{
+	position: absolute;
+	top : 0;
+	left: 0;
+}
+
+.group-order .group-info .right-div ul{
+	float: right;
+	width: 100%;
+}
+.group-order .group-info .right-div ul li{
+	height: auto;
+	border: 1px solid #eee;
+	margin: 5px;
+	padding: 5px;
+}
+.group-order .group-info .right-div ul li .left-img{
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+.group-order .group-info .right-div ul li .left-img img{
+	width: 75px;
+}
+
+.group-order .group-info .right-div ul li .right-table{
+	float: right;
+	width: 80%;
+}
+.group-order .group-info .right-div ul li .right-table p{
+	margin: 0;
+	padding: 0;
+}
+.group-order .group-info .right-div ul li .right-table table{
+	width: 100%;
+	text-align: center;
+}
+.group-order .group-info .right-div ul li .right-table table td{
+	border: 1px solid #eee;
+}
+.group-order .group-info .right-div ul li .right-table table tr.on{
+	color: red;
+}

@@ -1,0 +1,10 @@
+{%if $show.list%}
+{%foreach from=$show.list key=k item=val name=foo%}
+<li>
+  <span class="sleft">排名：<em>{%$smarty.foreach.foo.index+1%}</em></span>
+  <span class="sright">{%$val.num|default:0%}件</span>
+  <img src="/thumb/100/{%$val.contrast_image%}" />
+  <span>{%$val.name%}</span>
+</li>
+{%/foreach%}
+{%/if%}

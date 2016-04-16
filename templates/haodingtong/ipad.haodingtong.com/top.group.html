@@ -1,0 +1,21 @@
+{%include file="top.1.html"%}
+
+  <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+        <ul id="HDT-select-menu">
+        <li>
+            <select name="dp_type">
+                <option value="">搭配类型</option>
+                {%section name=i loop=$show.dp_type_list%}
+                <option value="{%$show.dp_type_list[i].dp_type%}" {%if $show.slave_id==$show.dp_type_list[i].dp_type%}selected="selected"{%/if%}>{%$show.dp_type_list[i].dp_type|hdt_keyword%}</option>
+                {%/section%}
+            </select>
+        </li>
+       </ul>
+       </div>
+    <div class="nright">
+    {%include file="top.search.html"%}
+    </div>
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

@@ -1,0 +1,19 @@
+SELECT p.kuanhao AS '款号', c.name AS '颜色', GROUP_CONCAT(s.name order by pa.id) AS '尺码', sx.name AS '性别', p.price AS '零售价', p.name AS '款名', season.name AS '季节', style.name AS '款别',series.name AS '系列',theme.name AS '主题', category.name AS '大类', classes.name as '小类', jq.name AS '波段', sxz.name AS '上下装', p.date_market AS '上市时间'
+FROM product AS p
+LEFT JOIN product_color AS pc ON p.id = pc.product_id
+LEFT JOIN product_size AS ps ON p.id = ps.product_id
+LEFT JOIN products_attr AS pa ON ps.size_id = pa.keyword_id
+LEFT JOIN keywords AS c ON pc.color_id = c.id
+LEFT JOIN keywords AS s ON ps.size_id = s.id
+LEFT JOIN keywords AS sx ON p.nannvzhuan_id = sx.id
+LEFT JOIN keywords AS jq ON p.wave_id = jq.id
+LEFT JOIN keywords AS season ON p.season_id = season.id
+LEFT JOIN keywords AS style ON p.style_id = style.id
+LEFT JOIN keywords AS series ON p.series_id = series.id
+LEFT JOIN keywords AS theme ON p.theme_id = theme.id
+LEFT JOIN keywords AS category ON p.category_id = category.id
+LEFT JOIN keywords AS classes ON p.classes_id = classes.id
+LEFT JOIN keywords AS sxz ON p.sxz_id = sxz.id
+WHERE p.status =1
+GROUP BY pc.product_id, pc.color_id
+ORDER BY pc.product_id, pc.color_id

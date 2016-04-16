@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+<link href="/style/css/lightbox.css" rel="stylesheet" />
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox"> 
+    <div class="main_con">
+      <div class="displayListDiv webkit_scroll">
+      <div class="displayListContent" style="width:{%$show.maxWidth%}px">
+	  {%foreach from=$show.allDisplay key=dkey item=dval%}
+		<span class="displayOne {%if $dval.id eq $show.currentDid%}hasSelected{%/if%}" title="{%$dval.name%}" data-id='{%$dval.id%}'>
+			<div class="displayImg">
+			<img src="/thumb/210/{%$dval.defaultimage%}">
+			</div>
+			<p>陈列号:<b>{%$dval.bianhao%}</b></p>
+			<p>{%$dval.name%}</p>
+			<div class="seemore" data-id='{%$dval.id%}'><img src="/images/see.png"></div>
+		</span>
+	  {%/foreach%}
+	  </div>
+	  </div>
+      <ul class="prolist clearfix" id="HDT-main" data-id="{%$show.currentDid%}">
+      </ul>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>    
+  </div>
+</div>
+<script>
+seajs.use("lj/dealer1/display_new");
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.product.html"%}
+
+  <div class="mainbox">
+    <div class="main_con">
+    <div style="margin:10px 0 -20px 20px;overflow:hidden;"><a href="/product" class="buttonLink currentSelect">货品管理</a>&nbsp;&nbsp;<a href="/group" class="buttonLink">搭配管理</a>&nbsp;&nbsp;<a href="/display" class="buttonLink">陈列管理</a><!-- <a href="/product/check" class="buttonLink marginLeft50">货品核查</a> -->
+      <a href="/product/add" class="buttonLink" style="float:right;">添加货品</a>
+    </div>
+    <div class="box">
+      <table class="table01 lh20 adplist" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th>序号</th>
+          <th width="50">图片</th>
+          <th>编号</th>
+          <th>款号</th>
+          <th>款名</th>
+          <th>单价</th>
+          <th>操作</th>
+          <th>圆牌</th>
+          <th>颜色</th>
+          <th>色号</th>
+        </tr>
+        {%section name=i loop=$show.list%}
+        <tr>
+            <td rowspan="{%$show.list[i].rowspan%}">{%$smarty.section.i.rownum%}</td>
+          <td rowspan="{%$show.list[i].rowspan%}"><img src="/thumb/50/{%$show.list[i].defaultimage%}"></td>
+          <td rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].bianhao%}</td>
+          <td rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].kuanhao%}</td>
+          <td rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].name%}</td>
+          <td rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].price%}</td>
+          <td rowspan="{%$show.list[i].rowspan%}">
+            <a href="/product/add/{%$show.list[i].id%}">编辑</a>
+              <!-- {%if $show.list[i].status%}
+              {%if $show.list[i].status==1%}
+              <a href="/product/status/{%$show.list[i].id%}?status=2">正常款</a>
+              {%else%}
+              <a href="/product/status/{%$show.list[i].id%}?status=1" style="color:green;">促销款</a>
+              {%/if%}
+              {%else%}
+              {%/if%} -->
+              {%if $show.list[i].hot==1%}
+                <a href="/product/hot/{%$show.list[i].id%}?hot=0">爆款</a>
+              {%elseif $show.list[i].status==1%}
+                <a href="/product/hot/{%$show.list[i].id%}?hot=1">正常款</a>
+              {%/if%}
+              {%if $show.list[i].isspot==2%}<a href="/product/set_stock/{%$show.list[i].id%}">设置库存</a>{%/if%}
+              {%if $show.list[i].status==0%}删除款{%/if%}
+          </td>
+          {%foreach from=$show.list[i].color_list item=color%}
+          <td>{%$color.skc_id%}</td>
+          <td>{%$color.color_id|hdt_keyword%}</td>
+          <td>{%$color.color_code%}</td>
+        </tr><tr>
+          {%/foreach%}
+        </tr>
+        {%/section%}
+      </table>
+      {%$show.pagelist%}
+    </div>
+    <div class="clear"></div>
+    <!--foot-->
+     {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+   {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/product/index');
+</script>
+</body>
+</html>

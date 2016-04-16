@@ -1,0 +1,118 @@
+{%if $show.t == "user"%}
+{%if $show.start == 0%}
+<tr>
+  <th>名称</th>
+  <th>已订款量</th>
+  <th>已订数量</th>
+  <th>订量占比</th>
+  <th>SKC</th>
+  <th>金额</th>
+  <th>金额占比</th>
+  <th>折后</th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>
+  <th>{%$show.pnum%}</th>
+  <th>{%$show.num%}</th>
+  <th>100%</th>
+  <th>{%$show.skc%}</th>
+  <th>{%$show.price|price_cn%}</th>
+  <th>100%</th>
+  <th>{%$show.discount_price|price_cn%}</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-u="{%$show.list[i].num%}"  data-name="{%$show.list[i].name%}">
+  <td class="hbg" data-fliter-uid="{%$show.list[i].user_id%}" data-name="{%$show.list[i].name%}">{%$show.list[i].name%}</td>
+  <td>{%$show.list[i].pnum%}</td>
+  <td class="hbg">{%$show.list[i].num%}</td>
+  <td>{%$show.list[i].percent_num%}</td>
+  <td class="hbg">{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+  <td>{%$show.list[i].discount_price|price_cn%}</td>
+</tr>
+{%/section%}
+{%elseif $show.t == "color" || $show.t == "size" || $show.t == "price_band"%}
+{%if $show.start == 0%}
+<tr>
+  <th>名称</th>{%if $show.total_product_all_num%}<th style="width:60px;">开发款量</th>{%/if%}
+  <th>已订款量</th>
+  <th>已订数量</th>
+  <th>订量占比</th>
+  <th>SKC</th>
+  <th>金额</th>
+  <th>金额占比
+  <form method="get" action="/analysis/export">
+  		<input type="hidden" id="sx_area1" name="sx_area1" value="{%$show.sx_area1%}">
+  		<input type="hidden" id="sx_area2" name="sx_area2" value="{%$show.sx_area2%}">
+  		<input type="hidden" id="sx_fliter" name="sx_fliter" value="{%$show.sx_fliter%}">
+  		<input type="hidden" id="sx_category" name="sx_category" value="{%$show.sx_category%}">
+  		<input type="hidden" id="sx_brand" name="sx_brand" value="{%$show.sx_brand%}">
+  		<input type="hidden" id="sx_season" name="sx_season" value="{%$show.sx_season%}">
+  		<input type="hidden" id="sx_nannvzhuan" name="sx_nannvzhuan" value="{%$show.sx_nannvzhuan%}">
+  		<input type="submit" name="analysisexport" value="导出">
+  	</form></th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>{%if $show.total_product_all_num%}<th>{%$show.total_product_all_num%}</th>{%/if%}
+  <th>{%$show.pnum%}</th>
+  <th>{%$show.num%}</th>
+  <th>100%</th>
+  <th>{%$show.skc%}</th>
+  <th>{%$show.price|price_cn%}</th>
+  <th>100%</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-u="{%$show.list[i].num%}"  data-name="{%$show.list[i].name%}">
+  <td class="hbg">{%$show.list[i].name%}</td>{%if $show.total_product_all_num%}<td class="hbg">{%$show.list[i].product_all_num%}</td>{%/if%}
+  <td>{%$show.list[i].pnum%}</td>
+  <td class="hbg">{%$show.list[i].num%}</td>
+  <td>{%$show.list[i].percent_num%}</td>
+  <td class="hbg">{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}{%else%}
+{%if $show.start == 0%}
+<tr>
+  <th>名称</th>{%if $show.total_product_all_num%}<th style="width:60px;">开发款量</th>{%/if%}
+  <th>已订款量</th>
+  <th>已订数量</th>
+  <th>订量占比</th>
+  <th>SKC</th>
+  <th>金额</th>
+  <th>金额占比
+  <form method="get" action="/analysis/export">
+  		<input type="hidden" id="sx_area1" name="sx_area1" value="{%$show.sx_area1%}">
+  		<input type="hidden" id="sx_area2" name="sx_area2" value="{%$show.sx_area2%}">
+  		<input type="hidden" id="sx_fliter" name="sx_fliter" value="{%$show.sx_fliter%}">
+  		<input type="hidden" id="sx_category" name="sx_category" value="{%$show.sx_category%}">
+  		<input type="hidden" id="sx_brand" name="sx_brand" value="{%$show.sx_brand%}">
+  		<input type="hidden" id="sx_season" name="sx_season" value="{%$show.sx_season%}">
+  		<input type="hidden" id="sx_nannvzhuan" name="sx_nannvzhuan" value="{%$show.sx_nannvzhuan%}">
+  		<input type="submit" name="analysisexport" value="导出">
+  	</form></th>
+</tr>
+<tr class="col_blue">
+  <th>汇总</th>{%if $show.total_product_all_num%}<th>{%$show.total_product_all_num%}</th>{%/if%}
+  <th>{%$show.pnum%}</th>
+  <th>{%$show.num%}</th>
+  <th>100%</th>
+  <th>{%$show.skc%}</th>
+  <th>{%$show.price|price_cn%}</th>
+  <th>100%</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-u="{%$show.list[i].num%}"  data-name="{%$show.list[i].name%}">
+  <td class="hbg">{%$show.list[i].name%}</td>{%if $show.total_product_all_num%}<td class="hbg">{%$show.list[i].product_all_num%}</td>{%/if%}
+  <td>{%$show.list[i].pnum%}</td>
+  <td class="hbg">{%$show.list[i].num%}</td>
+  <td>{%$show.list[i].percent_num%}</td>
+  <td class="hbg">{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}{%/if%}

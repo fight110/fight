@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    	<div class="box">
+    	{%if $show.user.type neq 1%}
+    	<div  class="LabelText">
+    		<a class="on">总指标</a>
+    		{%if $show.user.username eq '0'%}
+    		<a href="/analysis/indicator_analysis?type=3">区域经理指标</a>
+    		{%/if%}
+    		{%if $show.user.type neq 2%}
+    		<a href="/analysis/indicator_analysis?type=2">总代指标</a>
+    		{%/if%}
+    		<a href="/analysis/indicator_analysis?type=1">单店指标</a>
+	        {%*if $show.user.username eq '0'%}
+	        <a href="/analysis/indicator_analysis?type=5">区域指标</a>
+	        <a  href="/analysis/indicator_analysis?type=6">客户类型指标</a>
+	        {%/if*%}
+	        <span style="float:right" ><input type="checkbox" id="show_all" {%if $show.show_all%}checked="checked"{%/if%}/>款色款量</span>
+    	</div>
+    	{%/if%}
+			<div>
+			{%foreach from=$show.list key=k item=val%}
+				{%foreach from=$val key=k2 item=val2%}
+				<table cellspacing="0" cellpadding="0" border="0" class="table01" style="margin-bottom: 20px;">
+					<tbody>
+						<tr class="hasbotwhite">
+							{%if $k%}
+							<th rowspan="2">{%$keyword[$k]%}</th>
+							{%else%}
+							<th rowspan="2"></th>
+							{%/if%}
+							{%if $k2%}
+							<th rowspan="2">{%$keyword[$k2]%}</th>
+							{%/if%}
+							<th colspan="4">订量</th>
+							<th colspan="4">金额</th>
+							{%if $show.show_all%}
+							<th colspan="4">款量</th>
+							<th colspan="4">款色</th>
+							{%/if%}
+						</tr>
+						<tr class="hasbotwhite">
+							<th>已订</th>
+							<th>指标</th>
+							<th>差异</th>
+							<th>完成率</th>
+							<th>已订</th>
+							<th>指标</th>
+							<th>差异</th>
+							<th>完成率</th>
+							{%if $show.show_all%}
+							<th>已订</th>
+							<th>指标</th>
+							<th>差异</th>
+							<th>完成率</th>
+							<th>已订</th>
+							<th>指标</th>
+							<th>差异</th>
+							<th>完成率</th>
+							{%/if%}
+						</tr>
+						{%section name=i loop=$val2%}
+						<tr>
+							{%if $k eq ''%}<td>总指标{%/if%}</td>
+							{%if $k%}<td>{%$val2[i].keyword_id|hdt_keyword%}</td>{%/if%}
+							{%if $k2%}<td>{%$val2[i].keyword_id2|hdt_keyword%}</td>{%/if%}
+							<td>{%$val2[i].ord_num%}</td>
+							<td>{%$val2[i].exp_num%}</td>
+							<td>{%$val2[i].diff_num%}</td>
+							<td>{%$val2[i].percent_num%}</td>
+
+							<td>{%$val2[i].ord_discount_amount|price_cn%}</td>
+							<td>{%$val2[i].exp_amount|price_cn%}</td>
+							<td>{%$val2[i].diff_amount|price_cn%}</td>
+							<td>{%$val2[i].percent_amount%}</td>
+							{%if $show.show_all%}
+							<td>{%$val2[i].ord_pnum%}</td>
+							<td>{%$val2[i].exp_pnum%}</td>
+							<td>{%$val2[i].diff_pnum%}</td>
+							<td>{%$val2[i].percent_pnum%}</td>
+
+							<td>{%$val2[i].ord_skc%}</td>	
+							<td>{%$val2[i].exp_skc%}</td>
+							<td>{%$val2[i].diff_skc%}</td>
+							<td>{%$val2[i].percent_pnum%}</td>
+							{%/if%}
+						</tr>
+						{%/section%}
+					</tbody>
+				</table>
+				{%/foreach%}
+			{%/foreach%}
+			</div>
+			</div>
+      
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/a/indicator");
+</script>
+</body>
+</html>

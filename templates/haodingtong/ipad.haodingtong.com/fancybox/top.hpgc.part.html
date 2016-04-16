@@ -1,0 +1,37 @@
+{%if $currentUser.type == 3%}
+{%if $show.user.username neq 0%}
+{%include file="fancybox/top.set_ad.html"%}
+{%/if%}
+{%elseif $currentUser.type == 2%}
+{%include file="fancybox/top.set.html"%}
+{%/if%}
+{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}":"fancybox"%}
+{%$show.brand_id|hdt_attrlist:"brand":"{%$keyword.brand_id%}":"fancybox"%}
+{%$show.season_id|hdt_attrlist:"season":"{%$keyword.season_id%}":"fancybox"%}
+{%$show.nannvzhuan_id|hdt_attrlist:"nannvzhuan":"{%$keyword.nannvzhuan_id%}":"fancybox"%}
+<div class="selectItem">
+  				<div class="selectKey">完成率:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="is_finished">
+  						<li data-value="1">已完成</li>
+  						<li data-value="2">未完成</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>
+<div class="selectItem">
+<div class="selectKey">默认排序:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="orderby">
+  						<li data-value="1">开发款量</li>
+  						<li data-value="2">已订款量</li>
+  						<li data-value="3">已订占比</li>
+  						<li data-value="4">开发SKC</li>
+  						<li data-value="5">已订SKC</li>
+  						<li data-value="6">SKC宽度</li>
+  						<li data-value="7">SKC深度</li>
+  						<li data-value="8">已订数量</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>

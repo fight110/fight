@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.ad.orders.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="selectFrontList"></div>
+      <div class="box">
+        <div class="totalbar">
+          <input type="button" value="设为删除款" id="unactive">
+          <input type="button" value="取消删除款" id="active">
+          <input type="text" name="search" placeholder="输入圆牌/款号" id="filter">
+        </div>
+        <div id="HDT-main"></div>
+      </div>
+      <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/a/orders');
+</script>
+</body>
+</html>

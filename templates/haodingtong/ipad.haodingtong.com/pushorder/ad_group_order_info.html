@@ -1,0 +1,35 @@
+{%if $show.group_info%}
+<div class="left-div">
+    <div class="contrast ad-div">
+        <img src="/thumb/210/{%$show.group_info.contrast_image%}" alt="">
+    </div>
+</div>
+<div class="right-div">
+    <ul>
+        {%section name=i loop=$show.list%}
+        <li>
+            <div class="left-img">
+                <img src="/thumb/75/{%$show.list[i].product.defaultimage|hdt_pcimage:$show.list[i].product_id:$show.list[i].color_id%}" alt="">
+            </div>
+            <div class="right-table">
+                <table cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td width="30%">款号</td>
+                        <td width="30%">款名</td>
+                        <td width="20%">颜色</td>
+                        <td width="20%">圆牌号</td>
+                    </tr>
+                    <tr>
+                        <td>{%$show.list[i].product.kuanhao%}</td>
+                        <td>{%$show.list[i].product.name%}</td>
+                        <td>{%$show.list[i].color_id|hdt_keyword%}</td>
+                        <td>{%$show.list[i].color_info.skc_id%}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="clear"></div>
+        </li>
+        {%/section%}
+    </ul>
+</div>
+{%/if%}

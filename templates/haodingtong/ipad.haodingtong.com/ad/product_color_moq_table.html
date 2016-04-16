@@ -1,0 +1,24 @@
+{%if $show.page eq 1%}
+<tr class="hbg">
+	<th>款号</th>
+	<th>款名</th>
+	<th>大类</th>
+	<th>小类</th>
+	<th>波段</th>
+	<th>订货数量</th>
+	<th>起投量</th>
+	<th>投产状态</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr>
+	<td>{%$show.list[i].kuanhao%}</td>
+	<td>{%$show.list[i].name%}</td>
+	<td>{%$show.list[i].category_id|hdt_keyword%}</td>
+	<td>{%$show.list[i].classes_id|hdt_keyword%}</td>
+	<td>{%$show.list[i].wave_id|hdt_keyword%}</td>
+	<td>{%$show.list[i].order_num|default:0%}</td>
+	<td>{%$show.list[i].moq_num%}</td>
+	<td>{%$show.list[i].id|hdt_moq_status:$show.list[i].id:$show.list[i].color_id%}</td>
+</tr>
+{%/section%}

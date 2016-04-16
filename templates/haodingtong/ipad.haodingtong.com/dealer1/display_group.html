@@ -1,0 +1,12 @@
+{%foreach from=$show.groupMembers key=gmkey item=gmval%}
+<li>
+		<h4 class="clearfix">
+  	<span class="nid">搭配号:{%$gmval.dp_num%}</span>
+  	<span class="stylenum">名称：{%$gmval.name%}</span>
+		</h4>
+		<div class="imgbox"><a href="/dealer1/groupdetailnew/{%$gmval.group_id%}?did={%$show.currentDid%}"><img src="/thumb/210/{%$gmval.defaultimage%}"></a></div>
+	<div class="orderNum">
+		订量:<em>{%$gmval.ordernum|default:0%}</em>
+	</div>
+</li>
+{%/foreach%}

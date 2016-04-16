@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+<style type="text/css">
+.indicatorAdd input {width: 120px;}
+</style>
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <a class="HDT-add buttonLink" href="/indicator/add?user_id={%$show.user_id%}" data-user-id="{%$show.user_id%}">总指标</a>
+        <a class="HDT-add buttonLink" href="/indicator/add?k=brand&user_id={%$show.user_id%}" data-field="brand_id" data-user-id="{%$show.user_id%}">{%$keyword.brand_id%}指标</a>
+        <a class="HDT-add buttonLink" href="/indicator/add?k=season&user_id={%$show.user_id%}" data-field="season_id" data-user-id="{%$show.user_id%}">{%$keyword.season_id%}指标</a>
+        <a class="HDT-add buttonLink" href="/indicator/add?k=category&user_id={%$show.user_id%}" data-field="category_id" data-user-id="{%$show.user_id%}">{%$keyword.category_id%}指标</a>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th></th>
+            <th></th>
+            <th>指标款量</th>
+            <th>指标款色</th>
+            <th>指标订量</th>
+            <th>指标金额</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%if $show.list[i].field%}{%$keyword[$show.list[i].field]%}指标{%else%}总指标{%/if%}</td>
+            <td>{%if $show.list[i].keyword_id%}{%$show.list[i].keyword_id|hdt_keyword%}{%/if%}</td>
+            <td>{%$show.list[i].exp_pnum%}</td>
+            <td>{%$show.list[i].exp_skc%}</td>
+            <td>{%$show.list[i].exp_num%}</td>
+            <td>{%$show.list[i].exp_amount%}</td>
+            <td>
+              {%if $show.list[i].status%}<a href="/indicator/set_status/{%$show.list[i].id%}?status=0" style="color:green;">有效</a>{%else%}
+              <a href="/indicator/set_status/{%$show.list[i].id%}?status=1" style="color:red;">无效</a>
+              {%/if%}
+            </td>
+            <td>
+              <a href="javascript:;" class="HDT-edit" data-id="{%$show.list[i].id%}">编辑</a>
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/template" id="TemplateIndicator">
+<form method="POST" action="/indicator/edit">
+<input type="hidden" name="id">
+<input type="hidden" name="user_id" value="{%$show.user_id%}">
+<table cellpadding=0 cellspacing=0 border=0 width="100%">
+<tr><td width="65">指标款量:</td><td><input type="text" name="exp_pnum"></td></tr>
+<tr><td width="65">指标款色:</td><td><input type="text" name="exp_skc"></td></tr>
+<tr><td width="65">指标订量:</td><td><input type="text" name="exp_num"></td></tr>
+<tr><td width="65">指标金额:</td><td><input type="text" name="exp_amount"></td></tr>
+<tr><td colspan="2"><input type="submit" value="保存"></td></tr>
+</table>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/indicator/user');
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{%if $currentUser.type == 3%}
+{%if $show.user.username eq '0'%}
+<li class="Selects">
+    <select name="area1"></select>
+    <select name="area2"></select>
+</li>
+<li>
+	<select name="fliter_uid"></select>
+</li>
+{%else%}
+<li class="Selects" {%if $show.user.area2%}data-default="{%$show.user.area2%}"{%elseif $show.user.area1%}data-default="{%$show.user.area1%}"{%/if%}">
+    <select name="area1" {%if $show.user.area1 neq 0%}disabled="disabled"{%/if%}></select>
+    <select name="area2" {%if $show.user.area2 neq 0%}disabled="disabled"{%/if%}></select>
+</li>
+<li>
+	<select name="fliter_uid"></select>
+</li>
+{%/if%}
+{%elseif $currentUser.type == 2%}
+{%include file="fancybox/top.set.html"%}
+{%/if%}
+{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}":"fancybox"%}
+{%$show.brand_id|hdt_attrlist:"brand":"{%$keyword.brand_id%}":"fancybox"%}
+{%$show.season_id|hdt_attrlist:"season":"{%$keyword.season_id%}":"fancybox"%}
+{%$show.nannvzhuan_id|hdt_attrlist:"nannvzhuan":"{%$keyword.nannvzhuan_id%}":"fancybox"%}

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.color.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="totalbar">
+        	历史数据
+        </div>
+        
+        <table border="0" cellpadding="0" cellspacing="0" class="table01" id="HDT-main" style="table-layout:auto;">
+        </table>
+        
+      </div>
+      <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/custom/meforever/history');
+</script>
+</body>
+</html>

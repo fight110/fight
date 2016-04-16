@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>[{%$show.u.username%}]{%$show.u.name%} {%$show.company.fairname%} 订单审核</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.main_box {margin-bottom: 100px;}
+.f22{font-size:22px; font-weight:bold; line-height:48px;}
+.f18{font-size:18px; font-weight:bold; line-height:38px;}
+.tc{text-align:center;}
+table{border-collapse:collapse; border:none;margin-bottom: 20px;}
+th{background: none repeat scroll 0 0 #e9e9e9; border: 1px solid #c9c9c9; color: #666666;}
+td{background-color:#FFF;border:1px solid #e9e9e9;}
+td span {font-size: 14px;}
+p {margin: 0px;}
+.tit {text-align: center;}
+.hidden {display: none;}
+</style>
+</head>
+
+<body>
+  <div class="f22 tc">订单审核</div>
+  <div class="main_box">
+  <div class="tit f18">用户信息</div>
+  <table width="400" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+    <tr>
+      <th width="200">用户帐号</th>
+      <td width="200">{%$show.u.username%}</td>
+    </tr>
+    <tr>
+      <th>用户名称</th>
+      <td>{%$show.u.name%}</td>
+    </tr>
+    <tr>
+      <th>用户所属大区</th>
+      <td>{%$show.area1.name%}</td>
+    </tr>
+    <tr>
+      <th>用户上级</th>
+      <td>{%$show.agentname%}</td>
+    </tr>
+    <tr>
+      <th>用户等级</th>
+      <td>{%$show.u.user_level|hdt_keyword%}</td>
+    </tr>
+    <tr>
+      <th>订单店铺数</th>
+      <td>{%$show.user_num%}</td>
+    </tr>
+    <tr>
+      <th>OTB指标完成率</th>
+      <!-- <td>{%$show.user_indicator_list.exp_amount|default:'-'|price_cn%}</td> -->
+      {%$price_percent=$show.user_exp_total.price/$show.user_indicator_list.exp_amount*100%}
+      <td style="background-color:{%if $price_percent gte 100%}green{%else%}red{%/if%}">
+        {%$price_percent|string_format:'%.2f'%}%
+      </td>
+    </tr>
+  </table>
+  <div class="tit f18">
+    <a href="/orderlist/print_now/{%$show.u.username%}?key={%$show.company.print_type%}{%if $show.u.type eq 1%}&shendan=1{%/if%}">订单明细</a>
+    </div>
+    {%if $show.user_exp_list%}
+  <div class="tit f18">审核项:用户指标完成率</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999"  align="center">
+    <tr>
+      <th rowspan="2">{%$keyword.category_id%}</th>
+      <th colspan="6">订货</th>
+      <th colspan="3">指标</th>
+    </tr>
+    <tr>
+      <th>款色</th>
+      <th>占比</th>
+      <th>数量</th>
+      <th>占比</th>
+      <th>吊牌金额</th>
+      <th>占比</th>
+      <th>款色</th>
+      <th>数量</th>
+      <th>吊牌金额</th>
+    </tr>
+    {%foreach from=$show.user_exp_list key=k item=val%}
+    <tr>
+      <td>{%$val.category_id|hdt_keyword%}</td>
+      <td>{%$val.skc%}</td>
+      <td>{%$val.skc_percent%}%</td>
+      <td>{%$val.num|default:0%}</td>
+      <td>{%$val.num_percent%}%</td>
+      <td>{%$val.price|price_cn|default:0%}</td>
+      <td>{%$val.price_percent%}%</td>
+      <td>{%$val.indicator.exp_skc|default:'-'%}</td>
+      <td>{%$val.indicator.exp_num|default:'-'%}</td>
+      <td>{%$val.indicator.exp_amount|default:'-'|price_cn%}</td>
+    </tr>
+    {%/foreach%}
+    <tr>
+      <td>总计</td>
+      <td>{%$show.user_exp_total.skc%}</td>
+      <td>100%</td>
+      <td>{%$show.user_exp_total.num%}</td>
+      <td>100%</td>
+      <td>{%$show.user_exp_total.price%}</td>
+      <td>100%</td>
+      <td>{%$show.user_indicator_list.exp_skc|default:'-'%}</td>
+      <td>{%$show.user_indicator_list.exp_num|default:'-'%}</td>
+      <td>{%$show.user_indicator_list.exp_amount|default:'-'|price_cn%}</td>
+    </tr>
+  </table>
+  {%/if%}
+  {%if $show.user_content_list%}
+  <div class="tit f18">审核项：用户订货结构</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+    <tr>
+      <th style="min-width:100px;">{%$keyword.category_id%}</th>
+      <th>订货金额</th>
+      <th>订货数量</th>
+      <th>平均单价</th>
+      <th>订货款色宽度</th>
+      <th>订货款色深度</th>
+      <th>款色深度指标</th>
+      <th>&nbsp</th>
+    </tr>
+    {%foreach from=$show.user_exp_list key=k item=val%}
+    <tr>
+      <td>{%$val.category_id|hdt_keyword%}+</td>
+      <td>{%$val.price|price_cn|default:0%}</td>
+      <td>{%$val.num|default:0%}</td>
+      <td>{%$val.average_price|price_cn|default:0%}</td>
+      <td>{%$val.skc%}</td>
+      <td>{%$val.skc_depth%}</td>
+      <td>{%$val.indicator.exp_skc_depth|default:'-'%}</td>
+      <td ><a href="javascript:void(0)" class="toggle_td" data-keyword="{%$val.category_id%}">展开</a></td>
+    <tr>
+    {%foreach from=$show.user_content_list[$val.category_id] key=k2 item=val2%}
+      <tr class="hidden" data-keyword="{%$val.category_id%}">
+        <td>　　{%$val2.classes_id|hdt_keyword%}</td>
+        <td>{%$val2.price|price_cn|default:0%}</td>
+        <td>{%$val2.num|default:0%}</td>
+        <td>{%$val2.average_price|price_cn|default:0%}</td>
+        <td>{%$val2.skc%}</td>
+        <td>{%$val2.skc_depth%}</td>
+        <td>{%$val2.indicator.exp_skc_depth|default:'-'%}</td>
+        <td></td>
+      </tr>
+    {%/foreach%}
+    {%/foreach%}
+  </table>
+  {%/if%}
+  {%if $show.user_need_list%}
+  <div class="tit f18">必订款管控</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+      <tr>
+        <th rowspan="2">{%$keyword.category_id%}</th>
+        <th colspan="2">款色</th>
+        <th colspan="3">数量</th>
+        <th colspan="3">金额</th>
+      </tr>
+      <tr>
+        <th>必订款开发款色数</th>
+        <th>必订款已订款色数</th>
+        <th>必订款已订数量</th>
+        <th>总订货数量</th>
+        <th>必订款比重</th>
+        <th>必订款已订金额</th>
+        <th>总订货金额</th>
+        <th>必订款比重</th>
+      </tr>
+      {%foreach from=$show.user_need_list key=k item=val%}
+      <tr>
+        <td>{%$k|hdt_keyword%}</td>
+        <td>{%$val.design_skc|default:0%}</td>
+        <td>{%$val.skc|default:0%}</td>
+        <td>{%$val.num|default:0%}</td>
+        <td>{%$show.user_exp_list[$k].num|default:0%}</td>
+        <td>{%$val.num_percent%}</td>
+        <td>{%$val.price|price_cn|default:0%}</td>
+        <td>{%$show.user_exp_list[$k].price|price_cn|default:0%}</td>
+        <td>{%$val.price_percent%}</td>
+      </tr>
+      {%/foreach%}
+      <tr>
+        <td>合计</td>
+        <td>{%$show.need_list_total.design_skc%}</td>
+        <td>{%$show.need_list_total.skc%}</td>
+        <td>{%$show.need_list_total.num|default:0%}</td>
+        <td>{%$show.need_list_total.num_total|default:0%}</td>
+        <td>100%</td>
+        <td>{%$show.need_list_total.price|price_cn|default:0%}</td>
+        <td>{%$show.need_list_total.price_total|price_cn|default:0%}</td>
+        <td>100%</td>
+      </tr>
+  </table>
+  {%/if%}
+  {%if $show.user_style_list%}
+  <div class="tit f18">审核项：{%$keyword.style_id%}</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+      <tr>
+        <th rowspan="2">{%$keyword.style_id%}</th>
+        <th colspan="2">款色</th>
+        <th colspan="2">数量</th>
+        <th colspan="2">金额</th>
+      </tr>
+      <tr>
+        <th>开发款色数</th>
+        <th>已订款色数</th>
+        <th>已订数量</th>
+        <th>比重</th>
+        <th>已订金额</th>
+        <th>比重</th>
+      </tr>
+      {%foreach from=$show.user_style_list key=k item=val%}
+      <tr>
+        <td>{%$k|hdt_keyword%}</td>
+        <td>{%$val.design_skc%}</td>
+        <td>{%$val.skc%}</td>
+        <td>{%$val.num|default:0%}</td>
+        <td>{%$val.num_percent%}</td>
+        <td>{%$val.price|price_cn|default:0%}</td>
+        <td>{%$val.price_percent%}</td>
+      </tr>
+      {%/foreach%}
+      <tr>
+        <td>合计</td>
+        <td>{%$show.user_style_total.design_skc%}</td>
+        <td>{%$show.user_style_total.skc%}</td>
+        <td>{%$show.user_style_total.num%}</td>
+        <td>100%</td>
+        <td>{%$show.user_style_total.price|price_cn|default:0%}</td>
+        <td>100%</td>
+      </tr>
+  </table>
+  {%/if%}
+
+  {%if $show.user_main_push_list%}
+  <div class="tit f18">审核项：{%$keyword.main_push_id%}</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+      <tr>
+        <th rowspan="2">{%$keyword.main_push_id%}</th>
+        <th colspan="2">款色</th>
+        <th colspan="2">数量</th>
+        <th colspan="2">金额</th>
+      </tr>
+      <tr>
+        <th>开发款色数</th>
+        <th>已订款色数</th>
+        <th>已订数量</th>
+        <th>比重</th>
+        <th>已订金额</th>
+        <th>比重</th>
+      </tr>
+      {%foreach from=$show.user_main_push_list key=k item=val%}
+      <tr>
+        <td>{%$k|hdt_keyword%}</td>
+        <td>{%$val.design_skc%}</td>
+        <td>{%$val.skc%}</td>
+        <td>{%$val.num|default:0%}</td>
+        <td>{%$val.num_percent%}</td>
+        <td>{%$val.price|price_cn|default:0%}</td>
+        <td>{%$val.price_percent%}</td>
+      </tr>
+      {%/foreach%}
+      <tr>
+        <td>合计</td>
+        <td>{%$show.user_main_push_total.design_skc%}</td>
+        <td>{%$show.user_main_push_total.skc%}</td>
+        <td>{%$show.user_main_push_total.num%}</td>
+        <td>100%</td>
+        <td>{%$show.user_main_push_total.price|price_cn|default:0%}</td>
+        <td>100%</td>
+      </tr>
+  </table>
+  {%/if%}
+  {%if $show.user_brand_list%}
+  <div class="tit f18">审核项：商品性质</div>
+  <table width="800" border="0" cellpadding="4" cellspacing="0" bgcolor="#999999" align="center">
+      <tr>
+        <th>商品性质</th>
+        <th>订货数量</th>
+        <th>订货吊牌金额</th>
+        <th>金额占比</th>
+      </tr>
+      <!-- <tr>
+        <th>开发款色数</th>
+        <th>已订款色数</th>
+        <th>已订数量</th>
+        <th>比重</th>
+        <th>已订金额</th>
+        <th>比重</th>
+      </tr> -->
+      {%foreach from=$show.user_brand_list key=k item=val%}
+      <tr>
+        <td>{%$k|hdt_keyword%}</td>
+        <!-- <td>{%$val.design_skc%}</td> -->
+        <!-- <td>{%$val.skc%}</td> -->
+        <td>{%$val.num|default:0%}</td>
+        <!-- <td>{%$val.num_percent%}</td> -->
+        <td>{%$val.price|price_cn|default:0%}</td>
+        <td>{%$val.price_percent%}</td>
+      </tr>
+      {%/foreach%}
+     <!--  <tr>
+        <td>合计</td>
+        <td>{%$show.user_style_total.design_skc%}</td>
+        <td>{%$show.user_style_total.skc%}</td>
+        <td>{%$show.user_style_total.num%}</td>
+        <td>100%</td>
+        <td>{%$show.user_style_total.price|price_cn|default:0%}</td>
+        <td>100%</td>
+      </tr> -->
+  </table>
+  {%/if%}
+</div>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+  $('.toggle_td').on('click',function(){
+    var data_keyword = $(this).attr('data-keyword');
+    if("展开"==$(this).text()){
+      $(this).text("收起");
+    }else{
+      $(this).text("展开");
+    }
+    $(".hidden").each(function(){
+      if($(this).attr('data-keyword')==data_keyword){
+        $(this).toggle();
+      }
+    })
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <form>
+          <tr class="hbg">
+            <th width="100">客户过滤:</th>
+            <th colspan=6>
+              <span class="Selects" data-default="{%if $show.area2%}{%$show.area2%}{%else%}{%$show.area1%}{%/if%}"><select name="area1"></select><select name="area2"></select></span> 
+              <input type="text" name="search_user" value="{%$show.search_user%}" placeholder="输入用户名/帐号">
+              <input type="submit" value="确定">
+            </th>
+          </tr>
+          <tr>
+                  <th colspan="7">
+                    款别:<select name="style_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.style_list%}
+                    <option value="{%$show.style_list[i].keyword_id%}" {%if $show.style_list[i].keyword_id == $show.style_id%}selected="selected"{%/if%}>{%$show.style_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.wave_id%}:<select name="wave_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.wave_list%}
+                    <option value="{%$show.wave_list[i].keyword_id%}" {%if $show.wave_list[i].keyword_id == $show.wave_id%}selected="selected"{%/if%}>{%$show.wave_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.category_id%}:<select name="category_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.category_list%}
+                    <option value="{%$show.category_list[i].keyword_id%}" {%if $show.category_list[i].keyword_id == $show.category_id%}selected="selected"{%/if%}>{%$show.category_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    {%$keyword.series_id%}:<select name="series_id">
+                    <option value="">所有</option>
+                    {%section name=i loop=$show.series_list%}
+                    <option value="{%$show.series_list[i].keyword_id%}" {%if $show.series_list[i].keyword_id == $show.series_id%}selected="selected"{%/if%}>{%$show.series_list[i].keywords.name%}</option>
+                    {%/section%}
+                    </select>
+                    <input type="text" name="search" value="{%$show.search%}" placeholder="输入款名/编号">
+                  </th>
+                </tr>
+          </form>
+          </tbody></table>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01"  style="table-layout:auto;">
+          <tbody>
+          <tr class="hbg">
+            <th colspan=4>货品信息</th>
+            <th colspan={%$show.size_count%}>尺码</th>
+          </tr>
+          <tr class="hbg">
+            <th>编号</th>
+            <th>款名</th>
+            <th>款号</th>
+            <th>颜色</th>
+            {%section name=i loop=$show.size_list%}
+            <th>{%$show.size_list[i].keywords.name%}</th>
+            {%/section%}
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].bianhao%}</td>
+            <td>{%$show.list[i].name%}</td>
+            <td>{%$show.list[i].kuanhao%}</td>
+            <td>{%$show.list[i].color.name%}</td>
+            {%section name=j loop=$show.list[i].size_list%}
+            <td>{%$show.list[i].size_list[j].num%}</td>
+            {%/section%}
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/crosstable/index');
+</script>
+</body>
+</html>

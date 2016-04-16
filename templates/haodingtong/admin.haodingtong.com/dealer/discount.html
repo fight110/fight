@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+<style type="text/css">  
+        .Bar  
+        {    
+            border: 1px solid #B1D632;  
+            height: 20px;
+            display : none;
+        }  
+        .Bar div  
+        {  
+            width:0px;  
+            background: #090;  
+            height: 20px; 
+        }  
+        .Bar div span  
+        {  
+            position: absolute;  
+            text-align: center;  
+            font-weight: bold;  
+        }  
+</style>  
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%$show.u.username%} {%$show.u.name%} 
+        <input type="button" value="更新当前用户缓存" data-user="{%$show.u.id%}" class="refuser"></input>
+        <input type="button" value="更新全部用户缓存" class="refuser_all"></input>
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3></h3>
+            <ul>
+            <li><a href="/dealer/discount/{%$show.id%}?t=category" id="kh_category">{%$keyword.category_id%}折扣</a></li>
+            <li><a href="/dealer/discount/{%$show.id%}?t=brand" id="kh_brand">{%$keyword.brand_id%}折扣</a></li>
+            <!-- <li><a href="/dealer/khdiscount/{%$show.id%}" id="kh_kuanhao">款号折扣</a></li> -->
+            </ul>
+            </div>
+<script>
+(function(){
+  var menuid = "kh_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>
+          <div class="cons_main">
+            <div class="cons_tabl" id="HDT-main" data-user-id="{%$show.id%}" data-field="{%$show.t%}">
+              <table  border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <th>{%if $message%}<font color="red">{%$message%}</font>{%/if%}</th>
+                  <th>折扣(输入0-1的值)</th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td>{%$show.list[i].keywords.name%}</td>
+                  <td>
+                    <input type="text" name="exp_pnum" data-keyword-id="{%$show.list[i].keyword_id%}" value="{%$show.list[i].exp.category_discount%}" style="width:80px;">
+                    {%if $show.u.type eq 1%}
+                    <input type="button" value="应用到全部店仓" keyword-id="{%$show.list[i].keyword_id%}" class="apply_btn"></input>
+                    {%elseif $show.u.type eq 2%}
+                    <input type="button" value="应用到全部下线" keyword-id="{%$show.list[i].keyword_id%}" class="apply_btn"></input>
+                    {%/if%}
+                  </td>
+                </tr>
+                {%/section%}
+              </table>
+            </div>
+            <div class="Bar">
+            <div id="jindu">
+            	<span id="num"></span>
+            </div>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/dealer/discount');
+</script>
+</body>
+</html>

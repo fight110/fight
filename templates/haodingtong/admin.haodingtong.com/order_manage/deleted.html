@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>订单管理</h3>
+            {%include file="order_manage/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0"  style="table-layout:auto;">
+                {%section name=i loop=$show.product_list%}
+                <tr>
+                  <th colspan="6">
+                    <font color="red">待删{%$keyword.style_id%}</font>:{%$show.product_list[i].name%}
+                    编号:{%$show.product_list[i].bianhao%}
+                    款号:{%$show.product_list[i].kuanhao%}
+                    订数:{%$show.product_list[i].num%}
+                    金额:{%$show.product_list[i].price%}
+                    总数:{%$show.product_list[i].unum%}家
+                  </th>
+                  <th>
+                    <a href="/order_manage/cancel_wd/{%$show.product_list[i].id%}?delete=1"><font color="red">确认删除</font></a> 
+                    <a href="/order_manage/cancel_wd/{%$show.product_list[i].id%}">取消</a>
+                  </th>
+                </tr>
+                {%/section%}
+                <tr>
+                  <th colspan="2">{%$keyword.style_id%}名称</th>
+                  <th>款号</th>
+                  <th>编号</th>
+                  <th>订数</th>
+                  <th>金额</th>
+                  <th>操作</th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td colspan="2">{%$show.list[i].name%}</td>
+                  <td>{%$show.list[i].kuanhao%}</td>
+                  <td>{%$show.list[i].bianhao%}</td>
+                  <td>{%$show.list[i].orderlist.num%}</td>
+                  <td>{%$show.list[i].orderlist.price%}</td>
+                  <td>
+                    已删 |
+                    <a href="/product/status/{%$show.list[i].id%}?status=1">还原</a></td>
+                </tr>{%/section%}
+                
+              </table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/order_manage/style');
+</script>
+</body>
+</html>

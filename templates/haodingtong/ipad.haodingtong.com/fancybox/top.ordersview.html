@@ -1,0 +1,26 @@
+{%$show.series_id|hdt_attrlist:"series":"{%$keyword.series_id%}":"fancybox"%}
+{%$show.wave_id|hdt_attrlist:"wave":"{%$keyword.wave_id%}":"fancybox"%}
+{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}":"fancybox"%}
+{%$show.classes_id|hdt_attrlist:"classes":"{%$keyword.classes_id%}":"fancybox"%}
+<div class="selectItem">
+  				<div class="selectKey">正常/删除款:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="color_status" data-default="1">
+  						<li data-value="1">正常款</li>
+  						<li data-value="0">删除款</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>
+<div class="selectItem">
+  				<div class="selectKey">排行榜:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="order" data-select="{%$show.order%}">
+  						<li data-value="skc asc">圆牌号小→大</li>
+  						<li data-value="skc desc">圆牌号大→小</li>
+  						<li data-value="num asc">订量小→大</li>
+  						<li data-value="num desc">订量大→小</li>
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>

@@ -1,0 +1,269 @@
+<div id="loader" style="z-index:999;width:100px;height:100px;position: absolute;left: 40%;top: 20%"></div>
+<div id="fancyboxProductMain">
+<!-- <div class="fancyboxTableft"><ul><li class="selectTab">加入购买</li><li>商品详情</li><li class="thirdTab">效果展示</li></ul></div> -->
+<div class="fancyboxTabRight">
+<div class="input_bg">
+  <button type="submit" class="close"></button>
+  <input type="{%$show.company.keyboard|default:'number'%}" class="search" placeholder="输入编号/圆牌号" />
+  {%if $show.slide_navi neq 1%}
+  <div class="fanye">
+    <button type="button" class="shangyiye gotobtn" data-f="up"></button>
+    <button type="button" class="xiayiye gotobtn" data-f="down"></button>
+  </div>
+  {%/if%}
+</div>
+<ul class="productDetail">
+<li class="productTab firstProTab">
+<div class="probox">
+    <dl class="this_txt clearfix this_txt_2">
+    <dt>
+    	序号:{%$show.productdetail.bianhao%}
+    	<ul class="detailTopImgul webkit_scroll">
+    	{%section name=i loop=$show.imagelist%}<li><img src="/thumb/75/{%$show.imagelist[i].image%}"></li>{%/section%}
+    	</ul>
+    </dt>
+    <dd style="width:300px;">
+      <div class="imgbox"><img src="/thumb/280/{%$show.imagelist.0.image%}" id="HDT-photos-m">
+      </div></dd>
+    <dd class="specialDd">
+    	{%if $show.productdetail.season%}<span class="spanTag">{%$show.productdetail.season%}</span>{%/if%}
+    	{%if $show.productdetail.series%}<span class="spanTag">{%$show.productdetail.series%}</span>{%/if%}
+    	{%if $show.productdetail.theme%}<span class="spanTag">{%$show.productdetail.theme%}</span>{%/if%}
+    	{%if $show.productdetail.wave%}<span class="spanTag">{%$show.productdetail.wave%}</span>{%/if%}
+    	{%if $show.productdetail.status%}
+    	{%if $show.productdetail.style%}
+    	<span class="spanTag">{%$show.productdetail.style%}</span>
+    	{%/if%}
+    	{%else%}
+    	<span class="spanTag">删除款</span>   	
+    	{%/if%}
+    	{%if $show.productdetail.category%}<span class="spanTag">{%$show.productdetail.category%}</span>{%/if%}	
+	</dd>
+    <dd style="width:300px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td><b>款号</b>：{%$show.productdetail.kuanhao%}</td></tr>
+      <tr><td><b>款名</b>：{%$show.productdetail.name%}</td></tr>
+      <tr><td><b>单价</b>：
+        {%if $show.company.price_purchase_type eq '' && $show.user.discount_type==1%}
+        <span class="jiage">¥ {%$show.productdetail.price%}</span> 买断价：<strong>¥ {%$show.productdetail.price_purchase%}</strong>
+        {%elseif $show.company.price_purchase_type && $show.productdetail.price_purchase gt 0%}
+        <span class="jiage">¥ {%$show.productdetail.price%}</span> 买断价：<strong>¥ {%$show.productdetail.price_purchase%}</strong>
+        {%elseif $show.discount==1 || $show.company.display_discount eq 0%}<span class="jiage">¥ {%$show.productdetail.price%}</span>
+        {%else%}<span class="jiage"><del>¥ {%$show.productdetail.price%}</del></span> 折后：<strong>¥ {%$show.discount_price%}</strong>
+        {%/if%}
+      </td></tr>
+      <!-- <tr><td><b>圆牌</b>：<span class="skc_id">{%$show.skc_string%}</span></tr> -->
+      <tr><td><b>收藏</b>：
+          <div class="rateit bigstars" id="rateit1" {%if $show.store_rateval%}data-rateit-value="{%$show.store_rateval%}"{%/if%} data-rateit-starwidth="32" data-rateit-resetable="false" data-rateit-starheight="32" data-rateit-step="1"></div>
+          &nbsp;<a id="HDT_reset_store"><img src="/style/images/delete_gray.png"></a>
+        </td></tr>
+      <tr>
+            <td class="lastTd">
+            
+            </td>
+      </tr>
+    </table>
+    </dd>
+    </dl>
+      
+    {%if $show.has_permission_brand%}
+    {%if $show.company.order_proportion_status%}
+    <div class="pro_tabl">
+      <table border="0" cellspacing="0" cellpadding="0" id="proportion_table">
+        <tr>
+          <th>颜色</th>
+          <th>配比</th>
+          <th>箱数</th>
+        </tr>
+        {%foreach from=$show.color_list item=color%}
+          {%if $color.status%}
+          {%foreach from=$show.proportion_list item=proportion%}
+          <tr>
+            <td>{%$color.name%}</td>
+            <td>{%$proportion.proportion%}</td>
+            <td><input type="number" data-color-id="{%$color.color_id%}" data-proportion="{%$proportion.proportion%}" data-proportion-id="{%$proportion.id%}"></td>
+          </tr>
+          {%/foreach%}
+          {%else%}
+          <tr>
+            <td>{%$color.name%}</td><td colspan="2">此款色已删除</td>
+          </tr>
+          {%/if%}
+        {%/foreach%}
+      </table> 
+      <span class="floatRight">
+        <input name="button1"  type="button" class="btn_gree" value="保存订单" id="HDT-order-save"/>
+        <input name="button2"  type="button" class="btn_gray2" value="取消订单" id="HDT-order-cancel" />
+      </span>
+    </div>
+	{%elseif $show.user_group_list%}
+      <div class="pro_tabl">
+        <ul class="mulit_user">
+        <li class="on" data-user-id="{%$show.user.id%}">{%$show.user.name%}</li>
+        {%section name=i loop=$show.user_group_list%}
+        {%if $show.user_group_list[i].id != $show.user.id%}<li data-user-id="{%$show.user_group_list[i].id%}">{%$show.user_group_list[i].name%}</li>{%/if%}
+        {%/section%}
+        </ul>
+      </div>
+    {%/if%}
+    <div class="pro_tabl">
+      <table border="0" cellspacing="0" cellpadding="0" id="HDT-order-table" data-product-id="{%$show.productdetail.id%}" data-start-num="{%$show.productdetail.order_start_num%}" data-start-pass="{%$show.company.order_start_pass%}" {%if $show.company.moq_control eq 1%}data-moq="{%$show.productdetail.mininum%}"{%/if%}>
+        <tr>
+          <th width="80px">圆牌</th>
+          <th>颜色</th>
+          {%if $show.company.user_guide%}
+          <th>指导数</th>
+          {%/if%}
+          {%section name=i loop=$show.size_list%}
+          <th>{%$show.size_list[i].name%}</th>
+          {%/section%}
+          <th>小计</th>
+        </tr>
+        {%section name=i loop=$show.color_list%}
+        <tr data-color-id="{%$show.color_list[i].color_id%}" {%if $show.company.moq_control eq 1%}data-color-moq="{%$show.color_list[i].mininum%}"{%/if%} data-color-name="{%$show.color_list[i].name%}" class="detailColor">
+          <td>{%$show.color_list[i].skc_id%}{%if $show.color_list[i].main_push_id%}<br><em>({%$show.color_list[i].main_push_id|hdt_keyword%})</em>{%/if%}</td>
+          <td>{%$show.color_list[i].name%}{%if $show.company.is_need_text && $show.color_list[i].is_need%}<br><em>({%$show.company.is_need_text%})</em>{%/if%}</td>
+          {%if $show.company.user_guide%}
+          <td>{%$show.color_list[i].user_guide%}</td>
+          {%/if%}
+          {%if $show.color_list[i].status%}
+          {%section name=j loop=$show.size_list%}
+          <td>
+           <input type="number" style="width:90%;" {%if $show.productdetail.status%}readonly="readonly"{%else%}disabled="disabled"{%/if%} data-product-id="{%$show.productdetail.id%}" data-color-id="{%$show.color_list[i].color_id%}" data-size-id="{%$show.size_list[j].size_id%}" data-category-id="{%$show.productdetail.category_id%}" {%if $show.company.proportion_status%}data-is-proportion="{%$show.productdetail.is_proportion%}" {%if $show.productdetail.is_proportion%}data-proportion-list="{%$show.productdetail.proportion_list%}"{%/if%}{%/if%} kb-keyword="{%$show.productdetail.category_id%}" data-max="{%$show.company.data_max|default:999%}">
+          </td>
+          {%/section%}
+          {%else%}
+          <td colspan="{%$show.size_list|count%}">此款色已删除</td>
+          {%/if%}
+          <td class="HDT-order-count">&nbsp;</td>
+        </tr>
+        {%/section%}
+        <tr>
+          <td colspan={%2 + $show.size_count%}>
+            总计:<em class="HDT-count-all"></em> {%if $show.productdetail.status==0%}<font color="red">此款已删除</font>{%/if%}
+          </td>
+        </tr>
+      </table>
+    </div>
+    {%if $show.size_history_list%}
+    <div class="pro_tabl">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <th>历史尺码</th>
+          {%foreach from=$show.size_list key=k item=val%}
+          <th>{%$val.size_id|hdt_keyword%}</th>
+          {%/foreach%}
+        </tr>
+        <tr>
+          <td>大类销售量</td>
+          {%foreach from=$show.size_list key=k item=val%}
+          <td>{%$show.size_history_list[$val.size_id].num|default:0%}</td>
+          {%/foreach%}
+        </tr>
+      </table>
+    </div>
+    {%/if%}
+
+    <div style="overflow:hidden;"><span class="sbtn minorder">
+       <!-- {%if $show.productdetail.mininum%}最小起订量:<em id="HDT-minimum">{%$show.productdetail.mininum%}</em>件{%/if%} -->
+       {%if $show.productdetail.basenum%}按箱订货:<em id="HDT-minimum">{%$show.productdetail.basenum%}</em>件每箱{%/if%}
+       {%if $show.mininum_list%}最小起订量:<em id="HDT-minimum">{%$show.mininum_list%}</em>{%/if%}
+    </span>
+    {%if !$show.company.order_proportion_status%}
+    <span class="floatRight">
+    <input name="button1"  type="button" class="btn_gree" value="保存订单" hdt-p="orderSave" id="HDT-order-save"/>
+    <input name="button2"  type="button" class="btn_gray2" value="取消订单" hdt-p="orderCancel" id="HDT-order-cancel"/>
+    </span>
+    {%/if%}
+    </div>
+    {%else%}
+    <div style="text-align: center;border-top: 1px solid #e9e9e9;">无该{%$keyword.brand_id%}货品下单权限</div>
+    {%/if%}
+
+    {%if $show.productdetail.isspot==2%}
+    <div class="pro_tabl" id="HDT-stock"></div>
+    {%/if%}
+
+    {%if $show.user.mid%}
+    <div class="pro_tabl" id="HDT-master-orderlist"></div>
+    {%/if%}
+    </div>
+ <div class="d_intro">
+      <h3>货品详情</h3>
+      <div class="attributes-list">
+        <ul>
+          <li class="li-kuan"><b>编号：</b>{%$show.productdetail.bianhao%}</li>
+          <li><b>款号：</b>{%$show.productdetail.kuanhao%}</li>
+          <li><b>货号：</b>{%$show.productdetail.huohao%}</li>
+          {%if $show.productdetail.season%}<li><b>季节：</b>{%$show.productdetail.season%}</li>{%/if%}
+          {%if $show.productdetail.price%}<li><b>价格：</b>{%$show.productdetail.price%}</li>{%/if%}
+          {%if $show.productdetail.price_band%}<li><b>价格带：</b>{%$show.productdetail.price_band%}</li>{%/if%}
+          {%if $show.productdetail.series%}<li><b>系列：</b>{%$show.productdetail.series%}</li>{%/if%}
+          {%if $show.productdetail.wave%}<li><b>波段：</b>{%$show.productdetail.wave%}</li>{%/if%}
+          {%if $show.productdetail.category%}<li><b>大类：</b>{%$show.productdetail.category%}</li>{%/if%}
+          {%if $show.productdetail.medium%}<li><b>中类：</b>{%$show.productdetail.medium%}</li>{%/if%}
+          {%if $show.productdetail.classes%}<li><b>小类：</b>{%$show.productdetail.classes%}</li>{%/if%}
+          {%if $show.productdetail.style%}<li><b>款别：</b>{%$show.productdetail.style%}</li>{%/if%}
+          {%if $show.productdetail.theme%}<li><b>主题：</b>{%$show.productdetail.theme%}</li>{%/if%}
+          {%if $show.productdetail.date_market%}<li><b>上市日期：</b>{%$show.productdetail.date_market%}</li>{%/if%}
+          {%if $show.productdetail.designer%}<li><b>设计师：</b>{%$show.productdetail.designer%}</li>{%/if%}
+          {%if $show.productdetail.fabric%}<li><b>面料：</b>{%$show.productdetail.fabric%}</li>{%/if%}
+          {%if $show.productdetail.edition%}<li><b>亲子：</b>{%$show.productdetail.edition%}</li>{%/if%}
+          {%if $show.productdetail.contour%}<li><b>轮廓：</b>{%$show.productdetail.contour%}</li>{%/if%}
+        </ul>
+        <div style="clear:both;"></div>
+      </div>
+      {%* if $show.perf_list%}
+      <div><b>促销政策</b>：
+      {%section name=i loop=$show.perf_list%}
+      订量达到<em>{%$show.perf_list[i].start_num%}</em>时可享受优惠价<em>{%$show.perf_list[i].price%}</em>
+      {%/section%}
+      </div>
+      {%/if *%}
+      {%if $show.productdetail.content%}
+      <b>卖点</b>：{%$show.productdetail.content%}
+      {%/if%}
+    </div>
+    	
+<!-- </li><li class="productTab"> -->
+    <div id="HDT-photos" style="margin-top:10px;">
+      <div class="pro_photo">
+        <div class="relat" id="HDT-photos-big" style="width:460px;height:458px;margin:0 auto;overflow:hidden;">
+            <ul class='swipe-wrap'>
+            {%section name=i loop=$show.imagelist%}
+            <li>
+                <img src="/thumb/458/{%$show.imagelist[i].image%}">
+            </li>
+            {%/section%}
+            </ul>
+          <!-- {%if $show.unorder%}<div class="unorder1"></div>{%/if%} -->
+        </div>
+      </div>
+      <div class="smallpic clearfix">
+      <ul id="indicator">
+        {%section name=i loop=$show.imagelist%}
+        <li>
+            <img src="/thumb/75/{%$show.imagelist[i].image%}">
+        </li>
+        {%/section%}
+      </ul>
+      </div>
+    </div>
+    
+    <h3 class="de_subtitle">搭配效果</h3>
+    <ul class="prolist detail_dplist clearfix" id="HDT-p-group-list1"></ul>
+
+    <h3 class="de_subtitle">{%$show.productdetail.name%}推荐搭配款</h3>
+    <ul class="prolist detail_dplist clearfix" id="HDT-p-group-list"></ul>
+
+    <h3 class="de_subtitle">陈列效果</h3>
+    <ul class="prolist detail_dplist clearfix" id="HDT-p-display-list"></ul>
+</li></ul>
+<h3 class="de_subtitle">产品建议</h3>
+  <div style="margin-bottom:25px;text-align: center;">
+    <textarea name="product_comment" id="product_comment" rows="5" style="width:95%;margin-bottom:5px;">{%$show.product_comment.content%}</textarea>
+    <input name="button1"  type="button" class="btn_gree" value="保存建议" id="HDT-comment-save"/>
+  </div>
+</div>
+</div>
+<input type="hidden" name="product_id" value="{%$show.productdetail.id%}" id="HDT-product-id" />

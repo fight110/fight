@@ -1,0 +1,77 @@
+<div class="quicknav">
+  <div class="r_status">
+    {%if $show.user.type==1%}
+      <p>
+            已订<em>{%$show.orderinfo.num|default:0%}</em>件,<em>{%$show.orderinfo.price|default:0|price_cn%}</em>元{%if $show.user.discount != 1%}
+      {%if $show.company.display_discount|default:1%},折后<em>{%$show.orderinfo.discount_price|price_cn%}</em>元{%/if%} |
+      {%if $show.user.exp_num%} 指标<em>{%$show.user.exp_num%}</em>件,完成率<em>{%$show.orderinfo.percent_exp_num%}</em>
+      {%elseif $show.user.exp_price%} 指标<em>{%$show.user.exp_price|price_cn%}</em>元,完成率<em>{%$show.orderinfo.percent_exp_price%}</em>
+      {%else%}
+      指标未定 
+      {%/if%}
+      {%/if%}
+      </p>
+    {%elseif $show.user.type==2%}
+    <p>
+      已订<em>{%$show.orderinfo.num|default:0%}</em>件,<em>{%$show.orderinfo.price|default:0|price_cn%}</em>元折后<em>{%$show.orderinfo.discount_price|price_cn%}</em>元 |
+      {%if $show.user.exp_num%} 指标<em>{%$show.user.exp_num%}</em>件,完成率<em>{%$show.orderinfo.percent_exp_num%}</em>
+      {%elseif $show.user.exp_price%} 指标<em>{%$show.user.exp_price|price_cn%}</em>元,完成率<em>{%$show.orderinfo.percent_exp_price%}</em>
+      {%else%}
+      指标未定
+      {%/if%}
+    </p>
+    {%/if%}
+    {%if $show.user.type==1&&$show.company.check_order==1%}
+    {%if $show.user.needLastInfo.order_status eq 0 || $show.user.needLastInfo.order_status eq 2%}
+    <a href="javascript:void(0)" class="orderCommitBut notfinished">提交</a>
+    {%else%}
+    <a href="javascript:void(0)" class="orderCommitBut hadfinished">已提交</a>
+    {%/if%}
+    {%if $show.user.needLastInfo.is_lock%}
+    <font color="red">[订单已确认锁定]</font>
+    {%elseif $show.user.needLastInfo.order_status eq 1%}
+    <font color="red">[订单已提交]</font>
+    {%elseif $show.user.needLastInfo.order_status eq 2%}
+    <font color="red">[订单已驳回]</font>
+    {%elseif $show.user.needLastInfo.order_status eq 3%}
+    <font color="red">[订单已确认]</font>
+    {%else%}
+    <font color="red">[订单未提交]</font>
+    {%/if%}    
+    {%else%}
+          	好订通-科学订货真轻松！ <a href="/logout">[注销]</a>
+    {%/if%}
+    
+  </div>欢迎您，[{%$currentUser.username%}] {%$currentUser.name%}！
+  {%if $show.user.mulit_name%}<a class="mulit_user_change">切换账号</a>{%/if%}
+  {%if $show.user.type==1&&$show.company.check_order==1%}
+  <a href="/logout">[注销]</a>
+  {%else%}
+  {%if $currentUser.is_lock && $currentUser.type neq 9%}<font color="red">[订单已确认锁定]</font>{%/if%} 
+  {%/if%}  
+ <!--  <a href="/message">{%if $show.unreadsms%}<img src="/style/images/sms_yes.gif"><strong style="color:#F26C4F">({%$show.unreadsms%})</strong>{%else%}<img src="/style/images/sms_no.gif">{%/if%}</a> -->
+  {%if $show.company.another_fairname%}[<a href="http://{%$show.company.another_url%}/login/auth_user?uname={%$show.user.username%}&secret={%$show.user.password|md5%}">{%$show.company.another_fairname%}</a>]{%/if%}
+  {%if $show.company.status%}
+  <marquee direction="left" scrollamount="5">
+  <font size="4" color="#ff6600">{%$show.company.status%}</font>
+  </marquee>
+  {%/if%}
+</div>
+
+<div class="header">
+    <h1><a name="HDT_LOGO"></a><a href="/" class="logo"></a>
+      <div class="slogo"><table><tr><td> {%if $show.company.logo%}<img src="/thumb/210/{%$show.company.logo%}" {%$show.company.logo_style%}>{%/if%} </td><td style="padding-left:3px;">{%$show.company.fairname%}</td></tr></table></div></h1>
+    <!-- <p class="t_news"><strong>{%$show.company.fairname%}</strong></p> -->
+    <div class="oprationDiv"><a class="backIcon" href="javascript:history.go(-1);">后退</a><a class="refreshIcon" href="javascript:location.reload(true);">刷新</a></div>
+</div>
+<script>
+// if(!/ipad|windows/i.test(navigator.userAgent)){
+//   document.write("<style>.mainbox .main_con {overflow: scroll;height: 600px;}</style>");
+// }
+</script>
+<style>
+.HDT-keyborad input {height:25px;}
+#HDT-order-table input {height:25px;}
+.HDT-order-table input {height:25px;}
+</style>
+<div id="HDT_SHORTCUT_ACTIVE" active="{%$show.company.shortcut_active|default:1%}"></div>

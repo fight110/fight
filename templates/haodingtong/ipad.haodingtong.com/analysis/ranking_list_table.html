@@ -1,0 +1,177 @@
+{%if $show.view eq 'T'%}
+{%if $show.page eq 1%}
+<tr class="hbg">
+	<th rowspan="{%$show.rowspan%}">序号</th>
+	<th rowspan="{%$show.rowspan%}">图片</th>
+	<th rowspan="{%$show.rowspan%}">大类</th>
+	<th rowspan="{%$show.rowspan%}">款号</th>
+	<th rowspan="{%$show.rowspan%}">订量</th>
+	{%if $currentUser.type eq 1%}
+	<th colspan="{%$show.rowspan%}">个人排名</th>
+	{%/if%}
+	<th colspan="{%$show.rowspan%}">全国排名</th>
+	{%if $show.area1%}
+	<th colspan="{%$show.rowspan%}">{%$show.area1name.name%}排名</th>
+	{%/if%}
+	{%if $show.zd_id%}
+	<th colspan="{%$show.rowspan%}">总代排名</th>
+	{%/if%}
+	<th rowspan="{%$show.rowspan%}">圆牌号</th>
+	<th rowspan="{%$show.rowspan%}">颜色</th>
+	<th rowspan="{%$show.rowspan%}">款色订量</th>
+	<th rowspan="{%$show.rowspan%}">单价</th>
+	<th rowspan="{%$show.rowspan%}">总金额</th>
+</tr>
+{%if $show.show_categroy%}
+<tr>
+	{%if $currentUser.type eq 1%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+	<th>整体</th>
+	<th>大类</th>
+	{%if $show.area1%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+	{%if $show.zd_id%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+</tr>
+{%/if%}
+{%/if%}
+{%section name=i loop=$show.list%}
+{%section name=j loop=$show.list[i].color_list%}
+{%if !$show.company.num_order_show || ($show.company.num_order_show && $show.list[i].global_rank && $show.list[i].global_rank lte $show.company.num_order_show)%}
+<tr {%if $currentUser.type eq 1%} class="fancyboxBook" data-product-id="{%$show.list[i].id%}" {%/if%}{%if $currentUser.type eq 3%} class="adProduct" data-product-id="{%$show.list[i].id%}" {%/if%}>
+	{%if $show.list[i].color_list[j].row%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$smarty.section.i.rownum + $show.start%}</td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">
+		<div class="imgbox1">
+        <a href="javascript:void(0);"><img src="/thumb/75/{%$show.list[i].defaultimage|hdt_pcimage:$show.list[i].id:$show.list[i].color_id%}"></a>
+    </div></td>
+    <td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].category_id|hdt_keyword%}</td>
+    <td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].kuanhao%}</td>
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].num|default:0%}</td>
+	{%if $currentUser.type eq 1%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].order_rank%}</font></td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].order_rank_category%}</font></td>{%/if%}
+    {%/if%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].global_rank%}</font></td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].global_rank_category%}</font></td>{%/if%}
+    {%if $show.area1%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].area1_rank%}</font></td>
+    {%if $show.show_categroy%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].area1_rank_category%}</font></td>{%/if%}
+    {%/if%}
+	{%if $show.zd_id%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].zd_rank%}</font></td>
+    {%if $show.show_categroy%}
+    <td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].zd_rank_category%}</font></td>{%/if%}
+    {%/if%}
+    {%/if%}
+	<td class="tdtwo">{%$show.list[i].color_list[j].skc_id%}</td>
+	<td class="tdtwo">{%$show.list[i].color_list[j].color_id|hdt_keyword%}</td>
+	<td class="tdtwo">{%$show.list[i].color_list[j].num.num|default:0%}</td>
+	{%if $show.list[i].color_list[j].row%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].price|string_format:"%d"%}</td>
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].amount|price_cn|default:0%}</td>
+	{%/if%}
+</tr>
+{%/if%}
+{%/section%}
+{%/section%}
+{%else%}
+{%if $show.page eq 1%}
+<tr class="hbg">
+	<th rowspan="{%$show.rowspan%}">序号</th>
+	<th rowspan="{%$show.rowspan%}">图片</th>
+	<th rowspan="{%$show.rowspan%}">圆牌号</th>
+	<th rowspan="{%$show.rowspan%}">大类</th>
+	<th rowspan="{%$show.rowspan%}">款号</th>
+	<th rowspan="{%$show.rowspan%}">颜色</th>
+	<th rowspan="{%$show.rowspan%}">单价</th>
+	<th rowspan="{%$show.rowspan%}">订量</th>
+	<th rowspan="{%$show.rowspan%}">总金额</th>
+	{%if $currentUser.type eq 1%}
+	<th colspan="{%$show.rowspan%}">个人排名</th>
+	{%/if%}
+	<th colspan="{%$show.rowspan%}">全国排名</th>
+	{%if $show.area1%}
+	<th colspan="{%$show.rowspan%}">{%$show.area1name.name%}排名</th>
+	{%/if%}
+	{%if $show.zd_id%}
+	<th colspan="{%$show.rowspan%}">总代排名</th>
+	{%/if%}
+	<th rowspan="{%$show.rowspan%}">齐色款</th>
+	<th rowspan="{%$show.rowspan%}">款色订量</th>
+</tr>
+{%if $show.show_categroy%}
+<tr>
+	{%if $currentUser.type eq 1%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+	<th>整体</th>
+	<th>大类</th>
+	{%if $show.area1%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+	{%if $show.zd_id%}
+	<th>整体</th>
+	<th>大类</th>
+	{%/if%}
+</tr>
+{%/if%}
+{%/if%}
+{%section name=i loop=$show.list%}
+{%section name=j loop=$show.list[i].color_list%}
+{%if !$show.company.num_order_show || ($show.company.num_order_show && $show.list[i].global_rank && $show.list[i].global_rank lte $show.company.num_order_show)%}
+<tr {%if $currentUser.type eq 1%} class="fancyboxBook" data-product-id="{%$show.list[i].id%}" {%/if%}{%if $currentUser.type eq 3%} class="adProduct" data-product-id="{%$show.list[i].id%}" {%/if%}>
+	{%if $show.list[i].color_list[j].row%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$smarty.section.i.rownum + $show.start%}</td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}"><div class="imgbox1">
+		<a href="javascript:void(0);"><img src="/thumb/75/{%$show.list[i].defaultimage|hdt_pcimage:$show.list[i].id:$show.list[i].color_id%}"></a>
+    </div></td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].skc_id%}</td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].category_id|hdt_keyword%}</td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].kuanhao%}</td>
+	<td class="tdtwo" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].color_id|hdt_keyword%}</td>
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].price|string_format:"%d"%}</td>
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].num|default:0%}</td>
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].amount|price_cn|default:0%}</td>
+	{%if $currentUser.type eq 1%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].order_rank%}</font></td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].order_rank_category%}</font></td>{%/if%}
+	{%/if%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].global_rank%}</font></td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].global_rank_category%}</font></td>{%/if%}
+	{%if $show.area1%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].area1_rank%}</td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].area1_rank_category%}</font></td>{%/if%}
+	{%/if%}
+	{%if $show.zd_id%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].zd_rank%}</font></td>
+	{%if $show.show_categroy%}
+	<td class="tdone" rowspan="{%$show.list[i].rowspan%}"><font color="red">{%$show.list[i].zd_rank_category%}</font></td>{%/if%}
+	{%/if%}
+	{%/if%}
+	{%if $show.list[i].color_id neq $show.list[i].color_list[j].color_id%}
+	<td class="tdtwo">{%$show.list[i].color_list[j].color_id|hdt_keyword%}</td>
+	<td class="tdtwo">{%$show.list[i].color_list[j].num.num|default:0%}</td>
+	{%else%}
+	<td class="tdtwo"></td>
+	<td class="tdtwo"></td>
+	{%/if%}
+</tr>
+{%/if%}
+{%/section%}
+{%/section%}
+{%/if%}

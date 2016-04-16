@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+<div class="contain">
+    <div class="top">
+        <h1><strong>{%$show.group.name%}</strong>({%$show.group.dp_num%})</h1>
+        <a href="/index/group" class="lbtn"><span>搭配</span></a>
+        <!-- <a href="#" class="rbtn"><span></span></a> -->
+    </div>
+
+    <div class="mainbox2">
+        <div class="detail">
+            <div class="prophoto_show">
+                <div class="bigphoto" id="bigimage" style="height:300px;position:relative;margin: 0 auto;width:302px;overflow:hidden;">
+                    <ul style="width:5000px;">
+                    {%section name=i loop=$show.imagelist%}
+                    <li style="float: left;"><img src="/thumb/300/{%$show.imagelist[i].image%}"></li>
+                    {%/section%}
+                    </ul>
+                    {%if $show.order_user.num < 1 && $show.product.style=="必定款"%}<div class="unorder1"></div>{%/if%}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="space20"></div>
+    
+    <h3 class="tit_pro2">推荐搭配款</h3>
+        <ul class="styleslist3" id="HDT-group-list"></ul>
+        <div class="space20"></div>
+    </div>
+</div>
+</div>
+<input type="hidden" name="group_id" value="{%$show.group.id%}" id="HDT-group-id">
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/index/gdetail');
+</script>
+</body>
+</html>

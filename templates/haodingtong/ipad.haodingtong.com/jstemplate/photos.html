@@ -1,0 +1,19 @@
+<script type="text/jquery-tmpl" id="HDT-photos-main">
+<div class="pro_photo">
+  <div class="relat">{%if $show.unorder%}<div class="unorder1"></div>{%/if%}<img src="/images/product.add.png" width="458" height="457" class="HDT-photos-big" /></div>
+</div>
+<div class="smallpic clearfix">
+<ul>
+  {%section name=i loop=$show.imagelist%}
+  <li>
+      <img src="/thumb/210/{%$show.imagelist[i].image%}" data-src="{%$show.imagelist[i].image%}" data-id="{%$show.imagelist[i].id%}">
+  </li>
+  {%/section%}
+</ul>
+</div>
+</script>
+<script type="text/jquery-tmpl" id="HDT-photos-unit">
+<li>
+  <img src="/thumb/210/${src}" data-src="${src}" {{if $id}}data-id="${id}"{{/if}}>
+</li>
+</script>

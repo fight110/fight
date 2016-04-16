@@ -1,0 +1,22 @@
+<form>
+<div>
+  <input type="text" class="color_filter" placeholder="过滤"> <input type="submit" value="{%if $show.replace_color%}替换{%else%}添加{%/if%}">
+</div>
+<div>
+  <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+    <tr>
+    {%if $show.replace_color%}
+    {%section name=i loop=$show.color_list%}
+    {%if $smarty.section.i.index && $smarty.section.i.index % 5 == 0%}</tr><tr>{%/if%}
+    <td><input type="radio" name="color" value="{%$show.color_list[i].keyword_id%}" data-name="{%$show.color_list[i].keywords.name%}">{%$show.color_list[i].keywords.name%}</td>
+    {%/section%}
+    {%else%}
+    {%section name=i loop=$show.color_list%}
+    {%if $smarty.section.i.index && $smarty.section.i.index % 5 == 0%}</tr><tr>{%/if%}
+    <td><input type="checkbox" name="color[]" value="{%$show.color_list[i].keyword_id%}" data-name="{%$show.color_list[i].keywords.name%}">{%$show.color_list[i].keywords.name%}</td>
+    {%/section%}
+    {%/if%}
+    </tr>
+  </table>
+</div>
+</form>

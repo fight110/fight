@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+<style type="text/css">
+#HDT-main a {
+	font-size: 15px;
+}
+.normalInput{
+}
+.normalInput input[type='text']{
+  border: 1px solid #ccc;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    padding: 3px 4px;
+    width: 120px;
+}
+.normalInput input[type='button']{
+font-size: 12px;
+    line-height: 16px;
+}
+</style>
+</head>
+
+<body class="bodybg">
+	<div class="contain">
+		{%include file="top.html"%}
+		<div class="mainbox">
+			<div class="main_con">
+				<div class="box">
+					<div>
+					<!--  <a class="buttonLink"  href="/ad/exp_print">店仓审单</a>-->
+					</div>							
+					<table border="0" cellpadding="0" cellspacing="0" class="table01"
+						id="HDT-main"></table>
+				</div>
+				<!--foot-->
+				{%include file="footer.html"%}
+				<!--foot end-->
+			</div>
+			<!--rightbar-->
+			{%include file="right.html"%}
+			<!--rightbar end-->
+			<div class="clear"></div>
+		</div>
+	</div>
+	{%if !$show.byArea && !$show.byZongdai%}
+	<script>
+		seajs.use('lj/a/exp_print2');
+	</script>
+	{%/if%}
+</body>
+</html>

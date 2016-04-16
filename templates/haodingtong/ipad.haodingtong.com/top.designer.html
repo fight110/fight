@@ -1,0 +1,33 @@
+{%include file="top.1.html"%}
+  <div class="pinned">
+    <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+      <ul>
+      {%include file="top.2.html"%}
+     <!--  </ul>
+      <ul> -->
+      <li><select {%if $currentUser.is_lock%}disabled="disabled"{%/if%} name="designer_id">{%$show.designer_id|hdt_attrlist:"designer":"{%$keyword.designer_id%}"%}</select></li>
+      <li>
+        <select name="order">
+          <option value="">排行榜</option>
+          <option value="all num desc" {%if $show.order=="all num desc"%}selected="selected"{%/if%}>总量多→少</option>
+          <option value="all num asc" {%if $show.order=="all num asc"%}selected="selected"{%/if%}>总量少→多</option>
+          <!-- <option value="agentnumdesc" {%if $show.order=="agentnumdesc"%}selected="selected"{%/if%}>本省订量多→少</option>
+          <option value="agentnumasc" {%if $show.order=="agentnumasc"%}selected="selected"{%/if%}>本省订量少→多</option> -->
+        </select>
+      </li>
+      <li>
+        <select name="view">
+          <option value="T" {%if $show.view=="T"%}selected="selected"{%/if%}>单款</option>
+          <option value="ST" {%if $show.view=="ST"%}selected="selected"{%/if%}>款色</option>
+        </select>
+      </li>
+    </ul>
+    </div>
+    <div class="nright">
+    {%include file="top.search.html"%}
+    </div>
+  </div>
+</div>
+  <!--tit_bar end-->
+    {%include file="top.script.html"%}

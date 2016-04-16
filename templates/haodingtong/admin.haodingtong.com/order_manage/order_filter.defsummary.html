@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{%$show.company.fairname%}</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.bborder{border-bottom:1px solid #333;}
+.hei{color:#000000;}
+.cui{font-weight:800;}
+.backhui{background-color:#F2F2F2;}
+.f18{font-size:18px; line-height:38px;}
+.f14{font-size:14px; line-height:28px;}
+.f16{font-size:16px; line-height:28px;}
+.tc{text-align:center;}
+.mtop8{margin-top:8px;}
+.mtop16{margin-top:16px;}
+.mbg{background-color:#999999;}
+td{background-color:#FFF;}
+.tcolor1{border-bottom:1px solid #999999;}
+table{border-collapse:collapse; border:none;}
+td{border:1px solid #333;}
+td span {font-size: 14px;}
+</style>
+</head>
+
+<body>
+
+
+
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#999999" class="mtop16">
+  <tr>
+    <td width="198" class="cui f16">总订款量：{%$show.orderinfo.pnum%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">总订数：{%$show.orderinfo.num%}件</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">总金额：{%$show.orderinfo.price|price_cn%}</td>
+  </tr>
+</table>
+
+</body>
+</html>

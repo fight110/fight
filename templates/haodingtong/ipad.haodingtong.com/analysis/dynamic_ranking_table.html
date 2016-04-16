@@ -1,0 +1,53 @@
+{%if $show.p == '1'%}
+<tr>
+<th>{%$keyword.wave_id%}</th>
+<th>上市时间</th>
+<th>{%$keyword.series_id%}</th>
+<th>编号</th>
+<th>款号</th>
+<th>商品名称</th>
+<th>{%$keyword.nannvzhuan_id%}</th>
+<th>零售价</th>
+<th>图片</th>
+<th>{%$keyword.category_id%}</th>
+<th>{%$keyword.medium_id%}</th>
+<!-- <th>{%$keyword.classes_id%}</th> -->
+{%if $show.view eq 'ST'%}
+<th>颜色</th>
+{%/if%}
+<th width="50">全国排名</th>
+<th width="50">全国订量</th>
+{%foreach from=$show.area1name_list key=k item=val%}
+<th width="50">{%$val.name%}排名</th>
+<th width="50">{%$val.name%}订量</th>
+{%/foreach%}
+</tr>
+{%/if%}
+{%if $show.list%}
+{%section name=i loop=$show.list%}
+<tr>
+<td>{%$show.list[i].wave_id|hdt_keyword%}</td>
+<td>{%$show.list[i].date_market%}</td>
+<td>{%$show.list[i].series_id|hdt_keyword%}</td>
+<td>{%$show.list[i].bianhao%}</td>
+<td>{%$show.list[i].kuanhao%}</td>
+<td>{%$show.list[i].name%}</td>
+<td>{%$show.list[i].nannvzhuan_id|hdt_keyword%}</td>
+<td>{%$show.list[i].price%}</td>
+<td><img src="/thumb/125/{%$show.list[i].defaultimage|hdt_pcimage:$show.list[i].id:$show.list[i].color_id%}"><img></td>
+<td>{%$show.list[i].category_id|hdt_keyword%}</td>
+<td>{%$show.list[i].medium_id|hdt_keyword%}</td>
+<!-- <td>{%$show.list[i].classes_id|hdt_keyword%}</td> -->
+{%if $show.view eq 'ST'%}
+<td>{%$show.list[i].color_id|hdt_keyword%}</td>
+{%/if%}
+<!-- <td>{%$show.start+$smarty.section.i.rownum%}</td> -->
+<td>{%$show.list[i].global_rank%}</td>
+<td>{%$show.list[i].num%}</td>
+{%foreach from=$show.area1name_list key=k item=val%}
+<td>{%$show.list[i].area1_rank.$k%}</td>
+<td>{%$show.list[i].area1_num.$k%}</td>
+{%/foreach%}
+</tr>
+{%/section%}
+{%/if%}

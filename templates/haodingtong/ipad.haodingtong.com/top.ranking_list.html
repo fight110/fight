@@ -1,0 +1,61 @@
+{%include file="top.1.html"%}
+
+<div class="pinned">
+    <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+	      <ul>
+	    	{%if $currentUser.type eq 1 || $currentUser.type eq 2%}
+	    	<li>
+		    	<select name="area1" disabled="disabled">
+		    		<option value={%$show.area1%}>{%$show.area1name.name%}</option>
+		    	</select>
+	    	</li>
+	    	{%else%}
+		    <li class="Selects">
+			    <select name="area1"></select>
+			    <!-- <select name="area2"></select> -->
+			</li>
+			{%/if%}
+			<li>
+				<select name="zd_id" {%if $show.zd_id%}disabled="disabled"{%/if%}>
+					<option value="">所属总代</option>
+					{%foreach from=$show.agent_list key=k item=val%}
+					<option value={%$val.id%} {%if $show.zd_id==$val.id%}selected="selected"{%/if%}>{%$val.name%}</option>
+					{%/foreach%}
+				</select>
+			</li>
+			{%include file="top.2.html"%}
+		 <!--  </ul>
+		  <ul> -->
+			<li>
+				<select name="view">
+					<option value="T">单款</option>
+					<option value="ST">款色</option>
+				</select>
+			</li>
+			<li>
+				<select name="order">
+					<option value="">排序</option>
+					<option value="num desc">数量从多→少</option>
+					<option value="num asc">数量从少→多</option>
+					<option value="amount desc">金额从多→少</option>
+					<option value="amount asc">金额从少→多</option>				
+					<option value="all_num desc">总量从多→少</option>
+					<option value="all_num asc">总量从少→多</option>
+				</select>
+			</li>
+			<!-- <li>
+				<select name="show_category">
+					<option value="">不显示大类排名</option>
+					<option value="1">显示大类排名</option>
+				</select>
+			</li> -->
+			</ul>
+		</div>
+		<div class="nright">
+    	{%include file="top.search.html"%}
+    	</div>
+  </div>
+</div>
+  <!--tit_bar end-->
+<!-- {%include file="top.script.html"%} -->

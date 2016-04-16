@@ -1,0 +1,16 @@
+<div class="adTitle">
+已选择
+</div>
+<ul class="adList adListCheck">
+{%section name=i loop=$show.list_check%}
+<li data-area1='{%$show.list_check[i].area1%}'><input type="checkbox" value="{%$show.list_check[i].id%}" checked="checked" {%if $show.list_check[i].type eq 2%}name="slavelist[]"{%else%}name="userlist[]"{%/if%}> {%$show.list_check[i].name%}</li>
+{%/section%}
+</ul>
+<div class="adTitle">
+未选择
+</div>
+<ul class="adList adListUnCheck" id="adlistuncheck"><!-- 全选框修改 -->
+{%section name=i loop=$show.list_uncheck%}
+<li data-area1='{%$show.list_uncheck[i].area1%}'><input type="checkbox" value="{%$show.list_uncheck[i].id%}" {%if $show.list_uncheck[i].type eq 2%}name="slavelist[]"{%else%}name="userlist[]"{%/if%}> {%$show.list_uncheck[i].name%}</li>
+{%/section%}
+</ul>

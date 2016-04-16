@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.product.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <table cellspacing="0" cellpadding="0" border="0" id="HDT_fabric_table" class="rank_table">
+            <tbody><tr>
+              {%section name=i loop=$show.fabriclist%}
+              <td data-fabric-id="{%$show.fabriclist[i].keyword_id%}">{%$show.fabriclist[i].keywords.name%}:{%$show.fabriclist[i].num%}款</td>
+              {%if $smarty.section.i.rownum % 5 == 0%}</tr><tr>{%/if%}
+              {%/section%}
+            </tr>
+        </tbody></table>
+      <div id="HDT-fabric"></div>
+      <ul class="prolistx detail_dplist clearfix" id="HDT-main" data-tType='book'></ul>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/dealer1/fabric");
+</script>
+</body>
+</html>

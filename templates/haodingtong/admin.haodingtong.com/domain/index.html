@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+	<div class="contain">
+		{%include file="top.html"%}
+		<div class="mainbox">
+			<div class="main_con">
+				<div class="box">
+					<a style="float:right;" class="buttonLink HDT-add" href="#">添加域名</a>
+					<table cellspacing="0" cellpadding="0" border="0" class="table01">
+						<tbody>
+							<tr class="hbg">
+								<th>名称</th>
+								<th>域名</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+							{%foreach from=$show.domain_list key=k item=val%}
+							<tr>
+								<td>{%$val.name%}</td>
+								<td>{%$val.domain%}</td>
+								<td>{%if $val.status eq 1%}
+									<a href="/domain/set_status/{%$val.id%}?status={%$val.status%}" style="color:green;">有效</a>
+									{%else%}
+									<a href="/domain/set_status/{%$val.id%}?status={%$val.status%}" style="color:red;">无效</a>
+									{%/if%}
+									</a>
+								</td>
+								<td><a href="#" class="HDT-edit" data-id={%$val.id%}>编辑</a></td>
+							</tr>
+							{%/foreach%}
+						</tbody>
+					</table>
+				</div>
+				<!--foot-->
+				{%include file="footer.html"%}
+				<!--foot end-->
+			</div>
+			{%include file="right.html"%}
+			<div class="clear"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		seajs.use('lj/admin/domain/index');
+	</script>
+</body>
+</html>

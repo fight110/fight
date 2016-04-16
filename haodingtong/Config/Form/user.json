@@ -1,0 +1,47 @@
+[
+    {
+        "name"          : "name","method"        : {}
+    },
+    {
+        "name"          : "is_lock","method"        : {}
+    },
+    {
+        "name"          : "username","method"        : {}
+    },
+    {
+        "name"          : "password","method"        : {}
+    },
+    {
+        "name"          : "exp_price","method"        : {}
+    },
+    {
+        "name"          : "exp_num","method"        : {}
+    },
+    {
+        "name"          : "discount_type","method"        : {}
+    },
+    {
+        "name"          : "discount","method"        : {}
+    },
+    {
+        "name"          : "user_level","method"        : {}
+    },
+    {
+        "name"          : "area1","method"        : {}
+    },
+    {
+        "name"          : "area2","method"        : {}
+    },
+    {
+        "name"          : "type","method"        : {}
+    },
+    {
+        "name"          : "property","method"        : {}
+    },
+    {
+        "name"          : "is_stock","method"        : {}
+    },
+    {
+        "name"          : "mulit_name","method"        : {}
+    }
+]

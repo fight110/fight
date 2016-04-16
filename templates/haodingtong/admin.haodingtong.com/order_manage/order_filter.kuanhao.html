@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{%$show.company.fairname%}</title>
+<style type="text/css">
+body,td,th {
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.bborder{border-bottom:1px solid #333;}
+.hei{color:#000000;}
+.cui{font-weight:800;}
+.backhui{background-color:#F2F2F2;}
+.f18{font-size:18px; line-height:38px;}
+.f14{font-size:14px; line-height:28px;}
+.f16{font-size:16px; line-height:28px;}
+.tc{text-align:center;}
+.mtop8{margin-top:8px;}
+.mtop16{margin-top:16px;}
+.mbg{background-color:#999999;}
+td{background-color:#FFF;}
+.tcolor1{border-bottom:1px solid #999999;}
+table{border-collapse:collapse; border:none;}
+td{border:1px solid #333;}
+td span {font-size: 14px;}
+p {margin: 0px;}
+</style>
+</head>
+
+<body>
+
+<table width="710" border="0" align="center" cellpadding="1" cellspacing="0" class="mtop8 mbg">
+  <THEAD style="display:table-header-group;font-weight:bold">
+  <tr>
+    <td>款号</td>
+    <td>款名</td>
+    <td>颜色</td>
+    <td>圆牌号</td>
+    {%section name=z loop=$show.newSizeList%}
+    <td>
+      {%foreach from=$show.newSizeList[z] item=size_id%}<p>{%$size_id|hdt_keyword|default:"&nbsp;"%}</p>{%/foreach%}
+    </td>
+    {%/section%}
+    <td>订数</td>
+    <td>单价</td>
+    <td>金额</td>
+  </tr>
+  </THEAD>
+{%foreach from=$show.list item=category_row%}
+  {%foreach from=$category_row.listing item=product%}
+  <tr>
+    <td>{%$product.kuanhao%}</td>
+    <td>{%$product.name%}</td>
+    <td>{%$product.product_color_id|hdt_keyword%}</td>
+    <td>{%$product.skc_id%}</td>
+    {%foreach from=$product.size_list item=num%}
+    <td>{%$num%}</td>
+    {%/foreach%}
+    <td>{%$product.num%}</td>
+    <td>{%$product.p_price%}</td>
+    <td>{%$product.price%}</td>
+  </tr>
+  {%/foreach%}
+{%/foreach%}
+</table>
+
+<table width="710" border="0" align="center" cellpadding="4" cellspacing="0" bgcolor="#999999" class="mtop16">
+  <tr>
+    <td width="496" rowspan="3" class="">&nbsp;</td>
+    <td class="cui f16">总订量：{%$show.all_num%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">总金额：{%$show.all_price%}</td>
+  </tr>
+  <tr>
+    <td width="198" class="cui f16">折后金额：{%$show.discount_price%}</td>
+  </tr>
+</table>
+
+</body>
+</html>

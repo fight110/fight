@@ -1,0 +1,13 @@
+{%foreach from=$show.list key=gmkey item=gmval%}
+<li class="searchRes">
+	<div class="dtitle"><span class="floatLeft">陈列号:{%$gmval.bianhao%}</span><span class="floatRight">{%$gmval.dname%}</span></div>
+		<h4 class="clearfix">
+  	<span class="nid">搭配号:<font style="color:red;font-size:14px;">{%$gmval.dp_num%}</font></span>
+  	<span class="stylenum">名称：{%$gmval.gname%}</span>
+		</h4>
+		<div class="imgbox"><a href="/dealer1/groupdetailnew/{%$gmval.gid%}?did={%$gmval.did%}"><img src="/thumb/210/{%$gmval.gimg%}"></a></div>
+	<div class="orderNum">
+		订量:<em>{%$gmval.num|default:0%}</em>
+	</div>
+</li>
+{%/foreach%}

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <!--tit_bar end-->
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+      <form method="POST" action="/product/set_stocking" id="form-main">
+        <input type="hidden" name="id" value="{%$show.product.id%}">
+    <div class="probox">
+    <dl class="this_txt clearfix">
+    <dt>当前{%$keyword.style_id%}</li>
+    <dd>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td colspan="3">款名:{%$show.product.name%}</td>
+      </tr>
+      <tr>
+        <td>编号:{%$show.product.bianhao%}</td>
+        <td>款号:{%$show.product.kuanhao%}</td>
+        <td>货号:{%$show.product.huohao%}</td>
+      </tr>
+      <tr>
+        <td>价格:<span class="jiage">¥ {%$show.product.price%}</span> </td>
+        <td>进货价:<span class="jiage">¥ {%$show.product.price_purchase%}</span></td>
+        <td>现货/期货:{%if $show.product.isspot==1%}期货{%/if%}{%if $show.product.isspot==2%}现货{%/if%}</td>
+      </tr>
+      <tr>
+        <td><span id="FD-upload-button"></span></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    </dd>
+    </dl>
+    <div id="HDT-photos"></div>
+
+
+    <div class="pro_tabl pro_tabl_auto">
+      <table border="0" cellspacing="0" cellpadding="0" id="HDT-stock-table" >
+        <tr>
+          <th>颜色\尺码</th>
+          {%section name=i loop=$show.size_list%}
+          <th>{%$show.size_list[i].name%}</th>
+          {%/section%}
+        </tr>
+        {%section name=i loop=$show.color_list%}
+        <tr data-color-id="{%$show.color_list[i].color_id%}">
+          <td>{%$show.color_list[i].name%}</td>
+          {%section name=j loop=$show.size_list%}
+          <td><input type="number" style="width:90%;max-width:100px;" name="stock-{%$show.product.id%}-{%$show.color_list[i].color_id%}-{%$show.size_list[j].size_id%}"></td>
+          {%/section%}
+        </tr>
+        {%/section%}
+        <tr>
+          <td colspan={%2 + $show.size_list|count%}>
+            <input name="button1"  type="submit" value="保存库存">{%if $message%}{%$message%}{%/if%}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="clear"></div>
+    </div>
+    </form>
+    </div>
+    <!--foot-->
+     {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+  {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<input type="hidden" name="product_id" value="{%$show.product.id%}" id="HDT-product-id">
+{%include file="jstemplate/photos.html"%}
+<script>
+var stock_list  = [];
+{%section name=i loop=$show.stock_list%}
+stock_list.push({%$show.stock_list[i]|json_encode%});
+{%/section%}
+seajs.use('lj/admin/product/set_stock');
+</script>
+</body>
+</html>

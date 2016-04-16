@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="rankingbox">
+          <table border="0" cellpadding="0" cellspacing="0" class="rank_table">
+            <tr>
+              <td valign="top" class="namelabel">款量排名</td>
+              <td>已订<em>{%$show.orderinfo.pnum%}</em> | 总款{%$show.productCount%}</td>
+              <td>最高订{%$show.orderinfo_pnum_first.pnum%}</td>
+              <td></td>
+              <td width="160"></td>
+            </tr>
+            <tr>
+              <td valign="top" class="namelabel">订数排名</td>
+              <td>已订<em>{%$show.orderinfo.num%}</em></td>
+              <td>最高订{%$show.orderinfo_num_first.num%}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td valign="top" class="namelabel">金额排名</td>
+              <td>已订<em>{%$show.orderinfo.price|price_cn%}</em></td>
+              <td>最高订{%$show.orderinfo_price_first.price|price_cn%}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td valign="top" class="namelabel">SKU分析</td>
+              <td><em>SKU={%$show.orderinfo.sku%}</em></td>
+              <td><em>宽度={%$show.orderinfo.sku%}/{%$show.SKC_ALL%}={%$show.width%}</em></td>
+              <td><em>深度={%$show.orderinfo.num%}/{%$show.orderinfo.sku%}={%$show.depth%}</em></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+        <div class="rank_title">
+          <h3>按订数前三单款排名 </h3><span class="addi">个总=个人全款总计     &nbsp;&nbsp;全总=全部经销商单款总计</span>
+        </div>
+        <div class="rankingbox">
+          <table border="0" cellpadding="0" cellspacing="0" class="table01">
+            <tr>
+              <th class="numid th2">排名</th>
+              <th class="th2">款名</th>
+              <th width="84" class="th2">订数</th>
+              <th width="110" class="th2">个总订/占比</th>
+              <th width="132" class="th2">全总订/全总比/排名</th>
+              <th width="65" class="th2">金额</th>
+              <th width="119" class="th2">个总额/占比</th>
+            </tr>
+            {%section name=i loop=$show.product_list1%}
+            {%if $show.product_list1[i].num%}
+            <tr>
+              <td>{%$smarty.section.i.rownum%}</td>
+              <td class="tdfl"><a href="/dealer1/detail/{%$show.product_list1[i].id%}">{%$show.product_list1[i].name%}</a></td>
+              <td>{%$show.product_list1[i].num%}</td>
+              <td class="tdfl">{%$show.orderinfo.num%}/{%$show.product_list1[i].percent_num%}</td>
+              <td class="tdfl">{%$show.product_list1[i].all_num%}/{%$show.product_list1[i].percent_all_num%}/第{%$show.product_list1[i].all_num_rank%}</td>
+              <td>{%$show.product_list1[i].price|price_cn%}</td>
+              <td class="tdfl">{%$show.orderinfo.price|price_cn%}/{%$show.product_list1[i].percent_price%}</td>
+            </tr>
+            {%else%}
+            <tr>
+              <td>{%$smarty.section.i.rownum%}</td>
+              <td class="tdfl">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+            </tr>
+            {%/if%}
+            {%/section%}
+          </table>
+        </div>
+        <div class="rank_title">
+          <h3>按金额前三单款排名 </h3>
+          <span class="addi">个总=个人全款总计     &nbsp;&nbsp;全总=全部经销商单款总计</span> </div>
+        <table border="0" cellpadding="0" cellspacing="0" class="table01">
+          <tr>
+            <th class="numid th2">排名</th>
+            <th class="th2">款名</th>
+            <th width="84" class="th2">金额</th>
+            <th width="110" class="th2">个总额/占比</th>
+            <th width="132" class="th2">全总额/全总比/排名</th>
+            <th width="65" class="th2">订数</th>
+            <th width="119" class="th2">个总订/占比</th>
+          </tr>
+          {%section name=i loop=$show.product_list2%}
+          {%if $show.product_list2[i].num%}
+          <tr>
+            <td>{%$smarty.section.i.rownum%}</td>
+            <td class="tdfl"><a href="/dealer1/detail/{%$show.product_list2[i].id%}">{%$show.product_list2[i].name%}</a></td>
+            <td>{%$show.product_list2[i].price|price_cn%}</td>
+            <td class="tdfl">{%$show.orderinfo.price|price_cn%}/{%$show.product_list2[i].percent_price%}</td>
+            <td class="tdfl">{%$show.product_list2[i].all_price%}/{%$show.product_list2[i].percent_all_price%}/第{%$show.product_list2[i].all_price_rank%}</td>
+            <td>{%$show.product_list2[i].num%}</td>
+            <td class="tdfl">{%$show.orderinfo.num%}/{%$show.product_list2[i].percent_num%}</td>
+          </tr>
+          {%else%}
+            <tr>
+              <td>{%$smarty.section.i.rownum%}</td>
+              <td class="tdfl">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="tdfl">&nbsp;</td>
+            </tr>
+            {%/if%}
+          {%/section%}
+          
+        </table>
+      </div>
+      <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

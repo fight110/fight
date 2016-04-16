@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+</head>
+
+<body>
+<div>
+<form method="POST">
+    状态:{%if $show.WEBSTATUS%}<font color="green">开启</font>{%else%}<font color="red">关闭</font>{%/if%} <br>
+    {%if $show.WEBSTATUSTIMEOUT%}到期时间:{%$show.WEBSTATUSTIMEOUT%} <br>{%/if%}
+    {%if $show.restsecond%}剩余时间:{%$show.restsecond%}秒 <br>{%/if%}
+    <select name="time">
+        <option value="7200">两个小时</option>
+        <option value="3600">一个小时</option>
+        <option value="600">10分钟</option>
+        <option value="86400">一天</option>
+        <option value="604800">一个星期</option>
+        <option value="0">永久开启</option>
+    </select>
+    <input type="submit" name="WEBSTATUS" value="开启">
+    <input type="submit" name="WEBSTATUS" value="关闭">
+    <br>
+    <select name="site">
+        <option value=""></option>
+        <option value="ipad.haodingtong.com">前台</option>
+        <option value="admin.haodingtong.com">后台</option>
+    </select>
+    <a href="/" target="_blank">到首页</a><br>
+    <a href="/control/auth" target="_blank">授权管理</a>
+
+</form>
+</div>
+</body>
+</html>

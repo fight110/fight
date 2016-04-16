@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="group-order-monitor">
+        <div class="main-box">
+          <div class="info">
+            <dt>编号:{%$show.display.bianhao%}</dt>
+            <dd>陈列名:{%$show.display.name%}</dd>
+            <button data="next">下一组</button>
+            <button data="pre">上一组</button>
+          </div>
+          <div class="big-img">
+            <img src="/thumb/600/{%$show.display.contrast_image%}" />
+          </div>
+        </div>
+        <h3 class="de_subtitle">搭配排名</h3>
+        <ul id="group-info" class="group-monitor"></ul>
+        <h3 class="de_subtitle">款色排名</h3>
+        <ul class='orderDetail' id="HDT-main"></ul>
+      </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+    <div class="display-id" data-id="{%$show.display.id%}"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/pushorder/group_order_monitor_info');
+</script>
+</body>
+</html>

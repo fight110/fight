@@ -1,0 +1,45 @@
+<!-- <tr class="hasbotwhite">
+<td colspan='13'>
+<form method="get" action="/analysis/export_one">
+		<input type="hidden" name="group1" id="hiddenval1"  value = {%$show.t%}>
+  		<input type="submit" name="analysisexport" value="导出">
+</form>
+</td>
+</tr> -->
+<tr class="hasbotwhite">
+<th>子项目</th><th colspan='4'>款量</th><th colspan='4'>款色量</th><th colspan='2'>订货量</th><th colspan='2'>订货金额
+</tr>
+<tr class="hasbotwhite">
+<th rowspan='2'>汇总</th>
+<th>开发</th><th>已订</th><th>差异</th><th>占比</th>
+<th>开发</th><th>已订</th><th>宽度</th><th>深度</th>
+<th>件数</th><th>占比</th>
+<th>金额</th><th>占比</th>
+</tr>
+<tr class="col_blue">
+<th>{%$show.productcount.pnum%}</th><th>{%$show.ordercount.pnum%}</th><th>{%$show.difference_num%}</th>
+<!-- <th>{%$show.percent_pnum%}</th> -->
+<th>100%</th>
+<th>{%$show.productcount.skc%}</th><th>{%$show.ordercount.skc%}</th><th>{%$show.skc_width%}</th><th>{%$show.skc_depth%}</th>
+<th>{%$show.ordercount.num%}</th><th>100%</th>
+<th>{%$show.ordercount.price|price_cn%}</th><th>100%</th>
+</tr>
+{%section name=i loop=$show.list%}
+<tr {%if $show.list[i].order.num%} data-name="{%$show.list[i].tid|hdt_keyword%}" data-u="{%$show.list[i].order.num%}" data-p="{%$show.list[i].order.price%}" {%/if%}>
+  <td>{%if $show.t neq 'size' && $show.t neq 'color'%}<a href="/{%if $currentUser.type eq 3%}ad{%else%}dealer2{%/if%}/?{%$show.t%}_id={%$show.list[i].tid%}" style="color:blue;">{%$show.list[i].tid|hdt_keyword%}</a>{%else%}
+    {%$show.list[i].tid|hdt_keyword%}
+  {%/if%}</td>
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].order.pnum%}</td>
+  <td>{%$show.list[i].difference_num%}</td>
+  <td>{%$show.list[i].percent_pnum%}</td>
+  <td>{%$show.list[i].skc%}</td>
+  <td>{%$show.list[i].order.skc%}</td>
+  <td>{%$show.list[i].skc_width%}</td>
+  <td>{%$show.list[i].skc_depth%}</td>
+  <td>{%$show.list[i].order.num%}</td>
+  <td>{%$show.list[i].percent_num%}</td>
+  <td>{%$show.list[i].order.price|price_cn%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+</tr>
+{%/section%}

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu" id="select_menu">
+            <h3></h3>
+            <ul>
+            {%section name=i loop=$show.size_group_list%}
+            <li><a href="#{%$show.size_group_list[i].size_group_id%}" data-size-group-id="{%$show.size_group_list[i].size_group_id%}" {%if $smarty.section.i.index==0%}class="on"{%/if%}>{%$show.size_group_list[i].size_group_id|hdt_keyword%}</a></li>
+            {%/section%}
+            </ul>
+			    </div>
+          
+          <div class="cons_main" style="text-align: center;">
+            <form id="HDT-main"></form>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/admin/proportion/select_proportion");
+</script>
+</body>
+</html>

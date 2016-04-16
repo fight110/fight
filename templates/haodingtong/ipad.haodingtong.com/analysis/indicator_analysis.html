@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="box">
+    
+    {%if $show.user.type neq 1%}
+    <div  class="LabelText">
+    		{%if $show.user.username eq '0'%}
+            <a class="ad" href="/analysis/classa_indicator">一级指标</a>
+    		<a data-type="3" {%if $show.type eq 3%}class="on"{%/if%}>区域经理指标</a>
+    		{%/if%}
+    		{%if $show.user.type neq 2%}
+    		<a data-type="2" {%if $show.type eq 2%}class="on"{%/if%}>总代指标</a>
+    		{%/if%}
+    		<a data-type="1" {%if $show.type eq 1%}class="on"{%/if%}>单店指标</a>
+        {%*if $show.user.username eq '0'%}
+        <a data-type="5" {%if $show.type eq 5%}class="on"{%/if%}>区域指标</a>
+        <a data-type="6" {%if $show.type eq 6%}class="on"{%/if%}>客户类型指标</a>
+        {%/if*%}
+        <span style="float:right" ><input type="checkbox" id="show_all" />款色款量</span>
+    		<select name="keyword_id" style="float:right;display:none">
+    		</select>
+    		<select name="field" style="float:right">
+    			<option value="" selected="selected">总指标</option>
+    			<option value="category_id" >大类指标</option>
+    			<option value="brand_id" >品牌指标</option>
+    			<option value="season_id" >季节指标</option>
+    		</select>
+            <select name="order" style="float:right">
+                <option value="" selected="selected">排序</option>
+                <option value="ord_discount_amount" >金额</option>
+                <option value="ord_num" >订量</option>
+                <option value="price_percent" >金额完成率</option>
+                <option value="num_percent" >订量完成率</option>
+            </select>
+            <input type="text" id="search_user" style="float:right;width:80px" placeholder="用户搜索"/>
+    		<input type="hidden" id="indicator_type" value={%$show.type%} />
+    </div>
+    {%/if%}
+      <table cellspacing="0" cellpadding="0" border="0" class="table01"  id="HDT-main"></table>
+       </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use("lj/a/indicator_analysis");
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<tr>
+  {%foreach from=$show.structure key=k item=name%}
+  <th>{%$name%}</th>
+  <th>款色</th>
+  <th>订量</th>
+  {%if $k!='nannvzhuan_id'%}
+  <th>金额</th>
+  {%/if%}
+  {%/foreach%}
+  <th>开发款色</th>
+</tr>
+{%foreach from=$show.newlist key=k1 item=v1%}
+<tr>
+  <td rowspan="{%$v1.rowspan%}">{%$k1|hdt_keyword%}</td>
+  <td rowspan="{%$v1.rowspan%}">{%$v1.skc%}</td>
+  <td rowspan="{%$v1.rowspan%}">{%$v1.num%}</td>
+  <td rowspan="{%$v1.rowspan%}">{%$v1.amount%}</td>
+  {%foreach from=$v1.child key=k2 item=v2%}
+    <td rowspan="{%$v2.rowspan%}">{%$k2|hdt_keyword%}</td>
+    <td rowspan="{%$v2.rowspan%}">{%$v2.skc%}</td>
+    <td rowspan="{%$v2.rowspan%}">{%$v2.num%}</td>
+    <td rowspan="{%$v2.rowspan%}">{%$v2.amount%}</td>
+    {%foreach from=$v2.child key=k3 item=v3%}
+      <td rowspan="{%$v3.rowspan%}">{%$k3|hdt_keyword%}</td>
+      <td rowspan="{%$v3.rowspan%}">{%$v3.skc%}</td>
+      <td rowspan="{%$v3.rowspan%}">{%$v3.num%}</td>
+      <td rowspan="{%$v3.rowspan%}">{%$v3.amount%}</td>
+      {%foreach from=$v3.child key=k4 item=v4%}
+        <td rowspan="{%$v4.rowspan%}">{%$k4|hdt_keyword%}</td>
+        <td>{%$v4.skc%}</td>
+        <td>{%$v4.num%}</td>
+        <td>{%$v4.kf_skc%}</td>
+        </tr><tr>
+      {%/foreach%}
+    {%/foreach%}
+  {%/foreach%}
+</tr>
+{%/foreach%}

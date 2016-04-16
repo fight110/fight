@@ -1,0 +1,32 @@
+{%include file="top.1.html"%}
+    <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+      <ul>
+      {%include file="top.2.html"%}
+     <!--  </ul>
+      <ul> -->
+      <li>
+        <select name="order_key">
+          <option value="">排序</option>
+          <option value="kuanhao" {%if $show.order_key=="kuanhao"%}selected="selected"{%/if%}>款号</option>
+          <option value="bianhao" {%if $show.order_key=="bianhao"%}selected="selected"{%/if%}>编号</option>
+          <option value="avg" {%if $show.order_key=="avg"%}selected="selected"{%/if%}>均分</option>
+          <option value="score" {%if $show.order_key=="score"%}selected="selected"{%/if%}>总分</option>
+          <option value="unum" {%if $show.order_key=="unum"%}selected="selected"{%/if%}>参与人数</option>
+          <option value="upercent_num" {%if $show.order_key=="upercent_num"%}selected="selected"{%/if%}>评分率</option>
+        </select>
+      </li>
+      <li>
+        <select name="order_ud">
+          <option value="0" {%if $show.order_ud=="0"%}selected="selected"{%/if%}>升序</option>
+          <option value="1" {%if $show.order_ud=="1"%}selected="selected"{%/if%}>降序</option>
+        </select>
+      </li>
+    </ul>
+    </div>
+    <div class="nright">
+      {%include file="top.search.html"%}
+    </div>
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

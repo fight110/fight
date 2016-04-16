@@ -1,0 +1,8 @@
+<ul>
+	{%foreach from=$show.group_list key=key item=val%}
+		<li class="change_group {%if $val.id eq $show.currentGid%}current{%/if%}" data-id='{%$val.id%}' {%if $show.width%}style="width:{%$show.width%}px"{%/if%}>
+			<img src="/thumb/75/{%$val.contrast_image%}" />
+	        <p>{%$val.name%}</p>
+		</li>
+	{%/foreach%}
+</ul>

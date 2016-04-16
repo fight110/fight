@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.location.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+    <div class="probox">
+    <dl class="this_txt ad_this_txt clearfix">
+    <dt>陈列{%$show.group.bianhao%}</dt>
+    <dd class="">
+       <div class="floatLeft productImgBig"><img src="/thumb/458/{%$show.group.defaultimage%}"></div>
+       <div class="floatLeft textContent">
+       		<table class="showTable">
+       			<tr><td class="firstTb"><b>总&#12288;&#12288;计：<b/></td><td>{%$show.ginfo.total%} 件</td></tr>
+       			<tr><td class="firstTb"><b>最多区域：<b/></td><td>{%$show.ginfo.mostArea.area_name%} <b>{%$show.ginfo.mostArea.num%}</b> 件</td></tr>
+       			<tr><td class="firstTb"><b>最少区域：<b/></td><td>{%$show.ginfo.leastArea.area_name%} <b>{%$show.ginfo.leastArea.num%}</b> 件</td></tr>
+       			<tr><td class="firstTb"><b>最多客户：<b/></td><td>{%$show.ginfo.mostMember.user_name%} <b>{%$show.ginfo.mostMember.num%}</b> 件</td></tr>
+       			<tr><td class="firstTb"><b>最少客户：<b/></td><td>{%$show.ginfo.leastMember.user_name%} <b>{%$show.ginfo.leastMember.num%}</b> 件</td></tr>
+       		</table>
+       </div>
+    </dd>
+    </dl>
+
+    <div id="HDT-photos">
+	<div id="photo_main">
+	<ul>
+	{%$i=1%}
+	{%foreach from=$show.ginfo.member key=myId2 item=gm2%}
+	{%$pid=$gm2.product_id%}
+	{%$cid=$gm2.product_color_id%}
+    <li class="floatLeft">
+    <a href="#productList{%$pid%}_{%$cid%}">
+    <div class="topImg"><span>{%$i++%}名</span><img src="/thumb/75/{%$show.ginfo.productInfo.$pid.defaultimage%}"></div>
+    <div class="botDiv">{%$gm2.skc%}号<br><b>{%$gm2.num%}件</b></div>
+    </a>
+    </li>
+	{%/foreach%}
+	</ul>
+	</div>
+    </div>
+
+    <div class="clear"></div>
+    </div>
+
+    <h3 class="de_subtitle">订货明细</h3>
+    <ul class='orderDetail'>
+    {%$j=1%}
+    {%foreach from=$show.ginfo.member key=myId3 item=gm3%}
+    {%$pid3=$gm3.product_id%}
+    {%$cid3=$gm3.product_color_id%}
+    <li id="productList{%$pid3%}_{%$cid3%}">
+    <div class="floatLeft detailImg"><img src="/thumb/210/{%$show.ginfo.productInfo.$pid3.defaultimage%}"></div>
+    <div class="floatLeft detaiContent">
+    <span class="productInfo"><b>圆牌号:{%$gm3.skc%}</b><b>杆号:{%$show.group.bianhao%}</b>
+    <b>价格:{%$show.ginfo.productInfo.$pid3.price%}元</b><b>{%$show.ginfo.productInfo.$pid3.category_name%}</b><!-- <b>内杆3名</b> -->
+    <b>总第{%$show.ginfo.productInfo.$pid3.rank%}名</b>
+    <i>杆内<b>{%$j++%}</b>名</i>
+    </span>
+    <table class="detailTb">
+    	<tr><th>区域名</th><th>计量小计</th><th>应订人数</th><th>已定人数</th><th>被定率</th><th>最多个体</th><th>最少个体</th></tr>
+    	{%$mostId=$gm3.userInfo.0.user_id%}
+    	{%$lastId=$gm3.userInfo.1.user_id%}
+    	<tr>
+    		<td><b>汇总</b></td><td>{%$gm3.num%}件</td><td>{%$show.ginfo.userNum%}</td><td>{%$gm3.hasbuy%}</td>
+    		<td>{%round(($gm3.hasbuy/$show.ginfo.userNum),4)*100%}%</td>
+    		<td>{%$show.userlistInfo.$mostId.name%}</td><td>{%$show.userlistInfo.$lastId.name%}</td>
+    	</tr>
+    	{%$alen=$gm3.areaInfo|sizeof%}
+    	{%if $alen <=6%}
+    	
+    	{%foreach from=$gm3.areaInfo key=myId4 item=gm4%}
+    	{%$cinfo=$gm4%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	{%/foreach%}
+    	
+    	{%else%}
+    	{%$cinfo=$gm3.areaInfo.0%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	
+    	{%$cinfo=$gm3.areaInfo.1%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	
+    	{%$cinfo=$gm3.areaInfo.2%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	
+    	{%$aInfoLen=$gm3.areaInfo|sizeof%}
+    	{%$nowId=$aInfoLen-3%}
+    	{%$cinfo=$gm3.areaInfo.$nowId%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	
+    	{%$nowId=$aInfoLen-2%}
+    	{%$cinfo=$gm3.areaInfo.$nowId%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    	
+    	{%$nowId=$aInfoLen-1%}
+    	{%$cinfo=$gm3.areaInfo.$nowId%}
+    	{%$currentArea=$cinfo.area_id%}
+    	<tr><td><b>{%$show.locationInfo.$currentArea.name%}</b></td><td>{%$cinfo.num%}件</td><td>{%$show.ginfo.userAreaGroup.$currentArea.total%}</td>
+    	<td>{%$cinfo.hasbuy%}</td>
+    	<td>{%round(($cinfo.hasbuy/$show.ginfo.userAreaGroup.$currentArea.total),4)*100%}%</td>
+    	{%$ulen=($cinfo.users|sizeof-1)%}
+    	{%$uMostId=$cinfo.users.0.user_id%}
+    	{%$uLastId=$cinfo.users.$ulen.user_id%}
+    	<td>{%$show.userlistInfo.$uMostId.name%}</td><td>{%$show.userlistInfo.$uLastId.name%}</td></tr>	
+    
+    	{%/if%}
+    </table>
+    </div>
+    </li>
+    {%/foreach%}
+    </ul>
+  <br/>
+  <br/>
+  <br/>
+    </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+<script>
+//seajs.use('lj/dealer1/groupdetail');
+</script>
+</body>
+</html>

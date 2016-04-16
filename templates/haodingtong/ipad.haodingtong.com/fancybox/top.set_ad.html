@@ -1,0 +1,11 @@
+<div class="selectItem">
+  				<div class="selectKey">选择店仓:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="fliter_uid">
+  					{%foreach key=ukey from=$show.userlist item=uval%}
+						<li data-value="{%$uval.id%}">{%$uval.name%}</li>
+					{%/foreach%}					
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>

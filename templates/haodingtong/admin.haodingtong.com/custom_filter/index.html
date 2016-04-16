@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好订通</title>
+	{%include file="header.html"%}
+	<link href="/style/app/custom_filter.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="bodybg">
+<div class="contain">
+	{%include file="top.html"%}
+	<div class="mainbox">
+		<div class="main_con">
+
+
+			{%include file="custom_filter/content.html"%}
+
+			<!--foot-->
+			{%include file="footer.html"%}
+			<!--foot end-->
+		</div>
+		{%include file="right.html"%}
+		<div class="clear"></div>
+	</div>
+</div>
+<input type="hidden" name="q" id="HDT-hidden-q" value="{%$show.q%}">
+<input type="hidden" name="message" id="HDT-message" value="{%$message%}">
+<script>
+	seajs.use("lj/custom_filter/index");
+</script>
+</body>
+</html>

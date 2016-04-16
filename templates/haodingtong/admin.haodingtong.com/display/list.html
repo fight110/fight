@@ -1,0 +1,24 @@
+<table class="table01" cellspacing="0" cellpadding="0" border="0">
+<tr>
+  <th>款号</th>
+  <th>款名</th>
+  <th>颜色</th>
+  <th>圆牌</th>
+  <th style="width:150px;">操作</th>
+</tr>
+{%section name=i loop=$show.list%}
+<tr>
+  <td rowspan="{%$show.list[i].color_list|count%}">{%$show.list[i].kuanhao%}</td>
+  <td rowspan="{%$show.list[i].color_list|count%}">{%$show.list[i].name%}</td>
+  {%foreach from=$show.list[i].color_list item=color%}
+  <td>{%$color.color_id|hdt_keyword%}</td>
+  <td>{%$color.skc_id%}</td>
+  <td class="option">
+  	<a href="javascript:void(0);" data-product-id="{%$show.list[i].id%}">款添加</a>
+  	<a href="javascript:void(0);" data-product-id="{%$show.list[i].id%}" data-color-id="{%$color.color_id%}">款色添加</a>
+  </td>
+</tr><tr>
+  {%/foreach%}
+</tr>
+{%/section%}
+</table>

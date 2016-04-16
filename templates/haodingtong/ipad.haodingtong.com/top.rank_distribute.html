@@ -1,0 +1,16 @@
+{%include file="top.1.html"%}
+
+  <div class="tit_bar">
+    <ul class="select_menu" id="HDT-select-menu">
+    	{%include file="top.8.html"%}
+    	<li>
+			<select name="view">
+        		<option value="T" {%if $show.view=="T"%}selected="selected"{%/if%}>单款</option>
+        		<option value="ST" {%if $show.view=="ST"%}selected="selected"{%/if%}>款色</option>
+      		</select>
+		</li>
+   </ul>
+    {%include file="top.search.html"%}
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

@@ -1,0 +1,71 @@
+{%if $show.start == 0%}
+<!-- <tr class="hasbotwhite">
+<td colspan='10'>
+<form method="get" action="/analysis/export_two">
+		<input type="hidden" name="group1" value = "{%$show.group1%}" >
+		<input type="hidden" name="group2" value = "{%$show.group2%}" >
+  		<input type="submit" name="analysisexport" value="导出">
+</form>
+</td>
+</tr> -->
+<tr>
+  <th colspan=2></th>
+  <th colspan=2></th>
+  <th colspan=3>订数</th>
+  <th colspan=3>金额</th>
+</tr>
+<tr>
+  <th colspan=2></th>
+  <th>款量</th>
+  <th>款色</th>
+  <th>订数</th>
+  <th>占比</th>
+  <th>总占比</th>
+  <th>金额</th>
+  <th>占比</th>
+  <th>总占比</th>
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr data-g1="{%$show.list[i].group1_name%}"
+data-g2="{%$show.list[i].group2_name%}"
+data-d="{%$show.list[i].num%}"
+data-p="{%$show.list[i].price%}"
+>
+  {%if $show.list[i].rowspan%}<td class="hbg" rowspan="{%$show.list[i].rowspan%}">{%$show.list[i].group1_name%}</td>{%/if%}
+  <td>{%$show.list[i].group2_name%}{%if $show.list[i].total_num%}({%$show.list[i].total_num%}){%/if%}</td>
+  <td>{%$show.list[i].pnum%}</td>
+  <td>{%$show.list[i].skc%}</td>
+  <td class="hbg">{%$show.list[i].num%}</td>
+  <td class="hbg">{%$show.list[i].group_percent_num%}</td>
+  <td class="hbg">{%$show.list[i].percent_num%}</td>
+  <td>{%$show.list[i].price|price_cn%}</td>
+  <td>{%$show.list[i].group_percent_price%}</td>
+  <td>{%$show.list[i].percent_price%}</td>
+  {%if $show.list[i].group%}
+  </tr><tr class="hbg1">
+  <td><span class="HDT_color1">总计</span></td>
+  <td>{%$show.list[i].group.pnum%}</td>
+  <td>{%$show.list[i].group.skc%}</td>
+  <td>{%$show.list[i].group.num%}</td>
+  <td>100%</td>
+  <td>{%$show.list[i].group.percent_num%}</td>
+  <td>{%$show.list[i].group.price|price_cn%}</td>
+  <td>100%</td>
+  <td>{%$show.list[i].group.percent_price%}</td>
+  {%/if%}
+</tr>
+{%/section%}
+{%if $show.total_num%}
+<tr class="hbg1">
+  <td colspan=2><b class="HDT_color1">总计</b></td>
+  <td>{%$show.total_pnum%}</td>
+  <td>{%$show.total_skc%}</td>
+  <td>{%$show.total_num%}</td>
+  <td>100%</td>
+  <td>100%</td>
+  <td>{%$show.total_price|price_cn%}</td>
+  <td>100%</td>
+  <td>100%</td>
+</tr>
+{%/if%}

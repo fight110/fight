@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+        <div class="d_pro_button"><span class="sbtn">
+      <input name="button5"  type="button" class="btn_orangle" value="上一组" style="float:left;" id="HDT-last" data-bianhao="{%$show.display.id%}" data-f="up"/>
+      <input name="button4"  type="button" class="btn_orangle" value="下一组" style="float:right;" id="HDT-next" data-bianhao="{%$show.display.id%}" data-f="down"/>
+    </span></div>
+    <div class="probox">
+    
+    <dl class="this_txt clearfix">
+<!--     <dt>编号:{%$show.display.bianhao%}</li>-->
+
+    {%if $show.plist0%}
+    <dt>{%$show.display.bianhao%}</dt>
+    <dd class="general">
+        {%section name=i loop=$show.plist0%}
+          <div id="general{%$show.plist0[i].product_id%}">
+            <a href="#p{%$show.plist0[i].product_id%}"><img src="/thumb/75/{%$show.plist0[i].product.defaultimage%}"></a>
+            <b>&nbsp;√</b>
+            <em></em>
+          </div>
+        {%/section%}
+    </dd>
+    {%/if%}
+    </dl>
+
+    <div id="HDT-photos">
+    <div class="pro_photo">
+        <div class="relat" style="width:458px;height:458px;margin:0 auto;overflow:hidden;">
+            <ul style="width:10000px;">
+            {%section name=i loop=$show.imagelist%}
+            <li style="float:left;"><img src="/thumb/458/{%$show.imagelist[i].image%}"></li>
+            {%/section%}
+            </ul>
+          {%if $show.unorder%}<div class="unorder1"></div>{%/if%}</div>
+      </div>
+
+    </div>
+    <!-- <div style="float:right;">
+      <form action="/orderlist/fill_display" method="POST">
+        <span class="stylenum">
+            <input type="hidden" name="fill_display_id" value="{%$show.display.id%}">
+            {%if $show.company.proportion_status%}
+            <input type="submit" name="add" class="btn_gree fill_form" value="配比铺货" data-confirm="确认按照公司提供的配比操作？">
+            {%/if%}
+            <input type="submit" name="remove" class="btn_gray2 fill_form" value="清空订单" data-confirm="确认清空订单？">
+        </span>
+      </form>
+    </div> -->
+    <div class="clear"></div>
+    </div>
+
+    {%if $show.display.intro%}<div class="d_intro">
+      <h3>{%$show.display.name%}说明</h3>
+      {%$show.display.intro%}
+    </div>{%/if%}
+
+    <h3 class="de_subtitle">{%$show.display.name%} 推荐陈列款</h3>
+    <ul class="prolist detail_dplist clearfix" id="HDT-display-list" data-display-id="{%$show.display.id%}"></ul>
+  <br/>
+  <br/>
+  <br/>
+    </div>
+    <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+
+</div>
+<script>
+seajs.use('lj/dealer1/displaydetail');
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="proportion">
+  <form >
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tr>
+      <th></th>
+      {%section name=i loop=$show.size_list%}
+      <th>{%$show.size_list[i].name%}</th>
+      {%/section%}
+      <th>箱数</th>
+    </tr>
+    <tr>
+      <td>设置配比</td>
+      {%section name=i loop=$show.size_list%}
+      <td><input type="number"></td>
+      {%/section%}
+      <td><input type="number"></td>
+    </tr>
+    {%section name=i loop=$show.proportion_list%}
+    <tr>
+      <td>历史配比</td>
+      {%foreach from=$show.proportion_list[i].list item=proportion%}
+      <td><input value="{%$proportion%}"></td>
+      {%/foreach%}
+    </tr>
+    {%/section%}
+  </table>
+  <p><input type="submit" value="保存" style="width:100%;"></p>
+  </form>
+</div>

@@ -1,0 +1,40 @@
+{%include file="top.1.html"%}
+<div class="pinned">
+<div class="nav">
+  <div class="nleft"  id="HDT-select-menu">
+    {%if $show.company.group_order neq 1 || $currentUser.type eq 3%}
+  	<ul>
+      	<li>
+            <select class="select" name="dp_type">
+              <option value="">波段</option>
+              {%foreach from=$show.dp_type_list key=key item=val%}
+              <option value="{%$val.dp_type%}" {%if $show.group_info.dp_type eq $val.dp_type%}selected="selected"{%/if%}>{%$val.dp_type|hdt_keyword%}</option>
+              {%/foreach%}
+            </select>
+        </li>
+        <li>
+            <select class="select" name="dp_type2">
+              <option value="{%$show.dp_type_list[0].dp_type2%}">分组</option>
+              {%foreach from=$show.dp_type2_list key=key item=val%}
+              <option value="{%$val.dp_type2%}" {%if $show.group_info.dp_type2 eq $val.dp_type2%}selected="selected"{%/if%}>{%$val.dp_type2|hdt_keyword%}</option>
+              {%/foreach%}
+            </select>
+        </li>
+      {%if $currentUser.type eq 3%}
+        <button class="push" >推送</button>
+      {%/if%}
+    </ul>
+    {%elseif $show.company.group_order eq 1 && $currentUser.type eq 1%}
+    <ul>
+        <li>
+          <button class="show_header">切换头部</button>
+        </li>
+    </ul>
+    {%/if%}
+  </div>
+  <div class="nright">
+	{%include file="top.search.html"%}
+  </div>
+  </div>
+  </div>
+  {%include file="top.script.html"%}

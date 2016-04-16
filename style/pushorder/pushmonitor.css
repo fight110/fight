@@ -1,0 +1,111 @@
+@charset "utf-8";
+
+.push-monitor .clear {
+	clear: both;
+}
+
+.push-monitor .display-list {
+	margin: 10px;
+	border: solid 1px #e5e5e5;
+}
+
+.push-monitor .display-list ul li{
+	width: 200px;
+	float: left;	
+	text-align: center;
+	margin: 5px 10px 5px 10px;
+	border: solid 1px #e5e5e5; 
+}
+
+.push-monitor .display-list ul li img{
+	width: 100%;
+}
+
+.push-monitor .display-list ul li span{
+	padding: 0 5px 0 5px;
+}
+
+.push-monitor .display-list ul li .left-span{
+	float: left;
+}
+
+.push-monitor .display-list ul li .right-span{
+	float: right;
+}
+
+.push-monitor .group-list {
+	margin: 10px;
+	border: solid 1px #e5e5e5;
+}
+
+.push-monitor .group-list ul li{
+	width: 100px;
+	float: left;
+	text-align: center;
+	margin: 5px 2px 5px 2px;
+	border: solid 1px #e5e5e5;
+}
+
+.push-monitor .group-list ul li img{
+	width: 100%;
+}
+
+.push-monitor .group-list ul li .left-span{
+	float: left;
+}
+
+.push-monitor .group-list ul li .right-span{
+	float: right;
+}
+
+.push-monitor .product-list {
+	margin: 10px;
+	border: solid 1px #e5e5e5;
+}
+
+.push-monitor .product-list ul li {	
+	border: solid 1px #e5e5e5;
+	margin: 5px;
+}
+
+.push-monitor .product-list ul li .left-div{
+	width: 30%;
+	float: left;
+}
+
+.push-monitor .product-list ul li .left-div img{
+	width: 210px;
+	margin: 5px;
+}
+
+.push-monitor .product-list ul li .right-div{
+	width: 70%;
+	float: right;
+}
+
+.push-monitor .product-list ul li .right-div .title{
+	text-align: center;
+	width: 98%;
+}
+.push-monitor .product-list ul li .right-div .title span{
+	padding: 0 10px 0 10px; 
+}
+
+.push-monitor .product-list ul li .right-div .title .left-span{
+	float: left;
+}
+
+.push-monitor .product-list ul li .right-div .title .right-span{
+	float: right;
+}
+
+.push-monitor .product-list ul li .right-div table{
+	width: 98%;
+	text-align: center;
+}
+
+.push-monitor .product-list ul li .right-div table td{
+	border: 1px solid #eee;
+}
+
+

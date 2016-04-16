@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+ {%include file="top.1.html"%}
+  <div class="isspot">
+    <div class="imglist">
+      <ul>
+      {%foreach from=$show.list item=val%}
+      <li>
+          <div class="imgbox">
+            <div class="unorder_must"></div>
+            <img src="/thumb/210/{%$val.defaultimage%}"/>
+          </div>
+          <div class="descri">
+            <div class="price"> <span class="amount"> {%$val.kuanhao%}</span> <strong> 单价 <b>{%$val.price%}</b> </strong> </div>
+            <div class="mode"> <span style="float:right">{%$val.style_id|hdt_keyword%} </span> {%$val.category_id|hdt_keyword%}</div>
+          </div>
+      </li>
+      {%/foreach%}
+      </ul>
+    </div>
+    <div>
+    <dl class="brandlist" id="futures" {%if $show.futures%}valid="1"{%/if%}>
+      <dt> <a> <img src="/images/brand1.jpg"> </a> </dt>
+      <dd> </dd>
+    </dl>
+    <dl class="brandlist" id="isspot" {%if $show.isspot%}valid="1"{%/if%}>
+      <dt> <a> <img src="/images/brand2.jpg"> </a> </dt>
+      <dd> </dd>
+    </dl>
+    </div>
+  </div>
+</div>
+<input type="hidden" name="q" id="HDT-hidden-q" value="{%$show.q%}">
+<input type="hidden" name="message" id="HDT-message" value="{%$message%}">
+<script>
+seajs.use("lj/dealer1/isspot");
+</script>
+</body>
+</html>

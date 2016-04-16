@@ -1,0 +1,81 @@
+{%if $show.list%}
+<table border="0" cellpadding="0" cellspacing="0" class="table01">
+<tr>
+	<th>品牌</th>
+	<th>金额</th>
+	<th>金额占比</th>
+	{%foreach from=$show.wave_list key=wkey item=wval%}
+	<th>{%$wval|hdt_keyword%}金额占比</th>
+	{%/foreach%}
+</tr>
+{%foreach from=$show.brand_list key=bkey item=bval%}
+<tr>
+	<td>{%$bval|hdt_keyword%}</td>
+	<td>{%$show.list3[$bval].price|price_cn%}</td>
+	<td>{%$show.list3[$bval].percent_price%}</td>
+	{%foreach from=$show.wave_list key=wkey item=wval%}
+	<td>{%$show.list3[$bval][$wval].percent_price%}</td>
+	{%/foreach%}
+</tr>
+{%/foreach%}
+</table>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" class="table01">
+<tr>
+	<th colspan=2>性别</th>
+	{%foreach from=$show.brand_list key=bkey item=bval%}
+	{%foreach from=$show.nannvzhuan_list key=nkey item=nval%}
+	<th colspan=3>{%$nval|hdt_keyword%}</th>
+	{%/foreach%}
+	<th rowspan=2>款色小计</th>
+	<th rowspan=2>小计数量</th>
+	<th rowspan=2>金额占比</th>
+	<th rowspan=2>总金额</th>
+	{%/foreach%}
+</tr>
+<tr>
+	<th>波段</th>
+	<th>大类</th>
+	{%foreach from=$show.brand_list key=bkey item=bval%}
+	{%foreach from=$show.nannvzhuan_list key=nkey item=nval%}
+	<th>开发款色</th>
+	<th>订单款色</th>
+	<th>订单数量</th>
+	{%/foreach%}
+	{%/foreach%}
+</tr>
+{%foreach from=$show.wave_list key=wkey item=wval%}
+	{%foreach from=$show.category_list key=ckey item=cval%}
+	<tr>
+			{%if $show.rowspanList[$wval][$cval].rowspan%}<td rowspan="{%$show.rowspanList[$wval][$cval].rowspan%}">{%$wval|hdt_keyword%}</td>{%/if%}
+			<td>{%$cval|hdt_keyword%}</td>
+		{%foreach from=$show.brand_list key=bkey item=bval%}
+			{%foreach from=$show.nannvzhuan_list key=nkey item=nval%}
+			<td>{%$show.skc_list[$bval][$wval][$cval][$nval].skc|default:0%}</td>
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].cate_info[$nval].nannv_info.pnum|default:0%}</td>
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].cate_info[$nval].nannv_info.num|default:0%}</td>
+			{%/foreach%}
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].cate_info.pnum|default:0%}</td>
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].cate_info.num|default:0%}</td>
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].percent_price%}</td>
+			<td>{%$show.list.info[$bval].bran_info[$wval].wave_info[$cval].cate_info.price|price_cn%}</td>
+		{%/foreach%}
+	</tr>
+	{%/foreach%}
+	<tr>
+		<td>小计</td>
+		{%foreach from=$show.brand_list key=bkey item=bval%}
+			{%foreach from=$show.nannvzhuan_list key=nkey item=nval%}
+			<td>{%$show.skc_list2[$bval][$wval][$nval].skc|default:0%}</td>
+			<td>{%$show.list2[$bval][$wval][$nval].pnum|default:0%}</td>
+			<td>{%$show.list2[$bval][$wval][$nval].num|default:0%}</td>
+			{%/foreach%}
+			<td>{%$show.list2[$bval][$wval].pnum|default:0%}</td>
+			<td>{%$show.list2[$bval][$wval].num|default:0%}</td>
+			<td>100%</td>
+			<td>{%$show.list2[$bval][$wval].price|price_cn%}</td>
+		{%/foreach%}
+	</tr>
+{%/foreach%}
+</table>
+{%/if%}

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>项目\内容</h3>
+            {%include file="keyword/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <tr>
+                  <th width="20%">色系名</th>
+                  <th width="20%">色块</th>
+                  <th width="30%">颜色值</th>
+                  <th width="30%">操作</th>
+                </tr>
+                {%section name=i loop=$show.list%}
+                <tr>
+                  <td>
+                	{%$show.list[i].keyword_id|hdt_keyword%}
+                  </td>
+                  <td style="background-color:#{%$show.list[i].rgb%}">&nbsp</td>
+                  <form method="POST" action="/keyword/color_rgb">
+                  <td>
+                    <input type="hidden" name="id" value="{%$show.list[i].id%}"></input>
+                  	<input name="rgb" class="color" value="{%$show.list[i].rgb%}"></input>
+                  </td>
+                  <td><input type="submit" value="保存"></td>
+                  </form>
+                </tr>
+                {%/section%}
+              </table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/keyword/color_rgb');
+</script>
+</body>
+</html>

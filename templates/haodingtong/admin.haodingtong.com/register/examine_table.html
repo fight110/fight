@@ -1,0 +1,20 @@
+{%if $show.p eq 1%}
+<tr>
+	<th>序号</th>
+	<th>姓名</th>
+	<th>手机</th>
+	<th>时间</th>
+	<th>状态</th>
+</tr>
+{%/if%}
+{%if $show.list%}
+{%foreach from=$show.list key=k item=val name=foo%}
+<tr>
+	<td>{%$smarty.foreach.foo.index + $show.start%}</td>
+	<td>{%$val.name%}</td>
+	<td>{%$val.phone%}</td>
+	<td>{%$val.post_time%}</td>
+	<td data-id="{%$val.id%}" class="examine">{%if $val.status eq 1%}<font color="green">已审核</font>{%else%}<font color="red">未审核</font>{%/if%}</td>
+</tr>
+{%/foreach%}
+{%/if%}

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+<div class="contain">
+    <div class="top">
+        <h1><strong>{%$show.user.name%}</strong>({%$show.orderinfo.num%})</h1>
+        <a href="/" class="lbtn"><span>好订通</span></a>
+        <!-- <a href="/logout" class="rbtn"><span>注销</span></a> -->
+    </div>
+
+    <div class="tit_order clearfix">
+        <span>{%$show.orderinfo.num|default:0%}/{%$show.orderinfo.price|price_cn|default:0%}</span>
+        <h2>{%$show.name|default:"全部{%$keyword.style_id%}"%}</h2>
+        <a href="/" class="aclose_order"><b>点此收起订货</b></a>
+    </div>
+
+    <ul class="styleslist2" id="HDT-main"></ul>
+
+    <div class="loading"></div>
+
+</div>
+</div>
+<form id="HDT-form-product">
+    <input type="hidden" name="ordered" value="{%$show.ordered%}">
+    <input type="hidden" name="style_id" value="{%$show.style_id%}">
+    <input type="hidden" name="category_id" value="{%$show.category_id%}">
+    <input type="hidden" name="classes_id" value="{%$show.classes_id%}">
+    <input type="hidden" name="series_id" value="{%$show.series_id%}">
+    <input type="hidden" name="wave_id" value="{%$show.wave_id%}">
+    <input type="hidden" name="q" value="{%$show.q%}">
+</form>
+{%include file="footer.menu.html"%}
+
+<script>
+seajs.use('lj/iphone/index/product');
+</script>
+</body>
+</html>

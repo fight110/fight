@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+<body class="bodybg">
+	<div class="contain">
+		{%assign var="title1" value="{%$keyword.brand_id%}信息管理"%} {%include file="top.html"%}
+		<div class="mainbox">
+			<div class="main_con">
+				<div class="company-config">
+					<div class="tab-div" data="global">全局设置</div>
+					<div class="tab-div on" data="function">功能配置</div>
+					<div class="tab-div" data="special">特殊功能</div>
+					<div class="clear"></div>
+					<form method="POST" action="/company/put">
+						<table cellspacing="0" cellpadding="0" border="0" class="table01" id="global" style="display:none">
+							<tbody>
+								<tr class="hbg">
+									<th width="20%">项目</th>
+									<th colspan=2>
+										说明:设置后，点击保存，完成配置 {%if $message%}
+										<font color="red">{%$message%}</font>
+										{%/if%}
+									</th>
+								</tr>
+								<tr>
+									<td rowspan="3">全局配置</td>
+									<td width="40%">页面缩放</td>
+									<td>
+										<select name="is_scalable">
+											<option value="0"
+												{%if $show.company.is_scalable==0%}selected="selected"{%/if%}>禁止</option>
+											<option value="1"
+												{%if $show.company.is_scalable==1%}selected="selected"{%/if%}>许可</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>键盘类型</td>
+									<td>
+										<select name="keyboard">
+											<option value='number' {%if $show.company.keyboard|default:'number'=='number'%}selected="selected"{%/if%}>数字</option>
+											<option value='text' {%if $show.company.keyboard|default:'number'=='text'%}selected="selected"{%/if%}>字母</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>缓存设置</td>
+									<td>
+										<input type="text" name="timestamp" class="timestamp" value="{%$show.company.timestamp%}" size="10" / >
+										<a href="javascript:void(0)" class="set_timestamp">生成时间戳</a>
+									</td>
+								</tr>
+								<tr>
+									<td rowspan="5">下单设置</td>
+									<td>下单锁定</td>
+									<td>
+										<select name="lock_order_message">
+											<option value="0" {%if $show.company.lock_order_message
+												eq 0%}selected="selected"{%/if%}>关闭</option>
+											<option value="1" {%if $show.company.lock_order_message
+												eq 1%}selected="selected"{%/if%}>开启</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>最近订量</td>
+									<td>
+										<select name="shortcut_active">
+											<option value="1"
+												{%if $show.company.shortcut_active|default:1==1%}selected="selected"{%/if%}>开启</option>
+											<option value="0"
+												{%if $show.company.shortcut_active|default:1==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>最大输入</td>
+									<td>
+										<input type="text" name="data_max" value="{%$show.company.data_max|default:999%}" size="10">
+									</td>
+								</tr>
+								<tr>
+									<td>下单过滤</td>
+									<td>
+										<input type="text" name="order_start_pass" value="{%$show.company.order_start_pass|default:''%}" size="10">
+									</td>
+								</tr>
+								<tr>
+									<td>起订量保存限制</td>
+									<td>
+										<select name="moq_control">
+											<option value="0"
+												{%if $show.company.moq_control eq 0%}selected="selected"{%/if%}>关闭</option>
+											<option value="1"
+												{%if $show.company.moq_control eq 1%}selected="selected"{%/if%}>开启</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td rowspan="4">打印设置</td>
+									<td>订单格式</td>
+									<td>
+										<select name="print_type">
+											<option value='category' {%if $show.company.print_type|default:'category'=='category'%}selected="selected"{%/if%}>{%$keyword.category_id%}</option>
+											<option value='wave' {%if $show.company.print_type=='wave'%}selected="selected"{%/if%}>{%$keyword.wave_id%}</option>
+											<option value='brand' {%if $show.company.print_type=='brand'%}selected="selected"{%/if%}>{%$keyword.brand_id%}</option>
+											<option value='theme' {%if $show.company.print_type=='theme'%}selected="selected"{%/if%}>{%$keyword.theme_id%}</option>
+											<option value='series' {%if $show.company.print_type=='series'%}selected="selected"{%/if%}>{%$keyword.series_id%}</option>
+											<option value='sxz' {%if $show.company.print_type=='sxz'%}selected="selected"{%/if%}>{%$keyword.sxz_id%}</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>金额显示</td>
+									<td>
+										<select name="show_price">
+										    <option value="2" {%if $show.company.show_price eq 2%}selected="selected"{%/if%}>仅金额</option>
+										    <option value="3" {%if $show.company.show_price eq 3%}selected="selected"{%/if%}>折后价</option>
+										    <option value="1" {%if $show.company.show_price eq 1%}selected="selected"{%/if%}>不显示</option>
+										</select>
+									</td>
+								</tr>								
+								<tr>
+									<td>注释分页</td>
+									<td>
+										<select name="print_order_text">
+											<option value=0 {%if $show.company.print_order_text|default:0==0%}selected="selected"{%/if%}>不分页</option>
+											<option value=1 {%if $show.company.print_order_text|default:0==1%}selected="selected"{%/if%}>分页</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>审单指标显示</td>
+									<td>
+										<select name="exp_print_show">
+											<option value="1" {%if $show.company.exp_print_show eq 1%}selected="selected"{%/if%}>金额</option>
+											<option value="2" {%if $show.company.exp_print_show eq 2%}selected="selected"{%/if%}>数量</option>
+											<option value="3" {%if $show.company.exp_print_show eq 3%}selected="selected"{%/if%}>金额数量</option>
+									    </select>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<table cellspacing="0" cellpadding="0" border="0" class="table01" id="function">
+							<tbody>
+								<tr class="hbg">
+									<th width="20%">项目</th>
+									<th colspan=2>
+										说明:设置后，点击保存，完成配置 {%if $message%}
+										<font color="red">{%$message%}</font>
+										{%/if%}
+									</th>
+								</tr>
+								<tr>
+									<td rowspan="15">功能配置</td>
+									<td width="40%">买断类型</td>
+									<td>
+										<select name="price_purchase_type">
+										    <option value="" {%if $show.company.price_purchase_type eq ''%}selected="selected"{%/if%}>用户</option>
+										    <option value="1" {%if $show.company.price_purchase_type eq 1%}selected="selected"{%/if%}>单款</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>前台折后价</td>
+									<td>
+										<select name="display_discount">
+											<option value='1' {%if $show.company.display_discount|default:'1'=='1'%}selected="selected"{%/if%}>显示</option>
+											<option value='0' {%if $show.company.display_discount|default:'1'=='0'%}selected="selected"{%/if%}>隐藏</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>投产量开关</td>
+									<td>
+										<select name="moq_status">
+											<option value=1 {%if $show.company.moq_status==1%}selected="selected"{%/if%}>开启</option>
+											<option value=0 {%if $show.company.moq_status==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>搭配搜索方式</td>
+									<td>
+										<select name="search_f">
+											<option value=0 {%if $show.company.search_f|default:0==0%}selected="selected"{%/if%}>单款</option>
+											<option value=1 {%if $show.company.search_f|default:0==1%}selected="selected"{%/if%}>编号</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>注册功能</td>
+									<td><select name="register">
+										<option value="1" {%if $show.company.register|default:0==1%}selected="selected"{%/if%}>开启</option>
+										<option value="0" {%if $show.company.register|default:0==0%}selected="selected"{%/if%}>关闭</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>期/现货选择</td>
+									<td><select name="isspot">
+										<option value="1" {%if $show.company.isspot|default:0==1%}selected="selected"{%/if%}>开启</option>
+										<option value="0" {%if $show.company.isspot|default:0==0%}selected="selected"{%/if%}>关闭</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td>固定配比按款:</td>
+									<td>
+										<select name="proportion_status">
+											<option value="0"
+												{%if $show.company.proportion_status==0%}selected="selected"{%/if%}>关闭</option>
+											<option value="1"
+												{%if $show.company.proportion_status==1%}selected="selected"{%/if%}>开启</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>配比下单:</td>
+									<td>
+										<select name="order_proportion_status">
+											<option value="1" {%if $show.company.order_proportion_status|default:0==1%}selected="selected"{%/if%}>开启</option>
+											<option value="0" {%if $show.company.order_proportion_status|default:0==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+										{%if $show.company.order_proportion_status%}<a href="/proportion/select_proportion">设置公司配比</a>{%/if%}
+									</td>
+								</tr>
+								<tr>
+									<td>排名分布</td>
+									<td>
+										<input type="text" name="rank_interval" value="{%$show.company.rank_interval%}" size="10">（如20;40;60,百分数）
+									</td>
+								</tr>
+								<tr>
+									<td>不计指标小类</td>
+									<td>
+										<input type="text" readonly="readonly" class="ex_name" name="ex_name" value="{%$show.company.ex_name%}" style="background-color:#c9c9c9;" size="10"></input>
+										<input type="hidden" class="ex_classes" name="ex_classes" value="{%$show.company.ex_classes%}"></input>
+										<a href="javascript:void(0)" class="ex_set">配置</a>
+									</td>
+								</tr>
+								<tr>
+									<td>款别角标</td>
+									<td>
+										<select name="subscript">
+											<option value="0" {%if $show.company.subscript|default:0==0%}selected="selected"{%/if%}>隐藏</option>
+	                                        <option value="1" {%if $show.company.subscript|default:0==1%}selected="selected"{%/if%}>显示</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>排名显示个数</td>
+									<td>
+										<input type="text" name="num_order_show" value="{%$show.company.num_order_show|default:0%}" size="10">
+									</td>
+								</tr>
+								<tr>
+									<td>用户指导数</td>
+									<td>
+										<select name="user_guide">
+											<option value="0" {%if $show.company.user_guide|default:0==0%}selected="selected"{%/if%}>隐藏</option>
+	                                        <option value="1" {%if $show.company.user_guide|default:0==1%}selected="selected"{%/if%}>显示</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>达标提示占比(小数，分号分隔)</td>
+									<td>
+										<input type="text" name="alert_exp" value="{%$show.company.alert_exp%}" size="10">
+									</td>
+								</tr>
+								<tr>
+									<td>达标提示文字(分号分隔)</td>
+									<td>
+										<input type="text" name="alert_text" value="{%$show.company.alert_text%}">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table cellspacing="0" cellpadding="0" border="0" class="table01" id="special" style="display:none">
+							<tbody>
+								<tr class="hbg">
+									<th width="20%">项目</th>
+									<th colspan=2>
+										说明:设置后，点击保存，完成配置 {%if $message%}
+										<font color="red">{%$message%}</font>
+										{%/if%}
+									</th>
+								</tr>
+								<!-- 推演订货 -->
+								<tr>
+									<td rowspan="4">推演订货</td>
+									<td width="40%">推送开关</td>
+									<td>
+										<select name="group_order">
+											<option value=1 {%if $show.company.group_order|default:0==1%}selected="selected"{%/if%}>开启</option>
+											<option value=0 {%if $show.company.group_order|default:0==0%}selected="selected"{%/if%}>关闭</option>
+										</select><br>
+									</td>
+								</tr>
+								<tr>
+									<td>更新频率</td>
+									<td>
+										<input type="text" size="5" name="group_order_interval" value="{%$show.company.group_order_interval|default:3.5%}">
+									</td>
+								</tr>
+								<tr>
+									<td>翻页图片数</td>
+									<td><input type="text" size="5" name="pushshownum" value="{%$show.company.pushshownum|default:8%}"></td>
+								</tr>
+								<tr>
+									<td>图片宽高</td>
+									<td>
+										宽:<input type="text" size="3" name="pushwidth" value="{%$show.company.pushwidth%}">
+										高:<input type="text" size="3" name="pushheight" value="{%$show.company.pushheight%}">
+									</td>
+								</tr>
+								<!-- 现场秀 -->
+								<tr>
+									<td rowspan="2">现场秀</td>
+									<td>推送开关</td>
+									<td>
+										<select name="show_start">
+											<option value=0 {%if $show.company.show_start==0%}selected="selected"{%/if%}>关闭</option>
+											<option value=1 {%if $show.company.show_start==1%}selected="selected"{%/if%}>开启</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>更新频率</td>
+									<td>										
+										<input type="text" size="5" name="show_interval"
+											value="{%$show.company.show_interval|default:3.5%}">
+									</td>
+								</tr>
+								<!-- 订单审核 -->
+								<tr>
+									<td rowspan="4">订单审核</td>
+									<td>提交开关</td>
+									<td>
+										<select name="check_order">
+											<option value=1 {%if $show.company.check_order==1%}selected="selected"{%/if%}>开启</option>
+											<option value=0 {%if $show.company.check_order|default:0==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>必订款审核</td>
+									<td>
+										<select name="check_order_need">
+											<option value=1 {%if $show.company.check_order_need==1%}selected="selected"{%/if%}>开启</option>
+											<option value=0 {%if $show.company.check_order_need|default:0==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>指标审核</td>
+									<td>
+										<select name="check_order_exp">
+											<option value=1 {%if $show.company.check_order_exp==1%}selected="selected"{%/if%}>开启</option>
+											<option value=0 {%if $show.company.check_order_exp|default:0==0%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>指标范围</td>
+									<td>
+										<input type="text" value="{%$show.company.exp_min%}" placeholder="最小值" name="exp_min" style="width:40px;"> % ~ <input type="text" value="{%$show.company.exp_max%}" placeholder="最大值" name="exp_max" style="width:40px;"> %
+									</td>
+								</tr>
+								<tr>
+									<td rowspan="6">滚动排行</td>
+									<td>是否滚动</td>
+									<td>
+										<select name="isScroll">
+											<option value="1" {%if $show.company.isScroll|default:1==1%}selected="selected"{%/if%}>开启</option>
+											<option value="2" {%if $show.company.isScroll|default:1==2%}selected="selected"{%/if%}>关闭</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>排名类型</td>
+									<td>
+										<select name="rankType">
+											<option value="ST" {%if $show.company.rankType|default:'ST'=="T"%}selected="selected"{%/if%}>款色</option>
+											<option value="T" {%if $show.company.rankType|default:'ST'=='T'%}selected="selected"{%/if%}>单款</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>滚动顺序</td>
+									<td>
+										<select name="rankConfig">
+											<option value="">默认</option>
+											<option value="category" {%if $show.company.rankConfig eq 'category'%}selected="selected"{%/if%}>{%$keyword.category_id%}</option>
+											<option value="medium" {%if $show.company.rankConfig eq 'medium'%}selected="selected"{%/if%}>{%$keyword.medium_id%}</option>
+											<option value="classes" {%if $show.company.rankConfig eq 'classes'%}selected="selected"{%/if%}>{%$keyword.classes_id%}</option>
+											<option value="wave" {%if $show.company.rankConfig eq 'wave'%}selected="selected"{%/if%}>{%$keyword.wave_id%}</option>
+											<option value="series" {%if $show.company.rankConfig eq 'series'%}selected="selected"{%/if%}>{%$keyword.series_id%}</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>滚动时间间隔</td>
+									<td>
+										<input type="text" name="scrollTime" size="5" value="{%$show.company.scrollTime%}"/ >
+									</td>
+								</tr>
+								<tr>
+									<td>刷新时间间隔</td>
+									<td>
+										<input type="text" name="reloadTime" size="5" value="{%$show.company.reloadTime%}"/ >
+									</td>
+								</tr>
+								<tr>
+									<td>滚动间距像素</td>
+									<td>
+										<input type="text" name="moveY" size="5" value="{%$show.company.moveY%}"/ >
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div><input type="submit" value="保存"></div>
+					</form>
+
+				</div>
+				<!--foot-->
+				{%include file="footer.html"%}
+				<!--foot end-->
+			</div>
+			{%include file="right.html"%}
+			<div class="clear"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		seajs.use('lj/admin/company/index');
+	</script>
+</body>
+</html>

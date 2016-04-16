@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>项目\内容</h3>
+            {%include file="keyword/menu.html"%}
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+              <form method="post" action="/keyword/size_group_options_save">
+                <input type="hidden" name="id" value="{%$show.size_group_options.id%}">
+                <input type="hidden" name="size_group_id" value="{%$show.size_group_id%}">
+              <table  border="0" cellpadding="0" cellspacing="0" >
+                <tr>
+                  <td>限制合计</td>
+                  <td><input type="text" name="num" value="{%$show.size_group_options.num%}"></td>
+                </tr>
+                <tr>
+                  <td>限制个数</td>
+                  <td><input type="text" name="restriction" value="{%$show.size_group_options.restriction%}"></td>
+                </tr>
+                <tr><td colspan="2"><input type="submit" value="保存">{%if $message%}<font color="red">{%$message%}</font>{%/if%}</td></tr>
+              </table>
+              </form>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+// seajs.use('lj/admin/keyword/area');
+</script>
+</body>
+</html>

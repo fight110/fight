@@ -1,0 +1,22 @@
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      	<th>汇总</th>
+      	{%section name=i loop=$show.size_list%}
+      	<th>{%$show.size_list[i].name%}</th>
+      	{%/section%}
+      	<th>小计</th>
+    </tr>
+    {%section name=i loop=$show.list%}
+    <tr>
+      	<td>{%$show.list[i].color.name%}</td>
+      	{%section name=j loop=$show.list[i].td%}
+      	<td>{%$show.list[i].td[j].num%}</td>
+      	{%/section%}
+      	<td class="colblue">{%$show.list[i].count%}</td>
+    </tr>
+    {%/section%}
+    <tr>
+      	<td colspan={%1 + count($show.size_list)%} class="HDT_VIEWALL"><strong>{%$show.viewall_txt%}</strong></td>
+      	<td>总计:<em>{%$show.total%}</em></td>
+    </tr>
+</table>

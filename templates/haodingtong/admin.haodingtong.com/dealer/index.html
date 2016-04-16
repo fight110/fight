@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <a href="javascript:" class="buttonLink currentSelect" style="font-weight: bold;">经销商管理</a>
+        <a href="/dealer/general_agents" class="buttonLink">总代管理</a>
+		    <a href="/ad" class="buttonLink">AD管理</a>
+        <a href="/designer" class="buttonLink">{%$keyword.designer_id%}管理</a>
+        <a href="#" class="HDT-add-user buttonLink" style="float:right;">新增帐号</a>
+        <a href="/index/refuser" target="_blank" class="buttonLink" style="float:right; margin-right: 5px;">更新缓存</a>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th colspan="12" class="option">
+              <form>
+                <input type="button" value="全部授权" class="auth-all" style="float:left" />
+                <input type="text" name="q" value="{%$show.q%}" style="width:100px;" placeholder="输入帐号/名称">
+                {%if $show.agent_list%}
+                <select name="agent_id">
+                  <option value="">所属总代</option>
+                  {%section name=i loop=$show.agent_list%}
+                  <option value="{%$show.agent_list[i].id%}" {%if $show.agent_id==$show.agent_list[i].id%}selected="selected"{%/if%}>{%$show.agent_list[i].name%}</option>
+                  {%/section%}
+                </select>
+                {%/if%}
+                <span class="searchSelects" data-default="{%$show.area%}"><select name="area1"></select><select name="area2"></select></span>
+                <select name="property">
+                  <option value="">属性</option>
+                  {%section name=i loop=$show.property_list%}
+                  <option value="{%$show.property_list[i].keyword_id%}" {%if $show.property eq $show.property_list[i].keyword_id%}selected="selected"{%/if%}>{%$show.property_list[i].keywords.name%}</option>
+                  {%/section%}
+                </select>
+                <select name="is_lock">
+                  <option value="">锁定</option>
+                  <option value="0" {%if $show.is_lock=="0"%}selected="selected"{%/if%}>否</option>
+                  <option value="1" {%if $show.is_lock=="1"%}selected="selected"{%/if%}>是</option>
+                </select>
+                <!--<select name="type">-->
+                  <!--<option value="">类型</option>-->
+                  <!--<option value="2" {%if $show.type=="2"%}selected="selected"{%/if%}>总代</option>-->
+                  <!--<option value="1" {%if $show.type=="1"%}selected="selected"{%/if%}>店仓</option>-->
+                <!--</select>-->
+                <input name="type" type="hidden" value="1">
+                <input type="submit" value="搜索">
+                <input type="hidden" name="indicator" value="{%$show.indicator%}">
+              </form>
+            </th>
+          </tr>
+          <tr class="hbg">
+            <th>序号</th>
+            <th>帐号</th>
+            <th>密码</th>
+            <th>客户名称</th>
+            <th>所属总代</th>
+            <th>销售大区</th>
+            <th>二级区域</th>
+            <th>类型</th>
+            <!-- <th>订单锁定</th> -->
+            <th>登入授权</th>
+            <th>属性</th>
+            <th>折扣</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$smarty.section.i.rownum%}</td>
+            <td>{%$show.list[i].username%}</td>
+            <td>{%$show.list[i].password%}</td>
+            <td>{%$show.list[i].name%}</td>
+            <td>{%$show.list[i].agentname%}</td>
+            <td>{%$show.list[i].area1.name%}</td>
+            <td>{%$show.list[i].area2.name%}</td>
+            <td>{%if $show.list[i].type==2%}总代{%else%}{%if $show.list[i].mid%}备单{%else%}店仓{%/if%}{%/if%}</td>
+            <!-- <td>{%if $show.list[i].is_lock%}已锁定{%else%}未锁定{%/if%}</td> -->
+            <td>
+              {%if $show.list[i].auth%}
+                <a href="#" class='auth' data-auth='0' data-user-id='{%$show.list[i].id%}' style="color:green;">已授权</a>
+              {%else%}
+                <a href='#' class='auth' data-auth='1' data-user-id='{%$show.list[i].id%}' style="color:red;">未授权</a>
+              {%/if%}
+            </td>
+            <td>{%$show.list[i].property|hdt_keyword%}</td>
+            <td>{%$show.list[i].discount%}</td>
+            <td class="option">
+              <a href="#" class="HDT-edit" data-id="{%$show.list[i].id%}">编辑</a>
+              <a href="/dealer/exp/{%$show.list[i].id%}?t=category">细分指标</a>
+              <a href="/dealer/discount/{%$show.list[i].id%}">折扣</a>
+              {%if $show.list[i].type==2%}
+              <a href="/dealer/slave?user_id={%$show.list[i].id%}">下线</a>
+              {%else%}
+              <a href="/dealer/permission_brand/{%$show.list[i].id%}">{%$keyword.brand_id%}</a>
+              <a href="/dealer/permission_isspot/{%$show.list[i].id%}">期货</a>
+              {%/if%}
+              <!-- <a href="/indicator/user/{%$show.list[i].id%}">指标</a> -->
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-user-add">
+<form id="HDT_sub">
+<input type="hidden" name="id">
+<table cellpadding=0 cellspacing=0 border=0 width="100%" class="userEditTb">
+<tr><td width="65">客户名称:</td><td><input type="text" name="name"></td><td>锁定状态:</td><td><label><input type="radio" name="is_lock" value=1>锁定</label> <label><input type="radio" name="is_lock" value=0>解锁</label> </td></tr>
+<tr><td width="65">客户帐号:</td><td><input type="text" name="username"></td><td>登陆密码:</td><td><input type="text" name="password"></td></tr>
+<tr><td>指标金额:</td><td><input type="text" name="exp_price"></td><td>指标数量:</td><td><input type="text" name="exp_num"></td></tr>
+<tr><td>客户模式:</td><td><label><input type="radio" name="discount_type" value="0">折扣</label> <label><input type="radio" name="discount_type" value="1">买断</label></td><td>合同折扣:</td><td><input type="text" name="discount" value="1"></td></tr>
+<tr>
+<td>客户等级:</td><td><select name="user_level">
+<option value="0">选择等级</option>
+{%section name=i loop=$show.user_level_list%}
+<option value="{%$show.user_level_list[i].keyword_id%}">{%$show.user_level_list[i].keywords.name%}</option>
+{%/section%}
+</select></td>
+<td>销售区域:</td><td><span class="Selects"><select name="area1"></select><select name="area2"></select></span></td>
+</tr>
+<tr><td>所属上级:</td>
+<td><select name="parentid"><option value=""></option>{%section name=i loop=$show.zongdai_list%}<option value="{%$show.zongdai_list[i].username%}">{%$show.zongdai_list[i].name%}</option>{%/section%}</select></td>
+<td>总代备单:</td><td><label><input type="radio" name="is_stock" value=1>是</label> <label><input type="radio" name="is_stock" value=0>否</label> </td></tr>
+<tr><td>账户类型:</td><td><label><input type="radio" name="type" value="2" disabled="disabled">区域总代</label> <label><input type="radio" name="type" value="1" checked="checked">店仓</label></td>
+<td>分管AD:</td><td><input type="text" name="ad_name"></td></tr>
+<tr><td>终端属性:</td><td><select name="property">
+<option value="0">选择属性</option>
+{%section name=i loop=$show.property_list%}
+<option value="{%$show.property_list[i].keyword_id%}">{%$show.property_list[i].keywords.name%}</option>
+{%/section%}
+</select></td>
+<td>分管账号：</td><td><input type="text" name="mulit_name"></td></tr>
+<tr><td colspan=4><input type="submit" value="保存" id="HDT-sub-btn"></td></tr>
+</table>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/dealer/index');
+</script>
+</body>
+</html>

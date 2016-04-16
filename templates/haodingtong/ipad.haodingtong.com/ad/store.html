@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.ad.store.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="selectFrontList"></div>
+      <div class="box">
+        总人数:{%$show.unum%}
+        <table border="0" cellpadding="0" cellspacing="0" class="table01" id="HDT-main">
+          <tr>
+            <th>序号</th>
+            <th>编号</th>
+            <th>款号</th>
+            <th>款名</th>
+            <th>图片</th>
+            <th>总分</th>
+            <th>均分</th>
+            <th>参与人数</th>
+            <th>评分率</th>
+            <th>五星</th>
+            <th>四星</th>
+            <th>三星</th>
+            <th>二星</th>
+            <th>一星</th>
+            <th></th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr data-title='编号:{%$show.list[i].data.bianhao%} 款号:{%$show.list[i].data.kuanhao%} 款名:{%$show.list[i].data.pname%}' data-img="/thumb/210/{%$show.list[i].data.defaultimage%}">
+            <td>{%$smarty.section.i.rownum%}</td>
+            <td>{%$show.list[i].data.bianhao%}</td>
+            <td>{%$show.list[i].data.kuanhao%}</td>
+            <td>{%$show.list[i].data.pname%}</td>
+            <td><img src="/thumb/50/{%$show.list[i].data.defaultimage%}"</td>
+            <td>{%$show.list[i].score%}</td>
+            <td>{%$show.list[i].avg%}</td>
+            <td>{%$show.list[i].unum%}</td>
+            <td>{%$show.list[i].upercent%}%</td>
+            <td data-uname="{%$show.list[i].5.uname%}" data-title="五星">{%$show.list[i].5.num%}</td>
+            <td data-uname="{%$show.list[i].4.uname%}" data-title="四星">{%$show.list[i].4.num%}</td>
+            <td data-uname="{%$show.list[i].3.uname%}" data-title="三星">{%$show.list[i].3.num%}</td>
+            <td data-uname="{%$show.list[i].2.uname%}" data-title="二星">{%$show.list[i].2.num%}</td>
+            <td data-uname="{%$show.list[i].1.uname%}" data-title="一星">{%$show.list[i].1.num%}</td>
+            <td><a href="#" class="hdt_more">明细</a></td>
+          </tr>
+          {%/section%}
+        </table>
+      </div>
+      <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/a/store');
+</script>
+</body>
+</html>

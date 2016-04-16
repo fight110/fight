@@ -1,0 +1,84 @@
+{%if $show.info%}
+<tr>
+<th>序号</th>
+<th>账户名</th>
+<th>所属总代</th>
+<th>订单数量</th>
+<th>订货金额</th>
+<th>折后金额</th>
+<th>指标金额</th>
+<th>金额完成率</th>
+<th>指标订量</th>
+<th>订量完成率</th>
+{%if $show.company.check_order eq 1&&$show.user.username=='0'%}
+<th colspan='3'>操作</th>
+<th>订单确认</th>
+{%else%}
+<th colspan='2'>操作</th>
+{%/if%}
+</tr>
+<tr>
+<td></td>
+<td>汇总</td>
+<td></td>
+<td>{%$show.info.ord.num%}</td>
+<td>{%$show.info.ord.price|price_cn%}</td>
+<td>{%$show.info.ord.discount_price|price_cn%}</td>
+<td>{%$show.info.exp.exp_price|price_cn%}</td>
+<td>{%$show.info.price_percent%}</td>
+<td>{%$show.info.exp.exp_num%}</td>
+<td>{%$show.info.num_percent%}</td>
+{%if $show.company.check_order eq 1&&$show.user.username=='0'%}
+<td colspan='3'></td>
+<td></td>
+{%else%}
+<td colspan='2'></td>
+{%/if%}
+</tr>
+{%/if%}
+{%foreach from=$show.list key=slk item=slv%}
+{%$count=$count+1%}
+<tr>
+      <td>{%($show.pageinfo.index-1)*($show.pageinfo.limit)+$count%}</td>
+<td>
+	{%$slv.username%}
+      <font color="blue"><strong>{%$slv.name%}</strong></font>	
+</td>
+<td>{%$slv.userMaster.name%}</td>
+<td>{%$slv.num%}</td>
+<td>{%$slv.price|price_cn%}</td>
+<td>{%$slv.discount_price|price_cn%}</td>
+<td>{%$slv.exp_price|price_cn%}</td>
+<td>{%$slv.price_percent%}</td>
+<td>{%$slv.exp_num%}</td>
+<td>{%$slv.num_percent%}</td>
+<td>
+{%if $slv.username%}
+            <a href="/orderlist/print_now/{%$slv.username%}?key={%$show.company.print_type%}&shendan=1" target="_blank">{%if $slv.is_lock%}<font color="red">已审</font>{%else%}审单{%/if%}</a>
+            {%if $show.company.check_order neq 1||$show.user.username!='0'%}{%if $slv.is_lock%}<a href="/user/lock_order/{%$slv.id%}?lock=0">取消</a>{%/if%}{%/if%}
+            {%/if%}
+</td>
+{%if $show.company.check_order eq 1&&$show.user.username=='0'%}
+<td>
+{%if $slv.order_status eq 2%}
+<a href="javascript:void(0)"  data-uid="{%$slv.id%}">已驳回</a>
+{%else%}
+<a href="javascript:void(0)" class="refused_order" data-uid="{%$slv.id%}">驳回</a>
+{%/if%}
+</td>
+{%/if%}
+<td>
+{%if $slv.username%}
+<a href="/orderlist/print_now/{%$slv.username%}?key={%$show.company.print_type%}" target="_blank">打印</a>
+{%/if%}</td>
+{%if $show.company.check_order eq 1&&$show.user.username=='0'%}
+<td>
+{%if $slv.order_status eq 3%}
+<a href="javascript:void(0)" class="confirm_order" data-uid="{%$slv.id%}">已确认</a>
+{%else%}
+<a href="javascript:void(0)" class="confirm_order" data-uid="{%$slv.id%}">待确认</a>
+{%/if%}
+</td>
+{%/if%}
+</tr>
+{%/foreach%}

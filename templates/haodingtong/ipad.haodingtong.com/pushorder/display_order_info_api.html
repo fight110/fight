@@ -1,0 +1,78 @@
+{%if $show.display_info%}
+<div class="user-display" id="user-display">
+    <div class="title">
+        <button class="left-btn" id="show-btn" data-id="{%$show.display_info.id%}">显示标准效果</button>
+        <button class="right-btn" data="next">下一组</button>
+        <button class="right-btn" data="pre">上一组</button>
+        <span>已订陈列效果</span>
+    </div>
+    <div class="user-img">
+        <img src="/thumb/800/{%$show.display_info.background_image%}" /> 
+        {%foreach from=$show.display_pc_list key=k item=val%}
+            {%if $val.num && $val.image%}
+                <img src="/thumb/800/{%$val.image%}" /> 
+            {%/if%}
+        {%/foreach%}
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="std-display" id="std-display" style="display:none">
+    <div class="title">
+        <span>标准陈列效果</span>
+    </div>
+    <div class="std-img">
+         <img src="/thumb/800/{%$show.display_info.contrast_image%}" />
+    </div>
+</div>
+<div class="user-group" id="user-group" style="display:none">
+    <div class="title">             
+        <span>已订搭配效果</span>
+    </div>
+    <div class="user-img">
+    {%foreach from=$show.group_list key=k item=val%}
+        <li {%if $show.width%}style="width:{%$show.width%}px"{%/if%}>
+            {%if $currentUser.type eq 1%}
+            <a href="/pushorder/group_order?group_id={%$val.id%}">
+            {%/if%}
+                <div>
+                    <i>{%$val.dp_num%}</i>
+                    {%if $val.notorder%}
+                        <img src="/thumb/75/{%$val.background_image%}" />
+                        {%foreach from=$val.listing key=k2 item=val2%}
+                            {%if $val2.num && $val2.image%}
+                                <img src="/thumb/75/{%$val2.image%}" />
+                            {%/if%}
+                        {%/foreach%}
+                    {%else%}                                        
+                        <img src="/thumb/75/{%$val.contrast_image%}" />
+                    {%/if%}
+                </div>
+            {%if $currentUser.type eq 1%}
+            </a>
+            {%/if%}
+            <p>{%$val.string_num%}</p>
+        </li>
+    {%/foreach%}
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="std-group" id="std-group" style="display:none">
+    <div class="title">
+        <span>标准搭配效果</span>
+    </div>
+    <div class="std-img">
+    {%foreach from=$show.group_list key=k item=val%}
+        {%if $currentUser.type eq 1%}
+        <a href="/pushorder/group_order?group_id={%$val.id%}">
+        {%/if%}
+            <li class="grouplist {%if $val.num%}groupOrder{%/if%}" {%if $show.width%}style="width:{%$show.width%}px"{%/if%}>
+                <img src="/thumb/75/{%$val.contrast_image%}" alt="">
+                <span>{%$val.dp_num%}</span>
+            </li>
+        {%if $currentUser.type eq 1%}
+        </a>
+        {%/if%}
+    {%/foreach%}
+    </div>
+</div>
+{%/if%}

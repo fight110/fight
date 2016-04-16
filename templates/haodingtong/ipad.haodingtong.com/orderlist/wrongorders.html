@@ -1,0 +1,29 @@
+{%if $show.start==0%}
+<tr>
+<th class="th2">经销商名称</th>
+<th class="th2">编号</th>
+<th class="th2">款号</th>
+<th class="th2">款名</th>
+<th class="th2">颜色</th>
+<th class="th2">尺码</th>
+<th class="th2">订数</th>
+<th class="th2">下单时间</th>
+</tr>
+{%/if%}{%section name=i loop=$show.list%}
+<tr>
+<td>{%$show.list[i].uname%}</td>
+{%if $show.user.type eq 1%}
+<td><a href="javascript:void(0);" class="fancyboxBook" data-product-id="{%$show.list[i].product_id%}">{%$show.list[i].bianhao%}</a></td>
+<td><a href="javascript:void(0);" class="fancyboxBook" data-product-id="{%$show.list[i].product_id%}">{%$show.list[i].kuanhao%}</a></td>
+<td><a href="javascript:void(0);" class="fancyboxBook" data-product-id="{%$show.list[i].product_id%}">{%$show.list[i].pname%}</a></td>
+{%else%}
+<td><a href="/index/detail/{%$show.list[i].product_id%}">{%$show.list[i].bianhao%}</a></td>
+<td><a href="/index/detail/{%$show.list[i].product_id%}">{%$show.list[i].kuanhao%}</a></td>
+<td><a href="/index/detail/{%$show.list[i].product_id%}">{%$show.list[i].pname%}</a></td>
+{%/if%}
+<td>{%$show.list[i].product_color_id|hdt_keyword%}</td>
+<td>{%$show.list[i].product_size_id|hdt_keyword%}</td>
+<td>{%$show.list[i].num%}</td>
+<td>{%$show.list[i].post_time%}</td>
+</tr>
+{%/section%}

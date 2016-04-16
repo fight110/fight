@@ -1,0 +1,18 @@
+{%include file="top.1.html"%}
+
+  <div class="tit_bar">
+    {%if $show.zongdai_list%}
+    <ul class="select_menu" id="HDT-select-menu">
+    	<li>
+			<select name="master_user_id">
+			{%section name=i loop=$show.zongdai_list%}
+			<option value="{%$show.zongdai_list[i].id%}">{%$show.zongdai_list[i].name%}</option>
+			{%/section%}
+			</select>
+		</li>
+    </ul>
+    {%/if%}
+    {%include file="top.search.html"%}
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

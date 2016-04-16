@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <form>
+          <tr class="hbg">
+            <th width="100">客户过滤:</th>
+            <th colspan=7><span class="Selects" data-default="{%if $show.area2%}{%$show.area2%}{%else%}{%$show.area1%}{%/if%}"><select name="area1"></select><select name="area2"></select></span> <input type="submit" value="确定"></th>
+          </tr>
+          </form>
+          <tr class="hbg">
+            <th>客户名称</th>
+            <th>数量指标</th>
+            <th>数量</th>
+            <th>数量完成率</th>
+            <th>金额指标</th>
+            <th>金额</th>
+            <th>金额完成率</th>
+            <th>款量</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].name%}</td>
+            <td>{%$show.list[i].exp_num%}</td>
+            <td>{%$show.list[i].num%}</td>
+            <td>{%$show.list[i].percent_num%}</td>
+            <td>{%$show.list[i].exp_price%}</td>
+            <td>{%$show.list[i].price%}</td>
+            <td>{%$show.list[i].percent_price%}</td>
+            <td>{%$show.list[i].pnum%}</td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/exp/index');
+</script>
+</body>
+</html>

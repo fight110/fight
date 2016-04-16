@@ -1,0 +1,29 @@
+{%include file="top.1.html"%}
+<div class="pinned">
+<div class="nav">
+  <div class="nleft"  id="HDT-select-menu">
+  	<ul>
+      	<li>
+            <select class="select" name="pd_type">
+              <option value="">波段</option>
+              {%foreach from=$show.pd_type_list key=key item=val%}
+              <option value="{%$val.pd_type%}" {%if $show.pd_type eq $val.pd_type%}selected="selected"{%/if%}>{%$val.pd_type|hdt_keyword%}</option>
+              {%/foreach%}
+            </select>
+        </li>
+        <li>
+            <select class="select" name="pd_type2">
+              <option value="{%$show.pd_type_list[0].pd_type2%}">分组</option>
+              {%foreach from=$show.pd_type2_list key=key item=val%}
+              <option value="{%$val.pd_type2%}" {%if $show.pd_type2 eq $val.pd_type2%}selected="selected"{%/if%}>{%$val.pd_type2|hdt_keyword%}</option>
+              {%/foreach%}
+            </select>
+        </li>
+    </ul>
+  </div>
+  <div class="nright">
+	{%include file="top.search.html"%}
+  </div>
+  </div>
+  </div>
+  {%include file="top.script.html"%}

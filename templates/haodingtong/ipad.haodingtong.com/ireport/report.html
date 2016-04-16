@@ -1,0 +1,57 @@
+{%if $show.page==1%}
+<tr>
+	{%assign var="colspan" value=count($show.keyword_ids)+count($show.size_names)+2%}
+	{%if $show.size_names%}
+		{%assign var="colspan" value=$colspan+1%}
+	{%/if%}
+	<th colspan="{%$colspan%}" style="text-align: right; padding-right: 50px;">
+		<b>总定数：{%$show.total_num%}　　　总金额：{%$show.total_price%}</b>
+	</th>
+</tr>
+<tr>
+	{%foreach $show.keyword_ids as $val%}
+	<th>{%$show.dimension_keyword_ids[$val]%}</th>
+	{%/foreach%}
+
+
+	{%foreach  $show.size_names as $names%}
+	<th>
+		{%foreach  $names as $seq => $name%}
+		{%if $seq%}<br>{%/if%}
+		{%if $name%}{%$name%}{%else%}　{%/if%}
+		{%/foreach%}
+	</th>
+	{%/foreach%}
+
+
+	<th>订数</th>
+	{%if $show.size_names%}
+	<th>单价</th>
+	{%/if%}
+	<th>金额</th>
+</tr>
+{%/if%}
+{%foreach $show.data_list as $the%}
+<tr style="{%if $the.is_group%}background-color: #8bf{%/if%}">
+	{%foreach $show.keyword_ids as $val%}
+	{%* 先尝试用关键字转译，如果没有找到，就显示原来的信息 *%}
+	<td>
+		{%if !($the.is_group && $val@index) && $val|in_array:$show.keyword_keys%}
+			{%$the[$val]|hdt_keyword%}
+		{%else%}
+			{%$the[$val]%}
+		{%/if%}
+	</td>
+	{%/foreach%}
+
+	{%foreach  $show.size_names as $key=>$name%}
+	<td>{%$the.size_list[$key]|default:"&nbsp;"%}</td>
+	{%/foreach%}
+
+	<td>{%$the['num']%}</td>
+	{%if $show.size_names%}
+	<td>{%$the['p_price']%}</td>
+	{%/if%}
+	<td>{%$the['price']%}</td>
+</tr>
+{%/foreach%}

@@ -1,0 +1,56 @@
+{%if $show.info%}
+<tr>
+<th>序号</th>
+<th>经销商</th>
+<th>订量</th>
+<th>订量指标</th>
+<th>完成率</th>
+<th>金额</th>
+<th>折后金额</th>
+<th>金额指标</th>
+<th>完成率</th>
+</tr>
+<tr>
+<td></td>
+<td>汇总</td>
+<td>{%$show.info.ord.num%}</td>
+<td>{%$show.info.exp.exp_num%}</td>
+<td>{%$show.info.exp_num_percent%}</td>
+<td>{%$show.info.ord.price|price_cn%}</td>
+<td>{%$show.info.ord.discount_price|price_cn%}</td>
+<td>{%$show.info.exp.exp_price|price_cn%}</td>
+<td>{%$show.info.exp_price_percent%}</td>
+</tr>
+{%/if%}
+{%$count=0%}
+{%foreach from=$show.list key=slk item=slv%}
+{%$count++%}
+<tr>
+<td>{%($show.pageinfo.index-1)*($show.pageinfo.limit)+$count%}</td>
+
+<td>
+{%$slv.name%}
+	{%$slv.username%}
+      <font color="blue"><strong>{%$slv.name%}</strong></font>
+	{%if $slv.username%}
+            {%if $show.master_uid && $currentUser.username != "0"%}
+            {%if $slv.is_lock%}<font color="red">已审</font>{%else%}未审{%/if%}
+            {%else%}
+            <a href="/orderlist/print_now/{%$slv.username%}?key={%$show.company.print_type%}&shendan=1" target="_blank">{%if $slv.is_lock%}<font color="red">已审</font>{%else%}审单{%/if%}</a>
+            {%if $slv.is_lock%}<a href="/user/lock_order/{%$slv.id%}?lock=0">取消</a>{%/if%}
+            {%/if%}
+            <a href="/orderlist/print_now/{%$slv.username%}?key={%$show.company.print_type%}" target="_blank">打印</a>
+            <!-- <a href="/orderlist/unorderproduct/{%$slv.username%}" target="_blank">看未订</a> -->
+            {%/if%}
+</td>
+<td>{%$slv.num%}</td>
+<td>{%$slv.exp_num%}</td>
+<td>{%$slv.exp_num_percent%}</td>
+<td>{%$slv.price|price_cn%}</td>
+<td>{%$slv.discount_price|price_cn%}</td>
+<td>{%$slv.exp_price|price_cn%}</td>
+<td>{%if $slv.exp_price_percent ge 100%}<font color="red">{%$slv.exp_price_percent%}</font>{%else%}{%$slv.exp_price_percent%}{%/if%}</td>
+
+
+</tr>
+{%/foreach%}

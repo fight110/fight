@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%include file="import/menu.html"%}
+        <div>{%if $message%}<font color="red">{%$message%}</font>{%/if%}</div>
+        <hr>
+        <h2>用户资料批量上传/更新</h2>
+        <form action="/import/data" method="POST" enctype="multipart/form-data" onSubmit="return confirm('确认操作？')">
+          <input type="hidden" name="k" value="user">
+          <div>
+          <input type="file" name="file"> (导入格式为xls) [<a href="/download/user.xls">模板下载</a>]
+          </div>
+          <div>
+            <input type="checkbox" name="passfirst" value="1" checked="checked">忽略第一行 <br>
+          </div>
+            <input type="submit" value="更新数据">
+        </form>
+        <hr>
+        <h2>用户对照数据批量上传/更新</h2>
+        <form action="/import/data" method="POST" enctype="multipart/form-data" onSubmit="return confirm('确认操作？')">
+          <input type="hidden" name="k" value="exp_complete">
+          <div>
+          <input type="file" name="file"> (导入格式为xls) [<a href="/download/user.exp_complete.xls">模板下载</a>]
+          </div>
+            <input type="submit" value="更新数据">
+        </form>
+        <hr>
+        <h2>用户指标批量上传/更新</h2>
+        <form action="/import/data" method="POST" enctype="multipart/form-data" onSubmit="return confirm('确认操作？')">
+          <input type="hidden" name="k" value="user_indicator">
+          <div>
+          <input type="file" name="file"> (导入格式为xls) [<a href="/download/user.indicator.xls">模板下载</a>]
+          </div>
+            <input type="submit" value="更新数据">
+        </form>
+        <hr>
+        <h2>用户折扣批量导入/更新</h2>
+        <form action="/import/data" method="POST" enctype="multipart/form-data" onSubmit="return confirm('确认操作？')">
+          <input type="hidden" name="k" value="user_discount">
+          <div>
+          <input type="file" name="file"> (导入格式为xls) [<a href="/download/user.discount.xls">模板下载</a>]
+          </div>
+            <input type="submit" value="更新数据">
+        </form>
+        <hr>
+        <h2>用户历史尺码对照批量导入/更新</h2>
+        <form action="/import/data" method="POST" enctype="multipart/form-data" onSubmit="return confirm('确认操作？')">
+          <input type="hidden" name="k" value="user_size_history">
+          <div>
+          <input type="file" name="file"> (导入格式为xls) [<a href="/download/user.size.history.xls">模板下载</a>]
+          </div>
+            <input type="submit" value="更新数据">
+        </form>
+        <hr>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/import/index');
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="contain">
+
+        <div class="top">
+            <h1><strong>订单分析</strong>(80%)</h1>
+            <a href="/order" class="lbtn"><span>订单</span></a>
+            <a href="/logout" class="rbtn"><span>注销</span></a>
+        </div>
+
+        <div class="cons_totalbar">
+            <div class="statusbox">
+                <ul class="statuslist2 clearfix">
+                    <li><img src="/images/status_ico_d.png" class="imgbox" width="30px">订数完成率<em>{%$show.exp_num%}（{%$show.percent_num%}）</em></li>
+                    <li><img src="/images/status_ico_e.png" class="imgbox" width="30px">金额完成率<em>{%$show.exp_price|price_cn%}（{%$show.percent_price%}）</em></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="cons_list">
+            <li><a href="/order/analysis_order?t=series"><h3>{%$keyword.series_id%}分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=wave"><h3>{%$keyword.wave_id%}分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=category"><h3>{%$keyword.category_id%}分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=product"><h3>{%$keyword.style_id%}分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=color"><h3>色系分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=size"><h3>尺码分析</h3></a></li>
+            <li><a href="/order/analysis_order?t=price_band"><h3>{%$keyword.price_band_id%}分析</h3></a></li>
+        </ul>
+    </div>
+</div>
+
+{%include file="footer.menu.html"%}
+<script>
+seajs.use('lj/iphone/order/analysis');
+</script>
+</body>
+</html>

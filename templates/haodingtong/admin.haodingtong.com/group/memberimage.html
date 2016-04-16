@@ -1,0 +1,14 @@
+{%foreach from=$show.newimagelist item=img%}
+{%if $img.image%}
+<a class="card">
+  <div class="image"><img src="/thumb/75/{%$img.image%}"></div>
+  <div class="extra content">
+    <div class="meta">
+      {%$img.kuanhao%}
+      <div class="right floated delete" data-id="{%$img.id%}">删除</div>
+      <div class="right floated">{%$img.color_id|hdt_keyword%}</div>
+    </div>
+  </div>
+</a>
+{%/if%}
+{%/foreach%}

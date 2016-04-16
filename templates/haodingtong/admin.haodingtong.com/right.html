@@ -1,0 +1,42 @@
+<!--rightbar-->
+    <div class="rightbar">
+
+	{%*foreach from=$smarty.session.userMenu key=suk item=suv%}
+	<h3><a href="{%if $suv.0.clink%}{%$suv.0.clink%}{%else%}javascript:void(0){%/if%}">{%$suv.0.cname%}</a></h3>
+	<ul class="rsubmenu" data-title1="{%$suv.0.cname%}">
+	{%foreach from=$suv key=suvk item=suvv%}	
+		<li {%if $suvv.id_name%}id="menu_{%$suvv.id_name%}"{%/if%} ><a href="{%$suvv.mlink%}" {%if $suvv.open_new%}target="_blank"{%/if%}>{%$suvv.mname%}</a></li>
+	{%/foreach%}
+	</ul>
+	{%/foreach*%}
+
+    {%foreach from=$show.menulist|hdt_menu:"5" name=i item=menu%}
+    {%if $menu.status%}
+        {%if $menu.pid%}
+        <li {%if $menu.tagname%}id="menu_{%$menu.tagname%}"{%/if%}><a href="{%$menu.link%}">{%$menu.name%}</a></li>
+        {%else%}
+        {%if $smarty.foreach.i.index%}</ul>{%/if%}
+        <h3><a href="{%if $menu.link%}{%$menu.link%}{%else%}javascript:void(0);{%/if%}">{%$menu.name%}</a></h3>
+        <ul class="rsubmenu" data-title1="{%$menu.name%}">
+        {%/if%}
+    {%/if%}
+    {%/foreach%}
+    </ul>
+    
+    </div>
+    <script type="text/javascript">
+    (function(){
+      var menuid = "menu_{%if $show.control%}{%$show.control%}{%else%}{%$control%}{%/if%}", m = null;
+      if(m = document.getElementById(menuid)){
+            m.className= "on";
+            var title1 = document.getElementById('HDT-title-1'),
+                title2 = document.getElementById('HDT-title-2'),
+                parent = m.parentNode;
+            if(title1 && parent){
+                title1.innerHTML = parent.getAttribute('data-title1');
+                title2.innerHTML = m.firstChild.innerHTML;
+            }
+        }
+    })();
+    </script>
+    <!--rightbar end-->

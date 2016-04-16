@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+<script type="text/javascript" src="/js/sea.js"></script>
+<link rel="stylesheet" href="style/css.css">
+</head>
+
+<body>
+<div class="login_er">
+  <div class="login_er_top"><img src="/images/logo.png" width="169" height="42" style="padding-top: 47px;" /></div>
+  <div class="login_er_middle">
+    <div class="login_er_middlel"><img src="images/2_02.png" width="510" height="407" /></div>
+    <div class="login_er_middler">
+      <div class="neikuang">
+        <div class="dh">请登录订货{%if $show.company.register eq 1%}<a href="/register" style="float:right">免费注册</a>{%/if%}</div>
+        {%if $show.domain_list%}
+        <div class="text4">
+          <select name="domain" id="domain">
+            {%foreach from=$show.domain_list key=k item=val%}
+              <option value="http://{%$val.domain%}/">{%$val.name%}</option>
+            {%/foreach%}
+          </select>
+        </div>
+        {%/if%}
+        <div class="text"><i class="num1"><img src="images/1.png" width="26" height="30" /></i>
+        <input id="uname" type="{%$show.company.keyboard|default:'number'%}" placeholder="请输入订货账号"></div>
+        <div class="text"><i class="num2"><img src="images/2.png" width="26" height="30" /></i>
+        <input id="pword" type="password" placeholder="请输入密码"></div>
+        <div class="text2" id="login-submit"><a href="javascript:void(0)">登录订货</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="login_er_footer">
+    <p>Copyright © 好订通1.6.1 版权所有</p>
+    <p>好订通 科学订货 热线:0571-81110400 </p>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/login');
+</script>
+<input type="hidden" id="returl" value="{%$show.returl%}">
+</body>
+</html>

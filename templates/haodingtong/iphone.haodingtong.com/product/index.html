@@ -1,0 +1,22 @@
+{%section name=i loop=$show.list%}
+<li>
+    <a href="/index/detail/{%$show.list[i].id%}">
+        <div style="position:relative;">
+            {%if $show.list[i].style=="必定款" && $show.list[i].order_user.num < 1%}<div class="unorder"></div>{%/if%}
+            <img src="/thumb/60/{%$show.list[i].defaultimage%}" class="imgbox">
+        </div>
+        <div class="intro">
+            <h3>
+                <span>¥{%$show.list[i].price%}</span>
+                <strong>编号:{%$show.list[i].bianhao%}</strong>
+                [{%if $show.list[i].status==0%}<b>删除款</b>{%else%}{%$show.list[i].style%}{%/if%}]
+                {%if $show.list[i].hot%}<img src="/images/bao.jpg" class="ico">{%/if%}
+            </h3>
+            <div class="decr clearfix"><span>{%$show.list[i].order_user.num|default:0%}/{%$show.list[i].order_user.price|price_cn|default:0%}</span>
+                {%$show.list[i].name%}
+                <div class="star"><em style="width:{%$show.list[i].scoreinfo.width%}px"></em></div>
+            </div>
+        </div>
+    </a>
+</li>
+{%/section%}

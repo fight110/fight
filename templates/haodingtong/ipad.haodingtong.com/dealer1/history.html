@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <div class="construebox">
+          <div class="cleftmenu">
+            <h3>项目\内容</h3>
+            <ul id="HDT-menu-analysis">
+            <li><a href="#category" data-t="category" class="on">{%$keyword.wave_id%}{%$keyword.category_id%}</a></li>
+            </ul>
+            </div>
+          
+          <div class="cons_main">
+            <div class="cons_tabl">
+                <table  border="0" cellpadding="0" cellspacing="0" id="HDT-main" style="table-layout:auto;">
+                    <tr>
+                        <th colspan=2></th>
+                        <th colspan=5>上季</th>
+                        <th colspan=3>当季</th>
+                    </tr>
+                    <tr>
+                        <th>{%$keyword.wave_id%}</th>
+                        <th>{%$keyword.category_id%}</th>
+                        <th>款数</th>
+                        <th>占比</th>
+                        <th>件数</th>
+                        <th>贡献度</th>
+                        <th>均价</th>
+                        <th>款数</th>
+                        <th>件数</th>
+                        <th>均价</th>
+                    </tr>
+                    {%section name=i loop=$show.list%}
+                    <tr>
+                        {%if $show.list[i].rowspan%}
+                        <td rowspan={%$show.list[i].rowspan%}>{%$show.list[i].key0|hdt_keyword%}</td>
+                        {%/if%}
+                        <td>{%$show.list[i].key1|hdt_keyword%}</td>
+                        <td>{%$show.list[i].history.pnum%}</td>
+                        <td>{%$show.list[i].history.per_pnum%}</td>
+                        <td>{%$show.list[i].history.num%}</td>
+                        <td>{%$show.list[i].history.per_num%}</td>
+                        <td>{%$show.list[i].history.price|intval%}</td>
+                        <td>{%$show.list[i].order.pnum|intval%}</td>
+                        <td>{%$show.list[i].order.num|intval%}</td>
+                        <td>{%$show.list[i].order.price|intval%}</td>
+                    </tr>
+                    {%if $show.list[i].count%}
+                    <tr>
+                        <td colspan=2>{%$show.list[i].key0|hdt_keyword%}汇总</td>
+                        <td>{%$show.list[i].count.pnum%}</td>
+                        <td>100%</td>
+                        <td>{%$show.list[i].count.num%}</td>
+                        <td>100%</td>
+                        <td>{%$show.list[i].count.price|intval%}</td>
+                        <td>{%$show.list[i].count.order.pnum|intval%}</td>
+                        <td>{%$show.list[i].count.order.num|intval%}</td>
+                        <td>{%$show.list[i].count.order.price|intval%}</td>
+                    </tr>
+                    {%/if%}
+                    {%/section%}
+                </table>
+            </div>
+         </div>
+           <div class="clear"></div>
+        </div>
+        
+      </div>
+       <!--foot-->
+      {%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+    {%include file="right.html"%}
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

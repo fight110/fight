@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01" id="HDT-main-table">
+          <tbody>
+          <tr class="hbg">
+            <th width="100">移动进程管理</th>
+            <th colspan=2> <a href="#" class="HDT-add-user" style="color:blue;">+ 新增移动进程</a></th>
+          </tr>
+          <tr class="hbg">
+            <th width="100">选择</th>
+            <th>即时进程</th>
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td><input type="radio" name="status_id" data-content="{%$show.list[i].content%}" {%if $show.status == $show.list[i].content%}checked="checked"{%/if%} ></td>
+            <td>{%$show.list[i].content%}</td>
+            <td>
+              <a href="#" class="HDT-edit" data-id="{%$smarty.section.i.index%}" data-content="{%$show.list[i].content%}">编辑</a>
+              <a href="/status/delete/{%$smarty.section.i.index%}">删除</a>
+            </td>
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/jquery-tmpl" id="tmpl-user-add">
+<form method="POST" action="/status/add">
+<input type="hidden" name="id">
+<p>进程名称:<input type="text" name="content"></p>
+<p><input type="submit" value="保存"></p>
+</form>
+</script>
+<script type="text/javascript">
+seajs.use('lj/admin/status/index');
+</script>
+</body>
+</html>

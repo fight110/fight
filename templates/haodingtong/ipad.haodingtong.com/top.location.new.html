@@ -1,0 +1,22 @@
+{%include file="top.1.html"%}
+
+  <div class="tit_bar">
+  	<div class="tit t2" id="HDT-title-1"></div>
+    <h2 class="titlecol"><strong id="HDT-title-2"></strong></h2>
+    <ul class="select_menu" id="HDT-select-menu">
+    	<form method='get' action="/ad/{%$show.function%}/{%$show.current_id%}" class="floatLeft">
+		<select class='locationSelect' name="location_id" onchange="this.form.submit()">
+			{%foreach from=$show.greatLocation  item=glc%}
+			<option value='{%$glc.id%}'  {%if $glc.id eq $show.location_id%}selected="selected"{%/if%}>{%$glc.name%}</option>
+			{%/foreach%}
+		</select>
+		</form>
+		<form method='get' action="/ad/{%$show.function%}/{%$show.current_id%}" class="floatLeft LastChoice">
+			<input type="text" value="{%$show.search_uname%}" name="uname" placeholder='输入用户编号'>
+			<input type='submit' value='用户搜索'>
+		</form>
+    </ul>
+    {%include file="top.search.html"%}
+  </div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

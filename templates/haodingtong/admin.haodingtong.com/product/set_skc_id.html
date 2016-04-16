@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%if $message%}<font color="red">{%$message%}</font>{%/if%}
+        <input id="add_color" value="添加颜色" type="button">
+        <form method="POST" action="/product/set_skc_id_val/{%$show.id%}">
+        <table cellspacing="0" cellpadding="0" border="0" class="table01" id="colortable" data-product-id="{%$show.id%}" data-moq-status="{%$show.company.moq_status%}">
+          <tr class="hbg">
+            <th>颜色</th>
+            <th>色号</th>
+            <th>圆牌号</th>
+            <th>款色起订量</th>
+            <th>必定款</th>
+            <th>{%$keyword.main_push_id%}</th>
+            {%if $show.company.moq_status%}
+            <th>起投量</th>
+            {%/if%}
+            <th>操作</th>
+          </tr>
+          {%section name=i loop=$show.color_list%}
+          <tr data-color-id="{%$show.color_list[i].color_id%}">
+            <td>{%$show.color_list[i].color_id|hdt_keyword%}</td>
+            <td><input type="text" name="color_code_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}" value="{%$show.color_list[i].color_code%}"></td>
+            <td><input type="text" name="skc_id_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}" value="{%$show.color_list[i].skc_id%}">
+              {%if $show.color_list[i].skc_id_num > 1%}<font color="red">冲突[{%$show.color_list[i].skc_id_num%}]</font>{%/if%}
+            </td>
+            <td><input type="text" name="mininum_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}" value="{%$show.color_list[i].mininum%}">
+            </td>
+            <td><select name="is_need_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}">
+              <option value="0" {%if $show.color_list[i].is_need eq 0%} selected=selected{%/if%}>否</option>
+              <option value="1" {%if $show.color_list[i].is_need eq 1%} selected=selected{%/if%}>是</option></select>
+            </td>
+            <td><select name="main_push_id_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}">{%$show.color_list[i].main_push_id|hdt_attrlist:"main_push":"{%$keyword.main_push_id%}"%}</select></td>
+            {%if $show.company.moq_status%}
+            <td><input type="text" name="moq_{%$show.color_list[i].product_id%}_{%$show.color_list[i].color_id%}" value="{%$show.color_list[i].moq_num%}"/></td>
+            {%/if%}
+            <td><input type="button" class="replace_color" color_id={%$show.color_list[i].color_id%} value="替换颜色" /></td>
+          </tr>
+          {%/section%}
+        </table>
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+         <tr>
+            <td colspan=3><input type="submit" value="提交"></td>
+         </tr> 
+        </table>
+
+        </form>
+        
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/product/set_skc_id');
+</script>
+</body>
+</html>

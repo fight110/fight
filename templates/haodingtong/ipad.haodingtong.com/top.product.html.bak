@@ -1,0 +1,48 @@
+{%include file="top.1.html"%}
+
+  <div class="pinned">
+  <div class="tit_bar">
+    <ul class="select_menu" id="HDT-select-menu">
+    {%include file="top.2.html"%}
+    <!-- <div class="select_position2"> -->
+    {%include file="top.5.html"%}
+    <li>
+      <select name="order">
+        <option value="">排序</option>
+        <option value="num desc" {%if $show.order=="num desc"%}selected="selected"{%/if%}>订量多→少</option>
+        <option value="num asc" {%if $show.order=="num asc"%}selected="selected"{%/if%}>订量少→多</option>
+        <option value="price desc" {%if $show.order=="price desc"%}selected="selected"{%/if%}>金额大→小</option>
+        <option value="price asc" {%if $show.order=="price asc"%}selected="selected"{%/if%}>金额小→大</option>
+        <option value="all num desc" {%if $show.order=="all num desc"%}selected="selected"{%/if%}>总量多→少</option>
+        <option value="all num asc" {%if $show.order=="all num asc"%}selected="selected"{%/if%}>总量少→多</option>
+        <!-- <option value="agentnumdesc" {%if $show.order=="agentnumdesc"%}selected="selected"{%/if%}>本省订量多→少</option>
+        <option value="agentnumasc" {%if $show.order=="agentnumasc"%}selected="selected"{%/if%}>本省订量少→多</option> -->
+      </select>
+    </li>
+    {%if $show.view%}
+    <li>
+      <select name="view">
+        <!-- <option value="L" {%if $show.view=="L"%}selected="selected"{%/if%}>大图</option> -->
+        <!-- <option value="S" {%if $show.view=="S"%}selected="selected"{%/if%}>小图</option> -->
+        <option value="T" {%if $show.view=="T"%}selected="selected"{%/if%}>单款</option>
+        <option value="ST" {%if $show.view=="ST"%}selected="selected"{%/if%}>款色</option>
+      </select>
+    </li>
+    {%else%}
+    <li>
+      <select name="is_need">
+        <option value="">必定款</option>
+        <option value="1" {%if $show.is_need=="1"%}selected="selected"{%/if%}>是必订</option>
+        <option value="0" {%if $show.order=="num asc"%}selected="selected"{%/if%}>非必订</option>
+      </select>
+    </li>
+        <!-- <li><select name="main_push_id">{%$show.main_push_id|hdt_attrlist:"main_push":"{%$keyword.main_push_id%}"%}</select>
+    </li> -->
+    {%/if%}
+  <!-- </div> -->
+   </ul>
+    {%include file="top.search.html"%}
+  </div>
+  </div>
+  <!--tit_bar end-->
+    {%include file="top.script.html"%}

@@ -1,0 +1,74 @@
+{%if $show.info%}
+<tr>
+<th>序号</th>
+<th>经销商</th>
+<th>订单数量</th>
+<th>订货金额</th>
+<th>折后金额</th>
+<th>指标金额</th>
+<th>金额完成率</th>
+<th>指标订量</th>
+<th>订量完成率</th>
+{%if $show.is_type eq 'isZongdai'%}
+<th>操作</th>
+{%/if%}
+</tr>
+<tr>
+<td></td>
+<td>汇总</td>
+<td>{%$show.info.num%}</td>
+<td>{%$show.info.price|price_cn%}</td>
+<td>{%$show.info.discount_price|price_cn%}</td>
+{%if $show.is_type eq 'isZongdai'%}
+<td>{%$show.info.exp_price|price_cn%}</td>
+<td>{%$show.info.price_percent%}</td>
+<td>{%$show.info.exp_num%}</td>
+<td>{%$show.info.num_percent%}</td>
+{%else%}
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+{%/if%}
+{%if $show.is_type eq 'isZongdai'%}
+<td></td>
+{%/if%}
+</tr>
+{%/if%}
+{%section name=i loop=$show.list%}
+<tr>
+<td>{%$smarty.section.i.rownum%}</td>
+<td>
+	{%if $show.is_type eq 'isArea'%}
+	<a class="look_lower" data-area1={%$show.list[i].area1%}><font color="blue"  style="text-decoration:underline;"><strong>{%$show.list[i].areaname%}</strong></font></a>
+	{%elseif $show.is_type eq 'isZongdai'%}
+	{%if $show.list[i].type eq 2%}
+	<a class="look_lower" data-zd={%$show.list[i].id%}><font color="blue" style="text-decoration:underline;"><strong>{%$show.list[i].name%}</strong></font></a>
+	{%else%}
+	<font><strong>{%$show.list[i].name%}</strong></font>
+	{%/if%}
+	{%elseif $show.is_type eq 'isProperty'%}
+	<a class="look_lower" data-property={%$show.list[i].property%}><font color="blue" style="text-decoration:underline;"><strong>{%$show.list[i].property|hdt_keyword%}</strong></font></a>
+	{%/if%}
+</td>
+<td>{%$show.list[i].num%}</td>
+<td>{%$show.list[i].price|price_cn%}</td>
+<td>{%$show.list[i].discount_price|price_cn%}</td>
+{%if $show.is_type eq 'isZongdai'%}
+<td>{%$show.list[i].exp_price|price_cn%}</td>
+<td>{%$show.list[i].price_percent%}</td>
+<td>{%$show.list[i].exp_num%}</td>
+<td>{%$show.list[i].num_percent%}</td>
+{%else%}
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+{%/if%}
+{%if $show.is_type eq 'isZongdai'%}
+<td>
+	<a href="/orderlist/print_now/{%$show.list[i].username%}?key={%$show.company.print_type%}" target="_blank"><b>打印</b></a>
+</td>
+{%/if%}
+</tr>
+{%/section%}

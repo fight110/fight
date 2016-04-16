@@ -1,0 +1,10 @@
+<ul>
+    {%foreach from=$show.list key=k item=val%}
+    <li>
+        <img src="/thumb/210/{%$val.contrast_image%}" alt="">
+        <span class="left-span">{%$val.bianhao%} {%$val.name%}</span>
+        <span class="right-span">件数:{%$val.num%}</span>
+    </li>
+    {%/foreach%}
+    <div class="clear"></div>
+</ul>

@@ -1,0 +1,21 @@
+<script type="text/jquery-tmpl" id="HDT-photos-main">
+<div class="pro_photo">
+  <div><img src="/images/product.add.png" width="458" height="457" class="HDT-photos-big" /></div>
+</div>
+<div class="smallpic clearfix">
+<ul>
+  {%section name=i loop=$show.imagelist%}
+  <li>
+      <img src="/thumb/75/{%$show.imagelist[i].image%}" data-src="{%$show.imagelist[i].image%}" data-id="{%$show.imagelist[i].id%}"><br/>
+    <input type="radio" name="defaultimage" value="{%$show.imagelist[i].image%}" {%if $show.imagelist[i].image == $show.defaultimage%}checked="checked"{%/if%}>
+  </li>
+  {%/section%}
+</ul>
+</div>
+</script>
+<script type="text/jquery-tmpl" id="HDT-photos-unit">
+<li>
+  <img src="/thumb/75/${src}" data-src="${src}" {{if $id}}data-id="${id}"{{/if}}><br/>
+  <input type="radio" name="defaultimage" value="${src}">
+</li>
+</script>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+{%include file="top.html"%}
+  <!--tit_bar end-->
+  <div class="mainbox">
+    <div class="main_con">
+    <div class="detail_box">
+      
+      <div class="probox">
+      <form method="POST" action="/group/adding" id="form-main">
+      <input type="hidden" name="id" value="{%$show.group.id%}">
+      <dl class="this_txt clearfix">
+      <dt>编辑搭配</dt>
+      <dd>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>编号:<input type="text" name="dp_num" style="width:80px;" value="{%$show.group.dp_num%}"></td>
+          <td colspan="2">搭配名:<input type="text" name="name" style="width:80px;" value="{%$show.group.name%}"></td>
+        </tr>
+        <tr>
+          <td>波段:<select name="dp_type">
+              {%section name=i loop=$show.dp_type_list%}
+              <option value="{%$show.dp_type_list[i].dp_type%}" {%if $show.dp_type_list[i].dp_type==$show.group.dp_type%}selected="selected"{%/if%}>{%$show.dp_type_list[i].dp_type|hdt_keyword%}</option>
+              {%/section%}
+          </select></td>
+          <td>分组:<select name="dp_type2">
+              {%section name=i loop=$show.dp_type2_list%}
+              <option value="{%$show.dp_type2_list[i].dp_type2%}" {%if $show.dp_type2_list[i].dp_type2==$show.group.dp_type2%}selected="selected"{%/if%}>{%$show.dp_type2_list[i].dp_type2|hdt_keyword%}</option>
+              {%/section%}
+          </select></td>
+          <td><input type="submit" value="保存"></td>
+        </tr>
+      </table>
+      </dd>
+      </dl>
+
+      <div class="ui four cards" id="imagelist">
+        <a class="black card defaultimage">
+          <input type="hidden" name="defaultimage" value="{%$show.group.defaultimage%}">
+          <div class="image"><img src="/thumb/210/{%$show.group.defaultimage%}"></div>
+        </a>
+        <a class="black card contrast_image">
+          <input type="hidden" name="contrast_image" value="{%$show.group.contrast_image%}">
+          <div class="image"><img src="/thumb/210/{%$show.group.contrast_image%}"></div>
+        </a>
+        <a class="black card background_image">
+          <input type="hidden" name="background_image" value="{%$show.group.background_image%}">
+          <div class="image"><img src="/thumb/210/{%$show.group.background_image%}"></div>
+        </a>
+      </div>
+      </form>
+      <div class="newFileUpload">
+      <span>上传搭配默认图片</span>
+      <input id="defaultfileupload" type="file" name="files[]" data-url="/img/index.php" class="upload">
+      </div>
+      <div class="newFileUpload">
+      <span>上传搭配对比图片</span>
+      <input id="contrastfileupload" type="file" name="files[]" data-url="/img/index.php" class="upload">
+      </div>
+      <div class="newFileUpload">
+      <span>上传搭配底图图片</span>
+      <input id="backgroundfileupload" type="file" name="files[]" data-url="/img/index.php" class="upload">
+      </div>
+      <div id="memberlist"></div>
+      <div class="ui four cards" id="newimagelist"></div>
+      <div class="clear"></div>
+      </div>
+      {%if $show.group.id%}
+      <div class="d_intro" id="group-search">
+        <h3>添加搭配款</h3>
+        <input type="text" name="q" placeholder="输入编号或者名称搜索">
+        <ul>
+        <li><select name="wave_id">{%$show.wave_id|hdt_attrlist:"wave":"{%$keyword.wave_id%}"%}</select></li>
+        <li><select name="category_id">{%$show.category_id|hdt_attrlist:"category":"{%$keyword.category_id%}"%}</select></li>
+        <li><select name="classes_id">{%$show.classes_id|hdt_attrlist:"classes":"{%$keyword.classes_id%}"%}</select></li>
+        <li><select name="style_id">{%$show.style_id|hdt_attrlist:"style":"款别"%}</select></li>
+        </ul>
+        <br/>
+        
+      </div>
+      <div id="group-search-list" data-group-id="{%$show.group.id%}"></div>
+      {%/if%}
+
+    </div>
+
+    <!--foot-->
+     {%include file="footer.html"%} 
+      <!--foot end-->
+    </div>
+    <!--rightbar-->
+  {%include file="right.html"%} 
+    <!--rightbar end-->
+    <div class="clear"></div>
+  </div>
+</div>
+<script>
+seajs.use('lj/admin/group/add');
+</script>
+</body>
+</html>

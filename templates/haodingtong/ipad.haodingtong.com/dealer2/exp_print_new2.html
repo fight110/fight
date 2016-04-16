@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+	<div class="contain">
+		{%include file="top.html"%}
+		<div class="mainbox">
+			<div class="main_con">
+				<div class="box">
+					<div class="box_title exp_print">
+						<ul id="HDT-select-menu" class="select_menu2 paddingDefault select_div defaultSelect">
+							<!-- <li>
+								<select name="fliter_uid">
+								<option value="">所有下线</option>
+								{%section name=i loop=$show.slave_list%}
+								<option value="{%$show.slave_list[i].id%}" {%if $show.slave_id==$show.slave_list[i].id%}selected="selected"{%/if%}>{%$show.slave_list[i].name%}</option>
+								{%/section%}
+								</select>
+							</li> -->
+							<li>
+								<select name="property">
+									<option value="">客户类型</option>
+				                  {%section name=i loop=$show.property_list%}
+				                  <option value="{%$show.property_list[i].keyword_id%}">{%$show.property_list[i].keywords.name%}</option>
+				                  {%/section%}
+								</select>
+							</li>
+							<li>
+								<select name="is_lock">
+									<option value="">审单状态</option>
+									<option value="1">已审</option>
+									<option value="0">未审</option>
+								</select>
+							</li>
+							<li>
+								<select name="order">
+									<option value="">排序</option>
+									<option value="num" {%if $show.order==
+										"num"%}selected="selected"{%/if%}>订量</option>								
+									<option value="price" {%if $show.order==
+										"price"%}selected="selected"{%/if%}>金额</option>	
+								    <option value="discount_price" {%if $show.order==
+										"discount_price"%}selected="selected"{%/if%}>折后金额</option>
+								    <option value="price_percent" {%if $show.order==
+										"price"%}selected="price_percent"{%/if%}>金额完成率</option>						
+								</select>
+							</li>
+							<li class="normalInput">
+								<input type='text' placeholder="输入账号或名称查找" id="nameFind"> <input type="button" value="搜索" id="searchBut">
+							</li>														
+						</ul>
+					</div>
+					<div class="detailContent">
+						<table border="0" cellpadding="0" cellspacing="0" width="100%" id="HDT-info">
+						</table>
+					</div>
+					<table border="0" cellpadding="0" cellspacing="0" class="table01"
+						id="HDT-main"></table>
+				</div>
+				<!--foot-->
+				{%include file="footer.html"%}
+				<!--foot end-->
+			</div>
+			<!--rightbar-->
+			{%include file="right.html"%}
+			<!--rightbar end-->
+			<div class="clear"></div>
+		</div>
+	</div>
+	<script>
+		seajs.use('lj/dealer2/exp_print_new2');
+	</script>
+</body>
+</html>

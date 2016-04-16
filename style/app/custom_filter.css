@@ -1,0 +1,72 @@
+.custom_filter {
+	margin-bottom: 10px;
+}
+
+.custom_filter fieldset {
+	border: 1px dashed;
+	padding: 5px 10px;
+}
+
+/* 查询条件 */
+.custom_filter ul.tab li {
+	float: left;
+	padding: 0 5px;
+	margin-right: -1px;
+	border: solid 1px;
+}
+
+.custom_filter ul.tab li.active {
+	border-bottom: 1px;
+}
+
+.custom_filter .tab-content {
+	clear: left;
+}
+
+.custom_filter .tab-content span {
+	display: none;
+}
+
+.custom_filter .tab-content span.active {
+	display: block;
+}
+
+/* 纬度选择 */
+.custom_filter .display-key-selection {
+	width: 100%;
+	padding: 5px;
+	display: flex;
+}
+.custom_filter .display-key-selection span{
+	flex: 0 0 60px;
+	padding: 5px 0;
+	height: 1.5em;
+}
+.custom_filter ul.display-key {
+	flex: 1 auto;
+	padding: 5px;
+	border: solid 1px;
+}
+.custom_filter ul.display-key li {	width: 60px;
+	float: left;
+	border: 1px dashed;
+	text-align: center;
+	margin: 5px;
+}
+
+
+#custom_filter-form button[type=submit] {
+	margin: 10px 0;
+	float: right;
+}
+
+/* 隐藏那些不需要打印出来的内容 */
+@media print {
+	.top_grey, .header_new, .nav, .rightbar, .righttool, .foot {
+		display: none;
+	}
+
+	.custom_filter fieldset, #custom_filter-search {
+		display: none;
+	}
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+</head>
+
+<body class="bodybg">
+<div class="contain">
+  {%assign var="title1" value="{%$keyword.brand_id%}信息管理"%}
+  {%include file="top.html"%}
+  <div class="mainbox">
+    <div class="main_con">
+      <div class="box">
+        {%$show.user.username%}
+        {%$show.user.name%}
+        <table cellspacing="0" cellpadding="0" border="0" class="table01">
+          <tbody>
+          <tr class="hbg">
+            <th>{%$keyword.brand_id%}</th>
+            <th>操作</th>
+            <th>金额指标</th>
+            <th>订数指标</th>
+          </tr>
+          {%section name=i loop=$show.list%}
+          <tr>
+            <td>{%$show.list[i].keyword_id|hdt_keyword%}</td>
+            <td>
+              {%if $show.list[i].permission%}<a href="/dealer/brand_delete/{%$show.list[i].keyword_id%}?user_id={%$show.user_id%}" style="color:green;">已授权</a>
+              {%else%}<a href="/dealer/brand_add/{%$show.list[i].keyword_id%}?user_id={%$show.user_id%}" style="color:red;">未授权{%/if%}
+            </td>
+            {%if $show.list[i].permission%}
+            <td><input type="number" name="exp_price" value="{%$show.list[i].exp.exp_price%}" data-user-id="{%$show.user_id%}" data-brand-id="{%$show.list[i].keyword_id%}"></td>
+            <td><input type="number" name="exp_num" value="{%$show.list[i].exp.exp_num%}" data-user-id="{%$show.user_id%}" data-brand-id="{%$show.list[i].keyword_id%}"></td>
+            {%else%}
+            <td></td>
+            <td></td>
+            {%/if%}
+          </tr>
+          {%/section%}
+        </tbody></table>
+        {%$show.pagelist%}
+      </div>
+       <!--foot-->
+{%include file="footer.html"%}
+      <!--foot end-->
+    </div>
+    {%include file="right.html"%}
+    <div class="clear"></div>
+  </div>
+</div>
+<script type="text/javascript">
+seajs.use('lj/admin/dealer/permission.index');
+</script>
+</body>
+</html>

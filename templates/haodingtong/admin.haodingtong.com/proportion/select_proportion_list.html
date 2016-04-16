@@ -1,0 +1,21 @@
+<div>{%if $show.num%}配比总数为{%$show.num%}{%/if%}&nbsp; <a href="/keyword/size_group_options/{%$show.size_group_id%}" style="float:right;">配置</a></div>
+<div class="cons_tabl">
+<table  border="0" cellpadding="0" cellspacing="0" data-num="{%$show.num%}" data-size-group-id="{%$show.size_group_id%}"><tr>
+{%foreach from=$show.size_list item=size%}<th>{%$size.name%}</th>{%/foreach%}
+</tr>
+{%if $show.limit > $show.proportion_list|count%}
+<tr>
+{%foreach from=$show.size_list item=name%}<td><input type="number" value="" style="max-width:50px;"></td>{%/foreach%}
+</tr>
+{%/if%}
+{%section name=i loop=$show.proportion_list%}
+<tr>
+  {%foreach from=$show.proportion_list[i].proportion_list item=num%}
+  <td>{%$num%}</td>
+  {%/foreach%}
+</tr>
+{%/section%}
+</table></div>
+{%if $show.limit > $show.proportion_list|count%}
+<input type="submit" value="保存配码">
+{%/if%}

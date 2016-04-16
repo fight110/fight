@@ -1,0 +1,11 @@
+<div class="selectItem">
+  				<div class="selectKey">所有下线:</div>
+  				<div class="selectValue limitHeight">
+  					<ul data-name="fliter_uid" data-select="{%$show.slave_id%}">
+  					{%section name=i loop=$show.slave_list%}
+            			<li data-value="{%$show.slave_list[i].id%}">{%$show.slave_list[i].name%}</li>
+            		{%/section%} 						
+  					</ul>
+  				</div>
+  				<div class="selectAction"><span class="viewMore">更多</span></div>
+  			</div>

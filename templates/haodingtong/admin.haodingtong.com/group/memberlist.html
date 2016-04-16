@@ -1,0 +1,22 @@
+<table class="table01" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <th>款号</th>
+    <th>款名</th>
+    <th>颜色</th>
+    <th>圆牌号</th>
+    <th>操作</th>
+    <th>上传</th>
+  </tr>
+  {%section name=i loop=$show.groupmember%}
+  <tr>
+    <td>{%$show.groupmember[i].product.kuanhao%}</td>
+    <td>{%$show.groupmember[i].product.name%}</td>
+    <td>{%if $show.groupmember[i].color_id%}{%$show.groupmember[i].color_id|hdt_keyword%}{%/if%}</td>
+    <td>{%$show.groupmember[i].skc_string%}</td>
+    <td><a href="javascript:void(0);" class="remove" data-id="{%$show.groupmember[i].id%}">移除</a></td>
+    <td class="uploadview">
+      <span class="fa fa-upload"></span>
+      <input class="fileupload" type="file" name="files[]" data-url="/img/index.php" data-form-data='{}' data-id="{%$show.groupmember[i].id%}" data-product-id="{%$show.groupmember[i].product.id%}" data-product-kuanhao="{%$show.groupmember[i].product.kuanhao%}" data-color-id="{%$show.groupmember[i].color_id%}" data-color="{%$show.groupmember[i].color_id|hdt_keyword%}"></td>
+  </tr>
+  {%/section%}
+</table>

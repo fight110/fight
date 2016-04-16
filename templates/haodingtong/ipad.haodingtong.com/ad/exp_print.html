@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>好订通</title>
+{%include file="header.html"%}
+<style type="text/css">
+#HDT-main a {
+	font-size: 15px;
+}
+.normalInput{
+}
+.normalInput input[type='text']{
+  border: 1px solid #ccc;
+    font-size: 12px;
+    height: 16px;
+    line-height: 16px;
+    padding: 3px 4px;
+    width: 120px;
+}
+.normalInput input[type='button']{
+font-size: 12px;
+    line-height: 16px;
+}
+</style>
+</head>
+
+<body class="bodybg">
+	<div class="contain">
+		{%include file="top.html"%}
+		<div class="mainbox">
+			<div class="main_con">
+				<div class="box">
+					<div>
+					<!--  <a class="buttonLink"  href="/ad/exp_print2">一级审单</a>-->
+					</div>
+					<div class="detailContent">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tr><td>已审客户数:<span>{%$show.printInfo.totallock%}</span></td><td>已达标客户数:<span>{%$show.printInfo.finished%}</span></td><td>已审订量:<span>{%$show.printInfo.locknum%}</span></td></tr>
+						<tr><td>未审客户数:<span>{%$show.printInfo.totalunlock%}</span></td><td>未达标客户数:<span>{%$show.printInfo.unfinished%}</span></td><td>已审总金额:<span>{%$show.printInfo.lockprice%}</span></td></tr>
+					</table>
+					</div>
+					<div class="box_title exp_print">
+						<ul id="HDT-select-menu" class="select_menu paddingDefault select_div defaultSelect">
+
+							{%if $show.user.username eq '0'%}
+							<li class="Selects">
+								<select name="area1"></select>
+								<select name="area2"></select>
+							</li>
+							<li>
+								<select name="fliter_uid"></select>
+							</li>
+							{%else%}
+							<li class="Selects"
+								{%if $show.user.area2%}data-default="{%$show.user.area2%}"
+								{%elseif $show.user.area1%}data-default="{%$show.user.area1%}"{%/if%}">
+								<select name="area1" {%if $show.user.area1
+									neq 0%}disabled="disabled"{%/if%}></select>
+								<select name="area2" {%if $show.user.area2
+									neq 0%}disabled="disabled"{%/if%}></select>
+							</li>
+							<li>
+								<select name="fliter_uid"></select>
+							</li>
+							{%/if%}
+							<li>
+								<select name="zuzhi">
+									<option value="">组织</option>
+								</select>
+							</li>
+							<li>
+								<select name="is_lock">
+									<option value="">审单状态</option>
+									<option value="1">已审</option>
+									<option value="0">未审</option>
+								</select>
+							</li>
+							<li>
+								<select name="order">
+									<option value="">排序</option>
+									<option value="num" {%if $show.order==
+										"num"%}selected="selected"{%/if%}>订量</option>								
+									<option value="price" {%if $show.order==
+										"price"%}selected="selected"{%/if%}>金额</option>	
+								    <option value="discount_price" {%if $show.order==
+										"discount_price"%}selected="selected"{%/if%}>折后金额</option>
+								    <option value="price_percent" {%if $show.order==
+										"price"%}selected="price_percent"{%/if%}>金额完成率</option>						
+								</select>
+							</li>
+							<li class="normalInput">
+								<input type='text' placeholder="输入账号或者名称查找" id="nameFind"> <input type="button" value="搜索" id="searchBut">
+							</li>														
+						</ul>
+					</div>					
+					<table border="0" cellpadding="0" cellspacing="0" class="table01"
+						id="HDT-main"></table>
+				</div>
+				<!--foot-->
+				{%include file="footer.html"%}
+				<!--foot end-->
+			</div>
+			<!--rightbar-->
+			{%include file="right.html"%}
+			<!--rightbar end-->
+			<div class="clear"></div>
+		</div>
+	</div>
+	{%if !$show.byArea && !$show.byZongdai%}
+	<script>
+		seajs.use('lj/a/exp_print');
+	</script>
+	{%/if%}
+</body>
+</html>

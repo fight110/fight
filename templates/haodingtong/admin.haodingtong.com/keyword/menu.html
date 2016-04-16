@@ -1,0 +1,37 @@
+<ul>
+<li><a href="/keyword/?t=style" id="km_style">款别名称</a></li>
+<li><a href="/keyword/?t=series" id="km_series">{%$keyword.series_id%}名称</a></li>
+<li><a href="/keyword/?t=wave" id="km_wave">{%$keyword.wave_id%}名称</a></li>
+<li><a href="/keyword/?t=category" id="km_category">{%$keyword.category_id%}名称</a></li>
+<li><a href="/keyword/?t=classes" id="km_classes">{%$keyword.classes_id%}名称</a></li>
+<li><a href="/keyword/?t=price_band" id="km_price_band">{%$keyword.price_band_id%}名称</a></li>
+<li><a href="/keyword/?t=size" id="km_size">尺码</a></li>
+<li><a href="/keyword/size_group?t=size_group" id="km_size_group">尺码组</a></li>
+<li><a href="/keyword/?t=color" id="km_color">颜色</a></li>
+<li><a href="/keyword/group?t=color_group" id="km_color_group">色系</a></li>
+<li><a href="/keyword/color_rgb" id="km_color_rgb">色系值编辑</a></li>
+<li><a href="/keyword/?t=theme" id="km_theme">{%$keyword.theme_id%}</a></li>
+<li><a href="/keyword/?t=season" id="km_season">{%$keyword.season_id%}</a></li>
+<li><a href="/keyword/?t=brand" id="km_brand">{%$keyword.brand_id%}</a></li>
+<li><a href="/keyword/?t=nannvzhuan" id="km_nannvzhuan">{%$keyword.nannvzhuan_id%}</a></li>
+<li><a href="/keyword/?t=sxz" id="km_sxz">{%$keyword.sxz_id%}</a></li>
+<li><a href="/keyword/?t=neiwaida" id="km_neiwaida">内外搭</a></li>
+<li><a href="/keyword/?t=changduankuan" id="km_changduankuan">长短款</a></li>
+<li><a href="/keyword/?t=df1" id="km_df1">自定义1</a></li>
+<li><a href="/keyword/?t=df2" id="km_df2">自定义2</a></li>
+<li><a href="/keyword/?t=df3" id="km_df3">自定义3</a></li>
+<li><a href="/keyword/?t=user_level" id="km_user_level">客户等级</a></li>
+<li><a href="/keyword/area" id="km_area">地区划分</a></li>
+<!--  <li><a href="/keyword/?t=fabric" id="km_fabric">面料</a></li>
+<li><a href="/keyword/?t=silhouette" id="km_silhouette">廓形</a></li>
+<li><a href="/keyword/?t=collar" id="km_collar">领型</a></li>
+<li><a href="/keyword/?t=origin" id="km_origin">产品来源</a></li>-->
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

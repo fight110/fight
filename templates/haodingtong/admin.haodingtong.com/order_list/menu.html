@@ -1,0 +1,16 @@
+<ul>
+<li><a href="/order_list/product" id="km_product">{%$keyword.style_id%}</a></li>
+<li><a href="/order_list/product_color" id="km_product_color">款色</a></li>
+<li><a href="/order_list/order_count" id="km_order_count_num">订量</a></li>
+<li><a href="/order_list/order_count?order=price" id="km_order_count_price">金额</a></li>
+<li><a href="/order_list/series" id="km_series">{%$keyword.series_id%}</a></li>
+<li><a href="/order_list/classes" id="km_classes">{%$keyword.classes_id%}</a></li>
+</ul>
+<script>
+(function(){
+  var menuid = "km_{%$show.t%}", m = null;
+  if(m = document.getElementById(menuid)){
+    m.className = "on";
+  }
+})()
+</script>

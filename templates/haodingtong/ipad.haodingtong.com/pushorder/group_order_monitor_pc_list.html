@@ -1,0 +1,23 @@
+{%if $show.list%}
+{%foreach from=$show.list key=k item=val name=foo%}
+<li>
+  <div class="floatLeft detailImg"><img src="/thumb/210/{%$val.defaultimage|hdt_pcimage:$val.product_id:$val.color_id%}"></div>
+  <div class="floatLeft detaiContent">
+    {%$user_perecent = $val.usernum|default:0 / $show.usernum * 100%}
+    <table  cellspacing="0" cellpadding="0" border="0" class="table01" style="width:500px;margin-top: 20px;">
+    <tr  height="30px">
+        <td width="200px">组内排名</td>
+        <td rowspan="2">圆牌号:{%$val.skc_id%} &nbsp&nbsp品名:{%$val.name%}<br>颜色:{%$val.color_id|hdt_keyword%} &nbsp&nbsp价格:{%$val.price%}元</td>
+    </tr><tr height="45px">
+        <td><em>第{%$smarty.foreach.foo.index+1%}名</em></td>
+    </tr><tr  height="30px">
+        <td>总订量</td>
+        <td rowspan="2">已订人数:{%$val.usernum|default:0%}<br>总人数:{%$show.usernum%}<br>被订率:{%$user_perecent|string_format:'%.1f%%'%}</td>
+    </tr><tr  height="45px">
+        <td>{%$val.num|default:0%}件</td>
+    </tr>
+    </table>
+  </div>
+</li>
+{%/foreach%}
+{%/if%}

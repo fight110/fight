@@ -1,0 +1,37 @@
+{%include file="top.1.html"%}
+<div class="pinned">
+    <div class="nav"><!--grey start-->
+      <div class="nleft" id="HDT-select-menu">
+      <ul>
+      {%include file="top.2.html"%}
+      <!-- </ul>
+      <ul> -->
+      <li>
+        <select name="ordered">
+          <option value="">全部</option>
+          <option value="on" {%if $show.ordered=="on"%}selected="selected"{%/if%}>已订{%$keyword.style_id%}</option>
+          <option value="off" {%if $show.ordered=="off"%}selected="selected"{%/if%}>未订{%$keyword.style_id%}</option>
+          <option value="unactive" {%if $show.ordered=="unactive"%}selected="selected"{%/if%}>全部删除款</option>
+        	<option value="onunactive" {%if $show.ordered=="onunactive"%}selected="selected"{%/if%}>已订删除款</option>
+        </select>
+      </li>
+      {%include file="top.ad.3.html"%}
+      {%if $currentUser.type neq 2%}
+      <li>
+        <select name="view">
+          <option value="L" {%if $show.view=="L"%}selected="selected"{%/if%}>大图</option>
+          <!-- <option value="S" {%if $show.view=="S"%}selected="selected"{%/if%}>小图</option> -->
+          <option value="T" {%if $show.view=="T"%}selected="selected"{%/if%}>单款</option>
+          <option value="ST" {%if $show.view=="ST"%}selected="selected"{%/if%}>款色</option>
+        </select>
+      </li>
+      {%/if%}
+      </ul>
+      </div>
+    <div class="nright">
+    {%include file="top.search.html"%}
+    </div>
+  </div>
+</div>
+  <!--tit_bar end-->
+{%include file="top.script.html"%}

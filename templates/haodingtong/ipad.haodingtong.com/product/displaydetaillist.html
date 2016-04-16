@@ -1,0 +1,59 @@
+{%section name=i loop=$show.list%}
+{%if $show.list[i].has_permission_brand%}
+<li><a name="p{%$show.list[i].product_id%}"></a>
+    <div class="imgbox"><a data-href="/dealer1/product/{%$show.list[i].product_id%}" href="javascript:void(0)" class="fancyboxBook"><img src="/thumb/210/{%$show.list[i].product.defaultimage%}" id="HDT_DISPLAY_LIST_IMG_{%$show.list[i].product_id%}"></a></div>
+    <div class="descri">
+        <div class="price">
+            <span class="amount"><div class="rateit rateit_new" id="rateit1" data-rateit-step="1" data-rateit-value="{%$show.list[i].storeinfo.rateval%}" data-product-id="{%$show.list[i].product_id%}"></div></span>
+            <strong>¥<b>{%$show.list[i].product.price%}</b></strong>
+        </div>
+    </div>
+</li>
+
+<li style="width:470px; margin-left:0px;">
+    <h4 class="clearfix">
+        <span class="nid">款号:{%$show.list[i].product.kuanhao%}（{%$show.list[i].product.style_id|hdt_keyword%}） 
+            {%if $show.list[i].product.status==0%}<font color="red">删除款</font>{%/if%}
+            {%if $show.list[i].product.hot%}<img class="icoimg" src="/style/images/bao.gif">{%/if%}
+        </span>
+        <span class="stylenum">
+               圆牌号:
+            {%section name=j loop=$show.list[i].color_list%}
+            {%$show.list[i].color_list[j].skc_id%}
+            {%/section%}
+        </span>
+    </h4>
+    <div class="pro_tabl pro_tabl_over">
+        <table cellspacing="0" cellpadding="0" border="0" class="HDT-keyborad" style="table-layout:auto;" data-product-id="{%$show.list[i].product_id%}" data-start-num="{%$show.company.order_start_num%}" data-start-pass="{%$show.company.order_start_pass%}" data-moq="{%$show.list[i].moq.minimum%}">
+            <tbody><tr>
+                <th style="width:60px;"></th>
+                {%section name=z loop=$show.list[i].size_list%}
+                <th>{%$show.list[i].size_list[z].name%}</th>
+                {%/section%}
+                <th>总:<em class="HDT-count-all"></em></th>
+                </tr>
+                {%section name=j loop=$show.list[i].color_list%}
+                <tr data-color-id="{%$show.list[i].color_list[j].keyword_id%}">
+                  <td>{%$show.list[i].color_list[j].name%}</td>
+                    {%if $show.list[i].color_list[j].status%}
+                        {%section name=z loop=$show.list[i].size_list%}
+                        <td><input style="width:80%" type="text" {%if $show.list[i].product.status%}readonly="readonly"{%else%}disabled="disabled"{%/if%} data-product-id="{%$show.list[i].product_id%}" data-color-id="{%$show.list[i].color_list[j].keyword_id%}" data-size-id="{%$show.list[i].size_list[z].size_id%}" data-category-id="{%$show.list[i].product.category_id%}" {%if $show.company.proportion_status%}data-is-proportion="{%$show.list[i].product.is_proportion%}" {%if $show.list[i].product.is_proportion%}data-proportion-list="{%$show.list[i].product.proportion_list%}"{%/if%}{%/if%}></td>
+                        {%/section%}
+                    {%else%}
+                        <td colspan="{%$show.list[i].size_list|count%}">此款色已删除</td>
+                    {%/if%}
+                  <td class="HDT-order-count"></td>
+                </tr>
+                {%/section%}
+            </tbody>
+        </table>
+        {%if $show.list[i].moq.minimum%}最小起订量:<em>{%$show.list[i].moq.minimum%}</em>{%/if%}
+    </div>
+        <h4 class="floatRight">
+        <input type="button" value="保存订单" class="btn_gree HDT-order-save" data-product-id="{%$show.list[i].product_id%}">
+            <input type="button" value="取消订单" class="btn_gray2 HDT-order-cancel" data-product-id="{%$show.list[i].product_id%}">
+     
+        </h4>
+</li>
+{%/if%}
+{%/section%}
